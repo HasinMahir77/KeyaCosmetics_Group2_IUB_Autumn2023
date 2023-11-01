@@ -8,11 +8,11 @@ package HasinMahir;
  *
  * @author hasin
  */
-public abstract class User {
+public abstract class user {
     protected String firstName, lastName, username, password;
     protected int id;
 
-    public User() {
+    public user() {
     }
 
     public String getFirstName() {
