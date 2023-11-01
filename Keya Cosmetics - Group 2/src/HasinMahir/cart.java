@@ -10,4 +10,19 @@ package HasinMahir;
  */
 public class cart {
     
+    
+    
+    
+    
+    
+        public void removeProduct(String productName){
+    
+        for (product i: this.productList){
+        
+            if (i.name == productName){
+                productList.remove(i);
+            }
+        }
+    }
+    
 }

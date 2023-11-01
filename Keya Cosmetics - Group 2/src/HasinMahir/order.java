@@ -17,13 +17,5 @@ public class order {
     public order() {
     }
     
-    public void removeProduct(String productName){
-    
-        for (product i: this.productList){
-        
-            if (i.name == productName){
-                productList.remove(i);
-            }
-        }
-    }
+
 }
