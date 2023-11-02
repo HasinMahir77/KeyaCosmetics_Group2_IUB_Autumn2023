@@ -14,7 +14,7 @@ import java.util.Hashtable;
  */
 public class cart {
     
-    protected Dictionary<String, orderedProduct> productList = new Hashtable<>();  
+    protected ArrayList<product> productList = new ArrayList<product>();  
     
     /*
     
@@ -30,9 +30,7 @@ public class cart {
     }
 */
 
-    public Dictionary<String, orderedProduct> getProductList() {
-        return productList;
-    }
+   
     
     
     
