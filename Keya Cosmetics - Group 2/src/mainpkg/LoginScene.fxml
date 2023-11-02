@@ -6,12 +6,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="477.0" prefWidth="641.0" style="-fx-background-color: #878c92;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="mainpkg.LoginSceneController">
+<AnchorPane id="AnchorPane" prefHeight="477.0" prefWidth="641.0" style="-fx-background-color: #878c92;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpkg.LoginSceneController">
    <children>
-      <ImageView fitHeight="233.0" fitWidth="398.0" layoutX="122.0">
+      <ImageView fitHeight="222.0" fitWidth="435.0" layoutX="103.0">
          <image>
-            <Image url="@../../images/Keya.jpeg" />
+            <Image url="file:/C:/Mahir/OOP%20Project/KeyaCosmetics_Group2_IUB_Autumn2023/Keya%20Cosmetics%20-%20Group%202/images/Keya.jpeg" />
          </image>
       </ImageView>
       <TextField fx:id="usernameTextField" layoutX="246.0" layoutY="208.0" promptText="Username" />

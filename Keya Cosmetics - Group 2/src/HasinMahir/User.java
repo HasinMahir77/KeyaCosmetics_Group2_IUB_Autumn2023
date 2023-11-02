@@ -9,12 +9,20 @@ package HasinMahir;
  * @author hasin
  */
 public abstract class user {
-    protected String firstName, lastName, fullName, username, password;
-    protected int id;
+    protected String firstName, lastName, username, password;
 
     public user() {
-    
     }
+
+    public user(String firstName, String lastName, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+
+    }
+    
+    
 
     public String getFirstName() {
         return firstName;
@@ -32,20 +40,12 @@ public abstract class user {
         return password;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public void setUsername(String username) {
@@ -56,10 +56,6 @@ public abstract class user {
         this.password = password;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    
     public void changePassword(String newPassword){
         this.password=newPassword;
     }
