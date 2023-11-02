@@ -15,9 +15,6 @@ public class customer extends user {
     }
     
     public void addToCart(product selectedProduct){
-        this.cart.productList.put(selectedProduct.name, selectedProduct.toOrderedProduct(1));   
-    }
-    public void addToCart(orderedProduct selectedProduct){
-        this.cart.productList.put(selectedProduct.name, selectedProduct);   
+        this.cart.productList.add(selectedProduct);   
     }
 }

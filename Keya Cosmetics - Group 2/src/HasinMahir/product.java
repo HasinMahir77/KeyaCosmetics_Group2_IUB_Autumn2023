@@ -13,6 +13,7 @@ public class product {
     int id, price, quantity;
 
     public product() {
+        this.quantity=0;
     }
 
     public product(String name,int id, String amount, int price, int quantity) {
