@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 public class order {
     ArrayList<product> productList = new ArrayList<product>();
+    String status;
     int id;
 
     public order() {

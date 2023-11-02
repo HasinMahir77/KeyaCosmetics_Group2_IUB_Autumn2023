@@ -5,6 +5,8 @@
 package HasinMahir;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 /**
  *
@@ -12,7 +14,8 @@ import java.util.ArrayList;
  */
 public class cart {
     
-    ArrayList<orderedProduct> productList = new ArrayList<orderedProduct>();    
+    protected Dictionary<String, orderedProduct> productList = new Hashtable<>();  
+    
     /*
     
     
@@ -26,5 +29,11 @@ public class cart {
         }
     }
 */
+
+    public Dictionary<String, orderedProduct> getProductList() {
+        return productList;
+    }
+    
+    
     
 }

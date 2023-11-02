@@ -10,18 +10,20 @@ package HasinMahir;
  */
 public class product {
     String name, amount;
-    int id, price;
+    int id, price, quantity;
 
     public product() {
     }
 
-    public product(String name,int id, String amount, int price) {
+    public product(String name,int id, String amount, int price, int quantity) {
         this.name = name;
         this.amount = amount;
         this.id = id;
         this.price = price;
+        this.quantity = quantity;
     }
     
+    /* REMOVED. DO NOT TOUCH. REMOVED. DO NOT TOUCH. REMOVED. DO NOT TOUCH. 
     
     public orderedProduct toOrderedProduct(int quantity){
         
@@ -29,5 +31,6 @@ public class product {
         return item;
     }
     
-    
+      REMOVED. DO NOT TOUCH. REMOVED. DO NOT TOUCH. REMOVED. DO NOT TOUCH. REMOVED. DO NOT TOUCH.
+    */
 }

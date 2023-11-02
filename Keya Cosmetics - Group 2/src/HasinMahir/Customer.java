@@ -9,9 +9,15 @@ package HasinMahir;
  * @author hasin
  */
 public class customer extends user {
-    cart cart0;
+    cart cart;
 
     public customer() {
     }
     
+    public void addToCart(product selectedProduct){
+        this.cart.productList.put(selectedProduct.name, selectedProduct.toOrderedProduct(1));   
+    }
+    public void addToCart(orderedProduct selectedProduct){
+        this.cart.productList.put(selectedProduct.name, selectedProduct);   
+    }
 }
