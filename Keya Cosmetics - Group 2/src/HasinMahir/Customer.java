@@ -13,6 +13,13 @@ public class customer extends user {
 
     public customer() {
     }
+
+    public customer(String firstName, String lastName, String username, String password) {
+        super(firstName, lastName, username, password);
+        this.cart = new cart();
+    }
+
+    
     
     public void addToCart(product selectedProduct){
         this.cart.productList.add(selectedProduct);   

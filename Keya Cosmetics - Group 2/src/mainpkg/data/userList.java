@@ -18,7 +18,6 @@ import java.util.Hashtable;
  * Stores username and user as key-value pairs
  */
 public class userList {
-    static int nextid = 0;
     
     //HasinMahir's Users
     private static Dictionary<String,customer> customerList = new Hashtable<>(); 
@@ -33,7 +32,7 @@ public class userList {
     //Amit's Users
     
     
-    //Methods
+    //HasinMahir's Methods
     
     public static void addUser(customer newCustomer){
         customerList.put(newCustomer.getUsername(), newCustomer);
@@ -41,5 +40,25 @@ public class userList {
     public static void addUser(customerServiceExecutive newCustomerServiceExecutive){
         customerServiceExecutiveList.put(newCustomerServiceExecutive.getUsername(), newCustomerServiceExecutive);
     }
+    
+    public static void removeUser(customer targetCustomer){
+        customerList.remove(targetCustomer.getUsername());
+    }
+    public static void removeUser(customerServiceExecutive targetCustomerServiceExecutive){
+        customerServiceExecutiveList.remove(targetCustomerServiceExecutive.getUsername());
+    }
+    
+    //Borhan's Methods
+    
+   
+    
+    //Nadim's Methods
+    
+
+    
+    
+    //Amit's Methods
+    
+    
     
 }
