@@ -17,4 +17,5 @@ public class customer extends user {
     public void addToCart(product selectedProduct){
         this.cart.productList.add(selectedProduct);   
     }
+    
 }
