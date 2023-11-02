@@ -8,15 +8,15 @@ package HasinMahir;
  *
  * @author hasin
  */
-public class product {
+public class Product {
     String name, amount;
     int id, price, quantity;
 
-    public product() {
+    public Product() {
         this.quantity=0;
     }
 
-    public product(String name,int id, String amount, int price, int quantity) {
+    public Product(String name,int id, String amount, int price, int quantity) {
         this.name = name;
         this.amount = amount;
         this.id = id;

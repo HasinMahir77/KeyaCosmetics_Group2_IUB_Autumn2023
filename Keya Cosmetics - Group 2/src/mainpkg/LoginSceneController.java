@@ -4,14 +4,20 @@
  */
 package mainpkg;
 
-import HasinMahir.customer;
+import HasinMahir.Customer;
+import HasinMahir.customerScenes.CustomerSceneSwitcher;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import mainpkg.data.userList;
+import javafx.stage.Stage;
+import mainpkg.data.UserList;
 
 /**
  * FXML Controller class
@@ -19,6 +25,8 @@ import mainpkg.data.userList;
  * @author hasin
  */
 public class LoginSceneController implements Initializable {
+    CustomerSceneSwitcher sceneSwitcher1 = new CustomerSceneSwitcher();
+    
 
     @FXML
     private TextField usernameTextField;
@@ -31,12 +39,16 @@ public class LoginSceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        customer newcustomer = new customer("Hasin", "Mahir", "Mahir","mahir1212");
-        userList.addUser(newcustomer);
+        Customer newcustomer = new Customer("Hasin", "Mahir", "Mahir","mahir1212");
+        UserList.addUser(newcustomer);
     }    
 
     @FXML
-    private void loginOnClick(ActionEvent event) {
+    private void loginOnClick(ActionEvent event) throws IOException {
+        
+        
+        sceneSwitcher1.switchScene("customerDashboard.fxml");
+        
     }
     
 }

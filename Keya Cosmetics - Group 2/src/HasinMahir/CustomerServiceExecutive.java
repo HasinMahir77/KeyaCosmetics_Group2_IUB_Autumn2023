@@ -8,6 +8,6 @@ package HasinMahir;
  *
  * @author hasin
  */
-public class customerServiceExecutive extends user {
+public class CustomerServiceExecutive extends User {
     
 }

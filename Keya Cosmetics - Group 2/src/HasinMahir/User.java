@@ -8,13 +8,13 @@ package HasinMahir;
  *
  * @author hasin
  */
-public abstract class user {
+public abstract class User {
     protected String firstName, lastName, username, password;
 
-    public user() {
+    public User() {
     }
 
-    public user(String firstName, String lastName, String username, String password) {
+    public User(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;

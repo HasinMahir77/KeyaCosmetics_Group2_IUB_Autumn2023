@@ -4,24 +4,27 @@
  */
 package HasinMahir;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author hasin
  */
-public class customer extends user {
-    cart cart;
+public class Customer extends User {
+    Cart cart;
+    ArrayList<Order> orderHistory;
 
-    public customer() {
+    public Customer() {
     }
 
-    public customer(String firstName, String lastName, String username, String password) {
+    public Customer(String firstName, String lastName, String username, String password) {
         super(firstName, lastName, username, password);
-        this.cart = new cart();
+        this.cart = new Cart();
     }
 
     
     
-    public void addToCart(product selectedProduct){
+    public void addToCart(Product selectedProduct){
         this.cart.productList.add(selectedProduct);   
     }
     

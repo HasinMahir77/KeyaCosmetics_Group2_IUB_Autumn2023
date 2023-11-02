@@ -4,10 +4,10 @@
  */
 package mainpkg.data;
 
-import HasinMahir.customer;
-import HasinMahir.customer;
-import HasinMahir.customerServiceExecutive;
-import HasinMahir.customerServiceExecutive;
+import HasinMahir.Customer;
+import HasinMahir.Customer;
+import HasinMahir.CustomerServiceExecutive;
+import HasinMahir.CustomerServiceExecutive;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -17,11 +17,11 @@ import java.util.Hashtable;
  * @author hasin
  * Stores username and user as key-value pairs
  */
-public class userList {
+public class UserList {
     
     //HasinMahir's Users
-    private static Dictionary<String,customer> customerList = new Hashtable<>(); 
-    private static Dictionary<String,customerServiceExecutive> customerServiceExecutiveList = new Hashtable<>();
+    private static Dictionary<String,Customer> customerList = new Hashtable<>(); 
+    private static Dictionary<String,CustomerServiceExecutive> customerServiceExecutiveList = new Hashtable<>();
     
     //Borhan's Users
     
@@ -34,17 +34,17 @@ public class userList {
     
     //HasinMahir's Methods
     
-    public static void addUser(customer newCustomer){
+    public static void addUser(Customer newCustomer){
         customerList.put(newCustomer.getUsername(), newCustomer);
     }
-    public static void addUser(customerServiceExecutive newCustomerServiceExecutive){
+    public static void addUser(CustomerServiceExecutive newCustomerServiceExecutive){
         customerServiceExecutiveList.put(newCustomerServiceExecutive.getUsername(), newCustomerServiceExecutive);
     }
     
-    public static void removeUser(customer targetCustomer){
+    public static void removeUser(Customer targetCustomer){
         customerList.remove(targetCustomer.getUsername());
     }
-    public static void removeUser(customerServiceExecutive targetCustomerServiceExecutive){
+    public static void removeUser(CustomerServiceExecutive targetCustomerServiceExecutive){
         customerServiceExecutiveList.remove(targetCustomerServiceExecutive.getUsername());
     }
     

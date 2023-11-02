@@ -12,9 +12,9 @@ import java.util.Hashtable;
  *
  * @author hasin
  */
-public class cart {
+public class Cart {
     
-    protected ArrayList<product> productList = new ArrayList<product>();  
+    protected ArrayList<Product> productList = new ArrayList<Product>();  
     
     /*
     

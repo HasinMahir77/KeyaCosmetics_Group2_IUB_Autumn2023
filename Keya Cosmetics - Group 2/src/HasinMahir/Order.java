@@ -10,12 +10,12 @@ import java.util.ArrayList;
  *
  * @author hasin
  */
-public class order {
-    ArrayList<product> productList = new ArrayList<product>();
+public class Order {
+    ArrayList<Product> productList = new ArrayList<Product>();
     String status;
     int id;
 
-    public order() {
+    public Order() {
     }
     
 
