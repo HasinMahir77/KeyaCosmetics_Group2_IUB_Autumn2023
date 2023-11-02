@@ -4,25 +4,27 @@
  */
 package HasinMahir;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author hasin
  */
 public class cart {
     
-    
-    
-    
+    ArrayList<orderedProduct> productList = new ArrayList<orderedProduct>();    
+    /*
     
     
         public void removeProduct(String productName){
     
-        for (product i: this.productList){
+        for (orderedProduct i: this.productList){
         
             if (i.name == productName){
                 productList.remove(i);
             }
         }
     }
+*/
     
 }

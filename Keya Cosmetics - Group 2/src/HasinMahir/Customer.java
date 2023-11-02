@@ -9,6 +9,7 @@ package HasinMahir;
  * @author hasin
  */
 public class customer extends user {
+    cart cart0;
 
     public customer() {
     }
