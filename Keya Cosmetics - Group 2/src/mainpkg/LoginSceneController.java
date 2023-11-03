@@ -15,6 +15,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import mainpkg.data.UserList;
@@ -45,10 +47,25 @@ public class LoginSceneController implements Initializable {
 
     @FXML
     private void loginOnClick(ActionEvent event) throws IOException {
-        
-        
-        sceneSwitcher1.switchScene("customerDashboard.fxml");
-        
+        if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("")) {
+            System.out.println("Username/Password textfield is empty");
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter both a username and password");
+            alert.show();   
+        } 
+        else if (UserList.getUser(usernameTextField.getText())==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"User not found");
+            alert.show();
+        }
+        else if (UserList.getPassword(usernameTextField.getText()).equals(passwordTextField.getText())){
+            System.out.println("Authentication Complete");
+            sceneSwitcher1.switchScene("customerDashboard.fxml","Dashboard");
+        }
+        else{
+            System.out.println("Authentication Failed");
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Username-Password"
+                    + " Combination Failed");
+            alert.show();  
+        }  
     }
     
 }

@@ -46,6 +46,20 @@ public class UserList {
     }
     public static void removeUser(CustomerServiceExecutive targetCustomerServiceExecutive){
         customerServiceExecutiveList.remove(targetCustomerServiceExecutive.getUsername());
+        
+    }
+        public static Dictionary<String, Customer> getCustomerList() {
+        return customerList;
+    }
+
+    public static Dictionary<String, CustomerServiceExecutive> getCustomerServiceExecutiveList() {
+        return customerServiceExecutiveList;
+    }
+    public static Customer getUser(String username){
+        return customerList.get(username);
+    }
+    public static String getPassword(String username){
+        return customerList.get(username).getPassword();
     }
     
     //Borhan's Methods
@@ -58,6 +72,9 @@ public class UserList {
     
     
     //Amit's Methods
+
+
+   
     
     
     
