@@ -56,6 +56,7 @@ public class LoginSceneController implements Initializable {
         else if (UserList.getUser(usernameTextField.getText())==null){
             Alert alert = new Alert(Alert.AlertType.ERROR,"User not found");
             alert.show();
+            System.out.println("User not found");
         }
         else if (UserList.getPassword(usernameTextField.getText()).equals(passwordTextField.getText())){
             System.out.println("Authentication Complete");
