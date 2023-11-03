@@ -18,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import mainpkg.data.UserList;
 
@@ -45,8 +47,7 @@ public class LoginSceneController implements Initializable {
         UserList.addUser(newcustomer);
     }    
 
-    @FXML
-    private void loginOnClick(ActionEvent event) throws IOException {
+    private void login() throws IOException{
         if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("")) {
             System.out.println("Username/Password textfield is empty");
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter both a username and password");
@@ -66,6 +67,20 @@ public class LoginSceneController implements Initializable {
                     + " Combination Failed");
             alert.show();  
         }  
+    }
+
+    @FXML
+    private void actionOnKeyPressed(KeyEvent event) throws IOException {
+        if (event.getCode()==KeyCode.ENTER) {
+            this.login();
+        }
+            
+            
+    }
+
+    @FXML
+    private void loginOnClick(ActionEvent event) throws IOException {
+        this.login();
     }
     
 }

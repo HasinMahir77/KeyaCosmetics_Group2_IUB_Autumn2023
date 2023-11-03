@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,8 +14,8 @@
             <Image url="file:/C:/Mahir/OOP%20Project/KeyaCosmetics_Group2_IUB_Autumn2023/Keya%20Cosmetics%20-%20Group%202/images/Keya.jpeg" />
          </image>
       </ImageView>
-      <TextField fx:id="usernameTextField" layoutX="246.0" layoutY="208.0" promptText="Username" />
-      <TextField fx:id="passwordTextField" layoutX="246.0" layoutY="245.0" promptText="Password" />
+      <TextField fx:id="usernameTextField" layoutX="246.0" layoutY="208.0" onKeyPressed="#actionOnKeyPressed" promptText="Username" />
       <Button layoutX="275.0" layoutY="279.0" mnemonicParsing="false" onAction="#loginOnClick" prefHeight="25.0" prefWidth="89.0" text="Login" />
+      <PasswordField fx:id="passwordTextField" layoutX="245.0" layoutY="242.0" onKeyPressed="#actionOnKeyPressed" promptText="Password" />
    </children>
 </AnchorPane>
