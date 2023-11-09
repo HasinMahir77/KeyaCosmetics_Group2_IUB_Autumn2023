@@ -7,15 +7,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="477.0" prefWidth="641.0" style="-fx-background-color: #878c92;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpkg.LoginSceneController">
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #878c92;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpkg.LoginSceneController">
    <children>
-      <ImageView fitHeight="257.0" fitWidth="403.0" layoutX="119.0" layoutY="-20.0">
+      <ImageView fitHeight="257.0" fitWidth="403.0" layoutX="279.0" layoutY="23.0">
          <image>
             <Image url="file:/C:/Mahir/OOP%20Project/KeyaCosmetics_Group2_IUB_Autumn2023/Keya%20Cosmetics%20-%20Group%202/images/Keya.jpeg" />
          </image>
       </ImageView>
-      <TextField fx:id="usernameTextField" layoutX="246.0" layoutY="208.0" onKeyPressed="#actionOnKeyPressed" promptText="Username" />
-      <Button layoutX="275.0" layoutY="279.0" mnemonicParsing="false" onAction="#loginOnClick" prefHeight="25.0" prefWidth="89.0" text="Login" />
-      <PasswordField fx:id="passwordTextField" layoutX="245.0" layoutY="242.0" onKeyPressed="#actionOnKeyPressed" promptText="Password" />
+      <TextField fx:id="usernameTextField" layoutX="406.0" layoutY="251.0" onKeyPressed="#actionOnKeyPressed" promptText="Username" />
+      <Button layoutX="435.0" layoutY="322.0" mnemonicParsing="false" onAction="#loginOnClick" prefHeight="25.0" prefWidth="89.0" text="Login" />
+      <PasswordField fx:id="passwordTextField" layoutX="405.0" layoutY="285.0" onKeyPressed="#actionOnKeyPressed" promptText="Password" />
    </children>
 </AnchorPane>
