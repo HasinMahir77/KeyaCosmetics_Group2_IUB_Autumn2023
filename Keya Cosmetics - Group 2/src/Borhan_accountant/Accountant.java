@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Borhan_deliveryman;
+package Borhan_accountant;
 
-import HasinMahir.User;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -16,10 +15,10 @@ import javafx.stage.Stage;
  *
  * @author 88019
  */
-public class Deliveryman extends User {
+public class Accountant extends UserAC {
     
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("deliverymanFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AccountantFXML.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -35,3 +34,4 @@ public class Deliveryman extends User {
     }
     
 }
+
