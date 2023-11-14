@@ -4,11 +4,13 @@
  */
 package HasinMahir;
 
+import java.io.Serializable;
+
 /**
  *
  * @author hasin
  */
-public abstract class User {
+public abstract class User implements Serializable {
     protected String firstName, lastName, username, password;
 
     public User() {

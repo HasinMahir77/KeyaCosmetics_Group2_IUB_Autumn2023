@@ -4,15 +4,17 @@
  */
 package HasinMahir;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author hasin
  */
-public class Customer extends User {
-    Cart cart;
-    ArrayList<Order> orderHistory;
+public class Customer extends User implements Serializable {
+    private Cart cart;
+    private ArrayList<Order> orderHistory;
+    private String address;
 
     public Customer() {
     }
@@ -20,6 +22,11 @@ public class Customer extends User {
     public Customer(String firstName, String lastName, String username, String password) {
         super(firstName, lastName, username, password);
         this.cart = new Cart();
+    }
+    public Customer(String firstName, String lastName, String username, String password, String address) {
+        super(firstName, lastName, username, password);
+        this.cart = new Cart();
+        this.address = address;
     }
 
     
