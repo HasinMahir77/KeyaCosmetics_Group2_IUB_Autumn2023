@@ -2,13 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package HasinMahir.customerScenes;
+package mainpkg;
 
 import HasinMahir.Customer;
+import HasinMahir.User;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,7 +36,7 @@ import mainpkg.data.UserList;
  *
  * @author hasin
  */
-public class SignupGridController implements Initializable {
+public class CustomerSignupGridController implements Initializable {
 
     @FXML
     private PasswordField passwordTextField;
@@ -55,9 +58,31 @@ public class SignupGridController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-/*
+
     @FXML
     private void signup(ActionEvent event) {
+        FileInputStream fis;
+        ObjectInputStream ois;
+        boolean duplicate = false;
+        try {
+            fis = new FileInputStream("customerList.bin");
+            ois = new ObjectInputStream(fis);
+            while(true){
+                Customer newCustomer = (Customer)ois.readObject();
+                if(newCustomer.getUsername().equals(usernameTextField.getText())){
+                    Alert alert = new Alert(Alert.AlertType.ERROR,"Username already exists");
+                    alert.show(); 
+                    ois.close();
+                    return;
+                }
+            }
+        } catch(Exception e){
+            System.out.println(e.toString());
+            System.out.println("User or file not found");
+           
+        }
+        
+        
         if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("") ||
                 firstNameTextField.getText().equals("")|| lastNameTextField.getText().equals("")
                 || addressTextArea.getText().equals("")) {
@@ -80,13 +105,13 @@ public class SignupGridController implements Initializable {
         System.out.println("customer created");
         
         File customerList = new File("customerList.bin");
-        
-        System.out.println("File initialized");
-        
         FileOutputStream fos;
         ObjectOutputStream oos;
+        System.out.println("File initialized");
+        
         // If first instance
-        if (customerList.exists()){
+        try {
+            if (customerList.exists()){
             fos = new FileOutputStream(customerList,true);
             oos = new ObjectOutputStreamA(fos);
         } else {
@@ -98,18 +123,21 @@ public class SignupGridController implements Initializable {
             oos.writeObject(newCustomer);
             oos.close();
             System.out.println("Obj Written");
+        } catch(IOException e) {
+            System.out.println(e.toString());
+            
+        }
+            
     }
-*/
+
     @FXML
     private void switchToLoginScreen(ActionEvent event) throws IOException {
         Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("LoginScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("LoginSignupScene.fxml"));
         Scene loginScene = new Scene(root);
         mainStage.setScene(loginScene);
     }
 
-    @FXML
-    private void signup(ActionEvent event) {
-    }
+
     
 }

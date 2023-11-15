@@ -6,7 +6,9 @@ package mainpkg;
 
 import HasinMahir.Customer;
 import HasinMahir.customerScenes.CustomerSceneSwitcher;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -22,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import mainpkg.data.UserList;
 
@@ -30,8 +33,8 @@ import mainpkg.data.UserList;
  *
  * @author hasin
  */
-public class LoginSceneController implements Initializable {
-    CustomerSceneSwitcher sceneSwitcher1 = new CustomerSceneSwitcher();
+public class LoginSignupSceneController implements Initializable {
+    CustomerSceneSwitcher customerSceneSwitcher = new CustomerSceneSwitcher();
     
 
     @FXML
@@ -53,6 +56,36 @@ public class LoginSceneController implements Initializable {
 
     @FXML
     private void login() throws IOException{
+        //If any Text Field is empty
+        
+        if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("")) {
+            System.out.println("Username/Password textfield is empty");
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter both a username and password");
+            alert.show();
+            return;
+        }
+            
+        FileInputStream fis;
+        ObjectInputStream ois;
+        try {
+            fis = new FileInputStream("customerList.bin");
+            ois = new ObjectInputStream(fis);
+            Customer oldCustomer = (Customer)ois.readObject();
+            String username = oldCustomer.getUsername();
+            String password = oldCustomer.getPassword();
+            
+            if(username.equals(usernameTextField.getText()) && 
+                    password.equals(passwordTextField.getText())){
+                customerSceneSwitcher.switchScene("customerDashboard.fxml","Dashboard");
+            }
+            
+            
+        } catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Username-Password"
+                    + " Combination Failed");
+            alert.show();  
+        }
+        /*
         if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("")) {
             System.out.println("Username/Password textfield is empty");
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter both a username and password");
@@ -73,6 +106,8 @@ public class LoginSceneController implements Initializable {
                     + " Combination Failed");
             alert.show();  
         }  
+        */
+        
     }
 
     private void actionOnKeyPressed(KeyEvent event) throws IOException {
@@ -91,7 +126,7 @@ public class LoginSceneController implements Initializable {
         Scene signupScene = new Scene(root);
         mainStage.setScene(signupScene);
         */
-        Parent root = FXMLLoader.load(getClass().getResource("HasinMahir.customerScenes.SignupGrid.fxml"));
+        GridPane root = FXMLLoader.load(getClass().getResource("CustomerSignupGrid.fxml"));
         sceneBorderPane.setCenter(root);
     }
     
