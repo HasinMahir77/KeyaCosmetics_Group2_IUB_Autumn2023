@@ -4,10 +4,6 @@
  */
 package NadimHR_PRODUCTMANAGER;
 
-/**
- *
- * @author Nadimul
- */
 public class Productmanager {
     
 }
