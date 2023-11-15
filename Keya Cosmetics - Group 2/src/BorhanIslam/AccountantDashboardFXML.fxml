@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BorhanIslam.AccountantDashboardFXMLController">
+   <children>
+      <ImageView fitHeight="197.0" fitWidth="214.0" layoutX="271.0" layoutY="134.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@326520847_1316584962455503_346895730745407346_n.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="30.0" layoutY="105.0" mnemonicParsing="false" onAction="#recordsOnButtonClicked" text="Records" />
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="738.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Button layoutX="34.0" layoutY="160.0" mnemonicParsing="false" onAction="#searchOnButtonClicked" text="Search" />
+      <Button layoutX="34.0" layoutY="220.0" mnemonicParsing="false" onAction="#deleteOnButtonClicked" text="Delete" />
+      <Button layoutX="31.0" layoutY="280.0" mnemonicParsing="false" onAction="#generateReportOnButtonClicked" text="Generate Report" />
+      <Button layoutX="31.0" layoutY="342.0" mnemonicParsing="false" onAction="#transactionOnButtonClicked" text="Transaction" />
+      <ImageView fitHeight="57.0" fitWidth="52.0" layoutX="672.0" layoutY="31.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@download.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="672.0" layoutY="92.0" mnemonicParsing="false" onAction="#profileOnButtonClicked" text="Profile" />
+      <Button layoutX="672.0" layoutY="129.0" mnemonicParsing="false" onAction="#logoutOnButtonClicked" text="Logout" />
+      <Button layoutX="641.0" layoutY="267.0" mnemonicParsing="false" onAction="#incomeStatementOnButtonClicked" text="Income Statement" />
+      <Button layoutX="639.0" layoutY="342.0" mnemonicParsing="false" onAction="#productionAnalysisOnButtonClicked" text="Production Analysis" />
+      <Button layoutX="31.0" layoutY="407.0" mnemonicParsing="false" onAction="#expenseControlSysOnButtonClicked" text="Expense Control System" />
+   </children>
+</AnchorPane>
