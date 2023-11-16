@@ -4,11 +4,13 @@
  */
 package HasinMahir;
 
+import java.io.Serializable;
+
 /**
  *
  * @author hasin
  */
-public class Product {
+public class Product implements Serializable {
     String name, amount;
     int id, price, quantity;
 

@@ -34,5 +34,10 @@ public class Customer extends User implements Serializable {
     public void addToCart(Product selectedProduct){
         this.cart.productList.add(selectedProduct);   
     }
+
+    @Override
+    public String toString() {
+        return ("Name: "+this.firstName+" "+this.lastName+", Username: "+this.username);
+    }
     
 }

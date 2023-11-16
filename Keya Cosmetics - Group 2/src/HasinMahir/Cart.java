@@ -4,6 +4,7 @@
  */
 package HasinMahir;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -12,7 +13,7 @@ import java.util.Hashtable;
  *
  * @author hasin
  */
-public class Cart {
+public class Cart implements Serializable {
     
     protected ArrayList<Product> productList = new ArrayList<Product>();  
     
