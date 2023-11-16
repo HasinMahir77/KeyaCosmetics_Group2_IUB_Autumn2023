@@ -19,7 +19,6 @@ public class ObjectOutputStreamA extends ObjectOutputStream {
     }
 
     
-    
     @Override
     public void writeStreamHeader() throws IOException{
     }

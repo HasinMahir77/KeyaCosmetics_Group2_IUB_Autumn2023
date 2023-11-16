@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import mainpkg.data.UserList;
 
 /**
  *
@@ -29,8 +28,6 @@ public class Main extends Application {
         stage.show();
         
         //Inserting a user
-        Customer newCustomer = new Customer("Hasin","Mahir","Mahir","mahir1212");
-        UserList.addUser(newCustomer);
         
     }
 

@@ -15,6 +15,10 @@ import mainpkg.Main;
  * @author hasin
  */
 public class CustomerSceneSwitcher {
+
+    public CustomerSceneSwitcher() {
+    }
+    
     
     public void switchScene(String fxml, String title) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource(fxml));

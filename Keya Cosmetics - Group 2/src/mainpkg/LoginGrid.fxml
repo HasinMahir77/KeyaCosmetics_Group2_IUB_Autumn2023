@@ -2,18 +2,14 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<GridPane fx:id="signupGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpkg.CustomerSignupGridController">
+<GridPane fx:id="signupGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpkg.LoginGridController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.66668701171875" minWidth="10.0" prefWidth="98.66668701171875" />
@@ -22,8 +18,8 @@
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="97.66665649414062" minHeight="10.0" prefHeight="97.66665649414062" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="200.33334350585938" minHeight="10.0" prefHeight="144.33334350585938" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
@@ -32,10 +28,7 @@
          <children>
             <TextField fx:id="usernameTextField" promptText="Username" />
             <PasswordField fx:id="passwordTextField" promptText="Password" />
-            <TextField fx:id="firstNameTextField" promptText="First Name" />
-            <TextField fx:id="lastNameTextField" promptText="Last Name" />
-            <TextArea fx:id="addressTextArea" prefHeight="200.0" prefWidth="200.0" promptText="Address" />
-            <Button mnemonicParsing="false" onAction="#signup" text="Sign up" />
+            <Button mnemonicParsing="false" onAction="#login" text="Login" />
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />
@@ -43,18 +36,7 @@
       </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToLoginScreen" text="Back to Login" />
-         </children>
-      </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.rowIndex="1">
-         <children>
-            <Label text="Sign up as:" underline="true">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <RadioButton mnemonicParsing="false" selected="true" text="Customer" />
-            <RadioButton disable="true" mnemonicParsing="false" text="Delivery Man" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToSignupScreen" text="Sign up instead" />
          </children>
       </VBox>
    </children>

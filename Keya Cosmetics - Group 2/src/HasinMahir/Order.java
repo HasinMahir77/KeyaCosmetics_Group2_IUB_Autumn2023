@@ -4,13 +4,14 @@
  */
 package HasinMahir;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author hasin
  */
-public class Order {
+public class Order implements Serializable {
     ArrayList<Product> productList = new ArrayList<Product>();
     String status;
     int id;

@@ -27,9 +27,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import mainpkg.data.UserList;
 
 /**
  * FXML Controller class
@@ -61,81 +61,59 @@ public class CustomerSignupGridController implements Initializable {
 
     @FXML
     private void signup(ActionEvent event) {
+        FileOutputStream fos;
+        ObjectOutputStream oos;
         FileInputStream fis;
         ObjectInputStream ois;
-        boolean duplicate = false;
+        File customerList;
+        
+        //Checking for duplicate
         try {
-            fis = new FileInputStream("customerList.bin");
+            customerList = new File("customerList.bin");
+            fis = new FileInputStream(customerList);
             ois = new ObjectInputStream(fis);
-            while(true){
-                Customer newCustomer = (Customer)ois.readObject();
-                if(newCustomer.getUsername().equals(usernameTextField.getText())){
-                    Alert alert = new Alert(Alert.AlertType.ERROR,"Username already exists");
-                    alert.show(); 
-                    ois.close();
+            while (true) {
+                Customer registeredCustomer = (Customer)ois.readObject();
+                if (registeredCustomer.getUsername().equals(usernameTextField.getText())) {
+                    Alert a = new Alert(Alert.AlertType.ERROR,"Username already exists");
+                    a.show();
                     return;
                 }
             }
+            
+        } catch(Exception e) {
+            System.out.println("File reading complete");
+            System.out.println(e.toString());
+        }
+        //Duplicate checking done. Adding the user to database.
+        try {
+            Customer newUser = new Customer(firstNameTextField.getText(),lastNameTextField.getText(),
+                usernameTextField.getText(), passwordTextField.getText());
+            customerList = new File("customerList.bin");
+            if (customerList.exists()){
+                 fos = new FileOutputStream(customerList,true);
+                 oos = new ObjectOutputStreamA(fos);
+            } else {
+                fos = new FileOutputStream(customerList);
+                oos = new ObjectOutputStream(fos);
+            }
+            oos.writeObject(newUser);
+            oos.flush();
+            oos.close();
+            System.out.println("User written");
+            
         } catch(Exception e){
             System.out.println(e.toString());
-            System.out.println("User or file not found");
-           
         }
-        
-        
-        if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("") ||
-                firstNameTextField.getText().equals("")|| lastNameTextField.getText().equals("")
-                || addressTextArea.getText().equals("")) {
-            System.out.println("Empty Text Area/Field");
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please fill in all details");
-            alert.show(); 
-            return;
-        } 
-        if (passwordTextField.getText().length()<8){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Password should at least contain 8 characters");
-            alert.show(); 
-            return;
-        }
-        System.out.println("Validation Passed");
-        
-        Customer newCustomer = new Customer();
-        Customer newcustomer = new Customer(firstNameTextField.getText(), passwordTextField.getText(),
-                usernameTextField.getText(),passwordTextField.getText(), addressTextArea.getText());
-        
-        System.out.println("customer created");
-        
-        File customerList = new File("customerList.bin");
-        FileOutputStream fos;
-        ObjectOutputStream oos;
-        System.out.println("File initialized");
-        
-        // If first instance
-        try {
-            if (customerList.exists()){
-            fos = new FileOutputStream(customerList,true);
-            oos = new ObjectOutputStreamA(fos);
-        } else {
-            fos = new FileOutputStream(customerList);
-            oos = new ObjectOutputStream(fos);
-        }
-        
-        
-            oos.writeObject(newCustomer);
-            oos.close();
-            System.out.println("Obj Written");
-        } catch(IOException e) {
-            System.out.println(e.toString());
-            
-        }
-            
     }
 
     @FXML
     private void switchToLoginScreen(ActionEvent event) throws IOException {
         Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("LoginSignupScene.fxml"));
-        Scene loginScene = new Scene(root);
-        mainStage.setScene(loginScene);
+        mainStage.setTitle("Login");
+        Parent root = FXMLLoader.load(getClass().getResource("LoginGrid.fxml"));
+        BorderPane sceneBorderPane = (BorderPane) mainStage.getUserData();
+        sceneBorderPane.setCenter(root);
     }
 
 
