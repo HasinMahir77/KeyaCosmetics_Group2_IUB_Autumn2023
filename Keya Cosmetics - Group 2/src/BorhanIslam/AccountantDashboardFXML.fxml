@@ -10,11 +10,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BorhanIslam.AccountantDashboardFXMLController">
    <children>
-      <ImageView fitHeight="197.0" fitWidth="214.0" layoutX="271.0" layoutY="134.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@326520847_1316584962455503_346895730745407346_n.jpg" />
-         </image>
-      </ImageView>
       <Button layoutX="30.0" layoutY="105.0" mnemonicParsing="false" onAction="#recordsOnButtonClicked" text="Records" />
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="738.0">
         <menus>
@@ -49,5 +44,10 @@
       <Button layoutX="641.0" layoutY="267.0" mnemonicParsing="false" onAction="#incomeStatementOnButtonClicked" text="Income Statement" />
       <Button layoutX="639.0" layoutY="342.0" mnemonicParsing="false" onAction="#productionAnalysisOnButtonClicked" text="Production Analysis" />
       <Button layoutX="31.0" layoutY="407.0" mnemonicParsing="false" onAction="#expenseControlSysOnButtonClicked" text="Expense Control System" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="280.0" layoutY="170.0" opacity="0.24" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/88019/OneDrive%20-%20Independent%20University,%20Bangladesh/Documents/NetBeansProjects/KeyaCosmetics_Group2_IUB_Autumn2023/KeyaCosmetics_Group2_IUB_Autumn2023/Keya%20Cosmetics%20-%20Group%202/images/keyaLogo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
