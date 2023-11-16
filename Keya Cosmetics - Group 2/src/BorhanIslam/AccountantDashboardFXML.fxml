@@ -8,10 +8,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BorhanIslam.AccountantDashboardFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BorhanIslam.AccountantDashboardFXMLController">
    <children>
-      <Button layoutX="30.0" layoutY="105.0" mnemonicParsing="false" onAction="#recordsOnButtonClicked" text="Records" />
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="738.0">
+      <Button layoutX="30.0" layoutY="68.0" mnemonicParsing="false" onAction="#recordsOnButtonClicked" text="Records" />
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="960.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -30,21 +30,21 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button layoutX="34.0" layoutY="160.0" mnemonicParsing="false" onAction="#searchOnButtonClicked" text="Search" />
+      <Button layoutX="34.0" layoutY="143.0" mnemonicParsing="false" onAction="#searchOnButtonClicked" text="Search" />
       <Button layoutX="34.0" layoutY="220.0" mnemonicParsing="false" onAction="#deleteOnButtonClicked" text="Delete" />
       <Button layoutX="31.0" layoutY="280.0" mnemonicParsing="false" onAction="#generateReportOnButtonClicked" text="Generate Report" />
       <Button layoutX="31.0" layoutY="342.0" mnemonicParsing="false" onAction="#transactionOnButtonClicked" text="Transaction" />
-      <ImageView fitHeight="57.0" fitWidth="52.0" layoutX="672.0" layoutY="31.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="57.0" fitWidth="52.0" layoutX="894.0" layoutY="27.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@download.png" />
          </image>
       </ImageView>
-      <Button layoutX="672.0" layoutY="92.0" mnemonicParsing="false" onAction="#profileOnButtonClicked" text="Profile" />
-      <Button layoutX="672.0" layoutY="129.0" mnemonicParsing="false" onAction="#logoutOnButtonClicked" text="Logout" />
-      <Button layoutX="641.0" layoutY="267.0" mnemonicParsing="false" onAction="#incomeStatementOnButtonClicked" text="Income Statement" />
-      <Button layoutX="639.0" layoutY="342.0" mnemonicParsing="false" onAction="#productionAnalysisOnButtonClicked" text="Production Analysis" />
+      <Button layoutX="895.0" layoutY="80.0" mnemonicParsing="false" onAction="#profileOnButtonClicked" text="Profile" />
+      <Button layoutX="893.0" layoutY="118.0" mnemonicParsing="false" onAction="#logoutOnButtonClicked" text="Logout" />
+      <Button layoutX="839.0" layoutY="220.0" mnemonicParsing="false" onAction="#incomeStatementOnButtonClicked" text="Income Statement" />
+      <Button layoutX="836.0" layoutY="280.0" mnemonicParsing="false" onAction="#productionAnalysisOnButtonClicked" text="Production Analysis" />
       <Button layoutX="31.0" layoutY="407.0" mnemonicParsing="false" onAction="#expenseControlSysOnButtonClicked" text="Expense Control System" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="280.0" layoutY="170.0" opacity="0.24" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="380.0" layoutY="170.0" opacity="0.24" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:/C:/Users/88019/OneDrive%20-%20Independent%20University,%20Bangladesh/Documents/NetBeansProjects/KeyaCosmetics_Group2_IUB_Autumn2023/KeyaCosmetics_Group2_IUB_Autumn2023/Keya%20Cosmetics%20-%20Group%202/images/keyaLogo.png" />
          </image>
