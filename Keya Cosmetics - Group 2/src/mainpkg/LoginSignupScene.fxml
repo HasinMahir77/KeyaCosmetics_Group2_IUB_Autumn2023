@@ -17,7 +17,7 @@
    <top>
       <ImageView fitHeight="129.0" fitWidth="233.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="file:/C:/Mahir/OOP%20Project/KeyaCosmetics_Group2_IUB_Autumn2023/Keya%20Cosmetics%20-%20Group%202/images/keyaLogo.png" />
+            <Image url="file:/C:/Users/88019/OneDrive%20-%20Independent%20University,%20Bangladesh/Documents/NetBeansProjects/KeyaCosmetics_Group2_IUB_Autumn2023/KeyaCosmetics_Group2_IUB_Autumn2023/Keya%20Cosmetics%20-%20Group%202/images/keyaLogo.png" />
          </image>
       </ImageView>
    </top>
