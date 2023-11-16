@@ -66,6 +66,8 @@ public class CustomerSignupGridController implements Initializable {
         FileInputStream fis;
         ObjectInputStream ois;
         File customerList;
+        //Checking for empty fields
+        
         
         //Checking for duplicate
         try {
