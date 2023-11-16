@@ -60,15 +60,23 @@ public class CustomerSignupGridController implements Initializable {
     }    
 
     @FXML
-    private void signup(ActionEvent event) {
+    private void signup(ActionEvent event) throws IOException {
         FileOutputStream fos;
         ObjectOutputStream oos;
         FileInputStream fis;
         ObjectInputStream ois;
         File customerList;
         //Checking for empty fields
-        
-        
+        if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("") ||
+                firstNameTextField.getText().equals(" ")||
+                lastNameTextField.getText().equals(" ") ||
+                addressTextArea.getText().equals(" ")) {
+            System.out.println("Username/Password textfield is empty");
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please fill in all of the fields");
+            alert.show();
+            return;
+        }
+         
         //Checking for duplicate
         try {
             customerList = new File("customerList.bin");
