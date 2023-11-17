@@ -8,6 +8,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 import mainpkg.Main;
 
 /**
@@ -22,10 +23,11 @@ public class CustomerSceneSwitcher {
     
     public void switchScene(String fxml, String title) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource(fxml));
+        Stage mainStage = Main.getMainStage();
         Scene scene = new Scene(root);
-        Main.mainStage.setTitle(title);
-        Main.mainStage.setScene(scene);
-        Main.mainStage.show();
+        mainStage.setTitle(title);
+        mainStage.setScene(scene);
+        mainStage.show();
     }
     
 }

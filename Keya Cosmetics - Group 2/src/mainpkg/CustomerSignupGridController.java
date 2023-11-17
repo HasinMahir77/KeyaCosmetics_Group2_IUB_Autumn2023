@@ -122,7 +122,7 @@ public class CustomerSignupGridController implements Initializable {
         Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainStage.setTitle("Login");
         Parent root = FXMLLoader.load(getClass().getResource("LoginGrid.fxml"));
-        BorderPane sceneBorderPane = (BorderPane) mainStage.getUserData();
+        BorderPane sceneBorderPane = LoginSignupSceneController.getSceneBorderPane();
         sceneBorderPane.setCenter(root);
     }
 

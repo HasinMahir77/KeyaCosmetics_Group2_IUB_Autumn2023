@@ -5,6 +5,7 @@
 package mainpkg;
 
 import HasinMahir.Customer;
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,7 +17,7 @@ import javafx.stage.Stage;
  * @author hasin
  */
 public class Main extends Application {
-    public static Stage mainStage;
+    private static Stage mainStage;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -36,6 +37,9 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+    public static Stage getMainStage(){
+        return mainStage;
     }
     
 }
