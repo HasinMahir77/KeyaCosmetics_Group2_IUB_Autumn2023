@@ -22,17 +22,17 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HasinMahir.customerScenes.CustomerDashboardController">
    <left>
-      <VBox alignment="CENTER" prefHeight="369.0" prefWidth="85.0" spacing="5.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="493.0" prefWidth="121.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="106.0" text="Category" />
-            <ListView fx:id="categoryListView" prefHeight="228.0" prefWidth="85.0" style="-fx-background-color: white; -fx-border-radius: 6; -fx-border-color: #c9c7c7;" />
+            <ListView fx:id="categoryListView" prefHeight="228.0" prefWidth="115.0" style="-fx-background-color: white; -fx-border-radius: 6; -fx-border-color: #c9c7c7;" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="106.0" text="Filters" />
             <ListView fx:id="filtersListView" prefHeight="199.0" prefWidth="85.0" style="-fx-background-color: white; -fx-border-radius: 6; -fx-border-color: #c9c7c7;" />
          </children>
       </VBox>
    </left>
    <right>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="493.0" prefWidth="125.0" BorderPane.alignment="CENTER">
          <children>
             <GridPane alignment="CENTER" prefHeight="67.0" prefWidth="100.0">
               <columnConstraints>
@@ -73,13 +73,13 @@
       </VBox>
    </right>
    <center>
-      <TableView fx:id="productTableView" prefHeight="476.0" prefWidth="775.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="productTableView" prefHeight="493.0" prefWidth="722.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn prefWidth="75.0" text="#" />
-            <TableColumn fx:id="nameColumn" prefWidth="146.99996948242188" text="Name" />
-          <TableColumn fx:id="categoryColumn" minWidth="3.000030517578125" prefWidth="82.66668701171875" text="Category" />
-            <TableColumn fx:id="priceColumn" prefWidth="97.0" text="Price" />
-            <TableColumn fx:id="stockColumn" prefWidth="90.0" text="Stock" />
+            <TableColumn fx:id="nameColumn" prefWidth="209.66668701171875" text="Name" />
+          <TableColumn fx:id="categoryColumn" minWidth="3.000030517578125" prefWidth="101.0" text="Category" />
+            <TableColumn fx:id="priceColumn" prefWidth="81.33331298828125" text="Price" />
+            <TableColumn fx:id="stockColumn" prefWidth="66.66668701171875" text="Stock" />
         </columns>
       </TableView>
    </center>
@@ -96,7 +96,6 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
                <children>
-                  <Button fx:id="cartButton1" mnemonicParsing="false" onMouseEntered="#darkenReturnButtonOnHover" onMouseExited="#lightenReturnButtonOnHover" prefHeight="45.0" prefWidth="101.0" style="-fx-background-color: #affad3;" text="Initiate Return" />
                   <MenuBar fx:id="userMenu" onMouseEntered="#darkenUserMenu" onMouseExited="#lightenUserMenu" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #affad3;">
                     <menus>
                       <Menu fx:id="userMenuBar" mnemonicParsing="false" text="User">
@@ -108,6 +107,7 @@
                       </Menu>
                     </menus>
                   </MenuBar>
+                  <Button fx:id="cartButton1" mnemonicParsing="false" onMouseEntered="#darkenReturnButtonOnHover" onMouseExited="#lightenReturnButtonOnHover" prefHeight="45.0" prefWidth="101.0" style="-fx-background-color: #affad3;" text="Initiate Return" />
                   <Button fx:id="cartButton" mnemonicParsing="false" onMouseEntered="#darkenCartButtonOnHover" onMouseExited="#lightenCartButtonOnHover" prefHeight="46.0" prefWidth="54.0" style="-fx-background-color: #affad3;" text="🛒 Cart" />
                </children>
                <padding>

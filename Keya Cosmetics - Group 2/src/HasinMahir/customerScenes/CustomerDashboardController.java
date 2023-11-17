@@ -38,9 +38,7 @@ public class CustomerDashboardController implements Initializable {
     @FXML
     private MenuItem ordersMenuItem;
     @FXML
-    private ListView<String> categoryListView;
-    @FXML
-    private TableView<Product> productTableView;
+    private ListView<String> categoryListView;    
     @FXML
     private Button cartButton;
     @FXML
@@ -60,19 +58,21 @@ public class CustomerDashboardController implements Initializable {
     @FXML
     private Button cartButton1;
     @FXML
-    private ListView<?> filtersListView;
+    private ListView<String> filtersListView;
     @FXML
     private TextField searchTextField;
     @FXML
     private Label searchLabel;
     @FXML
-    private TableColumn<?, ?> nameColumn;
+    private TableView<Product> productTableView;
     @FXML
-    private TableColumn<?, ?> categoryColumn;
+    private TableColumn<Product, String> nameColumn;
     @FXML
-    private TableColumn<?, ?> priceColumn;
+    private TableColumn<Product, String> categoryColumn;
     @FXML
-    private TableColumn<?, ?> stockColumn;
+    private TableColumn<Product, Integer> priceColumn;
+    @FXML
+    private TableColumn<Product, String> stockColumn;
 
     /**
      * Initializes the controller class.
@@ -81,7 +81,8 @@ public class CustomerDashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        categoryListView.getItems().addAll("Soap","Lotion","Shampoo","Cream");
+        categoryListView.getItems().addAll("Soap","Lotion",
+                "Shampoo","Cream","Serum");
     }    
 
     private void darkenGreenButtonOnHover(MouseEvent event) {
@@ -120,12 +121,12 @@ public class CustomerDashboardController implements Initializable {
 
     @FXML
     private void lightenUserMenu(MouseEvent event) {
-         userMenu.setStyle("-fx-background-color: #affad3");
+         //userMenu.setStyle("-fx-background-color: #affad3");
     }
 
     @FXML
     private void darkenUserMenu(MouseEvent event) {
-         userMenu.setStyle("-fx-background-color: #58db95");
+         //userMenu.setStyle("-fx-background-color: #58db95");
     }
 
     @FXML
@@ -151,10 +152,14 @@ public class CustomerDashboardController implements Initializable {
 
     @FXML
     private void lightenSearchLabel(MouseEvent event) {
+        searchLabel.setStyle("-fx-background-color: #affad3");
+        
+        
     }
 
     @FXML
     private void darkenSearchLabel(MouseEvent event) {
+        searchLabel.setStyle("-fx-background-color: #58db95");
     }
     
 }

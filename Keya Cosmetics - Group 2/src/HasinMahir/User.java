@@ -17,8 +17,8 @@ public abstract class User implements Serializable {
     }
 
     public User(String firstName, String lastName, String username, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = firstName.substring(0, 1).toUpperCase()+firstName.substring(1);
+        this.lastName = lastName.substring(0, 1).toUpperCase()+lastName.substring(1);
         this.username = username;
         this.password = password;
 
