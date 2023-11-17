@@ -15,21 +15,20 @@ import java.util.Hashtable;
  */
 public class Cart implements Serializable {
     
-    protected ArrayList<Product> productList = new ArrayList<Product>();  
-    
-    /*
-    
-    
-        public void removeProduct(String productName){
-    
-        for (orderedProduct i: this.productList){
-        
-            if (i.name == productName){
-                productList.remove(i);
-            }
-        }
+    protected ArrayList<Product> productList = new ArrayList<Product>();
+
+    public ArrayList<Product> getProductList() {
+        return productList;
     }
-*/
+
+    public void setProductList(ArrayList<Product> productList) {
+        this.productList = productList;
+    }
+    public void addProduct(Product product){
+        
+    }
+    
+ 
 
    
     
