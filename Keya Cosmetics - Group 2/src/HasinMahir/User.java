@@ -4,7 +4,12 @@
  */
 package HasinMahir;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
+import javafx.stage.Stage;
 
 /**
  *
@@ -23,8 +28,6 @@ public abstract class User implements Serializable {
         this.password = password;
 
     }
-    
-    
 
     public String getFirstName() {
         return firstName;

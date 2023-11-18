@@ -4,8 +4,14 @@
  */
 package HasinMahir;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import mainpkg.ObjectOutputStreamA;
 
 /**
  *
@@ -39,5 +45,45 @@ public class Customer extends User implements Serializable {
     public String toString() {
         return ("Name: "+this.firstName+" "+this.lastName+", Username: "+this.username);
     }
+        
+    public void saveInstance(){
+        File oldCustomerList = new File("customerList.bin");
+        Customer customer;
+        ArrayList<Customer> bufferList = new ArrayList<Customer>();
+        //Collecting all the other users of same type
+        try(FileInputStream fis = new FileInputStream(oldCustomerList);
+                ObjectInputStream ois = new ObjectInputStream(fis);) {
+            
+            while(true){
+                customer = (Customer)ois.readObject();
+                if (!(customer.getUsername().equals(this.getUsername()))) {
+                    bufferList.add(customer);
+                }
+            }
+        } catch(Exception e) {
+            System.out.println("From customer.saveInstance() : "+e.toString());
+            System.out.println("ArrayList of customers made");
+        } 
+        // Arraylist of Customers made.
+        
+        //Rewriting the bin file with the updated customer object.
+        oldCustomerList.delete();
+        
+        try(FileOutputStream fos = new FileOutputStream(oldCustomerList,true);
+        ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
+            oos.writeObject(this);
+            while(true){
+                for (Customer c : bufferList){
+                    oos.writeObject(c);
+                }
+            }
+            
+        } catch(Exception e){
+            System.out.println(e.toString());
+            System.out.println("If EOF, writing is complete.");
+        }
+        
+    }
+    
     
 }
