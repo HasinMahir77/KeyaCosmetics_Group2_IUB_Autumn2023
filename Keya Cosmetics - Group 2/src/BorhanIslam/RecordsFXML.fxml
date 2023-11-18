@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="BorhanIslam.RecordsFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BorhanIslam.RecordsFXMLController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="960.0">
         <menus>
@@ -34,6 +37,20 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="33.0" layoutY="81.0" text="Label" />
+      <Button layoutX="35.0" layoutY="95.0" mnemonicParsing="false" onAction="#showRecordsOnButtonClicked" text="Show Records" />
+      <Button layoutX="143.0" layoutY="95.0" mnemonicParsing="false" onAction="#editOnButtonClicked" text="Edit " />
+      <Button layoutX="898.0" layoutY="131.0" mnemonicParsing="false" onAction="#filterOnButtonClicked" text="Filter" />
+      <TableView fx:id="recordsTableView" layoutX="14.0" layoutY="156.0" prefHeight="374.0" prefWidth="927.0">
+        <columns>
+          <TableColumn prefWidth="49.0" text="SL" />
+          <TableColumn prefWidth="107.0" text="Order no." />
+            <TableColumn prefWidth="106.0" text="Date" />
+            <TableColumn prefWidth="128.0" text="Time" />
+            <TableColumn prefWidth="173.0" text="Status of Payment" />
+            <TableColumn prefWidth="145.0" text="Refund" />
+            <TableColumn prefWidth="218.0" text="Total Amount" />
+        </columns>
+      </TableView>
+      <TextField fx:id="searchTextfield" alignment="CENTER" layoutX="746.0" layoutY="95.0" onAction="#searchTextfieldOnEnterPressed" prefHeight="25.0" prefWidth="195.0" promptText="Search" />
    </children>
 </AnchorPane>
