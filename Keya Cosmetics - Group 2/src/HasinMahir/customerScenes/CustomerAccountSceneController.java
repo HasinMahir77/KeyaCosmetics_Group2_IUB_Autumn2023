@@ -240,7 +240,7 @@ public class CustomerAccountSceneController implements Initializable {
             return;
         }
         current.setPassword(passwordTextField.getText());
-        current.saveInstance();
+       // current.saveInstance();
         //Enabling the buttons again
         editProfileButton.setDisable(false);
         changePasswordButton.setDisable(false);
