@@ -19,7 +19,7 @@ import javafx.scene.layout.BorderPane;
  *
  * @author Nadimul
  */
-public class HRController implements Initializable {
+public class HRMainDashboardController implements Initializable {
 
     @FXML
     private BorderPane borderpane;

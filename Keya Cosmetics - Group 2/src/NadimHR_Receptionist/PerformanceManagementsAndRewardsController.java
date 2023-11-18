@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author Nadimul
  */
-public class AddEmployeeDetailsController implements Initializable {
+public class PerformanceManagementsAndRewardsController implements Initializable {
 
     /**
      * Initializes the controller class.
