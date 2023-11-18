@@ -76,16 +76,15 @@ public class CustomerSignupGridController implements Initializable {
             alert.show();
             return;
         }
-        //Validating the Phone number 
-        if (phoneTextField.getText().length()!=11){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
+        //Validating Address
+        if (addressTextArea.getText().length()<=5){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid address");
             alert.show();
             return;
         }
-        //Validating the password
-        if (passwordTextField.getText().length()<=8){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a password that is at least 8 "
-                    + "characters long.");
+        //Validating the Phone number 
+        if (phoneTextField.getText().length()!=11){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
             alert.show();
             return;
         }
@@ -98,6 +97,14 @@ public class CustomerSignupGridController implements Initializable {
             alert.show();
             return;
         }
+        //Validating the password
+        if (passwordTextField.getText().length()<=8){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a password that is at least 8 "
+                    + "characters long.");
+            alert.show();
+            return;
+        }
+        
          
         //Checking for duplicate
         try {

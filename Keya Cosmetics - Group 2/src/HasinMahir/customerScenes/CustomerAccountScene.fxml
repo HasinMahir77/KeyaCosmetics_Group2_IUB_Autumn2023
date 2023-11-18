@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -31,12 +32,12 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label text="Profile" textFill="#5e95e9">
+                  <Label fx:id="profileLabel" text="Profile">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="voucherLabel" text="Vouchers">
+                  <Label fx:id="voucherLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="Vouchers">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -50,17 +51,17 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="allLabel" text="All">
+                  <Label fx:id="allLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="All">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="ongoingLabel" text="Ongoing">
+                  <Label fx:id="ongoingLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="Ongoing">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="returnedLabel" text="Returned">
+                  <Label fx:id="returnedLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="Returned">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -72,7 +73,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="119.0" prefWidth="121.0" spacing="2.0">
                <children>
-                  <Label fx:id="cartLabel" alignment="TOP_CENTER" prefHeight="19.0" prefWidth="121.0" text="Cart">
+                  <Label fx:id="cartLabel" alignment="TOP_CENTER" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" prefHeight="19.0" prefWidth="121.0" text="Cart">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -120,6 +121,12 @@
                         <TextField fx:id="lastNameTextField" disable="true" prefHeight="25.0" prefWidth="175.0" />
                      </children>
                   </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="198.0" spacing="10.0">
+                     <children>
+                        <Label text="Password" />
+                        <PasswordField fx:id="passwordTextField" disable="true" />
+                     </children>
+                  </VBox>
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="2">
@@ -130,12 +137,12 @@
                   <VBox alignment="CENTER" prefHeight="147.0" prefWidth="188.0" spacing="10.0">
                      <children>
                         <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#editProfileButtonOnClick" prefHeight="42.0" prefWidth="159.0" text="Edit Profile" />
-                        <Button fx:id="applyButton" disable="true" mnemonicParsing="false" onAction="#applyEdits" prefHeight="42.0" prefWidth="159.0" text="Apply" />
+                        <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePasswordButtonOnClick" prefHeight="42.0" prefWidth="159.0" text="Change Password" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#changePasswordButtonOnClick" prefHeight="42.0" prefWidth="159.0" text="Change Password" />
+                        <Button fx:id="applyButton" disable="true" mnemonicParsing="false" onAction="#applyEdits" prefHeight="42.0" prefWidth="159.0" text="Apply" />
                      </children>
                   </VBox>
                </children>

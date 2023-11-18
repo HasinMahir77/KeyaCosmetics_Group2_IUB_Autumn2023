@@ -89,7 +89,7 @@ public class LoginGridController implements Initializable {
                         System.out.println("Saved "+user.getClass().getSimpleName());
                         if (fileName.equals("customerList.bin")){
                             customerSceneSwitcher.switchToShopScene();
-                             System.out.println("Switched");
+                             System.out.println("Logged in as Customer");
                              return;
                         }
                        

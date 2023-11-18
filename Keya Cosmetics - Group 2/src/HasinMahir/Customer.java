@@ -78,7 +78,7 @@ public class Customer extends User implements Serializable {
         File oldCustomerList = new File("customerList.bin");
         Customer customer;
         ArrayList<Customer> bufferList = new ArrayList<Customer>();
-        //Collecting all the other users of same type
+        //Collecting all the other users of same type except current user
         try(FileInputStream fis = new FileInputStream(oldCustomerList);
                 ObjectInputStream ois = new ObjectInputStream(fis);) {
             
@@ -95,21 +95,32 @@ public class Customer extends User implements Serializable {
         // Arraylist of Customers made.
         
         //Rewriting the bin file with the updated customer object.
-        oldCustomerList.delete();
+        try{
+            FileOutputStream temp = new FileOutputStream(oldCustomerList);
+            temp.close();
+        }catch(Exception e){
+            System.out.println(e);
+        }
         
+        try(FileOutputStream fos = new FileOutputStream(oldCustomerList);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);){
+            oos.writeObject(this);
+        } catch(Exception e){
+            System.out.println(e.toString());
+            System.out.println("Only current customer written. Other customers next");
+        }
         try(FileOutputStream fos = new FileOutputStream(oldCustomerList,true);
         ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
-            oos.writeObject(this);
             while(true){
-                for (Customer c : bufferList){
+                for(Customer c: bufferList){
                     oos.writeObject(c);
                 }
             }
-            
         } catch(Exception e){
             System.out.println(e.toString());
-            System.out.println("If EOF, writing is complete.");
+            System.out.println("If EOF, all users have been");
         }
+        
         
     }
     public void deleteAccount(){
