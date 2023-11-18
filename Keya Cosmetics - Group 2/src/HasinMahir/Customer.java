@@ -72,7 +72,7 @@ public class Customer extends User implements Serializable {
     public String getAddress() {
         return address;
     }
-    
+    /*
         
     public void saveInstance(){
         File oldCustomerList = new File("customerList.bin");
@@ -161,6 +161,7 @@ public class Customer extends User implements Serializable {
             System.out.println("If EOF, writing is complete.");
         }
     }
+*/
     public static ArrayList<Customer> getCustomerList(){
         File oldCustomerList = new File("customerList.bin");
         Customer customer;
