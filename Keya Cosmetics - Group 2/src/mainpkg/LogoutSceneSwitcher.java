@@ -16,10 +16,8 @@ import javafx.scene.Scene;
 public class LogoutSceneSwitcher {
     public void switchScene() throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("LoginSignupScene.fxml"));
-        Scene scene = new Scene(root);
-        Main.getMainStage().setTitle("Login");
-        Main.getMainStage().setScene(scene);
-        Main.getMainStage().show();
+        Scene scene = Main.getMainStage().getScene();
+        scene.setRoot(root);
     }
     
 }

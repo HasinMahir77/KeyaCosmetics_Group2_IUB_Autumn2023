@@ -5,6 +5,7 @@
 package HasinMahir;
 
 import java.io.Serializable;
+import mainpkg.Main;
 
 /**
  *
@@ -12,18 +13,21 @@ import java.io.Serializable;
  */
 public class Product implements Serializable {
     String name, amount, category;
-    int price, quantity;
+    int price;
 
-    public Product() {
-        this.quantity=0;
+    public Product(){ 
     }
 
-    public Product(String name,String category, String amount, int price, int quantity) {
+    public Product(String name,String category, String amount, int price) {
         this.name = name;
         this.amount = amount;
         this.category = category;
         this.price = price;
-        this.quantity = quantity;
+    }
+    public void addToCart(int quantity){
+        Customer c = (Customer)Main.getMainStage().getUserData();
+        c.addToCart(this,quantity);
+        c.saveInstance();
     }
 
     public void setName(String name) {
@@ -42,11 +46,6 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-    
-
     public String getName() {
         return name;
     }
@@ -61,9 +60,5 @@ public class Product implements Serializable {
 
     public int getPrice() {
         return price;
-    }
-
-    public int getQuantity() {
-        return quantity;
     }
 }

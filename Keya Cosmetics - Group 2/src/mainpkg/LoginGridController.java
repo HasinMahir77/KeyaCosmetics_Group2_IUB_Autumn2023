@@ -81,13 +81,14 @@ public class LoginGridController implements Initializable {
                 while (true){
                     User user = (User)ois.readObject();
                     if (user.getUsername().equals(usernameTextField.getText()) && 
-                            user.getPassword().equals(passwordTextField.getText())){
+                            user.getPassword().equals(passwordTextField.getText()) &&
+                            user.isDel()==false){
                         System.out.println("Credentials Matched");
                         //Saving user object in Stage
                         Main.getMainStage().setUserData(user);
                         System.out.println("Saved "+user.getClass().getSimpleName());
                         if (fileName.equals("customerList.bin")){
-                            customerSceneSwitcher.switchScene("CustomerDashboard.fxml", "Dashboard");
+                            customerSceneSwitcher.switchToShopScene();
                              System.out.println("Switched");
                              return;
                         }

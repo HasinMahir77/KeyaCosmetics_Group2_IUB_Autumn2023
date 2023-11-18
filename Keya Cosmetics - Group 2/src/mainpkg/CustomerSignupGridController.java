@@ -24,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -49,7 +50,7 @@ public class CustomerSignupGridController implements Initializable {
     @FXML
     private TextArea addressTextArea;
     @FXML
-    private GridPane signupGridPane;
+    private TextField phoneTextField;
 
     /**
      * Initializes the controller class.
@@ -68,11 +69,32 @@ public class CustomerSignupGridController implements Initializable {
         File customerList;
         //Checking for empty fields
         if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("") ||
-                firstNameTextField.getText().equals(" ")||
-                lastNameTextField.getText().equals(" ") ||
-                addressTextArea.getText().equals(" ")) {
+                firstNameTextField.getText().equals("")|| phoneTextField.getText().equals("")
+                || lastNameTextField.getText().equals("") ||addressTextArea.getText().equals("")) {
             System.out.println("Username/Password textfield is empty");
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please fill in all of the fields");
+            alert.show();
+            return;
+        }
+        //Validating the Phone number 
+        if (phoneTextField.getText().length()!=11){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
+            alert.show();
+            return;
+        }
+        //Validating the password
+        if (passwordTextField.getText().length()<=8){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a password that is at least 8 "
+                    + "characters long.");
+            alert.show();
+            return;
+        }
+        try{
+            int phone = Integer.parseInt(phoneTextField.getText());
+        } catch(Exception e){
+            System.out.println("Phone num parsing to int failed");
+            System.out.println(e);
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
             alert.show();
             return;
         }
@@ -98,7 +120,8 @@ public class CustomerSignupGridController implements Initializable {
         //Duplicate checking done. Adding the user to database.
         try {
             Customer newUser = new Customer(firstNameTextField.getText(),lastNameTextField.getText(),
-                usernameTextField.getText(), passwordTextField.getText());
+                usernameTextField.getText(), passwordTextField.getText(),
+                    addressTextArea.getText(),phoneTextField.getText());
             customerList = new File("customerList.bin");
             if (customerList.exists()){
                  fos = new FileOutputStream(customerList,true);
@@ -111,6 +134,8 @@ public class CustomerSignupGridController implements Initializable {
             oos.flush();
             oos.close();
             System.out.println("User written");
+            Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Account created successfully",ButtonType.OK);
+            a.show();
             
         } catch(Exception e){
             System.out.println(e.toString());

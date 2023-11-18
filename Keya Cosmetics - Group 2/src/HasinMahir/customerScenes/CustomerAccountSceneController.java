@@ -4,7 +4,9 @@
  */
 package HasinMahir.customerScenes;
 
+import HasinMahir.Customer;
 import HasinMahir.Product;
+import HasinMahir.User;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +21,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -31,24 +34,19 @@ import mainpkg.Main;
  *
  * @author hasin
  */
-public class CustomerDashboardController implements Initializable {
+public class CustomerAccountSceneController implements Initializable {
 
     @FXML
-    private Menu userMenuBar;
+    private MenuBar userMenuBar;
     @FXML
     private MenuItem ordersMenuItem;
-    @FXML
     private ListView<String> categoryListView;    
     @FXML
     private Button cartButton;
-    @FXML
     private Label quantityMinusLabel;
-    @FXML
     private Label quantityPlusLabel;
     @FXML
-    private TextField quantityTextField;
-    @FXML
-    private MenuBar userMenu;
+    private Menu userMenu;
     @FXML
     private MenuItem accountMenuItem;
     @FXML
@@ -57,22 +55,31 @@ public class CustomerDashboardController implements Initializable {
     private ImageView keyaIcon;
     @FXML
     private Button cartButton1;
-    @FXML
-    private ListView<String> filtersListView;
-    @FXML
-    private TextField searchTextField;
-    @FXML
     private Label searchLabel;
     @FXML
-    private TableView<Product> productTableView;
+    private Label voucherLabel;
     @FXML
-    private TableColumn<Product, String> nameColumn;
+    private Label allLabel;
     @FXML
-    private TableColumn<Product, String> categoryColumn;
+    private Label ongoingLabel;
     @FXML
-    private TableColumn<Product, Integer> priceColumn;
+    private Label returnedLabel;
     @FXML
-    private TableColumn<Product, String> stockColumn;
+    private Label cartLabel;
+    @FXML
+    private TextField firstNameTextField;
+    @FXML
+    private TextField lastNameTextField;
+    @FXML
+    private TextField phoneTextField;
+    @FXML
+    private TextArea addressTextArea;
+    @FXML
+    private Button shopButton;
+    @FXML
+    private Button applyButton;
+    @FXML
+    private Button editProfileButton;
 
     /**
      * Initializes the controller class.
@@ -81,8 +88,12 @@ public class CustomerDashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        categoryListView.getItems().addAll("Soap","Lotion",
-                "Shampoo","Cream","Serum");
+        Customer current = (Customer)Main.getMainStage().getUserData();
+        userMenu.setText(current.getUsername()+" ↓");
+        firstNameTextField.setText(current.getFirstName());
+        lastNameTextField.setText(current.getLastName());
+        addressTextArea.setText(current.getAddress());
+        phoneTextField.setText(current.getPassword());
     }    
 
     private void darkenGreenButtonOnHover(MouseEvent event) {
@@ -93,22 +104,18 @@ public class CustomerDashboardController implements Initializable {
         ((Button)event.getSource()).setStyle("-fx-background-color: #affad3");  
     }
 
-    @FXML
     private void quantityMinusLabelLightenOnHover(MouseEvent event) {
         quantityMinusLabel.setStyle("-fx-background-color: #ffffff");
     }
 
-    @FXML
     private void quantityMinusLabelDarkenOnHover(MouseEvent event) {
         quantityMinusLabel.setStyle("-fx-background-color: #c9c7c7");
     }
 
-    @FXML
     private void quantityPlusLabelLightenOnHover(MouseEvent event) {
         quantityPlusLabel.setStyle("-fx-background-color: #ffffff");
     }
 
-    @FXML
     private void quantityPlusLabelDarkenOnHover(MouseEvent event) {
         quantityPlusLabel.setStyle("-fx-background-color: #c9c7c7");
     }
@@ -119,15 +126,6 @@ public class CustomerDashboardController implements Initializable {
         logout.switchScene();
     }
 
-    @FXML
-    private void lightenUserMenu(MouseEvent event) {
-         //userMenu.setStyle("-fx-background-color: #affad3");
-    }
-
-    @FXML
-    private void darkenUserMenu(MouseEvent event) {
-         //userMenu.setStyle("-fx-background-color: #58db95");
-    }
 
     @FXML
     private void lightenReturnButtonOnHover(MouseEvent event) {
@@ -150,16 +148,67 @@ public class CustomerDashboardController implements Initializable {
          this.darkenGreenButtonOnHover(event);
     }
 
-    @FXML
     private void lightenSearchLabel(MouseEvent event) {
         searchLabel.setStyle("-fx-background-color: #affad3");
         
         
     }
 
-    @FXML
     private void darkenSearchLabel(MouseEvent event) {
         searchLabel.setStyle("-fx-background-color: #58db95");
+    }
+
+    @FXML
+    private void lightenUserMenuBar(MouseEvent event) {
+        //userMenuBar.setStyle("-fx-background-color: #affad3");
+        userMenu.setStyle("-fx-background-color: #affad3");
+    }
+
+    @FXML
+    private void darkenUserMenuBar(MouseEvent event) {
+        userMenu.setStyle("-fx-background-color: #58db95");
+    }
+
+
+    @FXML
+    private void switchToAccountScene(ActionEvent event) {
+    }
+
+    @FXML
+    private void editProfileButtonOnClick(ActionEvent event) {
+        firstNameTextField.setDisable(false);
+        lastNameTextField.setDisable(false);
+        addressTextArea.setDisable(false);
+        phoneTextField.setDisable(false);
+        applyButton.setDisable(false);
+        editProfileButton.setDisable(true);
+        
+    }
+
+    @FXML
+    private void applyEdits(ActionEvent event) {
+        Customer current = (Customer)Main.getMainStage().getScene().getUserData();
+        
+    }
+
+    @FXML
+    private void changePasswordButtonOnClick(ActionEvent event) {
+    }
+
+    @FXML
+    private void lightenShopButtonOnHover(MouseEvent event) {
+        shopButton.setStyle("-fx-background-color: #affad3");
+    }
+
+    @FXML
+    private void darkenShopButtonOnHover(MouseEvent event) {
+        shopButton.setStyle("-fx-background-color: #58db95");
+    }
+
+    @FXML
+    private void switchToShopScene(ActionEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToShopScene();
     }
     
 }

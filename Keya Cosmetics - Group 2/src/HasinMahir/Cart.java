@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import mainpkg.Main;
 
 /**
  *
@@ -15,17 +16,19 @@ import java.util.Hashtable;
  */
 public class Cart implements Serializable {
     
-    protected ArrayList<Product> productList = new ArrayList<Product>();
+    protected Hashtable<Product,Integer> productList = new Hashtable<Product,Integer>();
 
-    public ArrayList<Product> getProductList() {
+    public Hashtable<Product,Integer> getProductList() {
         return productList;
     }
 
-    public void setProductList(ArrayList<Product> productList) {
+    public void setProductList(Hashtable<Product,Integer> productList) {
         this.productList = productList;
     }
-    public void addProduct(Product product){
-        
+    public void addProduct(Product product, int quantity){
+        productList.put(product, quantity);
+        Customer c = (Customer)Main.getMainStage().getUserData();
+        c.saveInstance();
     }
     
  
