@@ -91,21 +91,25 @@ public class LoginGridController implements Initializable {
                         ss.switchToShopScene();
                         return;
                     }
+                    if (userListFile.equals("customerServiceExecutiveList.bin")){
+                        // TO DO
+                        return;
+                    }
                     if (userListFile.equals("hrList.bin")){
                         HRSceneSwitcher ss = new HRSceneSwitcher();
                         ss.switchScene("HR mainDashboard.fxml", "Dashboard");
                         return;
                     }
+                    if (userListFile.equals("receptionistList.bin")){
+                        // TO DO
+                    }
+                    
                 }
             }catch(Exception e){}
         }
-        
-            
-            
-        
-        //HR TEmp
-        
-  
+ 
+        Alert alert = new Alert(Alert.AlertType.ERROR,"Username-password combination failed.");
+        alert.show();
         
     }
    
