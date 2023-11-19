@@ -86,6 +86,7 @@ public class LoginGridController implements Initializable {
                         current.getPassword().equals(passwordTextField.getText()) &&
                         !current.isDel()){
                     //Login
+                    Main.setUserData(current);
                     if (userListFile.equals("CustomerList.bin")){
                         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
                         ss.switchToShopScene();

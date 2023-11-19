@@ -5,6 +5,7 @@
 package mainpkg;
 
 import HasinMahir.Customer;
+import HasinMahir.User;
 import NadimHR_Receptionist.Hr;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -41,6 +42,12 @@ public class Main extends Application {
     }
     public static Stage getMainStage(){
         return mainStage;
+    }
+    public static void setUserData(User user){
+        mainStage.setUserData(user);
+    }
+    public static User getUserData(){
+        return (User)mainStage.getUserData();
     }
     
 }
