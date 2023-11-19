@@ -45,9 +45,5 @@ public class Main extends Application {
     }
     public static void setUserData(User user){
         mainStage.setUserData(user);
-    }
-    public static User getUserData(){
-        return (User)mainStage.getUserData();
-    }
-    
+    } 
 }

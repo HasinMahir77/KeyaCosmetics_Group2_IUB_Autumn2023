@@ -16,4 +16,9 @@ ReceptionistList.bin
 
 3) 
 Once your user has passed logged in using my Login algorithm, you can get your user instance using
-Main.getUserData()
+Main.getUserData(). If you want complete data, cast the return of the getUserData() method into the correct
+User subclass.
+
+Example: 
+
+Customer c = (Customer) Main.getUserData();
