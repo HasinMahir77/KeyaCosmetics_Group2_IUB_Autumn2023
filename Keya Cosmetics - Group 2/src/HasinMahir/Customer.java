@@ -76,7 +76,7 @@ public class Customer extends User implements Serializable {
     
         
     public void saveInstance(){
-        File oldCustomerList = new File("customerList.bin");
+        File oldCustomerList = new File("CustomerList.bin");
         Customer customer;
         ArrayList<Customer> bufferList = new ArrayList<Customer>();
         //Collecting all the other users of same type except current user
@@ -124,7 +124,7 @@ public class Customer extends User implements Serializable {
     }
     
     public static ArrayList<Customer> getCustomerList(){
-        File oldCustomerList = new File("customerList.bin");
+        File oldCustomerList = new File("CustomerList.bin");
         Customer customer;
         ArrayList<Customer> customerList = new ArrayList<Customer>();
         //Collecting all the other users of same type

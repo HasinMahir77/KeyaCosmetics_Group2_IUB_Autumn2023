@@ -63,10 +63,10 @@ public class LoginGridController implements Initializable {
         File userList;
         //Store all the userList file names here
         ArrayList<String> userListFiles = new ArrayList<String>();
-        userListFiles.add("customerList.bin");
-        userListFiles.add("customerServiceExecutiveList.bin");
-        userListFiles.add("hrList.bin");
-        userListFiles.add("receptionistList.bin");
+        userListFiles.add("CustomerList.bin");
+        userListFiles.add("CustomerServiceExecutiveList.bin");
+        userListFiles.add("HRList.bin");
+        userListFiles.add("ReceptionistList.bin");
         
         //If any Text Field is empty
         
@@ -86,21 +86,21 @@ public class LoginGridController implements Initializable {
                         current.getPassword().equals(passwordTextField.getText()) &&
                         !current.isDel()){
                     //Login
-                    if (userListFile.equals("customerList.bin")){
+                    if (userListFile.equals("CustomerList.bin")){
                         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
                         ss.switchToShopScene();
                         return;
                     }
-                    if (userListFile.equals("customerServiceExecutiveList.bin")){
+                    if (userListFile.equals("CustomerServiceExecutiveList.bin")){
                         // TO DO
                         return;
                     }
-                    if (userListFile.equals("hrList.bin")){
+                    if (userListFile.equals("HRList.bin")){
                         HRSceneSwitcher ss = new HRSceneSwitcher();
                         ss.switchScene("HR mainDashboard.fxml", "Dashboard");
                         return;
                     }
-                    if (userListFile.equals("receptionistList.bin")){
+                    if (userListFile.equals("ReceptionistList.bin")){
                         // TO DO
                     }
                     
