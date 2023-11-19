@@ -108,7 +108,7 @@ public class CustomerSignupGridController implements Initializable {
          
         //Checking for duplicate
         try {
-            customerList = new File("customerList.bin");
+            customerList = new File("CustomerList.bin");
             fis = new FileInputStream(customerList);
             ois = new ObjectInputStream(fis);
             while (true) {
@@ -129,7 +129,7 @@ public class CustomerSignupGridController implements Initializable {
             Customer newUser = new Customer(firstNameTextField.getText(),lastNameTextField.getText(),
                 usernameTextField.getText(), passwordTextField.getText(),
                     addressTextArea.getText(),phoneTextField.getText());
-            customerList = new File("customerList.bin");
+            customerList = new File("CustomerList.bin");
             if (customerList.exists()){
                  fos = new FileOutputStream(customerList,true);
                  oos = new ObjectOutputStreamA(fos);

@@ -76,7 +76,7 @@ public class Customer extends User implements Serializable {
     
         
     public void saveInstance(){
-        File oldCustomerList = new File("customerList.bin");
+        File oldCustomerList = new File("CustomerList.bin");
         Customer customer;
         ArrayList<Customer> bufferList = new ArrayList<Customer>();
         //Collecting all the other users of same type except current user
@@ -124,7 +124,7 @@ public class Customer extends User implements Serializable {
     }
     
     public static ArrayList<Customer> getCustomerList(){
-        File oldCustomerList = new File("customerList.bin");
+        File oldCustomerList = new File("CustomerList.bin");
         Customer customer;
         ArrayList<Customer> customerList = new ArrayList<Customer>();
         //Collecting all the other users of same type
@@ -142,35 +142,5 @@ public class Customer extends User implements Serializable {
         // Arraylist of Customers made.
         return customerList;
     }
-    /* Broken and probably redundant.
-    public static void setCustomerList(ArrayList<Customer> newCustomerList){
-        //Rewriting the bin file with the updated customer object.
-        File customerList = new File("customerList.bin");
-        //Clearing the existing file
-        try{
-            FileOutputStream fos = new FileOutputStream(customerList);
-            fos.close();
-        }catch(Exception e){}
-        
-        try(FileOutputStream fos = new FileOutputStream(customerList);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);){
-            oos.writeObject(newCustomerList.get(0)); //Added first customer
-        } catch(Exception e){
-            System.out.println(e.toString());
-        }
-        //Writing the rest of the customers.
-        try(FileOutputStream fos = new FileOutputStream(customerList,true);
-        ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
-            for (Customer customer: newCustomerList){
-                oos.writeObject(customer);
-            }   
-        } catch(Exception e){
-            System.out.println(e.toString());
-        }
-        }
-*/
-
-    
-    
     
 }
