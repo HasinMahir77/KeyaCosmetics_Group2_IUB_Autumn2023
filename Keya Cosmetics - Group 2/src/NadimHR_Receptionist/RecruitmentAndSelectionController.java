@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author Nadimul
  */
-public class RequirmentAndSelectionController implements Initializable {
+public class RecruitmentAndSelectionController implements Initializable {
 
     /**
      * Initializes the controller class.

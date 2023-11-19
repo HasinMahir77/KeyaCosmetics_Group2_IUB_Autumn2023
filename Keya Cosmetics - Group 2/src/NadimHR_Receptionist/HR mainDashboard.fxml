@@ -28,7 +28,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Navigator">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#aboutOnclick" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#backOnCLick" text="Back" />
             </items>
           </Menu>
         </menus>

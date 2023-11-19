@@ -30,20 +30,60 @@ public class HRMainDashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
-    private void addemployeedetailsOnCLick(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("AddEmployeeDetails.fxml"));
+    private void employeeDetailsChartsOnClick(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Employee details.fxml"));
         borderpane.setCenter(root);
     }
 
     @FXML
-    private void addTerminationDataOnCLick(ActionEvent event) {
+    private void requirmentandselectionOnclick(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("recruitment and selection.fxml"));
+        borderpane.setCenter(root);
     }
 
     @FXML
-    private void employeeDetailsChartsOnClick(ActionEvent event) {
+    private void performancemanagementsandrewardsOnclick(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Performance managements and rewards.fxml"));
+        borderpane.setCenter(root);
     }
-    
+
+    @FXML
+    private void expenceandreimbursementOnclick(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Expense and Reimbursement.fxml"));
+        borderpane.setCenter(root);
+    }
+
+    @FXML
+    private void updateworkplacepoliciesOnclick(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Update workplace policies.fxml"));
+        borderpane.setCenter(root);
+    }
+
+    @FXML
+    private void administerpayrollreportsOnclick(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Administer payroll reports.fxml"));
+        borderpane.setCenter(root);
+    }
+
+    @FXML
+    private void attendenceleavemanagementOnclick(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("AttendanceLeave management.fxml"));
+        borderpane.setCenter(root);
+    }
+
+    @FXML
+    private void auditfinancialmanagementsOnclick(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Audited Financial Managements.fxml"));
+        borderpane.setCenter(root);
+    }
+
+    @FXML
+    private void backOnCLick(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("HR mainDashboard.fxml"));
+        borderpane.setCenter(root);
+    }
+
 }
