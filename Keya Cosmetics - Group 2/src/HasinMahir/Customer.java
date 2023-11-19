@@ -11,6 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import mainpkg.Main;
 import mainpkg.ObjectOutputStreamA;
 
 /**
@@ -72,7 +73,7 @@ public class Customer extends User implements Serializable {
     public String getAddress() {
         return address;
     }
-    /*
+    
         
     public void saveInstance(){
         File oldCustomerList = new File("customerList.bin");
@@ -95,6 +96,7 @@ public class Customer extends User implements Serializable {
         // Arraylist of Customers made.
         
         //Rewriting the bin file with the updated customer object.
+       
         try{
             FileOutputStream temp = new FileOutputStream(oldCustomerList);
             temp.close();
@@ -111,57 +113,16 @@ public class Customer extends User implements Serializable {
         }
         try(FileOutputStream fos = new FileOutputStream(oldCustomerList,true);
         ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
-            while(true){
-                for(Customer c: bufferList){
+            for(Customer c: bufferList){
                     oos.writeObject(c);
                 }
-            }
         } catch(Exception e){
             System.out.println(e.toString());
-            System.out.println("If EOF, all users have been");
-        }
-        
-        
-    }
-    public void deleteAccount(){
-        File oldCustomerList = new File("customerList.bin");
-        Customer customer;
-        ArrayList<Customer> bufferList = new ArrayList<Customer>();
-        //Collecting all the other users of same type
-        try(FileInputStream fis = new FileInputStream(oldCustomerList);
-                ObjectInputStream ois = new ObjectInputStream(fis);) {
-            
-            while(true){
-                customer = (Customer)ois.readObject();
-                if (!(customer.getUsername().equals(this.getUsername()))) {
-                    bufferList.add(customer);
-                }
-            }
-        } catch(Exception e) {
-            System.out.println("From customer.saveInstance() : "+e.toString());
-            System.out.println("ArrayList of customers made");
         } 
-        // Arraylist of Customers made.
         
-        //Rewriting the bin file with the updated customer object.
-        oldCustomerList.delete();
         
-        try(FileOutputStream fos = new FileOutputStream(oldCustomerList,true);
-        ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
-            this.setDel(true); // Account made inaccessible through login.
-            oos.writeObject(this); //Updated current user added to bin file.
-            while(true){
-                for (Customer c : bufferList){
-                    oos.writeObject(c);
-                }
-            }
-            
-        } catch(Exception e){
-            System.out.println(e.toString());
-            System.out.println("If EOF, writing is complete.");
-        }
     }
-*/
+    
     public static ArrayList<Customer> getCustomerList(){
         File oldCustomerList = new File("customerList.bin");
         Customer customer;
@@ -181,11 +142,15 @@ public class Customer extends User implements Serializable {
         // Arraylist of Customers made.
         return customerList;
     }
+    /* Broken and probably redundant.
     public static void setCustomerList(ArrayList<Customer> newCustomerList){
         //Rewriting the bin file with the updated customer object.
         File customerList = new File("customerList.bin");
-        
-        customerList.delete();
+        //Clearing the existing file
+        try{
+            FileOutputStream fos = new FileOutputStream(customerList);
+            fos.close();
+        }catch(Exception e){}
         
         try(FileOutputStream fos = new FileOutputStream(customerList);
         ObjectOutputStream oos = new ObjectOutputStream(fos);){
@@ -203,6 +168,7 @@ public class Customer extends User implements Serializable {
             System.out.println(e.toString());
         }
         }
+*/
 
     
     

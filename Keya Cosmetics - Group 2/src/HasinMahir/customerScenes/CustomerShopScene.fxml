@@ -106,9 +106,9 @@
                     </menus>
                   </MenuBar>
                   <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" smooth="false" startX="-100.0" stroke="#a1a1a1" />
-                  <Button fx:id="cartButton1" mnemonicParsing="false" onMouseEntered="#darkenReturnButtonOnHover" onMouseExited="#lightenReturnButtonOnHover" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #affad3;" text="Initiate Return" />
+                  <Button fx:id="returnButton" mnemonicParsing="false" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #affad3;" text="Initiate Return" />
                   <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" layoutX="412.0" layoutY="21.0" smooth="false" startX="-100.0" stroke="#a1a1a1" />
-                  <Button fx:id="cartButton" mnemonicParsing="false" onMouseEntered="#darkenCartButtonOnHover" onMouseExited="#lightenCartButtonOnHover" prefHeight="38.0" prefWidth="66.0" style="-fx-background-color: #affad3;" text="🛒 Cart" />
+                  <Button fx:id="cartButton" mnemonicParsing="false" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="66.0" style="-fx-background-color: #affad3;" text="🛒 Cart" />
                </children>
                <padding>
                   <Insets right="15.0" />
@@ -124,9 +124,9 @@
                   </ImageView>
                   <HBox alignment="CENTER" prefHeight="47.0" prefWidth="137.0">
                      <children>
-                        <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" smooth="false" startX="-100.0" stroke="#a1a1a1" />
-                        <Button fx:id="cartButton11" mnemonicParsing="false" onMouseEntered="#darkenReturnButtonOnHover" onMouseExited="#lightenReturnButtonOnHover" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #affad3;" text="Shop" />
-                        <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" layoutX="132.0" layoutY="21.0" smooth="false" startX="-100.0" stroke="#a1a1a1" />
+                        <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" smooth="false" startX="-100.0" stroke="#a1a1a1" style="-fx-opacity: 0;" />
+                        <Button fx:id="shopButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="107.0" style="-fx-background-color: #79edad;" text="Shop" />
+                        <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" layoutX="132.0" layoutY="21.0" smooth="false" startX="-100.0" stroke="#a1a1a1" style="-fx-opacity: 0;" />
                      </children>
                   </HBox>
                </children>

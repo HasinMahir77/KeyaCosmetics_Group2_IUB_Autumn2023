@@ -27,7 +27,7 @@ public class Product implements Serializable {
     public void addToCart(int quantity){
         Customer c = (Customer)Main.getMainStage().getUserData();
         c.addToCart(this,quantity);
-        c.saveInstance();
+        //c.saveInstance();
     }
 
     public void setName(String name) {

@@ -31,6 +31,10 @@ public abstract class User implements Serializable {
         this.del = false;
 
     }
+    public void deleteAccount(){
+        this.setDel(true);
+        this.username+=".deleted";
+    }
 
     public String getFirstName() {
         return firstName;

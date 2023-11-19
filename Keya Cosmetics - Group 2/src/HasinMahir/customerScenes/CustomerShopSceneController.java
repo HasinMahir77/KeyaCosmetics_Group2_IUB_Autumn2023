@@ -9,6 +9,7 @@ import HasinMahir.Product;
 import HasinMahir.User;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -56,8 +57,6 @@ public class CustomerShopSceneController implements Initializable {
     @FXML
     private ImageView keyaIcon;
     @FXML
-    private Button cartButton1;
-    @FXML
     private ListView<String> filtersListView;
     @FXML
     private TextField searchTextField;
@@ -73,11 +72,13 @@ public class CustomerShopSceneController implements Initializable {
     @FXML
     private TableColumn<Product, String> stockColumn;
     @FXML
-    private Button cartButton11;
-    @FXML
     private Button addToCart;
     @FXML
     private Button removeFromCart;
+    @FXML
+    private Button returnButton;
+    @FXML
+    private Button shopButton;
 
     /**
      * Initializes the controller class.
@@ -90,68 +91,22 @@ public class CustomerShopSceneController implements Initializable {
         userMenu.setText(current.getUsername()+" ↓");
         categoryListView.getItems().addAll("Soap","Lotion",
                 "Shampoo","Cream","Serum");
-    }    
+    }   
 
+    @FXML
     private void darkenGreenButtonOnHover(MouseEvent event) {
-        ((Button)event.getSource()).setStyle("-fx-background-color: #58db95");
+        ((Button)event.getSource()).setStyle("-fx-background-color: #79edad");
     }
 
+    @FXML
     private void lightenGreenButtonOnHover(MouseEvent event) {
         ((Button)event.getSource()).setStyle("-fx-background-color: #affad3");  
-    }
-
-    private void quantityMinusLabelLightenOnHover(MouseEvent event) {
-        quantityMinusLabel.setStyle("-fx-background-color: #ffffff");
-    }
-
-    private void quantityMinusLabelDarkenOnHover(MouseEvent event) {
-        quantityMinusLabel.setStyle("-fx-background-color: #c9c7c7");
-    }
-
-    private void quantityPlusLabelLightenOnHover(MouseEvent event) {
-        quantityPlusLabel.setStyle("-fx-background-color: #ffffff");
-    }
-
-    private void quantityPlusLabelDarkenOnHover(MouseEvent event) {
-        quantityPlusLabel.setStyle("-fx-background-color: #c9c7c7");
     }
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
         LogoutSceneSwitcher logout = new LogoutSceneSwitcher();
         logout.switchScene();
-    }
-
-
-    @FXML
-    private void lightenReturnButtonOnHover(MouseEvent event) {
-        this.lightenGreenButtonOnHover(event);
-        
-    }
-
-    @FXML
-    private void darkenReturnButtonOnHover(MouseEvent event) {
-        this.darkenGreenButtonOnHover(event);
-    }
-
-    @FXML
-    private void lightenCartButtonOnHover(MouseEvent event) {
-        this.lightenGreenButtonOnHover(event);
-    }
-
-    @FXML
-    private void darkenCartButtonOnHover(MouseEvent event) {
-         this.darkenGreenButtonOnHover(event);
-    }
-
-    private void lightenSearchLabel(MouseEvent event) {
-        searchLabel.setStyle("-fx-background-color: #affad3");
-        
-        
-    }
-
-    private void darkenSearchLabel(MouseEvent event) {
-        searchLabel.setStyle("-fx-background-color: #58db95");
     }
 
     @FXML

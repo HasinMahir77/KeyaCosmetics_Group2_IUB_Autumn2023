@@ -98,7 +98,7 @@ public class CustomerSignupGridController implements Initializable {
             return;
         }
         //Validating the password
-        if (passwordTextField.getText().length()<=8){
+        if (passwordTextField.getText().length()<8){
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a password that is at least 8 "
                     + "characters long.");
             alert.show();

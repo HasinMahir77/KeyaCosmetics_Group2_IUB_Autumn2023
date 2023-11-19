@@ -9,6 +9,7 @@ import HasinMahir.Product;
 import HasinMahir.User;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -86,6 +87,8 @@ public class CustomerAccountSceneController implements Initializable {
     private PasswordField passwordTextField;
     @FXML
     private Button changePasswordButton;
+    @FXML
+    private Label profileLabel;
 
     /**
      * Initializes the controller class.
@@ -94,37 +97,24 @@ public class CustomerAccountSceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        profileLabel.setTextFill(Color.BLUE);
         Customer current = (Customer)Main.getMainStage().getUserData();
         userMenu.setText(current.getUsername()+" ↓");
         firstNameTextField.setText(current.getFirstName());
         lastNameTextField.setText(current.getLastName());
         addressTextArea.setText(current.getAddress());
         phoneTextField.setText(current.getPhoneNum());
-        passwordTextField.setText("********");
+        passwordTextField.setText(current.getPassword());  
     }    
 
+    @FXML
     private void darkenGreenButtonOnHover(MouseEvent event) {
-        ((Button)event.getSource()).setStyle("-fx-background-color: #58db95");
+        ((Button)event.getSource()).setStyle("-fx-background-color: #79edad");
     }
 
+    @FXML
     private void lightenGreenButtonOnHover(MouseEvent event) {
         ((Button)event.getSource()).setStyle("-fx-background-color: #affad3");  
-    }
-
-    private void quantityMinusLabelLightenOnHover(MouseEvent event) {
-        quantityMinusLabel.setStyle("-fx-background-color: #ffffff");
-    }
-
-    private void quantityMinusLabelDarkenOnHover(MouseEvent event) {
-        quantityMinusLabel.setStyle("-fx-background-color: #c9c7c7");
-    }
-
-    private void quantityPlusLabelLightenOnHover(MouseEvent event) {
-        quantityPlusLabel.setStyle("-fx-background-color: #ffffff");
-    }
-
-    private void quantityPlusLabelDarkenOnHover(MouseEvent event) {
-        quantityPlusLabel.setStyle("-fx-background-color: #c9c7c7");
     }
 
     @FXML
@@ -133,36 +123,14 @@ public class CustomerAccountSceneController implements Initializable {
         logout.switchScene();
     }
 
-
-    @FXML
-    private void lightenReturnButtonOnHover(MouseEvent event) {
-        this.lightenGreenButtonOnHover(event);
-        
-    }
-
-    @FXML
-    private void darkenReturnButtonOnHover(MouseEvent event) {
-        this.darkenGreenButtonOnHover(event);
-    }
-
-    @FXML
-    private void lightenCartButtonOnHover(MouseEvent event) {
-        this.lightenGreenButtonOnHover(event);
-    }
-
-    @FXML
-    private void darkenCartButtonOnHover(MouseEvent event) {
-         this.darkenGreenButtonOnHover(event);
-    }
     @FXML
     private void lightenUserMenuBar(MouseEvent event) {
-        //userMenuBar.setStyle("-fx-background-color: #affad3");
         userMenu.setStyle("-fx-background-color: #affad3");
     }
 
     @FXML
     private void darkenUserMenuBar(MouseEvent event) {
-        userMenu.setStyle("-fx-background-color: #58db95");
+        userMenu.setStyle("-fx-background-color: #79edad");
     }
 
 
@@ -230,20 +198,22 @@ public class CustomerAccountSceneController implements Initializable {
         //Enabling the buttons again
         editProfileButton.setDisable(false);
         changePasswordButton.setDisable(false);
+        current.saveInstance(); //Saving instance
         }
         else{ //Change password button has been pressed
             //Validating the password
-        if (passwordTextField.getText().length()<=8){
+        if (passwordTextField.getText().length()<8){
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a password that is at least 8 "
                     + "characters long.");
             alert.show();
             return;
         }
         current.setPassword(passwordTextField.getText());
-       // current.saveInstance();
+        current.saveInstance();
         //Enabling the buttons again
         editProfileButton.setDisable(false);
         changePasswordButton.setDisable(false);
+        applyButton.setDisable(true);
         //Disabling the password field again
         passwordTextField.setDisable(true);
         }
@@ -251,16 +221,9 @@ public class CustomerAccountSceneController implements Initializable {
 
     @FXML
     private void changePasswordButtonOnClick(ActionEvent event) {
-    }
-
-    @FXML
-    private void lightenShopButtonOnHover(MouseEvent event) {
-        shopButton.setStyle("-fx-background-color: #affad3");
-    }
-
-    @FXML
-    private void darkenShopButtonOnHover(MouseEvent event) {
-        shopButton.setStyle("-fx-background-color: #58db95");
+        applyButton.setDisable(false);
+        changePasswordButton.setDisable(true);
+        passwordTextField.setDisable(false);
     }
 
     @FXML
@@ -281,8 +244,5 @@ public class CustomerAccountSceneController implements Initializable {
         //#5e95e9
     }
 
-    @FXML
-    private void lightenLabelHover(MouseEvent event) {
-    }
     
 }
