@@ -24,12 +24,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import mainpkg.data.UserList;
 
 /**
  * FXML Controller class
@@ -49,7 +50,7 @@ public class CustomerSignupGridController implements Initializable {
     @FXML
     private TextArea addressTextArea;
     @FXML
-    private GridPane signupGridPane;
+    private TextField phoneTextField;
 
     /**
      * Initializes the controller class.
@@ -60,82 +61,101 @@ public class CustomerSignupGridController implements Initializable {
     }    
 
     @FXML
-    private void signup(ActionEvent event) {
+    private void signup(ActionEvent event) throws IOException {
+        FileOutputStream fos;
+        ObjectOutputStream oos;
         FileInputStream fis;
         ObjectInputStream ois;
-        boolean duplicate = false;
+        File customerList;
+        //Checking for empty fields
+        if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("") ||
+                firstNameTextField.getText().equals("")|| phoneTextField.getText().equals("")
+                || lastNameTextField.getText().equals("") ||addressTextArea.getText().equals("")) {
+            System.out.println("Username/Password textfield is empty");
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please fill in all of the fields");
+            alert.show();
+            return;
+        }
+        //Validating Address
+        if (addressTextArea.getText().length()<=5){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid address");
+            alert.show();
+            return;
+        }
+        //Validating the Phone number 
+        if (phoneTextField.getText().length()!=11){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
+            alert.show();
+            return;
+        }
+        try{
+            int phone = Integer.parseInt(phoneTextField.getText());
+        } catch(Exception e){
+            System.out.println("Phone num parsing to int failed");
+            System.out.println(e);
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
+            alert.show();
+            return;
+        }
+        //Validating the password
+        if (passwordTextField.getText().length()<8){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a password that is at least 8 "
+                    + "characters long.");
+            alert.show();
+            return;
+        }
+        
+         
+        //Checking for duplicate
         try {
-            fis = new FileInputStream("customerList.bin");
+            customerList = new File("CustomerList.bin");
+            fis = new FileInputStream(customerList);
             ois = new ObjectInputStream(fis);
-            while(true){
-                Customer newCustomer = (Customer)ois.readObject();
-                if(newCustomer.getUsername().equals(usernameTextField.getText())){
-                    Alert alert = new Alert(Alert.AlertType.ERROR,"Username already exists");
-                    alert.show(); 
-                    ois.close();
+            while (true) {
+                Customer registeredCustomer = (Customer)ois.readObject();
+                if (registeredCustomer.getUsername().equals(usernameTextField.getText())) {
+                    Alert a = new Alert(Alert.AlertType.ERROR,"Username already exists");
+                    a.show();
                     return;
                 }
             }
+            
+        } catch(Exception e) {
+            System.out.println("File reading complete");
+            System.out.println(e.toString());
+        }
+        //Duplicate checking done. Adding the user to database.
+        try {
+            Customer newUser = new Customer(firstNameTextField.getText(),lastNameTextField.getText(),
+                usernameTextField.getText(), passwordTextField.getText(),
+                    addressTextArea.getText(),phoneTextField.getText());
+            customerList = new File("CustomerList.bin");
+            if (customerList.exists()){
+                 fos = new FileOutputStream(customerList,true);
+                 oos = new ObjectOutputStreamA(fos);
+            } else {
+                fos = new FileOutputStream(customerList);
+                oos = new ObjectOutputStream(fos);
+            }
+            oos.writeObject(newUser);
+            oos.flush();
+            oos.close();
+            System.out.println("User written");
+            Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Account created successfully",ButtonType.OK);
+            a.show();
+            
         } catch(Exception e){
             System.out.println(e.toString());
-            System.out.println("User or file not found");
-           
         }
-        
-        
-        if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("") ||
-                firstNameTextField.getText().equals("")|| lastNameTextField.getText().equals("")
-                || addressTextArea.getText().equals("")) {
-            System.out.println("Empty Text Area/Field");
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please fill in all details");
-            alert.show(); 
-            return;
-        } 
-        if (passwordTextField.getText().length()<8){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Password should at least contain 8 characters");
-            alert.show(); 
-            return;
-        }
-        System.out.println("Validation Passed");
-        
-        Customer newCustomer = new Customer();
-        Customer newcustomer = new Customer(firstNameTextField.getText(), passwordTextField.getText(),
-                usernameTextField.getText(),passwordTextField.getText(), addressTextArea.getText());
-        
-        System.out.println("customer created");
-        
-        File customerList = new File("customerList.bin");
-        FileOutputStream fos;
-        ObjectOutputStream oos;
-        System.out.println("File initialized");
-        
-        // If first instance
-        try {
-            if (customerList.exists()){
-            fos = new FileOutputStream(customerList,true);
-            oos = new ObjectOutputStreamA(fos);
-        } else {
-            fos = new FileOutputStream(customerList);
-            oos = new ObjectOutputStream(fos);
-        }
-        
-        
-            oos.writeObject(newCustomer);
-            oos.close();
-            System.out.println("Obj Written");
-        } catch(IOException e) {
-            System.out.println(e.toString());
-            
-        }
-            
     }
 
     @FXML
     private void switchToLoginScreen(ActionEvent event) throws IOException {
         Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("LoginSignupScene.fxml"));
-        Scene loginScene = new Scene(root);
-        mainStage.setScene(loginScene);
+        mainStage.setTitle("Login");
+        Parent root = FXMLLoader.load(getClass().getResource("LoginGrid.fxml"));
+        BorderPane sceneBorderPane = LoginSignupSceneController.getSceneBorderPane();
+        sceneBorderPane.setCenter(root);
     }
 
 

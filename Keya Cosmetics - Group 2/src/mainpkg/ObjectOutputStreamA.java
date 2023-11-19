@@ -4,6 +4,7 @@
  */
 package mainpkg;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
@@ -12,13 +13,12 @@ import java.io.OutputStream;
  *
  * @author hasin
  */
-public class ObjectOutputStreamA extends ObjectOutputStream {
+public class ObjectOutputStreamA extends ObjectOutputStream implements Closeable {
 
     public ObjectOutputStreamA(OutputStream out) throws IOException {
         super(out);
     }
 
-    
     
     @Override
     public void writeStreamHeader() throws IOException{

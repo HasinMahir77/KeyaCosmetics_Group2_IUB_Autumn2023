@@ -4,7 +4,12 @@
  */
 package HasinMahir;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
+import javafx.stage.Stage;
 
 /**
  *
@@ -12,19 +17,24 @@ import java.io.Serializable;
  */
 public abstract class User implements Serializable {
     protected String firstName, lastName, username, password;
+    protected boolean del;
 
     public User() {
+        this.del = false;
     }
 
     public User(String firstName, String lastName, String username, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = firstName.substring(0, 1).toUpperCase()+firstName.substring(1);
+        this.lastName = lastName.substring(0, 1).toUpperCase()+lastName.substring(1);
         this.username = username;
         this.password = password;
+        this.del = false;
 
     }
-    
-    
+    public void deleteAccount(){
+        this.setDel(true);
+        this.username+=".deleted";
+    }
 
     public String getFirstName() {
         return firstName;
@@ -60,6 +70,13 @@ public abstract class User implements Serializable {
 
     public void changePassword(String newPassword){
         this.password=newPassword;
+    }
+    public boolean isDel() {
+        return del;
+    }
+
+    public void setDel(boolean del) {
+        this.del = del;
     }
     
 }

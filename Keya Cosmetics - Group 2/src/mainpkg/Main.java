@@ -5,19 +5,23 @@
 package mainpkg;
 
 import HasinMahir.Customer;
+import NadimHR_Receptionist.Hr;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import mainpkg.data.UserList;
 
 /**
  *
  * @author hasin
  */
 public class Main extends Application {
-    public static Stage mainStage;
+    private static Stage mainStage; // MainStage is the only stage and is updated.
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -27,11 +31,6 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setTitle("Login");
         stage.show();
-        
-        //Inserting a user
-        Customer newCustomer = new Customer("Hasin","Mahir","Mahir","mahir1212");
-        UserList.addUser(newCustomer);
-        
     }
 
     /**
@@ -39,6 +38,9 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+    public static Stage getMainStage(){
+        return mainStage;
     }
     
 }

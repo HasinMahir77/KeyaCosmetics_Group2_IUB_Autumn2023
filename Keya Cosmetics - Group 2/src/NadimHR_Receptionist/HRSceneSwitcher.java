@@ -11,10 +11,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mainpkg.Main;
 
-/**
- *
- * @author hasin
- */
 public class HRSceneSwitcher {
     public void switchScene(String fxml, String title) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource(fxml));
