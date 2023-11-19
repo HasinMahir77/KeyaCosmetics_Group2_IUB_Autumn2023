@@ -5,6 +5,7 @@
 package HasinMahir;
 
 import java.io.Serializable;
+import javafx.scene.image.ImageView;
 import mainpkg.Main;
 
 /**
@@ -12,18 +13,38 @@ import mainpkg.Main;
  * @author hasin
  */
 public class Product implements Serializable {
-    String name, amount, category;
+    String name;
+    Category category;
     int price;
+    ImageView image;
+    public enum Category{LAUNDRY_SOAP,BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,PETROLEUM_JELLY}
 
     public Product(){ 
     }
 
-    public Product(String name,String category, String amount, int price) {
+    public Product(String name, int price ,Category category) {
         this.name = name;
-        this.amount = amount;
         this.category = category;
         this.price = price;
     }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public ImageView getImage() {
+        return image;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setImage(ImageView image) {
+        this.image = image;
+    }
+    
+    
     public void addToCart(int quantity){
         Customer c = (Customer)Main.getMainStage().getUserData();
         c.addToCart(this,quantity);
@@ -34,13 +55,6 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
     public void setPrice(int price) {
         this.price = price;
@@ -50,15 +64,9 @@ public class Product implements Serializable {
         return name;
     }
 
-    public String getAmount() {
-        return amount;
-    }
-
-    public String getCategory() {
-        return category;
-    }
 
     public int getPrice() {
         return price;
     }
+    
 }

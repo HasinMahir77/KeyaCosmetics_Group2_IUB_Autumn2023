@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="mainpkg.CustomerSignupGridController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpkg.CustomerSignupGridController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.33331298828125" minWidth="10.0" prefWidth="143.66665649414062" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.3333435058594" minWidth="10.0" prefWidth="250.33331298828125" />
@@ -68,7 +68,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <children>
             <Button mnemonicParsing="false" onAction="#switchToLoginScreen" text="Back to Login" />
          </children>
