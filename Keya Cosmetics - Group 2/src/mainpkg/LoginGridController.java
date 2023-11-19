@@ -63,6 +63,9 @@ public class LoginGridController implements Initializable {
         //Store all the userList file names here
         ArrayList<String> userListFiles = new ArrayList<String>();
         userListFiles.add("customerList.bin");
+        userListFiles.add("customerServiceExecutiveList.bin");
+        userListFiles.add("hrList.bin");
+        userListFiles.add("receptionistList.bin");
         
         //If any Text Field is empty
         
@@ -72,7 +75,7 @@ public class LoginGridController implements Initializable {
             alert.show();
             return;
         }
-        //Main Customer login algorithm    
+        //Main login algorithm    
         try{
             for (String fileName: userListFiles){
                 userList = new File(fileName);
@@ -87,9 +90,21 @@ public class LoginGridController implements Initializable {
                         //Saving user object in Stage
                         Main.getMainStage().setUserData(user);
                         System.out.println("Saved "+user.getClass().getSimpleName());
-                        if (fileName.equals("customerList.bin")){
+                        if (fileName.equals("customerList.bin")){ //User is a customer
                             customerSceneSwitcher.switchToShopScene();
                              System.out.println("Logged in as Customer");
+                             return;
+                        }
+                        if (fileName.equals("customerServiceExecutiveList.bin")){ //User is a customer
+                            //Switch your scene
+                             return;
+                        }
+                        if (fileName.equals("hrList.bin")){ //User is a customer
+                            //Switch your scene
+                             return;
+                        }
+                        if (fileName.equals("receptionistList.bin")){ //User is a customer
+                            //Switch your scene
                              return;
                         }
                        
