@@ -57,8 +57,8 @@ public class LoginGridController implements Initializable {
         this.login();
     }
     private void login() {
-        FileInputStream fis;
-        ObjectInputStream ois;
+        //FileInputStream fis;
+        //ObjectInputStream ois;
         File userList;
         //Store all the userList file names here
         ArrayList<String> userListFiles = new ArrayList<String>();
@@ -75,51 +75,41 @@ public class LoginGridController implements Initializable {
             alert.show();
             return;
         }
-        //Main login algorithm    
-        try{
-            for (String fileName: userListFiles){
-                userList = new File(fileName);
-                fis = new FileInputStream(userList);
-                ois = new ObjectInputStream(fis);
-                while (true){
-                    User user = (User)ois.readObject();
-                    if (user.getUsername().equals(usernameTextField.getText()) && 
-                            user.getPassword().equals(passwordTextField.getText()) &&
-                            user.isDel()==false){
-                        System.out.println("Credentials Matched");
-                        //Saving user object in Stage
-                        Main.getMainStage().setUserData(user);
-                        System.out.println("Saved "+user.getClass().getSimpleName());
-                        if (fileName.equals("customerList.bin")){ //User is a customer
-                            customerSceneSwitcher.switchToShopScene();
-                             System.out.println("Logged in as Customer");
-                             return;
-                        }
-                        if (fileName.equals("customerServiceExecutiveList.bin")){ //User is a customer
-                            //Switch your scene
-                             return;
-                        }
-                        if (fileName.equals("hrList.bin")){ //User is a customer
-                            //Switch your scene
-                             return;
-                        }
-                        if (fileName.equals("receptionistList.bin")){ //User is a customer
-                            //Switch your scene
-                             return;
-                        }
-                       
+        //Main login algorithm
+        for(String userListFile: userListFiles){
+            userList = new File(userListFile);
+            try(FileInputStream fis = new FileInputStream(userList);
+                    ObjectInputStream ois = new ObjectInputStream(fis)){
+                User current = (User) ois.readObject();
+                if(current.getUsername().equals(usernameTextField.getText()) && 
+                        current.getPassword().equals(passwordTextField.getText()) &&
+                        !current.isDel()){
+                    //Login
+                    if (userListFile.equals("customerList.bin")){
+                        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+                        ss.switchToShopScene();
+                        return;
                     }
+                    if (userListFile.equals("customerServiceExecutiveList.bin")){
+                        // TO DO
+                        return;
+                    }
+                    /*
+                    if (userListFile.equals("hrList.bin")){
+                        HRSceneSwitcher ss = new HRSceneSwitcher();
+                        ss.switchScene("HR mainDashboard.fxml", "Dashboard");
+                        return;
+                    }
+                    if (userListFile.equals("receptionistList.bin")){
+                        // TO DO
+                    }
+                    */
                 }
-            }
-            
-            
-        } catch(Exception e){
-            System.out.println(e.toString());
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Username-Password Combination failed");
-            alert.show();
-            
+            }catch(Exception e){}
         }
-  
+ 
+        Alert alert = new Alert(Alert.AlertType.ERROR,"Username-password combination failed.");
+        alert.show();
         
     }
    
