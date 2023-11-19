@@ -65,7 +65,7 @@ public class LoginGridController implements Initializable {
         userListFiles.add("customerList.bin");
         userListFiles.add("customerServiceExecutiveList.bin");
         userListFiles.add("hrList.bin");
-        userListFiles.add("hrList.bin");
+        userListFiles.add("receptionistList.bin");
         
         //If any Text Field is empty
         
@@ -95,7 +95,15 @@ public class LoginGridController implements Initializable {
                              System.out.println("Logged in as Customer");
                              return;
                         }
+                        if (fileName.equals("customerServiceExecutiveList.bin")){ //User is a customer
+                            //Switch your scene
+                             return;
+                        }
                         if (fileName.equals("hrList.bin")){ //User is a customer
+                            //Switch your scene
+                             return;
+                        }
+                        if (fileName.equals("receptionistList.bin")){ //User is a customer
                             //Switch your scene
                              return;
                         }
