@@ -5,6 +5,7 @@
 package mainpkg;
 
 import HasinMahir.Customer;
+import HasinMahir.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.application.Application;
@@ -42,5 +43,7 @@ public class Main extends Application {
     public static Stage getMainStage(){
         return mainStage;
     }
-    
+    public static void setUserData(User user){
+        mainStage.setUserData(user);
+    }
 }
