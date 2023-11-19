@@ -54,6 +54,9 @@ public class LoginGridController implements Initializable {
 
     @FXML
     private void login(ActionEvent event) {
+        this.login();
+    }
+    private void login() {
         FileInputStream fis;
         ObjectInputStream ois;
         File userList;
@@ -78,11 +81,15 @@ public class LoginGridController implements Initializable {
                 while (true){
                     User user = (User)ois.readObject();
                     if (user.getUsername().equals(usernameTextField.getText()) && 
-                            user.getPassword().equals(passwordTextField.getText())){
+                            user.getPassword().equals(passwordTextField.getText()) &&
+                            user.isDel()==false){
                         System.out.println("Credentials Matched");
+                        //Saving user object in Stage
+                        Main.getMainStage().setUserData(user);
+                        System.out.println("Saved "+user.getClass().getSimpleName());
                         if (fileName.equals("customerList.bin")){
-                            customerSceneSwitcher.switchScene("CustomerDashboard.fxml", "Dashboard");
-                             System.out.println("Switched?");
+                            customerSceneSwitcher.switchToShopScene();
+                             System.out.println("Logged in as Customer");
                              return;
                         }
                        
@@ -108,14 +115,27 @@ public class LoginGridController implements Initializable {
         // Getting the BorderPane saved in the Stage to change the center
         Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainStage.setTitle("Sign up");
-        BorderPane sceneBorderPane =(BorderPane) mainStage.getUserData();
+        BorderPane sceneBorderPane =(BorderPane) LoginSignupSceneController.getSceneBorderPane();
         Parent root = FXMLLoader.load(getClass().getResource("CustomerSignupGrid.fxml"));
         sceneBorderPane.setCenter(root);
     }
     
-        @FXML
     private void actionOnKeyPressed(KeyEvent event) throws IOException {
         if (event.getCode()==KeyCode.ENTER) {
         }                
+    }
+
+    @FXML
+    private void usernameTextFieldOnKeyPressed(KeyEvent event) {
+        if (event.getCode()==KeyCode.ENTER) {
+            this.login();
+        }
+    }
+
+    @FXML
+    private void passwordTextFieldOnKeyPressed(KeyEvent event) {
+        if (event.getCode()==KeyCode.ENTER) {
+            this.login();
+        }
     }
 }

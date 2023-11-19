@@ -40,6 +40,8 @@ public class LoginSignupSceneController implements Initializable {
 
     @FXML
     private BorderPane sceneBorderPane;
+    private static BorderPane currentBorderPane;
+    
 
     /**
      * Initializes the controller class.
@@ -47,6 +49,7 @@ public class LoginSignupSceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Parent loginGrid;
+        currentBorderPane = sceneBorderPane;
         //Setting the LoginGrid as the center
         try {
             loginGrid = FXMLLoader.load(getClass().getResource("LoginGrid.fxml"));
@@ -54,10 +57,13 @@ public class LoginSignupSceneController implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex.toString());;
         }  
-        //Saving the BorderPane instance in the stage to pass data between scenes
-        Stage mainStage = Main.mainStage;
-        mainStage.setUserData(sceneBorderPane);
+        
+    
     }    
+
+    public static BorderPane getSceneBorderPane() {
+        return currentBorderPane;
+    }
 
 
     

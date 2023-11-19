@@ -5,35 +5,68 @@
 package HasinMahir;
 
 import java.io.Serializable;
+import javafx.scene.image.ImageView;
+import mainpkg.Main;
 
 /**
  *
  * @author hasin
  */
 public class Product implements Serializable {
-    String name, amount;
-    int id, price, quantity;
+    String name;
+    Category category;
+    int price;
+    ImageView image;
+    public enum Category{LAUNDRY_SOAP,BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,PETROLEUM_JELLY}
 
-    public Product() {
-        this.quantity=0;
+    public Product(){ 
     }
 
-    public Product(String name,int id, String amount, int price, int quantity) {
+    public Product(String name, int price ,Category category) {
         this.name = name;
-        this.amount = amount;
-        this.id = id;
+        this.category = category;
         this.price = price;
-        this.quantity = quantity;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public ImageView getImage() {
+        return image;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setImage(ImageView image) {
+        this.image = image;
     }
     
-    /* REMOVED. DO NOT TOUCH. REMOVED. DO NOT TOUCH. REMOVED. DO NOT TOUCH. 
     
-    public orderedProduct toOrderedProduct(int quantity){
-        
-        orderedProduct item = new orderedProduct(name, id, amount, price, quantity);
-        return item;
+    public void addToCart(int quantity){
+        Customer c = (Customer)Main.getMainStage().getUserData();
+        c.addToCart(this,quantity);
+        //c.saveInstance();
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
+    public int getPrice() {
+        return price;
     }
     
-      REMOVED. DO NOT TOUCH. REMOVED. DO NOT TOUCH. REMOVED. DO NOT TOUCH. REMOVED. DO NOT TOUCH.
-    */
 }
