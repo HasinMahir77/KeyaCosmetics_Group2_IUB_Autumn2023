@@ -4,6 +4,8 @@
  */
 package NadimHR_Receptionist;
 
+import HasinMahir.Cart;
+import HasinMahir.User;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,12 +20,18 @@ import javafx.collections.ObservableList;
  *
  * @author Nadimul
  */
-public class Hr implements Serializable{
+public class Hr extends User implements Serializable{
     //reimbursementRequestRecord
-        public static boolean writeReimbursements(ObservableList<ReimbursementRequestRecord> reimbursements, String fileName) {
-        try (FileOutputStream fos = new FileOutputStream(fileName);
-             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+    public Hr(String firstName, String lastName, String username, String password) {
+        super(firstName, lastName, username, password);
+        this.del=false;
+    }
+ 
 
+    public static boolean writeReimbursements(ObservableList<ReimbursementRequestRecord> reimbursements, String fileName) {
+        try (FileOutputStream fos = new FileOutputStream(fileName);
+                ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            
             for (ReimbursementRequestRecord reimbursement : reimbursements) {
                 oos.writeObject(reimbursement);
             }

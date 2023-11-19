@@ -5,7 +5,10 @@
 package mainpkg;
 
 import HasinMahir.Customer;
+import NadimHR_Receptionist.Hr;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +33,14 @@ public class Main extends Application {
         stage.show();
         
         //Inserting a user
+        Hr hr = new Hr("Hr","Nadim","hr","12345678");
+        try(FileOutputStream fos = new FileOutputStream("hrList.bin");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);){
+            oos.writeObject(hr);
+        } catch(Exception e){System.out.println(e);}
+            
+        
+        
         
     }
 
