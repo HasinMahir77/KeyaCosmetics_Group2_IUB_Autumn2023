@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HasinMahir.customerScenes.CustomerShopSceneController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #eef0f5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HasinMahir.customerScenes.CustomerShopSceneController">
    <left>
       <VBox alignment="CENTER" prefHeight="493.0" prefWidth="121.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
@@ -35,7 +35,7 @@
       </VBox>
    </left>
    <right>
-      <VBox alignment="TOP_CENTER" prefHeight="493.0" prefWidth="276.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="493.0" prefWidth="276.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
@@ -50,18 +50,19 @@
                   <Insets top="40.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+            <Label text="Cart" />
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: #eef0f5;">
                <children>
                   <HBox alignment="CENTER" prefHeight="51.0" prefWidth="256.0" spacing="10.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Quantity:" />
                         <TextField fx:id="quantityTextField" prefHeight="25.0" prefWidth="92.0" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="-" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="+" />
+                        <Button fx:id="minusButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="-" />
+                        <Button fx:id="plusButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="+" />
                      </children>
                   </HBox>
-                  <Button fx:id="addToCart" mnemonicParsing="false" prefHeight="32.0" prefWidth="111.0" style="-fx-background-radius: 4;" text="Add to cart" />
-                  <Button fx:id="removeFromCart" mnemonicParsing="false" prefHeight="32.0" prefWidth="111.0" style="-fx-background-radius: 4;" text="Remove from cart" />
+                  <Button fx:id="addButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 4;" text="Add" />
+                  <Button fx:id="removeButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 4;" text="Remove" />
                </children>
             </VBox>
          </children>
@@ -108,7 +109,7 @@
                   <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" smooth="false" startX="-100.0" stroke="#a1a1a1" />
                   <Button fx:id="returnButton" mnemonicParsing="false" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #affad3;" text="Initiate Return" />
                   <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" layoutX="412.0" layoutY="21.0" smooth="false" startX="-100.0" stroke="#a1a1a1" />
-                  <Button fx:id="cartButton" mnemonicParsing="false" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="66.0" style="-fx-background-color: #affad3;" text="🛒 Cart" />
+                  <Button fx:id="cartButton" mnemonicParsing="false" onAction="#switchToCartScene" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="66.0" style="-fx-background-color: #affad3;" text="🛒 Cart" />
                </children>
                <padding>
                   <Insets right="15.0" />

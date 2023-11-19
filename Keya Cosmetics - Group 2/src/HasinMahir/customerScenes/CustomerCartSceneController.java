@@ -26,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import mainpkg.LogoutSceneSwitcher;
 import mainpkg.Main;
 
@@ -34,18 +35,12 @@ import mainpkg.Main;
  *
  * @author hasin
  */
-public class CustomerShopSceneController implements Initializable {
+public class CustomerCartSceneController implements Initializable {
 
     @FXML
     private MenuBar userMenuBar;
     @FXML
-    private MenuItem ordersMenuItem;
-    @FXML
-    private ListView<String> categoryListView;    
-    @FXML
-    private Button cartButton;
-    private Label quantityMinusLabel;
-    private Label quantityPlusLabel;
+    private MenuItem ordersMenuItem;   
     @FXML
     private TextField quantityTextField;
     @FXML
@@ -56,25 +51,33 @@ public class CustomerShopSceneController implements Initializable {
     private MenuItem logoutMenuItem;
     @FXML
     private ImageView keyaIcon;
-    @FXML
-    private ListView<String> filtersListView;
-    @FXML
-    private TextField searchTextField;
     private Label searchLabel;
-    @FXML
-    private TableView<Product> productTableView;
     @FXML
     private TableColumn<Product, String> nameColumn;
     @FXML
-    private TableColumn<Product, String> categoryColumn;
-    @FXML
-    private TableColumn<Product, Integer> priceColumn;
-    @FXML
-    private TableColumn<Product, String> stockColumn;
-    @FXML
-    private Button returnButton;
-    @FXML
     private Button shopButton;
+    @FXML
+    private Button cartButton1;
+    @FXML
+    private Label profileLabel;
+    @FXML
+    private Label voucherLabel;
+    @FXML
+    private Label allLabel;
+    @FXML
+    private Label ongoingLabel;
+    @FXML
+    private Label returnedLabel;
+    @FXML
+    private Label cartLabel;
+    @FXML
+    private TableView<?> cartTable;
+    @FXML
+    private TableColumn<?, ?> quantityColumn;
+    @FXML
+    private TableColumn<?, ?> unitPriceColumn;
+    @FXML
+    private TableColumn<?, ?> totalPriceColumn;
     @FXML
     private Button minusButton;
     @FXML
@@ -83,6 +86,8 @@ public class CustomerShopSceneController implements Initializable {
     private Button addButton;
     @FXML
     private Button removeButton;
+    @FXML
+    private Button cartButton;
 
     /**
      * Initializes the controller class.
@@ -93,8 +98,8 @@ public class CustomerShopSceneController implements Initializable {
         // TODO
         Customer current = (Customer)Main.getMainStage().getUserData();
         userMenu.setText(current.getUsername()+" ↓");
-        categoryListView.getItems().addAll("Soap","Lotion",
-                "Shampoo","Cream","Serum");
+        cartLabel.setTextFill(Color.BLUE);
+        
     }   
 
     @FXML
@@ -124,19 +129,37 @@ public class CustomerShopSceneController implements Initializable {
         userMenu.setStyle("-fx-background-color: #58db95");
     }
 
-    @FXML
-    private void search(ActionEvent event) {
-    }
 
     @FXML
     private void switchToAccountScene(ActionEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToAccountScene();
     }
+
     @FXML
-    private void switchToCartScene(ActionEvent event) throws IOException {
+    private void switchToShopScene(ActionEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
-        ss.switchToCartScene();
+        ss.switchToShopScene();
+        
+    }
+
+    @FXML
+    private void blueLabelOnHover(MouseEvent event){
+        Label label = (Label) event.getSource();
+        label.setTextFill(Color.BLUE);
+        //#5e95e9
+    }
+    @FXML
+    private void returnLabelColor(MouseEvent event){
+        Label label = (Label) event.getSource();
+        label.setTextFill(Color.BLACK);
+        //#5e95e9
+    }
+
+    @FXML
+    private void switchToAccountSceneFromLabel(MouseEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToAccountScene();
     }
         
     

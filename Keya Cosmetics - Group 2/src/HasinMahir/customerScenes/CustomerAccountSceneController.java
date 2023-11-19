@@ -244,5 +244,17 @@ public class CustomerAccountSceneController implements Initializable {
         //#5e95e9
     }
 
+    @FXML
+    private void switchToCartScene(ActionEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToCartScene();
+    }
+
+    @FXML
+    private void switchToCartSceneFromLabel(MouseEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToCartScene();
+    }
+
     
 }
