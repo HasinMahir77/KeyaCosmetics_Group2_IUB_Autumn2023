@@ -7,6 +7,7 @@ package mainpkg;
 import HasinMahir.Customer;
 import HasinMahir.User;
 import HasinMahir.customerScenes.CustomerSceneSwitcher;
+import NadimHR_Receptionist.HRSceneSwitcher;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -101,6 +102,8 @@ public class LoginGridController implements Initializable {
                         }
                         if (fileName.equals("hrList.bin")){ //User is a customer
                             //Switch your scene
+                            HRSceneSwitcher ss = new HRSceneSwitcher();
+                            ss.switchScene("HR mainDashboard.fxml", "Dashboard");
                              return;
                         }
                         if (fileName.equals("receptionistList.bin")){ //User is a customer
