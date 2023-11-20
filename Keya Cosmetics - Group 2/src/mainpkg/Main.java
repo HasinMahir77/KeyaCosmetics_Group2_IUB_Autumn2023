@@ -38,6 +38,17 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        File f = new File("HRList.bin");
+        if (f.exists()){
+            System.out.println("HRList.bin exists");
+        } else{
+            try(FileOutputStream fos = new FileOutputStream(f);
+                    ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                Hr HR = new Hr("hr","nadim","hr","12345678");
+                oos.writeObject(HR);
+                System.out.println("HR Written");
+            }catch(Exception e){System.out.println(e);}
+        }
         launch(args);
     }
     public static Stage getMainStage(){
