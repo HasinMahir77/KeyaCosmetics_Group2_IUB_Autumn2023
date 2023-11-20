@@ -69,7 +69,7 @@ public class Hr extends User implements Serializable{
     private final File policyFile;
 
     public Hr() {
-        policyFile = new File("Terms.bin");
+        policyFile = new File("updatedpolicies.bin");
     }
 
     public void savePolicy(String policyText) {
