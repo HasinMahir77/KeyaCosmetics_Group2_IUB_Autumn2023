@@ -6,6 +6,7 @@ package HasinMahir.customerScenes;
 
 import HasinMahir.Customer;
 import HasinMahir.Product;
+import HasinMahir.Product.Category;
 import HasinMahir.User;
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +24,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -66,7 +68,7 @@ public class CustomerShopSceneController implements Initializable {
     @FXML
     private TableColumn<Product, String> nameColumn;
     @FXML
-    private TableColumn<Product, String> categoryColumn;
+    private TableColumn<Product, Category> categoryColumn;
     @FXML
     private TableColumn<Product, Integer> priceColumn;
     @FXML
@@ -95,6 +97,9 @@ public class CustomerShopSceneController implements Initializable {
         userMenu.setText(current.getUsername()+" ↓");
         categoryListView.getItems().addAll("Soap","Lotion",
                 "Shampoo","Cream","Serum");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Category>("category"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
     }   
 
     @FXML
