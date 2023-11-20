@@ -5,8 +5,10 @@
 package HasinMahir;
 
 import java.io.Serializable;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import mainpkg.Main;
+//import mainpkg.Main;
 
 /**
  *
@@ -14,43 +16,42 @@ import mainpkg.Main;
  */
 public class Product implements Serializable {
     String name;
-    Category category;
+    String category;
     int price;
-    ImageView image;
     public enum Category{LAUNDRY_SOAP,BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,PETROLEUM_JELLY}
 
     public Product(){ 
     }
 
-    public Product(String name, int price ,Category category) {
+    public Product(String name, int price ,Category categoryEnum) {
         this.name = name;
-        this.category = category;
         this.price = price;
+        if (categoryEnum.equals(Category.LAUNDRY_SOAP)){
+            this.category = "Laundry Soap";
+        }
+        else if (categoryEnum.equals(Category.BODY_SOAP)){
+            this.category = "Body Soap";
+        }
+        else if (categoryEnum.equals(Category.TOOTHPASTE)){
+            this.category = "Toothpaste";
+        }
+        else if (categoryEnum.equals(Category.DEODORANT)){
+            this.category = "Deodorant";
+        }
+        else if (categoryEnum.equals(Category.TOOTHPASTE)){
+            this.category = "Toothpaste";
+        }
+        else if (categoryEnum.equals(Category.PETROLEUM_JELLY)){
+            this.category = "Petroleum Jelly";
+        }
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public ImageView getImage() {
-        return image;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public void setImage(ImageView image) {
-        this.image = image;
-    }
-    
-    
     public void addToCart(int quantity){
-        Customer c = (Customer)Main.getMainStage().getUserData();
+        Customer c = (Customer)Main.getUserData();
         c.addToCart(this,quantity);
         //c.saveInstance();
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
@@ -64,9 +65,15 @@ public class Product implements Serializable {
         return name;
     }
 
-
     public int getPrice() {
         return price;
     }
-    
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    } 
 }
