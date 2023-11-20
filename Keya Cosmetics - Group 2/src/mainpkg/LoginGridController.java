@@ -105,7 +105,7 @@ public class LoginGridController implements Initializable {
                     }
                     
                 }
-            }catch(Exception e){}
+            }catch(Exception e){System.out.println(e);}
         }
  
         Alert alert = new Alert(Alert.AlertType.ERROR,"Username-password combination failed.");
