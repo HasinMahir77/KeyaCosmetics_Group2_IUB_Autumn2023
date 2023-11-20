@@ -3,49 +3,86 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package NadimHR_Receptionist;
-import java.util.Arrays;
+
+import java.io.*;
 import java.time.LocalDate;
-import java.util.List;
 
-public class Applicant {
+public class Applicant implements Serializable {
 
-    private int employeeId;
-    private String employeeName;
-    private double salary;
-    private LocalDate paymentDate;
+    private String applicantName;
+    private String contactInfo;
+    private String position;
+    private Integer id;
+    private String assignedbyhr;
+    private LocalDate assignedDate;
 
-    public Applicant(int employeeId, String employeeName, double salary, LocalDate paymentDate) {
-        this.employeeId = employeeId;
-        this.employeeName = employeeName;
-        this.salary = salary;
-        this.paymentDate = paymentDate;
+    public Applicant(String applicantName, String contactInfo, String position, Integer id, String assignedbyhr, LocalDate assignedDate) {
+        this.applicantName = applicantName;
+        this.contactInfo = contactInfo;
+        this.position = position;
+        this.id = id;
+        this.assignedbyhr = assignedbyhr;
+        this.assignedDate = assignedDate;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public String getApplicantName() {
+        return applicantName;
     }
 
-    public String getEmployeeName() {
-        return employeeName;
+    public void setApplicantName(String applicantName) {
+        this.applicantName = applicantName;
     }
 
-    public double getSalary() {
-        return salary;
+    public String getContactInfo() {
+        return contactInfo;
     }
 
-    public LocalDate getPaymentDate() {
-        return paymentDate;
+    public void setContactInfo(String contactInfo) {
+        this.contactInfo = contactInfo;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getAssignedbyhr() {
+        return assignedbyhr;
+    }
+
+    public void setAssignedbyhr(String assignedbyhr) {
+        this.assignedbyhr = assignedbyhr;
+    }
+
+    public LocalDate getAssignedDate() {
+        return assignedDate;
+    }
+
+    public void setAssignedDate(LocalDate assignedDate) {
+        this.assignedDate = assignedDate;
+    }
+
+    @Override
+    public String toString() {
+        return "CaseAssignment{"
+                + "Applicant Name='" + applicantName + '\''
+                + ", Applicant ID ='" + id + '\''
+                + ", contactInfo='" + contactInfo + '\''
+                + ", Position ='" + position + '\''
+                + ", assigned by Hr='" + assignedbyhr + '\''
+                + ", assigned Date=" + assignedDate
+                + '}';
+
     }
 }
-
-
-class DataService {
-    public static List<Applicant> fetchDataFromDatabase() {
-        return Arrays.asList(
-                new Applicant(3, "John Smith", 7000.0, LocalDate.now()),
-                new Applicant(4, "Jane Smith", 8000.0, LocalDate.now())
-                // Add more applicants as needed
-        );
-    }
-}
-

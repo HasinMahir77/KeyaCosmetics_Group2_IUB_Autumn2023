@@ -15,6 +15,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
@@ -103,4 +104,25 @@ public class Hr extends User implements Serializable{
         alert.setContentText(message);
         alert.showAndWait();
     }
+    //recruitment and selection
+        public static List<Object> readObjectsFromFile(String applicantfileName) {
+        List<Object> objects = new ArrayList<>();
+        try (FileInputStream fis = new FileInputStream(applicantfileName);
+                ObjectInputStream ois = new ObjectInputStream(fis)) {
+            while (true) {
+                try {
+                    Object obj = ois.readObject();
+                    if (obj != null) {
+                        objects.add(obj);
+                        }
+                    } catch (EOFException e) {
+                        break;
+                   }
+               }
+           } catch (IOException | ClassNotFoundException ex) {
+               ex.printStackTrace();
+           }
+           return objects;
+           }
+           
 }
