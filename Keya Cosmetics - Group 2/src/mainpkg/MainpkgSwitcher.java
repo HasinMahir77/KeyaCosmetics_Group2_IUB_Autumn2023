@@ -26,5 +26,11 @@ public class MainpkgSwitcher {
         Scene scene = Main.getMainStage().getScene();
         scene.setRoot(root);
     }
+    public void switchtoRegisterEmployeeScene() throws IOException{
+        Main.getMainStage().setTitle("Keya Cosmetics: Employee Registration");
+        Parent root = FXMLLoader.load(getClass().getResource("RegisterEmployeeScene.fxml"));
+        Scene scene = Main.getMainStage().getScene();
+        scene.setRoot(root);
+    }
     
 }

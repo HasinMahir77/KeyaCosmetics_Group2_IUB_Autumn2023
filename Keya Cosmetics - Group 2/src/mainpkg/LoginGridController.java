@@ -120,7 +120,7 @@ public class LoginGridController implements Initializable {
     private void switchToSignupScreen(ActionEvent event) throws IOException {
         // Getting the BorderPane saved in the Stage to change the center
         Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        mainStage.setTitle("Sign up");
+        mainStage.setTitle("Keya Cosmetics: Sign up");
         BorderPane sceneBorderPane =(BorderPane) LoginSignupSceneController.getSceneBorderPane();
         Parent root = FXMLLoader.load(getClass().getResource("CustomerSignupGrid.fxml"));
         sceneBorderPane.setCenter(root);
@@ -143,5 +143,14 @@ public class LoginGridController implements Initializable {
         if (event.getCode()==KeyCode.ENTER) {
             this.login();
         }
+    }
+
+    @FXML
+    private void registerEmployeeButtonAction(ActionEvent event) throws IOException {
+        Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        mainStage.setTitle("Keya Cosmetics: Register Employee");
+        BorderPane sceneBorderPane =(BorderPane) LoginSignupSceneController.getSceneBorderPane();
+        Parent root = FXMLLoader.load(getClass().getResource("EmployeeSignupGrid.fxml"));
+        sceneBorderPane.setCenter(root);
     }
 }

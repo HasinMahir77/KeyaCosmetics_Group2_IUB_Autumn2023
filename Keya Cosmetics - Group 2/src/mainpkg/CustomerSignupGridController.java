@@ -152,7 +152,7 @@ public class CustomerSignupGridController implements Initializable {
     @FXML
     private void switchToLoginScreen(ActionEvent event) throws IOException {
         Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        mainStage.setTitle("Login");
+        mainStage.setTitle("Keya Cosmetics: Login");
         Parent root = FXMLLoader.load(getClass().getResource("LoginGrid.fxml"));
         BorderPane sceneBorderPane = LoginSignupSceneController.getSceneBorderPane();
         sceneBorderPane.setCenter(root);
