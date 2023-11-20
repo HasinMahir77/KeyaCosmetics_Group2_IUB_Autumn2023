@@ -40,11 +40,19 @@ public class RecruitmentAndSelectionController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        assingedbyhrComboBox.getItems().addAll(
+                "nadim",
+                "naim"
+        );
+        contactinformationCombox.getItems().addAll(
+                "Gmail Address",
+                "Number"
+        );
+        PositonComboBox.getItems().addAll("Accountant", "Customer Service Executive", "Production manager", "Receptionist");
+    }
 
     @FXML
     private void AssignedEmployeeOnClick(ActionEvent event) {
     }
-    
+
 }
