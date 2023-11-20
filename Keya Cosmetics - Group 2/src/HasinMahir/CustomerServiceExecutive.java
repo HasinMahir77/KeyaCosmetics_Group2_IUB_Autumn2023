@@ -15,8 +15,8 @@ public class CustomerServiceExecutive extends User implements Serializable {
     public CustomerServiceExecutive() {
     }
 
-    public CustomerServiceExecutive(String firstName, String lastName, String username, String password) {
-        super(firstName, lastName, username, password);
+    public CustomerServiceExecutive(String firstName, String lastName, String username, String password, String phone) {
+        super(firstName, lastName, username, password,phone);
     }
     public String toString() {
         return ("Customer Service Exec "+"Name: "+this.firstName+" "+this.lastName+", Username: "+this.username);

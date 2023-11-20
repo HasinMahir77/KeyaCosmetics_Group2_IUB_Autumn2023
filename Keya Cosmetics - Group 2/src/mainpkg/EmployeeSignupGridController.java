@@ -5,6 +5,7 @@
 package mainpkg;
 
 import HasinMahir.Customer;
+import HasinMahir.User;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -53,14 +54,7 @@ public class EmployeeSignupGridController implements Initializable {
     @FXML
     private void signup(ActionEvent event) {
         String employeeType = employeeComboBox.getValue();
-        FileOutputStream fos;
-        ObjectOutputStream oos;
-        FileInputStream fis;
-        ObjectInputStream ois;
         File employeeList;
-        if (employeeComboBox.getValue().equals("HR")){
-            employeeList = new File("HRList.bin");
-        }
         //Checking for empty fields
         if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("") ||
                 firstNameTextField.getText().equals("")|| phoneTextField.getText().equals("")
@@ -85,23 +79,40 @@ public class EmployeeSignupGridController implements Initializable {
             alert.show();
             return;
         }
+        if (employeeComboBox.getValue().equals("HR")){  //TO DO 
+                employeeList = new File("HRList.bin");
+            }
+            else {
+                employeeList = null;
+            }
         //Checking for duplicate
-        try {
-            customerList = new File("CustomerList.bin");
-            fis = new FileInputStream(customerList);
-            ois = new ObjectInputStream(fis);
-            while (true) {
-                Customer registeredCustomer = (Customer)ois.readObject();
-                if (registeredCustomer.getUsername().equals(usernameTextField.getText())) {
+        try{
+            FileInputStream fis = new FileInputStream(employeeList);
+            ObjectInputStream oos = new ObjectInputStream(fis);
+            while(true){
+                User employee = (User)oos.readObject();
+                if (employee.getUsername().equals(usernameTextField.getText())) {
                     Alert a = new Alert(Alert.AlertType.ERROR,"Username already exists");
                     a.show();
                     return;
+                   }
                 }
+        }catch(Exception e){System.out.println(e);}
+        //Duplicate checking done. Main algorithm now.
+        
+        //HR SignUp
+        if (employeeList.exists()){
+            try(FileOutputStream fos = new FileOutputStream(employeeList,true);
+            ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
+                /*HR Code here
+                Hr newHr = ....
+                oos.writeObject(newHr)
+                */
+            }catch(Exception e){
+                System.out.println(e);
             }
-            }catch(Exception e) {
-            System.out.println("File reading complete");
-            System.out.println(e.toString()); 
         }
+        
     }
 
     @FXML

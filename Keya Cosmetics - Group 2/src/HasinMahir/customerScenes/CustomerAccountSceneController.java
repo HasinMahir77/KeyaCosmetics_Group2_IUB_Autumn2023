@@ -103,7 +103,7 @@ public class CustomerAccountSceneController implements Initializable {
         firstNameTextField.setText(current.getFirstName());
         lastNameTextField.setText(current.getLastName());
         addressTextArea.setText(current.getAddress());
-        phoneTextField.setText(current.getPhoneNum());
+        phoneTextField.setText(current.getPhone());
         passwordTextField.setText(current.getPassword());  
     }    
 
@@ -187,7 +187,7 @@ public class CustomerAccountSceneController implements Initializable {
             current.setAddress(addressTextArea.getText());
         current.setFirstName(firstNameTextField.getText());
         current.setLastName(lastNameTextField.getText());
-        current.setPhoneNum(phoneTextField.getText());
+        current.setPhone(phoneTextField.getText());
         } catch(Exception e){System.out.println(e);}
         //Disabling the fields again
         firstNameTextField.setDisable(true);
