@@ -95,15 +95,16 @@ public class CustomerShopSceneController implements Initializable {
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        Customer current = (Customer)Main.getMainStage().getUserData();
+        // Initializing Category List
+        Customer current = (Customer)Main.getMainStage().getUserData(); 
         userMenu.setText(current.getUsername()+" ↓");
-        categoryListView.getItems().addAll("Soap","Lotion",
-                "Shampoo","Cream","Serum");
+        categoryListView.getItems().addAll("Laundry Soap","Body Soap",
+                "Toothpaste","Deo","Skincare","Petroleum");
         nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Category>("category"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
         
+        //Initializing Product TableView
         //Collecting products from file
         
         ObservableList<Product> productArray = FXCollections.observableArrayList(); //Array to store products
@@ -111,7 +112,9 @@ public class CustomerShopSceneController implements Initializable {
         
         try(FileInputStream fis = new FileInputStream(productFile);
                 ObjectInputStream ois = new ObjectInputStream(fis)){
-            productArray.add((Product)ois.readObject());
+            while(true){
+                productArray.add((Product)ois.readObject());
+            }
         }catch(Exception e){
             System.out.println(e);
         }
