@@ -65,6 +65,12 @@ public class LoginSignupSceneController implements Initializable {
         return currentBorderPane;
     }
 
+    @FXML
+    private void registerEmployeeButtonAction(ActionEvent event) {
+        
+        
+    }
+
 
     
 }

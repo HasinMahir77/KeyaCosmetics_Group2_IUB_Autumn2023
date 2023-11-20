@@ -21,17 +21,17 @@ import mainpkg.ObjectOutputStreamA;
 public class Customer extends User implements Serializable {
     private Cart cart;
     private ArrayList<Order> orderHistory;
-    private String address, phoneNum;
+    private String address;
 
     public Customer() {
         this.del = false;
     }
 
-    public Customer(String firstName, String lastName, String username, String password, String address, String phoneNum) {
-        super(firstName, lastName, username, password);
+    public Customer(String firstName, String lastName, String username, String password, String address, String phone) {
+        super(firstName, lastName, username, password, phone);
         this.cart = new Cart();
         this.address = address;
-        this.phoneNum = phoneNum;
+        this.phone = phone;
         this.del = false;
     }
 
@@ -46,9 +46,6 @@ public class Customer extends User implements Serializable {
         return ("Name: "+this.firstName+" "+this.lastName+", Username: "+this.username);
     }
 
-    public String getPhoneNum() {
-        return phoneNum;
-    }
 
     public void setOrderHistory(ArrayList<Order> orderHistory) {
         this.orderHistory = orderHistory;
@@ -58,10 +55,7 @@ public class Customer extends User implements Serializable {
         this.address = address;
     }
 
-    public void setPhoneNum(String phoneNum) {
-        this.phoneNum = phoneNum;
-    }
-
+ 
     public Cart getCart() {
         return cart;
     }

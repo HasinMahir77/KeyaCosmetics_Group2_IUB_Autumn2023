@@ -26,7 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import mainpkg.LogoutSceneSwitcher;
+import mainpkg.MainpkgSwitcher;
 import mainpkg.Main;
 
 /**
@@ -109,8 +109,8 @@ public class CustomerShopSceneController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
-        LogoutSceneSwitcher logout = new LogoutSceneSwitcher();
-        logout.switchScene();
+        MainpkgSwitcher logout = new MainpkgSwitcher();
+        logout.switchtoLoginScene();
     }
 
     @FXML

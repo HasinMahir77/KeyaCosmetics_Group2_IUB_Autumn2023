@@ -30,7 +30,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import mainpkg.LogoutSceneSwitcher;
+import mainpkg.MainpkgSwitcher;
 import mainpkg.Main;
 
 /**
@@ -103,7 +103,7 @@ public class CustomerAccountSceneController implements Initializable {
         firstNameTextField.setText(current.getFirstName());
         lastNameTextField.setText(current.getLastName());
         addressTextArea.setText(current.getAddress());
-        phoneTextField.setText(current.getPhoneNum());
+        phoneTextField.setText(current.getPhone());
         passwordTextField.setText(current.getPassword());  
     }    
 
@@ -119,8 +119,8 @@ public class CustomerAccountSceneController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
-        LogoutSceneSwitcher logout = new LogoutSceneSwitcher();
-        logout.switchScene();
+        MainpkgSwitcher logout = new MainpkgSwitcher();
+        logout.switchtoLoginScene();
     }
 
     @FXML
@@ -187,7 +187,7 @@ public class CustomerAccountSceneController implements Initializable {
             current.setAddress(addressTextArea.getText());
         current.setFirstName(firstNameTextField.getText());
         current.setLastName(lastNameTextField.getText());
-        current.setPhoneNum(phoneTextField.getText());
+        current.setPhone(phoneTextField.getText());
         } catch(Exception e){System.out.println(e);}
         //Disabling the fields again
         firstNameTextField.setDisable(true);

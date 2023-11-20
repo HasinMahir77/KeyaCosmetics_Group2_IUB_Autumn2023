@@ -16,21 +16,31 @@ import javafx.stage.Stage;
  * @author hasin
  */
 public abstract class User implements Serializable {
-    protected String firstName, lastName, username, password;
+    protected String firstName, lastName, username, password,phone;
     protected boolean del;
 
     public User() {
         this.del = false;
     }
 
-    public User(String firstName, String lastName, String username, String password) {
+    public User(String firstName, String lastName, String username, String password, String phone) {
         this.firstName = firstName.substring(0, 1).toUpperCase()+firstName.substring(1);
         this.lastName = lastName.substring(0, 1).toUpperCase()+lastName.substring(1);
         this.username = username;
         this.password = password;
+        this.phone = phone;
         this.del = false;
 
     }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    
     public void deleteAccount(){
         this.setDel(true);
         this.username+=".deleted";
