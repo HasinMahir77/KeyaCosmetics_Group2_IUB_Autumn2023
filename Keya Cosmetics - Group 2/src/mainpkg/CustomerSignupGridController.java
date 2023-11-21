@@ -140,7 +140,7 @@ public class CustomerSignupGridController implements Initializable {
             oos.writeObject(newUser);
             oos.flush();
             oos.close();
-            System.out.println("User written");
+            System.out.println("Customer written");
             Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Account created successfully",ButtonType.OK);
             a.show();
             

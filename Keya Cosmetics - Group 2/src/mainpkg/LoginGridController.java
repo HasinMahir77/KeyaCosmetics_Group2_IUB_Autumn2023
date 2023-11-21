@@ -86,12 +86,13 @@ public class LoginGridController implements Initializable {
                         !current.isDel()){
                     //Login
                     Main.setUserData(current);
+                    System.out.println("Credentians matched. Userdata Set");
                     if (userListFile.equals("CustomerList.bin")){
                         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
-                        ss.switchToShopScene();
+                        ss.switchScene("CustomerShopScene.fxml","Shop");
                         return;
                     }
-                    if (userListFile.equals("CustomerServiceExecutiveList.bin")){
+                    if (userListFile.equals("ProductManagerList.bin")){
                         // TO DO
                         return;
                     }
