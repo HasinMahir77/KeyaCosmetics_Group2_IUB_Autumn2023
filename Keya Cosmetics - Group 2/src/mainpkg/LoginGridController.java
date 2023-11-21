@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -86,10 +87,14 @@ public class LoginGridController implements Initializable {
                         !current.isDel()){
                     //Login
                     Main.setUserData(current);
-                    System.out.println("Credentians matched. Userdata Set");
+                    System.out.println("Credentians matched. Userdata Set.");
                     if (userListFile.equals("CustomerList.bin")){
-                        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
-                        ss.switchScene("CustomerShopScene.fxml","Shop");
+                        //---------------
+                        Parent root = FXMLLoader.load(getClass().getResource("CustomerShopScene.fxml"));
+        Stage mainStage = Main.getMainStage();
+        mainStage.setTitle("Keya Cosmetics: "+title);
+        Scene scene = Main.getMainStage().getScene();
+        scene.setRoot(root);
                         return;
                     }
                     if (userListFile.equals("ProductManagerList.bin")){
