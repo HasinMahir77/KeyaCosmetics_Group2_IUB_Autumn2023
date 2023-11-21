@@ -15,14 +15,16 @@ public class Applicant implements Serializable {
     private Integer id;
     private String assignedbyhr;
     private LocalDate assignedDate;
+    private String contactInformation;
 
-    public Applicant(String applicantName, String contactInfo, String position, Integer id, String assignedbyhr, LocalDate assignedDate) {
+    public Applicant(String applicantName, String contactInfo, String position, Integer id, String assignedbyhr, LocalDate assignedDate, String contactInformation) {
         this.applicantName = applicantName;
         this.contactInfo = contactInfo;
         this.position = position;
         this.id = id;
         this.assignedbyhr = assignedbyhr;
         this.assignedDate = assignedDate;
+        this.contactInformation = contactInformation;
     }
 
     public String getApplicantName() {
@@ -73,16 +75,12 @@ public class Applicant implements Serializable {
         this.assignedDate = assignedDate;
     }
 
-    @Override
-    public String toString() {
-        return "CaseAssignment{"
-                + "Applicant Name='" + applicantName + '\''
-                + ", Applicant ID ='" + id + '\''
-                + ", contactInfo='" + contactInfo + '\''
-                + ", Position ='" + position + '\''
-                + ", assigned by Hr='" + assignedbyhr + '\''
-                + ", assigned Date=" + assignedDate
-                + '}';
-
+    public String getContactInformation() {
+        return contactInformation;
     }
+
+    public void setContactInformation(String contactInformation) {
+        this.contactInformation = contactInformation;
+    }
+
 }

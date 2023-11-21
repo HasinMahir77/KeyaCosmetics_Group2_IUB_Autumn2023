@@ -16,6 +16,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
@@ -104,25 +105,47 @@ public class Hr extends User implements Serializable{
         alert.setContentText(message);
         alert.showAndWait();
     }
-    //recruitment and selection
-        public static List<Object> readObjectsFromFile(String applicantfileName) {
-        List<Object> objects = new ArrayList<>();
-        try (FileInputStream fis = new FileInputStream(applicantfileName);
-                ObjectInputStream ois = new ObjectInputStream(fis)) {
+    
+    
+    
+    
+        public static ArrayList<Applicant> loadApplicantsFromFile(String fileName) {
+        ArrayList<Applicant> applicant = new ArrayList<>();
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
             while (true) {
                 try {
-                    Object obj = ois.readObject();
-                    if (obj != null) {
-                        objects.add(obj);
-                        }
-                    } catch (EOFException e) {
-                        break;
-                   }
-               }
-           } catch (IOException | ClassNotFoundException ex) {
-               ex.printStackTrace();
-           }
-           return objects;
-           }
-           
+                    Applicant applicants = (Applicant) ois.readObject();
+                    applicant.add(applicants);
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return applicant;
+    }
+
+    public static ObservableList<Applicant> loadApplicantsToFiles(String fileName) {
+        ArrayList<Applicant> applicant = loadApplicantsFromFile(fileName);
+        ObservableList<Applicant> observableList = FXCollections.observableArrayList(applicant);
+        return observableList;
+    }
+    //recruitment and selection
+    public static void saveRecruiemntDataofApplicants(Applicant applicant, String fileName) {
+        ArrayList<Applicant> existingApplicants = loadApplicantsFromFile(fileName);
+        existingApplicants.add(applicant);
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            for (Applicant applicants : existingApplicants) {
+                oos.writeObject(applicants);
+            }
+            System.out.println("Data saved: " + applicant);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
