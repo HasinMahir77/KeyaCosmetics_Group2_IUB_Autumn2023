@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  *
  * @author hasin
  */
-public abstract class User implements Serializable {
+public class User implements Serializable {
     protected String firstName, lastName, username, password,phone;
     protected boolean del;
 
