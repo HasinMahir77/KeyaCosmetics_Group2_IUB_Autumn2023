@@ -97,8 +97,9 @@ public class LoginGridController implements Initializable {
                 ObjectInputStream oos = new ObjectInputStream(fis);
                 
                 while(true){
-                    User user = (User)oos.readObject();
+                    User user = (Customer)oos.readObject();
                     if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+                        Main.getMainStage().setUserData(user);
                         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
                         ss.switchScene("CustomerShopScene.fxml", "Keya: Shop");
                     }
