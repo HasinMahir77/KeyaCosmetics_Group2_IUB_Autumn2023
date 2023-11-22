@@ -90,10 +90,11 @@ public class LoginGridController implements Initializable {
                     System.out.println("Credentians matched. Userdata Set.");
                     if (userListFile.equals("CustomerList.bin")){
                         //---------------
+                        System.out.println("User is customer");
                         Parent root = FXMLLoader.load(getClass().getResource("CustomerShopScene.fxml"));
-        Stage mainStage = Main.getMainStage();
-        mainStage.setTitle("Keya Cosmetics: ");
-        Scene scene = Main.getMainStage().getScene();
+        Stage mainStage = Main.getMainStage();System.out.println("Got stage");
+        mainStage.setTitle("Keya Cosmetics: "); System.out.println("Title set");
+        Scene scene = Main.getMainStage().getScene(); System.out.println("Got Scene");
         scene.setRoot(root);
                         return;
                     }
@@ -112,7 +113,10 @@ public class LoginGridController implements Initializable {
                     }
                     */
                 }
-            }catch(Exception e){System.out.println(e);}
+            }catch(Exception e){
+                System.out.println(e);
+                e.printStackTrace(System.out);
+            }
         }
  
         Alert alert = new Alert(Alert.AlertType.ERROR,"Login failed.");
