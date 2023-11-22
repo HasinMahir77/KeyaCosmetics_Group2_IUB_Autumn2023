@@ -4,9 +4,12 @@
  */
 package HasinMahir.customerScenes;
 
+import HasinMahir.Cart;
 import HasinMahir.Customer;
 import HasinMahir.Product;
+import HasinMahir.ProductOrder;
 import HasinMahir.User;
+import static HasinMahir.customerScenes.CustomerShopSceneController.current;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -14,6 +17,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -23,6 +27,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -51,9 +56,6 @@ public class CustomerCartSceneController implements Initializable {
     private MenuItem logoutMenuItem;
     @FXML
     private ImageView keyaIcon;
-    private Label searchLabel;
-    @FXML
-    private TableColumn<Product, String> nameColumn;
     @FXML
     private Button shopButton;
     @FXML
@@ -71,13 +73,17 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private Label cartLabel;
     @FXML
-    private TableView<?> cartTable;
+    private TableView<ProductOrder> cartTableView;
     @FXML
-    private TableColumn<?, ?> quantityColumn;
+    private TableColumn<ProductOrder, String> nameColumn;
     @FXML
-    private TableColumn<?, ?> unitPriceColumn;
+    private TableColumn<ProductOrder, Integer> quantityColumn;
     @FXML
-    private TableColumn<?, ?> totalPriceColumn;
+    private TableColumn<ProductOrder, Float> unitPriceColumn;
+    @FXML
+    private TableColumn<ProductOrder, Float> totalPriceColumn;
+    @FXML
+    private TableColumn<ProductOrder, Float> vatColumn;
     @FXML
     private Button minusButton;
     @FXML
@@ -88,6 +94,7 @@ public class CustomerCartSceneController implements Initializable {
     private Button removeButton;
     @FXML
     private Button cartButton;
+    
 
     /**
      * Initializes the controller class.
@@ -95,10 +102,20 @@ public class CustomerCartSceneController implements Initializable {
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // Getting user data
         Customer current = (Customer)Main.getMainStage().getUserData();
         userMenu.setText(current.getUsername()+" ↓");
-        cartLabel.setTextFill(Color.BLUE);
+        
+        //Initializing and updating TableView
+        
+        nameColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, String>("name"));
+        unitPriceColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Float>("unitPrice"));
+        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Float>("totalPrice"));
+        vatColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Float>("vat"));
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Integer>("quantity"));
+        
+        this.updateCartTable();
+        //---
         
     }   
 
@@ -161,6 +178,69 @@ public class CustomerCartSceneController implements Initializable {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToAccountScene();
     }
+
+    @FXML
+    private void minusButtonOnClick(ActionEvent event) {
+        int q;
+        try{
+            q = Integer.parseInt(quantityTextField.getText())-1;
+        }
+        catch(Exception e){
+            Alert a = new Alert(Alert.AlertType.ERROR,"Please enter an integer.");
+            a.showAndWait();
+            return;
+        }
+        if (q<=1){
+            quantityTextField.setText(Integer.toString(1));
+        }
+        else {
+            quantityTextField.setText(Integer.toString(q));
+        }
+        
+    }
+
+    @FXML
+    private void plusButtonOnClick(ActionEvent event) {
+        int q;
+        try{
+            q = Integer.parseInt(quantityTextField.getText())+1;
+        }
+        catch(Exception e){
+            Alert a = new Alert(Alert.AlertType.ERROR,"Please enter an integer.");
+            a.showAndWait();
+            return;
+        }
+        if (q<=1){
+            quantityTextField.setText(Integer.toString(1));
+        }
+        else {
+            quantityTextField.setText(Integer.toString(q));
+        }
+    }
+
+    @FXML
+    private void addButtonOnClick(ActionEvent event) {
+        Product p = cartTableView.getSelectionModel().getSelectedItem();
+        //Duplicate Checking implemented in Cart class
+        current.getCart().add(p,Integer.parseInt(quantityTextField.getText()));
+    }
+
+    @FXML
+    private void removeButtonOnClick(ActionEvent event) {
+        Product p = cartTableView.getSelectionModel().getSelectedItem();
+        //Duplicate Checking implemented in Cart class
+        current.getCart().remove(p,Integer.parseInt(quantityTextField.getText()));
+        
+    }
+    private void updateCartTable(){
+        ArrayList<ProductOrder> productOrderList = current.getCart().getProductOrderList();
+        Cart cart = current.getCart();
+        //cartTableView.getItems().clear();
+        for(ProductOrder po: productOrderList){
+            cartTableView.getItems().add(po);
+        }
+    }
+
         
     
 }

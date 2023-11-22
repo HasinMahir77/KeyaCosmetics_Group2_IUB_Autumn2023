@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import mainpkg.Main;
 
 /**
@@ -16,42 +18,81 @@ import mainpkg.Main;
  */
 public class Cart implements Serializable {
     
-    protected Hashtable<Product,Integer> productList = new Hashtable<Product,Integer>();
-
-    public Hashtable<Product,Integer> getProductList() {
-        return productList;
+    protected ArrayList<ProductOrder> productOrderList;
+    int price; 
+    
+    public Cart(){
+        this.productOrderList = new ArrayList<ProductOrder>();
+        
     }
 
-    public void setProductList(Hashtable<Product,Integer> productList) {
-        this.productList = productList;
+    public ArrayList<ProductOrder> getProductOrderList() {
+        return productOrderList;
     }
-    public void addProduct(Product product, int quantity){
-        productList.put(product, quantity);
-        Customer c = (Customer)Main.getMainStage().getUserData();
-        c.saveInstance();
+
+    public void setProductOrderList(ArrayList<ProductOrder> productOrderList) {
+        this.productOrderList = productOrderList;
     }
-    public void removeProduct(Product product){
-        this.productList.remove(product);
-        Customer c = (Customer)Main.getMainStage().getUserData();
-        c.saveInstance();
+
+    public int getPrice() {
+        return price;
     }
     
-    public void removeProduct(Product product, int quantity){
-        int currentQuantity = this.productList.get(product);
-        if ((currentQuantity-quantity)<=0){
-            this.removeProduct(product);
+    public void add(Product product, int quantity){
+        //Converting to ProductOrder
+        ProductOrder productOder = new ProductOrder(product,quantity);
+        
+        //Checking for duplicate
+        /*
+        for(ProductOrder p: this.productOrderList){
+            if (product.getName().equals(p.getName())){
+                p.setQuantity(p.getQuantity()+quantity);
+                return;
+            }  
+        */
+        this.productOrderList.add(productOder);
+    }
+    public void add(ProductOrder product){
+        
+        //Checking for duplicate
+        for(ProductOrder p: this.productOrderList){
+            if (product.getName().equals(p.getName())){
+                p.setQuantity(p.getQuantity()+product.getQuantity());
+                return;
+            }  
         }
-        else{
-            this.productList.replace(product,currentQuantity-quantity);
-        }
-        Customer c = (Customer)Main.getMainStage().getUserData();
-        c.saveInstance();
+        this.productOrderList.add(product);
     }
     
- 
-
-   
+    public void remove(Product product, int quantity){
+        //Checking for duplicate and quantity
+        for(ProductOrder p: this.productOrderList){
+            if (product.getName().equals(p.getName())){
+                int pq = p.getQuantity()-quantity;
+                if (pq<=0){
+                    this.productOrderList.remove(p);
+                }
+                else{
+                    p.setQuantity(pq);
+                }
+            }  
+        }   
+    }
     
+    public void remove(ProductOrder product){
+        //Checking for duplicate
+        for(ProductOrder p: this.productOrderList){
+            if (product.getName().equals(p.getName())){
+                int pq = p.getQuantity()-product.getQuantity();
+                if (pq<=0){
+                    this.productOrderList.remove(p);
+                }
+                else{
+                    p.setQuantity(pq);
+                }
+            }  
+        }
+    }
     
     
 }

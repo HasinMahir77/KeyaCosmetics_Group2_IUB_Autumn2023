@@ -61,8 +61,8 @@
                         <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusButtonOnClick" prefHeight="25.0" prefWidth="27.0" text="+" />
                      </children>
                   </HBox>
-                  <Button fx:id="addButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 4;" text="Add" />
-                  <Button fx:id="removeButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 4;" text="Remove" />
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#addButtonOnClick" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 4;" text="Add" />
+                  <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removeButtonOnClick" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 4;" text="Remove" />
                </children>
             </VBox>
          </children>
@@ -74,11 +74,10 @@
    <center>
       <TableView fx:id="productTableView" prefHeight="493.0" prefWidth="722.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="#" />
-            <TableColumn fx:id="nameColumn" prefWidth="209.66668701171875" text="Name" />
-          <TableColumn fx:id="categoryColumn" minWidth="3.000030517578125" prefWidth="101.0" text="Category" />
-            <TableColumn fx:id="priceColumn" prefWidth="81.33331298828125" text="Price" />
-            <TableColumn fx:id="stockColumn" prefWidth="66.66668701171875" text="In cart" />
+            <TableColumn fx:id="nameColumn" prefWidth="238.0" text="Name" />
+          <TableColumn fx:id="categoryColumn" minWidth="3.000030517578125" prefWidth="112.66668701171875" text="Category" />
+            <TableColumn fx:id="priceColumn" prefWidth="94.33331298828125" text="Price(BDT)" />
+          <TableColumn fx:id="vatRateColumn" prefWidth="93.33331298828125" text="Vat rate(%)" />
         </columns>
       </TableView>
    </center>

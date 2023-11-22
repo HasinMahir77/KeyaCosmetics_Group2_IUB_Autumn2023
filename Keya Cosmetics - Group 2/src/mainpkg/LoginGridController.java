@@ -54,6 +54,7 @@ public class LoginGridController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        userComboBox.setValue("Customer");
         // Insert users here
         userComboBox.getItems().addAll("Customer",
                 "Product Manager","HR","Receptionist");

@@ -7,6 +7,7 @@ package HasinMahir.customerScenes;
 import HasinMahir.Customer;
 import HasinMahir.Product;
 import HasinMahir.Product.Category;
+import HasinMahir.ProductOrder;
 import HasinMahir.User;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -42,6 +44,7 @@ import mainpkg.Main;
  * @author hasin
  */
 public class CustomerShopSceneController implements Initializable {
+    static Customer current;
 
     @FXML
     private MenuBar userMenuBar;
@@ -71,11 +74,9 @@ public class CustomerShopSceneController implements Initializable {
     @FXML
     private TableColumn<Product, String> nameColumn;
     @FXML
-    private TableColumn<Product, Category> categoryColumn;
+    private TableColumn<Product, String> categoryColumn;
     @FXML
     private TableColumn<Product, Integer> priceColumn;
-    @FXML
-    private TableColumn<Product, String> stockColumn;
     @FXML
     private Button returnButton;
     @FXML
@@ -88,6 +89,8 @@ public class CustomerShopSceneController implements Initializable {
     private Button addButton;
     @FXML
     private Button removeButton;
+    @FXML
+    private TableColumn<Product, Integer> vatRateColumn;
 
     /**
      * Initializes the controller class.
@@ -98,13 +101,15 @@ public class CustomerShopSceneController implements Initializable {
         //Initializing Quanity text field
         quantityTextField.setText("1");
         // Initializing Category List
-        Customer current = (Customer)Main.getMainStage().getUserData(); 
+        current = (Customer)Main.getMainStage().getUserData(); 
+        
         userMenu.setText(current.getUsername()+" ↓");
         categoryListView.getItems().addAll("Laundry Soap","Body Soap",
                 "Toothpaste","Deo","Skincare","Petroleum");
         nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Category>("category"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("category"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
+        vatRateColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("vatRate"));
         
         //Initializing Product TableView
         //Collecting products from file
@@ -168,11 +173,58 @@ public class CustomerShopSceneController implements Initializable {
 
     @FXML
     private void minusButtonOnClick(ActionEvent event) {
+        int q;
+        try{
+            q = Integer.parseInt(quantityTextField.getText())-1;
+        }
+        catch(Exception e){
+            Alert a = new Alert(Alert.AlertType.ERROR,"Please enter an integer.");
+            a.showAndWait();
+            return;
+        }
+        if (q<=1){
+            quantityTextField.setText(Integer.toString(1));
+        }
+        else {
+            quantityTextField.setText(Integer.toString(q));
+        }
         
     }
 
     @FXML
     private void plusButtonOnClick(ActionEvent event) {
+        int q;
+        try{
+            q = Integer.parseInt(quantityTextField.getText())+1;
+        }
+        catch(Exception e){
+            Alert a = new Alert(Alert.AlertType.ERROR,"Please enter an integer.");
+            a.showAndWait();
+            return;
+        }
+        if (q<=1){
+            quantityTextField.setText(Integer.toString(1));
+        }
+        else {
+            quantityTextField.setText(Integer.toString(q));
+        }
+    }
+
+    @FXML
+    private void addButtonOnClick(ActionEvent event) {
+        Product p = productTableView.getSelectionModel().getSelectedItem();
+        //Duplicate Checking implemented in Cart class
+        System.out.println(current.getCart());
+        current.getCart().add(p,Integer.parseInt(quantityTextField.getText()));
+        current.saveInstance();
+    }
+
+    @FXML
+    private void removeButtonOnClick(ActionEvent event) {
+        Product p = productTableView.getSelectionModel().getSelectedItem();
+        //Duplicate Checking implemented in Cart class
+        current.getCart().remove(p,Integer.parseInt(quantityTextField.getText()));
+        current.saveInstance();
     }
         
     

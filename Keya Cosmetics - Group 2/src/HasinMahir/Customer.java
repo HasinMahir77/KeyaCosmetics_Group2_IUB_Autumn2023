@@ -38,7 +38,7 @@ public class Customer extends User implements Serializable {
     
     
     public void addToCart(Product selectedProduct, int quantity){
-        this.cart.productList.put(selectedProduct,quantity);   
+        this.cart.add(selectedProduct,quantity);   
     }
 
     @Override

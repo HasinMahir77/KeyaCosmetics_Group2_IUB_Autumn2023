@@ -15,17 +15,19 @@ import mainpkg.Main;
  * @author hasin
  */
 public class Product implements Serializable {
-    String name;
-    String category;
-    int price;
+    protected String name;
+    protected String category;
+    protected float price;
+    protected int vatRate;
     public enum Category{LAUNDRY_SOAP,BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,PETROLEUM_JELLY}
 
     public Product(){ 
     }
 
-    public Product(String name, int price ,Category categoryEnum) {
+    public Product(String name, float price ,Category categoryEnum,int vatRate) {
         this.name = name;
         this.price = price;
+        this.vatRate = vatRate;
         if (categoryEnum.equals(Category.LAUNDRY_SOAP)){
             this.category = "Laundry Soap";
         }
@@ -45,6 +47,10 @@ public class Product implements Serializable {
             this.category = "Petroleum Jelly";
         }
     }
+    
+    public ProductOrder toProductOrder(int quantity){
+        return new ProductOrder(this,quantity);
+    }
 
     
     public void setName(String name) {
@@ -52,7 +58,7 @@ public class Product implements Serializable {
     }
 
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -60,7 +66,7 @@ public class Product implements Serializable {
         return name;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
@@ -71,4 +77,13 @@ public class Product implements Serializable {
     public void setCategory(String category) {
         this.category = category;
     } 
+
+    public int getVatRate() {
+        return vatRate;
+    }
+
+    public void setVatRate(int vatRate) {
+        this.vatRate = vatRate;
+    }
+    
 }
