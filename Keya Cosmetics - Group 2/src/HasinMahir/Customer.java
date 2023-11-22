@@ -29,10 +29,6 @@ public class Customer extends User implements Serializable {
 
     public Customer(String firstName, String lastName, String username, String password, String address, String phone) {
         super(firstName, lastName, username, password, phone);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
         this.cart = new Cart();
         this.address = address;
         this.phone = phone;
