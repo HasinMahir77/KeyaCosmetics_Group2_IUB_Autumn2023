@@ -95,6 +95,8 @@ public class CustomerShopSceneController implements Initializable {
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Initializing Quanity text field
+        quantityTextField.setText("1");
         // Initializing Category List
         Customer current = (Customer)Main.getMainStage().getUserData(); 
         userMenu.setText(current.getUsername()+" ↓");
@@ -162,6 +164,15 @@ public class CustomerShopSceneController implements Initializable {
     private void switchToCartScene(ActionEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToCartScene();
+    }
+
+    @FXML
+    private void minusButtonOnClick(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void plusButtonOnClick(ActionEvent event) {
     }
         
     

@@ -13,7 +13,8 @@ import java.util.ArrayList;
  */
 public class Order implements Serializable {
     ArrayList<Product> productList = new ArrayList<Product>();
-    String status;
+    //LocalDate
+    //String status;
     int id;
 
     public Order() {
