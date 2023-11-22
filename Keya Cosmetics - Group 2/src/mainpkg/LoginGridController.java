@@ -7,6 +7,7 @@ package mainpkg;
 import HasinMahir.Customer;
 import HasinMahir.User;
 import HasinMahir.customerScenes.CustomerSceneSwitcher;
+import NadimHR_Receptionist.HRSceneSwitcher;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -102,7 +103,7 @@ public class LoginGridController implements Initializable {
                         // TO DO
                         return;
                     }
-                    /*
+                    
                     if (userListFile.equals("HRList.bin")){
                         HRSceneSwitcher ss = new HRSceneSwitcher();
                         ss.switchScene("HR mainDashboard.fxml", "Dashboard");
@@ -111,7 +112,7 @@ public class LoginGridController implements Initializable {
                     if (userListFile.equals("ReceptionistList.bin")){
                         // TO DO
                     }
-                    */
+                    
                 }
             }catch(Exception e){
                 System.out.println(e);

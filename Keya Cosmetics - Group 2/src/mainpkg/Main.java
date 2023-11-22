@@ -56,9 +56,10 @@ public class Main extends Application {
         
         for (File userFile: userFiles){
             if (!userFile.exists()){
+                if (userFile.getName().equals("CustomerList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                    User user = new Customer("User","User","User","User","User","11111");
+                    User user = new Customer("User","User","Customer","Customer","User","11111");
                     oos.writeObject(user);
                     System.out.println("File "+userFile.getName()+" not found.");
                     System.out.println("Initialized");
@@ -66,8 +67,25 @@ public class Main extends Application {
                 catch(Exception e){
                     System.out.println(e);
                 }
+              }
+                else if (userFile.getName().equals("HRList.bin")){
+                try(FileOutputStream fos = new FileOutputStream(userFile);
+                        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                    User user = new Customer("User","User","HR","HR","User","123456");
+                    oos.writeObject(user);
+                    System.out.println("File "+userFile.getName()+" not found.");
+                    System.out.println("Initialized");
+                }
+                catch(Exception e){
+                    System.out.println(e);
+                }
+              }
+                
             }
-        }
+            
+            
+            }//For loop's scope ends
+            
         
         //------------------------------------------------------
         launch(args);
