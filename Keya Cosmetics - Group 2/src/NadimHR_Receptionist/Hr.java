@@ -15,7 +15,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -108,7 +110,7 @@ public class Hr extends User implements Serializable{
     
     
     
-    
+       //applicant
         public static ArrayList<Applicant> loadApplicantsFromFile(String fileName) {
         ArrayList<Applicant> applicant = new ArrayList<>();
 
@@ -147,5 +149,29 @@ public class Hr extends User implements Serializable{
             e.printStackTrace();
         }
     }
+    //chart of applicants
+      public static Map<String, Double> calculatePositionType(ArrayList<Applicant> applicants) {
+        Map<String, Double> positionTypeRatioMap = new HashMap<>();
+        int totalApplicants= applicants.size();
 
+        for (String Position : getapplicantstypes(applicants)) {
+            long count = applicants.stream()
+                    .filter(ca -> ca.getPositionType().equals(Position))
+                    .count();
+            double ratio = (double) count / totalApplicants * 100;
+            positionTypeRatioMap.put(Position, ratio);
+        }
+
+        return positionTypeRatioMap;
+    }
+
+    private static ArrayList<String> getapplicantstypes(ArrayList<Applicant> applicants) {
+        ArrayList<String> ApplicantType = new ArrayList<>();
+        for (Applicant Position : applicants) {
+            if (!ApplicantType.contains(Position.getPositionType())) {
+                ApplicantType.add(Position.getPositionType());
+            }
+        }
+        return ApplicantType;
+    }
 }

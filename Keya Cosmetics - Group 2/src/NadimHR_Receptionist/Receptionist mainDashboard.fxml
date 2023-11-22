@@ -15,10 +15,10 @@
         <menus>
           <Menu mnemonicParsing="false" text="Tasks">
             <items>
-              <MenuItem mnemonicParsing="false" text="Take Staff Attendance" />
+              <MenuItem mnemonicParsing="false" text="Employee Attendance" />
                   <MenuItem mnemonicParsing="false" text="Outsiders Attendance" />
                   <MenuItem mnemonicParsing="false" text="Employee overtime data" />
-                  <MenuItem mnemonicParsing="false" onAction="#createappointmentswithstaffsOnclick" text="Create Appointment with staffs" />
+                  <MenuItem mnemonicParsing="false" onAction="#createappointmentswithstaffsOnclick" text="Create Appointment " />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
