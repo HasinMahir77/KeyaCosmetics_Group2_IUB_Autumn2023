@@ -6,11 +6,17 @@ package HasinMahir.customerScenes;
 
 import HasinMahir.Customer;
 import HasinMahir.Product;
+import HasinMahir.Product.Category;
 import HasinMahir.User;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +29,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -44,8 +51,6 @@ public class CustomerShopSceneController implements Initializable {
     private ListView<String> categoryListView;    
     @FXML
     private Button cartButton;
-    private Label quantityMinusLabel;
-    private Label quantityPlusLabel;
     @FXML
     private TextField quantityTextField;
     @FXML
@@ -66,7 +71,7 @@ public class CustomerShopSceneController implements Initializable {
     @FXML
     private TableColumn<Product, String> nameColumn;
     @FXML
-    private TableColumn<Product, String> categoryColumn;
+    private TableColumn<Product, Category> categoryColumn;
     @FXML
     private TableColumn<Product, Integer> priceColumn;
     @FXML
@@ -90,11 +95,31 @@ public class CustomerShopSceneController implements Initializable {
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        Customer current = (Customer)Main.getMainStage().getUserData();
+        // Initializing Category List
+        Customer current = (Customer)Main.getMainStage().getUserData(); 
         userMenu.setText(current.getUsername()+" ↓");
-        categoryListView.getItems().addAll("Soap","Lotion",
-                "Shampoo","Cream","Serum");
+        categoryListView.getItems().addAll("Laundry Soap","Body Soap",
+                "Toothpaste","Deo","Skincare","Petroleum");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Category>("category"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
+        
+        //Initializing Product TableView
+        //Collecting products from file
+        
+        ObservableList<Product> productArray = FXCollections.observableArrayList(); //Array to store products
+        File productFile = new File("ProductList.bin");
+        
+        try(FileInputStream fis = new FileInputStream(productFile);
+                ObjectInputStream ois = new ObjectInputStream(fis)){
+            while(true){
+                productArray.add((Product)ois.readObject());
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        //Inserting Products into TableView
+        productTableView.setItems(productArray);
     }   
 
     @FXML

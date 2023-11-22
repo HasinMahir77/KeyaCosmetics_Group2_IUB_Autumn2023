@@ -32,6 +32,15 @@ public abstract class User implements Serializable {
         this.del = false;
 
     }
+    
+    public User(String firstName, String lastName, String username, String password) {
+        this.firstName = firstName.substring(0, 1).toUpperCase()+firstName.substring(1);
+        this.lastName = lastName.substring(0, 1).toUpperCase()+lastName.substring(1);
+        this.username = username;
+        this.password = password;
+        this.del = false;
+
+    }
 
     public String getPhone() {
         return phone;

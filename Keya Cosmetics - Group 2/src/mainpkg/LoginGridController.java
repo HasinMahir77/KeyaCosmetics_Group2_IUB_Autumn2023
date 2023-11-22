@@ -7,6 +7,7 @@ package mainpkg;
 import HasinMahir.Customer;
 import HasinMahir.User;
 import HasinMahir.customerScenes.CustomerSceneSwitcher;
+import NadimHR_Receptionist.HRSceneSwitcher;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -63,7 +65,7 @@ public class LoginGridController implements Initializable {
         //Store all the userList file names here
         ArrayList<String> userListFiles = new ArrayList<String>();
         userListFiles.add("CustomerList.bin");
-        userListFiles.add("CustomerServiceExecutiveList.bin");
+        userListFiles.add("ProductManagerList.bin");
         userListFiles.add("HRList.bin");
         userListFiles.add("ReceptionistList.bin");
         
@@ -86,16 +88,22 @@ public class LoginGridController implements Initializable {
                         !current.isDel()){
                     //Login
                     Main.setUserData(current);
+                    System.out.println("Credentians matched. Userdata Set.");
                     if (userListFile.equals("CustomerList.bin")){
-                        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
-                        ss.switchToShopScene();
+                        //---------------
+                        System.out.println("User is customer");
+                        Parent root = FXMLLoader.load(getClass().getResource("CustomerShopScene.fxml"));
+        Stage mainStage = Main.getMainStage();System.out.println("Got stage");
+        mainStage.setTitle("Keya Cosmetics: "); System.out.println("Title set");
+        Scene scene = Main.getMainStage().getScene(); System.out.println("Got Scene");
+        scene.setRoot(root);
                         return;
                     }
-                    if (userListFile.equals("CustomerServiceExecutiveList.bin")){
+                    if (userListFile.equals("ProductManagerList.bin")){
                         // TO DO
                         return;
                     }
-                    /*
+                    
                     if (userListFile.equals("HRList.bin")){
                         HRSceneSwitcher ss = new HRSceneSwitcher();
                         ss.switchScene("HR mainDashboard.fxml", "Dashboard");
@@ -104,9 +112,12 @@ public class LoginGridController implements Initializable {
                     if (userListFile.equals("ReceptionistList.bin")){
                         // TO DO
                     }
-                    */
+                    
                 }
-            }catch(Exception e){}
+            }catch(Exception e){
+                System.out.println(e);
+                e.printStackTrace(System.out);
+            }
         }
  
         Alert alert = new Alert(Alert.AlertType.ERROR,"Login failed.");

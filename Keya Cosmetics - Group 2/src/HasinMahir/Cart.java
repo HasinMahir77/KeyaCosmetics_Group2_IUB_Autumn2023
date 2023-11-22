@@ -28,7 +28,24 @@ public class Cart implements Serializable {
     public void addProduct(Product product, int quantity){
         productList.put(product, quantity);
         Customer c = (Customer)Main.getMainStage().getUserData();
-       // c.saveInstance();
+        c.saveInstance();
+    }
+    public void removeProduct(Product product){
+        this.productList.remove(product);
+        Customer c = (Customer)Main.getMainStage().getUserData();
+        c.saveInstance();
+    }
+    
+    public void removeProduct(Product product, int quantity){
+        int currentQuantity = this.productList.get(product);
+        if ((currentQuantity-quantity)<=0){
+            this.removeProduct(product);
+        }
+        else{
+            this.productList.replace(product,currentQuantity-quantity);
+        }
+        Customer c = (Customer)Main.getMainStage().getUserData();
+        c.saveInstance();
     }
     
  

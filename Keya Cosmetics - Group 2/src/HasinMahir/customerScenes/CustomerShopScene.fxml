@@ -78,7 +78,7 @@
             <TableColumn fx:id="nameColumn" prefWidth="209.66668701171875" text="Name" />
           <TableColumn fx:id="categoryColumn" minWidth="3.000030517578125" prefWidth="101.0" text="Category" />
             <TableColumn fx:id="priceColumn" prefWidth="81.33331298828125" text="Price" />
-            <TableColumn fx:id="stockColumn" prefWidth="66.66668701171875" text="Stock" />
+            <TableColumn fx:id="stockColumn" prefWidth="66.66668701171875" text="In cart" />
         </columns>
       </TableView>
    </center>
@@ -141,4 +141,7 @@
          </padding>
       </GridPane>
    </top>
+   <bottom>
+      <HBox prefHeight="66.0" prefWidth="960.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>
