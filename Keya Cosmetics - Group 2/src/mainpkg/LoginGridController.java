@@ -23,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -45,13 +46,17 @@ public class LoginGridController implements Initializable {
     @FXML
     private PasswordField passwordTextField;
     private CustomerSceneSwitcher customerSceneSwitcher = new CustomerSceneSwitcher();
+    @FXML
+    private ComboBox<String> userComboBox;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // Insert users here
+        userComboBox.getItems().addAll("Customer",
+                "Product Manager","HR","Receptionist");
     }    
 
     @FXML
@@ -63,68 +68,76 @@ public class LoginGridController implements Initializable {
         //ObjectInputStream ois;
         File userList;
         //Store all the userList file names here
-        ArrayList<String> userListFiles = new ArrayList<String>();
-        userListFiles.add("CustomerList.bin");
-        userListFiles.add("ProductManagerList.bin");
-        userListFiles.add("HRList.bin");
-        userListFiles.add("ReceptionistList.bin");
-        
+        String username = usernameTextField.getText();
+        String password = passwordTextField.getText();
+
         //If any Text Field is empty
         
         if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("")) {
             System.out.println("Username/Password textfield is empty");
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter both a username and password");
-            alert.show();
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter both a username and password.");
+            alert.showAndWait();
             return;
-        }
-        //Main login algorithm
-        for(String userListFile: userListFiles){
-            userList = new File(userListFile);
-            try(FileInputStream fis = new FileInputStream(userList);
-                    ObjectInputStream ois = new ObjectInputStream(fis)){
-                User current = (User) ois.readObject();
-                if(current.getUsername().equals(usernameTextField.getText()) && 
-                        current.getPassword().equals(passwordTextField.getText()) &&
-                        !current.isDel()){
-                    //Login
-                    Main.setUserData(current);
-                    System.out.println("Credentians matched. Userdata Set.");
-                    if (userListFile.equals("CustomerList.bin")){
-                        //---------------
-                        System.out.println("User is customer");
-                        Parent root = FXMLLoader.load(getClass().getResource("CustomerShopScene.fxml"));
-        Stage mainStage = Main.getMainStage();System.out.println("Got stage");
-        mainStage.setTitle("Keya Cosmetics: "); System.out.println("Title set");
-        Scene scene = Main.getMainStage().getScene(); System.out.println("Got Scene");
-        scene.setRoot(root);
-                        return;
+          }
+        //Validating combo box selection
+        if (userComboBox.getValue()==null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please select a user type.");
+            alert.showAndWait();
+            return;
+          }
+        
+        //Selecting correct file for login below this
+        
+        //--------------Customer
+        if (userComboBox.getValue().equals("Customer")) {
+            try{
+                File userFile = new File("CustomerList.bin");
+                System.out.println("Customer List opened");
+                FileInputStream fis = new FileInputStream(userFile);
+                ObjectInputStream oos = new ObjectInputStream(fis);
+                
+                while(true){
+                    User user = (User)oos.readObject();
+                    if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+                        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+                        ss.switchScene("CustomerShopScene.fxml", "Keya: Shop");
                     }
-                    if (userListFile.equals("ProductManagerList.bin")){
-                        // TO DO
-                        return;
-                    }
-                    
-                    if (userListFile.equals("HRList.bin")){
-                        HRSceneSwitcher ss = new HRSceneSwitcher();
-                        ss.switchScene("HR mainDashboard.fxml", "Dashboard");
-                        return;
-                    }
-                    if (userListFile.equals("ReceptionistList.bin")){
-                        // TO DO
-                    }
-                    
-                }
-            }catch(Exception e){
-                System.out.println(e);
-                e.printStackTrace(System.out);
+                } // Loop's scope ends
             }
+            
+            catch(Exception e){
+                System.out.println(e.toString()+" at "+ userComboBox.getValue());
+            }
+          }
+        //---------------HR
+        else if (userComboBox.getValue().equals("HR")) {
+            try{
+                File userFile = new File("HRList.bin");
+                FileInputStream fis = new FileInputStream(userFile);
+                ObjectInputStream oos = new ObjectInputStream(fis);
+                
+                while(true){
+                    User user = (User)oos.readObject();
+                    if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+                        Main.getMainStage().setUserData(user);
+                        System.out.println("Userdata set for HR");
+                        HRSceneSwitcher ss = new HRSceneSwitcher();
+                        ss.switchScene("HR mainDashboard.fxml", "Keya: Dashboard");
+                    }
+                } // Loop's scope ends
+            }
+            
+            catch(Exception e){
+                System.out.println(e.toString()+" at "+ userComboBox.getValue());
+            }
+          }
+        
+        // Login done. 
+        
+        
         }
  
-        Alert alert = new Alert(Alert.AlertType.ERROR,"Login failed.");
-        alert.show();
         
-    }
-   
         
 
     @FXML

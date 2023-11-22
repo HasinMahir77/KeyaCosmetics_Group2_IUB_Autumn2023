@@ -5,6 +5,8 @@
 package mainpkg;
 
 import HasinMahir.User;
+import NadimHR_Receptionist.Hr;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -51,30 +53,35 @@ public class EmployeeSignupGridController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        employeeComboBox.getItems().addAll("HR","Customer Service",
+        // TODO     
+        employeeComboBox.getItems().addAll("HR","Product Manager",
                 "Accountant","Receptionist");
+        
+        employeeComboBox.setValue("HR");
     }    
 
     @FXML
     private void signup(ActionEvent event) {
         String employeeType = employeeComboBox.getValue();
-        File employeeList;
+        File employeeFile;
         //Checking for empty fields
         if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("") ||
-                firstNameTextField.getText().equals("")|| phoneTextField.getText().equals("")
+                firstNameTextField.getText().equals("")
                 || lastNameTextField.getText().equals("")) {
             System.out.println("Textfield is empty");
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please fill in all of the fields");
             alert.show();
             return;
         }
+        /*
+        
         //Validating the Phone number 
         if (phoneTextField.getText().length()!=11){
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
             alert.show();
             return;
         }
+                     
         try{
             int phone = Integer.parseInt(phoneTextField.getText());
         } catch(Exception e){
@@ -84,15 +91,28 @@ public class EmployeeSignupGridController implements Initializable {
             alert.show();
             return;
         }
-        if (employeeComboBox.getValue().equals("HR")){  //TO DO 
-                employeeList = new File("HRList.bin");
+                              */
+        
+        // Assigning the correct User File
+
+        
+        if (employeeComboBox.getValue().equals("Product Manager")){  //TO DO 
+                employeeFile = new File("ProductManagerList.bin");
             }
-            else {
-                employeeList = null;
+        else if(employeeComboBox.getValue().equals("Accountant")) {
+                employeeFile = new File("AccountantList.bin");
             }
+        else if(employeeComboBox.getValue().equals("Receptionist")) {
+                employeeFile = new File("ReceptionistList.bin");
+            }
+        
+        //-----------------Insert Code Above This
+        else {
+            employeeFile = new File("HRList.bin"); //Since it's the default
+        }
         //Checking for duplicate
         try{
-            FileInputStream fis = new FileInputStream(employeeList);
+            FileInputStream fis = new FileInputStream(employeeFile);
             ObjectInputStream oos = new ObjectInputStream(fis);
             while(true){
                 User employee = (User)oos.readObject();
@@ -102,31 +122,47 @@ public class EmployeeSignupGridController implements Initializable {
                     return;
                    }
                 }
-        }catch(Exception e){System.out.println(e);}
-        //Duplicate checking done. Main algorithm now.
-        
-        //HR SignUp
-        if (employeeList.exists()){
-            try(FileOutputStream fos = new FileOutputStream(employeeList,true);
-            ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
-                /*HR Code here
-                Hr newHr = ....
-                oos.writeObject(newHr)
-                */
-            }catch(Exception e){
-                System.out.println(e);
-            }
-        } else {
-            try(FileOutputStream fos = new FileOutputStream(employeeList);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);){
-                /*HR Code here
-                Hr newHr = ....
-                oos.writeObject(newHr)
-                */
-            }catch(Exception e){
-                System.out.println(e);
-            }
+        }catch(EOFException e){
+            System.out.println("Duplicate checking complete");
         }
+        catch(Exception e){
+            System.out.println(e.toString()+" from "+ "HRList.bin");
+        }
+            
+           
+        //Duplicate checking done, correct File initiated. Main algorithm now.
+        
+        //Main SignUp
+        
+        if (employeeComboBox.getValue().equals("Product Manager")){  
+           //TO DO 
+                
+            }
+        
+        else if(employeeComboBox.getValue().equals("Accountant")) {
+                //TO DO
+            }
+        else if(employeeComboBox.getValue().equals("Receptionist")) {
+                //TO DO
+            }
+        
+        //-----------------Insert Code Above This
+        else if (employeeComboBox.getValue().equals("HR")) {
+            
+          //Since HR is the default
+            try(FileOutputStream fos = new FileOutputStream(employeeFile,true);
+                        ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
+                    Hr newHr = new Hr(firstNameTextField.getText(),lastNameTextField.getText(),
+                usernameTextField.getText(), passwordTextField.getText());
+                    oos.writeObject(newHr);
+                    
+                }
+                catch(Exception e){
+                    e.printStackTrace(System.out);}
+            
+        }
+        
+        
         
     }
 
