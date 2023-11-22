@@ -64,7 +64,7 @@ public class LoginGridController implements Initializable {
         //Store all the userList file names here
         ArrayList<String> userListFiles = new ArrayList<String>();
         userListFiles.add("CustomerList.bin");
-        userListFiles.add("CustomerServiceExecutiveList.bin");
+        userListFiles.add("ProductManagerList.bin");
         userListFiles.add("HRList.bin");
         userListFiles.add("ReceptionistList.bin");
         
@@ -92,7 +92,7 @@ public class LoginGridController implements Initializable {
                         //---------------
                         Parent root = FXMLLoader.load(getClass().getResource("CustomerShopScene.fxml"));
         Stage mainStage = Main.getMainStage();
-        mainStage.setTitle("Keya Cosmetics: "+title);
+        mainStage.setTitle("Keya Cosmetics: ");
         Scene scene = Main.getMainStage().getScene();
         scene.setRoot(root);
                         return;
