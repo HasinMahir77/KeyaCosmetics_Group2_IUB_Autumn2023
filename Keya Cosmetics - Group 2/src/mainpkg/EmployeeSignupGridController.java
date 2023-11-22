@@ -51,15 +51,17 @@ public class EmployeeSignupGridController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        employeeComboBox.getItems().addAll("HR","Customer Service",
+        // TODO     
+        employeeComboBox.getItems().addAll("HR","Product Manager",
                 "Accountant","Receptionist");
+        
+        employeeComboBox.setValue("HR");
     }    
 
     @FXML
     private void signup(ActionEvent event) {
         String employeeType = employeeComboBox.getValue();
-        File employeeList;
+        File employeeFile;
         //Checking for empty fields
         if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("") ||
                 firstNameTextField.getText().equals("")|| phoneTextField.getText().equals("")
@@ -85,14 +87,17 @@ public class EmployeeSignupGridController implements Initializable {
             return;
         }
         if (employeeComboBox.getValue().equals("HR")){  //TO DO 
-                employeeList = new File("HRList.bin");
+                employeeFile = new File("HRList.bin");
             }
-            else {
-                employeeList = null;
+        if (employeeComboBox.getValue().equals("Product Manager")){  //TO DO 
+                employeeFile = new File("ProductManagerList.bin");
+            }
+        else {
+                employeeFile = null;
             }
         //Checking for duplicate
         try{
-            FileInputStream fis = new FileInputStream(employeeList);
+            FileInputStream fis = new FileInputStream(employeeFile);
             ObjectInputStream oos = new ObjectInputStream(fis);
             while(true){
                 User employee = (User)oos.readObject();
@@ -106,27 +111,7 @@ public class EmployeeSignupGridController implements Initializable {
         //Duplicate checking done. Main algorithm now.
         
         //HR SignUp
-        if (employeeList.exists()){
-            try(FileOutputStream fos = new FileOutputStream(employeeList,true);
-            ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
-                /*HR Code here
-                Hr newHr = ....
-                oos.writeObject(newHr)
-                */
-            }catch(Exception e){
-                System.out.println(e);
-            }
-        } else {
-            try(FileOutputStream fos = new FileOutputStream(employeeList);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);){
-                /*HR Code here
-                Hr newHr = ....
-                oos.writeObject(newHr)
-                */
-            }catch(Exception e){
-                System.out.println(e);
-            }
-        }
+        
         
     }
 
