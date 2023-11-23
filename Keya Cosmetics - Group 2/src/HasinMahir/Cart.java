@@ -43,13 +43,14 @@ public class Cart implements Serializable {
         ProductOrder productOder = product.toProductOrder(quantity);
         
         //Checking for duplicate
-        /*
+        
         for(ProductOrder p: this.productOrderList){
             if (product.getName().equals(p.getName())){
                 p.setQuantity(p.getQuantity()+quantity);
                 return;
             }  
-        */
+        }
+        
         this.productOrderList.add(productOder);
     }
     public void add(ProductOrder product){
@@ -65,32 +66,51 @@ public class Cart implements Serializable {
     }
     
     public void remove(Product product, int quantity){
-        //Checking for duplicate and quantity
+        //Checking if the product exists in cart
+        ProductOrder target=null;
+        boolean exists = false;
+        int newQuantity = 1; //Arbitrary value to check if item needs removal
+        
         for(ProductOrder p: this.productOrderList){
             if (product.getName().equals(p.getName())){
-                int pq = p.getQuantity()-quantity;
-                if (pq<=0){
-                    this.productOrderList.remove(p);
-                }
-                else{
-                    p.setQuantity(pq);
-                }
+                exists = true;
+                target = p;
+                newQuantity = target.getQuantity()-quantity;
             }  
-        }   
+        }
+        if (!exists){
+            System.out.println("Doesn't exist in cart");
+        }
+        else if(newQuantity<=0){
+            this.productOrderList.remove(target);
+        }
+        else{
+            target.setQuantity(newQuantity);
+        }
+        
     }
     
     public void remove(ProductOrder product){
-        //Checking for duplicate
+        //Checking if the product exists in cart
+        ProductOrder target=null;
+        boolean exists = false;
+        int newQuantity = 1; //Arbitrary value to check if item needs removal
+        
         for(ProductOrder p: this.productOrderList){
             if (product.getName().equals(p.getName())){
-                int pq = p.getQuantity()-product.getQuantity();
-                if (pq<=0){
-                    this.productOrderList.remove(p);
-                }
-                else{
-                    p.setQuantity(pq);
-                }
+                exists = true;
+                target = p;
+                newQuantity = target.getQuantity()-product.getQuantity();
             }  
+        }
+        if (!exists){
+            System.out.println("Doesn't exist in cart");
+        }
+        else if(newQuantity<=0){
+            this.productOrderList.remove(target);
+        }
+        else{
+            target.setQuantity(newQuantity);
         }
     }
     

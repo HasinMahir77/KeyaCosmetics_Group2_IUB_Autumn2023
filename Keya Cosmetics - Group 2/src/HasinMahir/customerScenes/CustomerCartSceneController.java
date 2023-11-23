@@ -227,10 +227,8 @@ public class CustomerCartSceneController implements Initializable {
 
     @FXML
     private void addButtonOnClick(ActionEvent event) {
-        Product p = cartTableView.getSelectionModel().getSelectedItem();
-        ProductOrder po = p.toProductOrder(1);
-        System.out.println("Vat below");
-        System.out.println(po.getVat());
+        ProductOrder po = cartTableView.getSelectionModel().getSelectedItem();
+        po.setQuantity(Integer.parseInt(quantityTextField.getText()));
         //Duplicate Checking implemented in Cart class
         current.getCart().add(po);
         this.updateCartTable();
