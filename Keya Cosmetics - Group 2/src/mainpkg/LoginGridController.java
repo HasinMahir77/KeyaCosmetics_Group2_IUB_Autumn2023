@@ -4,6 +4,7 @@
  */
 package mainpkg;
 
+import Borhan_Islam.AccountantSceneSwitcher;
 import HasinMahir.Customer;
 import HasinMahir.User;
 import HasinMahir.customerScenes.CustomerSceneSwitcher;
@@ -143,8 +144,8 @@ public class LoginGridController implements Initializable {
                     if (user.getUsername().equals(username) && user.getPassword().equals(password)){
                         Main.getMainStage().setUserData(user);
                         System.out.println("Userdata set for Accountant");
-                        HRSceneSwitcher ss = new HRSceneSwitcher();
-                        ss.switchScene("AccountantDashboardFXML.fxml", "Keya: Dashboard");
+                        AccountantSceneSwitcher ss = new AccountantSceneSwitcher();
+                        ss.switchScene("/Borhan_Islam/AccountantDashboardFXML.fxml", "Keya: Dashboard");
                     }
                 } // Loop's scope ends
             }

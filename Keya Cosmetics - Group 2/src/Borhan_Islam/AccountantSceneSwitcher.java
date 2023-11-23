@@ -13,18 +13,14 @@ import javafx.stage.Stage;
 import mainpkg.Main;
 
 public class AccountantSceneSwitcher {
+    public AccountantSceneSwitcher() {
+    }    
     public void switchScene(String fxml, String title) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource(fxml));
         Stage mainStage = Main.getMainStage();
-        mainStage.setTitle(title);
+        mainStage.setTitle("Keya Cosmetics: "+title);
         Scene scene = Main.getMainStage().getScene();
         scene.setRoot(root);
     }
-    public void switchScene(String fxml) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource(fxml));
-        Stage mainStage = Main.getMainStage();
-        Scene scene = Main.getMainStage().getScene();
-        scene.setRoot(root);
-    }
-    
+       
 }
