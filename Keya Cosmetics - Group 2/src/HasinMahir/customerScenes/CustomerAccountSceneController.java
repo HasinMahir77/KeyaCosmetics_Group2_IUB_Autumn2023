@@ -256,7 +256,6 @@ public class CustomerAccountSceneController implements Initializable {
         ss.switchToCartScene();
     }
 
-  
-
+ 
     
 }

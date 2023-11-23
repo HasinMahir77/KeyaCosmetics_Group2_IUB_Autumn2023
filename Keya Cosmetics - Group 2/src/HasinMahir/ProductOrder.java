@@ -21,7 +21,7 @@ public class ProductOrder extends Product implements Serializable {
         this.quantity = quantity;
         
         this.vat = (this.price*this.quantity)*(((float)this.vatRate)/100);
-        this.totalPrice = (this.price*this.quantity)+vat;
+        this.totalPrice = (this.price*this.quantity);
     }
 
     
@@ -32,7 +32,7 @@ public class ProductOrder extends Product implements Serializable {
         this.price=product.getPrice();
         
         this.vat = (this.price*this.quantity)*(((float)this.vatRate)/100);
-        this.totalPrice = (this.price*this.quantity)+vat;
+        this.totalPrice = (this.price*this.quantity);
          
     }
 
@@ -51,7 +51,7 @@ public class ProductOrder extends Product implements Serializable {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
         this.vat = (this.price*this.quantity)*(((float)this.vatRate)/100);
-        this.totalPrice = (this.price*this.quantity)+vat;
+        this.totalPrice = (this.price*this.quantity);
         
     }
 

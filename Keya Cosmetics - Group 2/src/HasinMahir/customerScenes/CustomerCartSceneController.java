@@ -100,6 +100,8 @@ public class CustomerCartSceneController implements Initializable {
     private Label securityLabel;
     @FXML
     private Button orderButton;
+    @FXML
+    private Label grandTotalLabel;
     
 
     /**
@@ -129,6 +131,7 @@ public class CustomerCartSceneController implements Initializable {
         
        
         this.updateCartTable();
+        this.updateGrandTotal();
         
         //---
         
@@ -241,6 +244,7 @@ public class CustomerCartSceneController implements Initializable {
             //Duplicate Checking implemented in Cart class
             current.getCart().add(po,quantity);
             this.updateCartTable();
+            this.updateGrandTotal();
         }
         catch(NumberFormatException e){
             quantityTextField.setText("1");
@@ -260,6 +264,7 @@ public class CustomerCartSceneController implements Initializable {
             //Duplicate Checking implemented in Cart class
             current.getCart().remove(p,Integer.parseInt(quantityTextField.getText()));
             this.updateCartTable();
+            this.updateGrandTotal();
         }
         catch(NumberFormatException e){
             quantityTextField.setText("1");
@@ -298,6 +303,15 @@ public class CustomerCartSceneController implements Initializable {
         current.getCart().getProductOrderList().clear();
         this.updateCartTable();
         
+    }
+    public void updateGrandTotal(){
+        ArrayList<ProductOrder> products = current.getCart().getProductOrderList();
+        Float grandTotal = new Float(0);
+        
+        for(ProductOrder p: products){
+            grandTotal = grandTotal+p.getTotalPrice()+p.getVat();
+        }
+        grandTotalLabel.setText(grandTotal.toString());
     }
 
         

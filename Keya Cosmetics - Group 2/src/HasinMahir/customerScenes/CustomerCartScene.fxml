@@ -90,7 +90,7 @@
       <VBox alignment="CENTER" prefHeight="393.0" prefWidth="245.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Cart" />
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: #eef0f5;">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="225.0" spacing="10.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: #eef0f5;">
                <children>
                   <HBox alignment="CENTER" prefHeight="51.0" prefWidth="256.0" spacing="10.0">
                      <children>
@@ -104,14 +104,29 @@
                   <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removeButtonOnClick" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 4;" text="Remove" />
                </children>
             </VBox>
-            <Button fx:id="orderButton" mnemonicParsing="false" onAction="#orderButtonOnClick" prefHeight="32.0" prefWidth="99.0" style="-fx-background-radius: 4;" text="Place Order" />
+            <Label text="Total (Including Vat)">
+               <font>
+                  <Font size="12.5" />
+               </font>
+            </Label>
+            <Label fx:id="grandTotalLabel" text="Total+Vat">
+               <font>
+                  <Font size="12.5" />
+               </font>
+            </Label>
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />
          </padding></VBox>
    </right>
    <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="orderButton" mnemonicParsing="false" onAction="#orderButtonOnClick" prefHeight="32.0" prefWidth="99.0" style="-fx-background-radius: 4;" text="Place Order" />
+         </children>
+         <padding>
+            <Insets right="70.0" top="10.0" />
+         </padding></HBox>
    </bottom>
    <top>
       <GridPane prefHeight="47.0" prefWidth="960.0" style="-fx-background-color: #affad3;" BorderPane.alignment="CENTER">
