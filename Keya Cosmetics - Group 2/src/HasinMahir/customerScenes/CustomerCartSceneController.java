@@ -107,6 +107,9 @@ public class CustomerCartSceneController implements Initializable {
         // Getting user data
         Customer current = (Customer)Main.getMainStage().getUserData();
         userMenu.setText(current.getUsername()+" ↓");
+        //Setting quantity text field 
+        
+        quantityTextField.setText("1");
         
         //Initializing and updating TableView
         
@@ -227,6 +230,7 @@ public class CustomerCartSceneController implements Initializable {
         Product p = cartTableView.getSelectionModel().getSelectedItem();
         //Duplicate Checking implemented in Cart class
         current.getCart().add(p,Integer.parseInt(quantityTextField.getText()));
+        this.updateCartTable();
     }
 
     @FXML
@@ -234,6 +238,7 @@ public class CustomerCartSceneController implements Initializable {
         Product p = cartTableView.getSelectionModel().getSelectedItem();
         //Duplicate Checking implemented in Cart class
         current.getCart().remove(p,Integer.parseInt(quantityTextField.getText()));
+        this.updateCartTable();
         
     }
     private void updateCartTable(){

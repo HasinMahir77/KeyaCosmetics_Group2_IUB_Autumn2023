@@ -84,6 +84,7 @@ public class ProductOrder extends Product implements Serializable {
         return vatRate;
     }
     
+    
         
     
     
