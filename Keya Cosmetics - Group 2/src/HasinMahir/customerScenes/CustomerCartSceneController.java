@@ -116,11 +116,8 @@ public class CustomerCartSceneController implements Initializable {
         vatColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Float>("vat"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Integer>("quantity"));
         
-        ObservableList<Product> productArray = FXCollections.observableArrayList();
-        
-        Product p = new Product("Soap",20,Product.Category.BODY_SOAP,20);
-        ProductOrder po = new ProductOrder(p,2);
-        cartTableView.getItems().add(po);
+       
+        this.updateCartTable();
         
         //---
         
@@ -240,14 +237,9 @@ public class CustomerCartSceneController implements Initializable {
         
     }
     private void updateCartTable(){
-        ArrayList<ProductOrder> productOrderList = current.getCart().getProductOrderList();
         Cart cart = current.getCart();
-        //cartTableView.getItems().clear();
-        for(ProductOrder po: productOrderList){
-            
-            System.out.println(po);
-            cartTableView.getItems().add(po);
-        }
+        cartTableView.getItems().clear();
+        cartTableView.getItems().addAll(current.getCart().getProductOrderList());
     }
 
         
