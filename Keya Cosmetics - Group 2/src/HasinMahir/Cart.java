@@ -40,7 +40,7 @@ public class Cart implements Serializable {
     
     public void add(Product product, int quantity){
         //Converting to ProductOrder
-        ProductOrder productOder = new ProductOrder(product,quantity);
+        ProductOrder productOder = product.toProductOrder(quantity);
         
         //Checking for duplicate
         /*

@@ -14,13 +14,27 @@ public class ProductOrder extends Product implements Serializable {
     private int quantity;
     private float totalPrice, vat;
 
-    public ProductOrder(Product product, int quantity) {
+    //Easier constructor
+    
+    public ProductOrder(String name, float price, String category, int vatRate, int quantity) {
+        super(name, price, category, vatRate);
         this.quantity = quantity;
         
         this.vat = this.price*this.quantity*(this.vatRate/100);
         this.totalPrice = (this.price*this.quantity)+vat;
-         
     }
+
+    /*
+    public ProductOrder(Product product, int quantity) {
+        this.quantity = quantity;
+        this.name = product.getName();
+        this.category = product.getCategory();
+        this.price=product.getPrice();
+        
+        this.vat = this.price*this.quantity*(this.vatRate/100);
+        this.totalPrice = (this.price*this.quantity)+vat;
+         
+    }*/
 
     public int getQuantity() {
         return quantity;
@@ -49,6 +63,26 @@ public class ProductOrder extends Product implements Serializable {
         this.vat = vat;
     }
     
+    @Override
+    public String toString(){
+        return "ProductOrder"+this.getName();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public int getVatRate() {
+        return vatRate;
+    }
     
         
     

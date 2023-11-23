@@ -23,7 +23,7 @@ public class Product implements Serializable {
 
     public Product(){ 
     }
-
+  
     public Product(String name, float price ,Category categoryEnum,int vatRate) {
         this.name = name;
         this.price = price;
@@ -47,9 +47,15 @@ public class Product implements Serializable {
             this.category = "Petroleum Jelly";
         }
     }
+    public Product(String name, float price ,String category,int vatRate) {
+        this.name = name;
+        this.price = price;
+        this.vatRate = vatRate;
+        this.category = category;
+    }
     
     public ProductOrder toProductOrder(int quantity){
-        return new ProductOrder(this,quantity);
+        return new ProductOrder(this.name,this.price,this.category,this.vatRate,quantity);
     }
 
     
@@ -84,6 +90,10 @@ public class Product implements Serializable {
 
     public void setVatRate(int vatRate) {
         this.vatRate = vatRate;
+    }
+    @Override
+    public String toString(){
+        return "Product"+this.getName();
     }
     
 }

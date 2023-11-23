@@ -114,7 +114,9 @@ public class CustomerCartSceneController implements Initializable {
         vatColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Float>("vat"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Integer>("quantity"));
         
-        this.updateCartTable();
+        Product p = new Product("Soap",20,Product.Category.BODY_SOAP,20);
+        ProductOrder po = new ProductOrder(p.getName(),p.getPrice(),p.getCategory(),p.getVatRate(),2);
+        cartTableView.getItems().add(po);
         //---
         
     }   
@@ -237,6 +239,8 @@ public class CustomerCartSceneController implements Initializable {
         Cart cart = current.getCart();
         //cartTableView.getItems().clear();
         for(ProductOrder po: productOrderList){
+            
+            System.out.println(po);
             cartTableView.getItems().add(po);
         }
     }
