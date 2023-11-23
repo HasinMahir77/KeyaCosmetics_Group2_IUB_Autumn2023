@@ -4,6 +4,7 @@
  */
 package mainpkg;
 
+import Borhan_Islam.BorhanSS;
 import HasinMahir.Customer;
 import HasinMahir.User;
 import HasinMahir.customerScenes.CustomerSceneSwitcher;
@@ -57,7 +58,7 @@ public class LoginGridController implements Initializable {
         userComboBox.setValue("Customer");
         // Insert users here
         userComboBox.getItems().addAll("Customer",
-                "Product Manager","HR","Receptionist");
+                "Product Manager","HR","Receptionist","Accountant");
         
         //DEFAULT: CUSTOMER
        
@@ -112,6 +113,7 @@ public class LoginGridController implements Initializable {
             
             catch(Exception e){
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
+                Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \n Look at the error in the console");
             }
           }
         //---------------HR
@@ -134,6 +136,33 @@ public class LoginGridController implements Initializable {
             
             catch(Exception e){
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
+                Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \nLook at the error in the console");
+                a.showAndWait();
+            }
+          }
+        //---------------Accountant
+        else if (userComboBox.getValue().equals("Accountant")) {
+            try{
+                File userFile = new File("AccountantList.bin");
+                FileInputStream fis = new FileInputStream(userFile);
+                ObjectInputStream oos = new ObjectInputStream(fis);
+                
+                while(true){
+                    User user = (User)oos.readObject();
+                    if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+                        Main.getMainStage().setUserData(user);
+                        System.out.println("Username-password matched.");
+                        System.out.println("Userdata set for Accountant");
+                        BorhanSS ss = new BorhanSS();
+                        ss.switchScene("AccountantDashboardFXML.fxml", "Keya: Dashboard");
+                    }
+                } // Loop's scope ends
+            }
+            
+            catch(Exception e){
+                System.out.println(e.toString()+" at "+ userComboBox.getValue());
+                Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \nLook at the error in the console");
+                a.showAndWait();
             }
           }
         

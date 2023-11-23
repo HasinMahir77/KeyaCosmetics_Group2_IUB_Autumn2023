@@ -58,6 +58,6 @@
             <Button mnemonicParsing="false" onAction="#registerEmployeeButtonAction" style="-fx-border-radius: 5;" text="Register Employee" />
          </children>
       </VBox>
-      <Button mnemonicParsing="false" onAction="#switchToObjectWriter" text="Add products" />
+      <Button mnemonicParsing="false" onAction="#switchToObjectWriter" text="Add products" GridPane.rowIndex="3" />
    </children>
 </GridPane>
