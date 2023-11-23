@@ -234,7 +234,6 @@ public class CustomerCartSceneController implements Initializable {
         //Duplicate Checking implemented in Cart class
         current.getCart().add(po);
         this.updateCartTable();
-        current.saveInstance();
     }
 
     @FXML
@@ -243,13 +242,13 @@ public class CustomerCartSceneController implements Initializable {
         //Duplicate Checking implemented in Cart class
         current.getCart().remove(p,Integer.parseInt(quantityTextField.getText()));
         this.updateCartTable();
-        current.saveInstance();
         
     }
     private void updateCartTable(){
         Cart cart = current.getCart();
         cartTableView.getItems().clear();
         cartTableView.getItems().addAll(current.getCart().getProductOrderList());
+        current.saveInstance();
     }
 
         
