@@ -98,6 +98,8 @@ public class CustomerCartSceneController implements Initializable {
     ProductOrder selectedProduct;
     @FXML
     private Label securityLabel;
+    @FXML
+    private Button orderButton;
     
 
     /**
@@ -106,7 +108,7 @@ public class CustomerCartSceneController implements Initializable {
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        cartTableView.setPlaceholder(new Label("No products in cart."));
         cartLabel.setTextFill(Color.BLUE);
         // Getting user data
         Customer current = (Customer)Main.getMainStage().getUserData();
@@ -288,6 +290,14 @@ public class CustomerCartSceneController implements Initializable {
     private void switchToSecurityScene(MouseEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToSecurityScene();
+    }
+
+    @FXML
+    private void orderButtonOnClick(ActionEvent event) {
+        //PLACEHOLDER CODE. CLEARS CART.
+        current.getCart().getProductOrderList().clear();
+        this.updateCartTable();
+        
     }
 
         

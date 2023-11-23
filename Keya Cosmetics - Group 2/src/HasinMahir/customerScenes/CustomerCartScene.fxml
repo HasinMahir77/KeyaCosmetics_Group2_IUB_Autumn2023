@@ -104,6 +104,7 @@
                   <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removeButtonOnClick" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 4;" text="Remove" />
                </children>
             </VBox>
+            <Button fx:id="orderButton" mnemonicParsing="false" onAction="#orderButtonOnClick" prefHeight="32.0" prefWidth="99.0" style="-fx-background-radius: 4;" text="Place Order" />
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />
@@ -174,12 +175,12 @@
    <center>
       <TableView fx:id="cartTableView" onMouseClicked="#updateSelectedProduct" prefHeight="393.0" prefWidth="592.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Name" />
+          <TableColumn fx:id="nameColumn" prefWidth="176.0" text="Name" />
           <TableColumn minWidth="0.0" prefWidth="0.0" text="Category" />
-            <TableColumn fx:id="quantityColumn" minWidth="0.0" text="Quantity" />
-            <TableColumn fx:id="unitPriceColumn" prefWidth="102.33331298828125" text="Unit Price(BDT)" />
-            <TableColumn fx:id="vatColumn" prefWidth="87.66668701171875" text="Vat(BDT)" />
-            <TableColumn fx:id="totalPriceColumn" prefWidth="176.33331298828125" text="Total Price" />
+            <TableColumn fx:id="unitPriceColumn" prefWidth="137.66665649414062" text="Unit Price" />
+            <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="95.0" text="Quantity" />
+            <TableColumn fx:id="totalPriceColumn" prefWidth="100.66668701171875" text="Total Price" />
+            <TableColumn fx:id="vatColumn" prefWidth="96.33331298828125" text="Vat(BDT)" />
         </columns>
       </TableView>
    </center>
