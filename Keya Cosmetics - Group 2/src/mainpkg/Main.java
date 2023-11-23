@@ -53,7 +53,7 @@ public class Main extends Application {
         ArrayList<File> userFiles = new ArrayList<File>();
         
         userFiles.add(new File("CustomerList.bin"));
-        userFiles.add(new File("ProductManagerList.bin"));
+        userFiles.add(new File("DeliveryManList.bin"));
         userFiles.add(new File("HRList.bin"));
         userFiles.add(new File("ReceptionistList.bin"));
         userFiles.add(new File("AccountantList.bin"));

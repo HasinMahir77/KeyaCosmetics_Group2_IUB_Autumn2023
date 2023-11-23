@@ -58,7 +58,7 @@ public class EmployeeSignupGridController implements Initializable {
         employeeComboBox.getItems().addAll("HR","Product Manager",
                 "Accountant","Receptionist");
         
-        employeeComboBox.setValue("HR");
+        employeeComboBox.setValue("Accountant");
     }    
 
     @FXML
@@ -106,6 +106,9 @@ public class EmployeeSignupGridController implements Initializable {
         else if(employeeComboBox.getValue().equals("Receptionist")) {
                 employeeFile = new File("ReceptionistList.bin");
             }
+        else if(employeeComboBox.getValue().equals("Delivery Man")) {
+                employeeFile = new File("DeliveryManList.bin");
+            }
         
         //-----------------Insert Code Above This
         else {
@@ -135,7 +138,7 @@ public class EmployeeSignupGridController implements Initializable {
         
         //Main SignUp
         
-        if (employeeComboBox.getValue().equals("Product Manager")){  
+        if (employeeComboBox.getValue().equals("Delivery Man")){  
            //TO DO 
                 
             }
