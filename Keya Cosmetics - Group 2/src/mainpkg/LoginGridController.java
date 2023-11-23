@@ -4,6 +4,7 @@
  */
 package mainpkg;
 
+import Borhan_Islam.Accountant;
 import Borhan_Islam.AccountantSceneSwitcher;
 import HasinMahir.Customer;
 import HasinMahir.User;
@@ -45,7 +46,7 @@ public class LoginGridController implements Initializable {
     @FXML
     private TextField usernameTextField;
     @FXML
-    private PasswordField passwordTextField;
+    private PasswordField passwordTextField;  
     private CustomerSceneSwitcher customerSceneSwitcher = new CustomerSceneSwitcher();
     @FXML
     private ComboBox<String> userComboBox;
@@ -98,8 +99,9 @@ public class LoginGridController implements Initializable {
                 ObjectInputStream oos = new ObjectInputStream(fis);
                 
                 while(true){
-                    User user = (User)oos.readObject();
+                    User user = (Customer)oos.readObject();
                     if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+                        Main.getMainStage().setUserData(user);
                         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
                         ss.switchScene("CustomerShopScene.fxml", "Keya: Shop");
                     }
@@ -132,10 +134,10 @@ public class LoginGridController implements Initializable {
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
             }
           }
-        //------Accountant
-        else if (userComboBox.getValue().equals("Accountant")) {
+        if (userComboBox.getValue().equals("Accountant")) {
             try{
                 File userFile = new File("AccountantList.bin");
+                System.out.println("Accountant List opened");
                 FileInputStream fis = new FileInputStream(userFile);
                 ObjectInputStream oos = new ObjectInputStream(fis);
                 
@@ -143,9 +145,8 @@ public class LoginGridController implements Initializable {
                     User user = (User)oos.readObject();
                     if (user.getUsername().equals(username) && user.getPassword().equals(password)){
                         Main.getMainStage().setUserData(user);
-                        System.out.println("Userdata set for Accountant");
                         AccountantSceneSwitcher ss = new AccountantSceneSwitcher();
-                        ss.switchScene("/Borhan_Islam/AccountantDashboardFXML.fxml", "Keya: Dashboard");
+                        ss.switchScene("AccountantDashboardFXML.fxml", "Keya: Dashboard");
                     }
                 } // Loop's scope ends
             }
@@ -153,11 +154,13 @@ public class LoginGridController implements Initializable {
             catch(Exception e){
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
             }
-          }
+          }        
         // Login done. 
         
         
         }
+ 
+        
         
 
     @FXML

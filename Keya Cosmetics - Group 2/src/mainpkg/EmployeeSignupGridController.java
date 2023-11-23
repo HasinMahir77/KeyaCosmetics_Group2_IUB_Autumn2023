@@ -141,16 +141,16 @@ public class EmployeeSignupGridController implements Initializable {
             }
         
         else if(employeeComboBox.getValue().equals("Accountant")) {
+                //TO DO
             try(FileOutputStream fos = new FileOutputStream(employeeFile,true);
                         ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
-                    Accountant newAcc = new Accountant(firstNameTextField.getText(),lastNameTextField.getText(),
+                    Accountant newAccountant = new Accountant(firstNameTextField.getText(),lastNameTextField.getText(),
                 usernameTextField.getText(), passwordTextField.getText());
-                    oos.writeObject(newAcc);
+                    oos.writeObject(newAccountant);
                     
                 }
                 catch(Exception e){
-                    e.printStackTrace(System.out);}
-            
+                    e.printStackTrace(System.out);}            
         }
         else if(employeeComboBox.getValue().equals("Receptionist")) {
                 //TO DO

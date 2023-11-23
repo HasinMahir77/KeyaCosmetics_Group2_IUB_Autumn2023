@@ -130,15 +130,11 @@ public class CustomerSignupGridController implements Initializable {
                 usernameTextField.getText(), passwordTextField.getText(),
                     addressTextArea.getText(),phoneTextField.getText());
             customerList = new File("CustomerList.bin");
-            if (customerList.exists()){
-                 fos = new FileOutputStream(customerList,true);
-                 oos = new ObjectOutputStreamA(fos);
-            } else {
-                fos = new FileOutputStream(customerList);
-                oos = new ObjectOutputStream(fos);
-            }
+            
+            fos = new FileOutputStream(customerList,true);
+            oos = new ObjectOutputStreamA(fos);
+            
             oos.writeObject(newUser);
-            oos.flush();
             oos.close();
             System.out.println("Customer written");
             Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Account created successfully",ButtonType.OK);

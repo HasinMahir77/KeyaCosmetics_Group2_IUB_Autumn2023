@@ -6,12 +6,13 @@ package mainpkg;
 
 import HasinMahir.Customer;
 import HasinMahir.User;
-import Borhan_Islam.Accountant;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,10 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        
+        LocalDate d = LocalDate.now();
+        System.out.println(d);
+        
         mainStage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("LoginSignupScene.fxml"));
         Scene scene = new Scene(root);
@@ -53,7 +58,7 @@ public class Main extends Application {
         userFiles.add(new File("ReceptionistList.bin"));
         userFiles.add(new File("AccountantList.bin"));
         
-         
+        
         //[Failsafe] Creating empty bin file if it doesn't exist
         
         for (File userFile: userFiles){
@@ -85,7 +90,7 @@ public class Main extends Application {
                 else if (userFile.getName().equals("AccountantList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                    User user = new Customer("User","User","Accountant","11111","User","1111");
+                    User user = new Customer("User","User","acc","acc","User","11111");
                     oos.writeObject(user);
                     System.out.println("File "+userFile.getName()+" not found.");
                     System.out.println("Initialized");
@@ -93,7 +98,7 @@ public class Main extends Application {
                 catch(Exception e){
                     System.out.println(e);
                 }
-              }
+              }                
                 
             }
             
