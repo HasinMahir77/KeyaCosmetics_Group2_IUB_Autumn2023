@@ -53,16 +53,20 @@ public class Cart implements Serializable {
         
         this.productOrderList.add(productOder);
     }
-    public void add(ProductOrder product){
+    public void add(ProductOrder product,int quantity){
+        //Converting to ProductOrder
+        ProductOrder productOder = product.toProductOrder(quantity);
         
         //Checking for duplicate
+        
         for(ProductOrder p: this.productOrderList){
             if (product.getName().equals(p.getName())){
-                p.setQuantity(p.getQuantity()+product.getQuantity());
+                p.setQuantity(p.getQuantity()+quantity);
                 return;
             }  
         }
-        this.productOrderList.add(product);
+        
+        this.productOrderList.add(productOder);
     }
     
     public void remove(Product product, int quantity){

@@ -232,9 +232,9 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private void addButtonOnClick(ActionEvent event) {
         ProductOrder po = this.selectedProduct;
-        po.setQuantity(Integer.parseInt(quantityTextField.getText()));
+        int quantity = Integer.parseInt(quantityTextField.getText());
         //Duplicate Checking implemented in Cart class
-        current.getCart().add(po);
+        current.getCart().add(po,quantity);
         this.updateCartTable();
     }
 
