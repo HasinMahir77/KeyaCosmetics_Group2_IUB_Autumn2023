@@ -111,7 +111,7 @@ public class CustomerCartSceneController implements Initializable {
         //Initializing and updating TableView
         
         nameColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, String>("name"));
-        unitPriceColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Float>("unitPrice"));
+        unitPriceColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Float>("price"));
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Float>("totalPrice"));
         vatColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Float>("vat"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Integer>("quantity"));
@@ -119,7 +119,7 @@ public class CustomerCartSceneController implements Initializable {
         ObservableList<Product> productArray = FXCollections.observableArrayList();
         
         Product p = new Product("Soap",20,Product.Category.BODY_SOAP,20);
-        ProductOrder po = new ProductOrder(p.getName(),p.getPrice(),p.getCategory(),p.getVatRate(),2);
+        ProductOrder po = new ProductOrder(p,2);
         cartTableView.getItems().add(po);
         
         //---
