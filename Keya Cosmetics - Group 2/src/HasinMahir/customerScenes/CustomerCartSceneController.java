@@ -106,6 +106,8 @@ public class CustomerCartSceneController implements Initializable {
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        cartLabel.setTextFill(Color.BLUE);
         // Getting user data
         Customer current = (Customer)Main.getMainStage().getUserData();
         userMenu.setText(current.getUsername()+" ↓");
@@ -231,19 +233,41 @@ public class CustomerCartSceneController implements Initializable {
 
     @FXML
     private void addButtonOnClick(ActionEvent event) {
-        ProductOrder po = this.selectedProduct;
-        int quantity = Integer.parseInt(quantityTextField.getText());
-        //Duplicate Checking implemented in Cart class
-        current.getCart().add(po,quantity);
-        this.updateCartTable();
+        try{
+            ProductOrder po = this.selectedProduct;
+            int quantity = Integer.parseInt(quantityTextField.getText());
+            //Duplicate Checking implemented in Cart class
+            current.getCart().add(po,quantity);
+            this.updateCartTable();
+        }
+        catch(NumberFormatException e){
+            quantityTextField.setText("1");
+            Alert a = new Alert(Alert.AlertType.ERROR,"Please enter an integer.");
+            a.showAndWait();
+        }
+        catch(NullPointerException e){
+            Alert a = new Alert(Alert.AlertType.ERROR,"Please select a product.");
+            a.showAndWait();
+        }
     }
 
     @FXML
     private void removeButtonOnClick(ActionEvent event) {
-        Product p = this.selectedProduct;
-        //Duplicate Checking implemented in Cart class
-        current.getCart().remove(p,Integer.parseInt(quantityTextField.getText()));
-        this.updateCartTable();
+        try{
+            Product p = this.selectedProduct;
+            //Duplicate Checking implemented in Cart class
+            current.getCart().remove(p,Integer.parseInt(quantityTextField.getText()));
+            this.updateCartTable();
+        }
+        catch(NumberFormatException e){
+            quantityTextField.setText("1");
+            Alert a = new Alert(Alert.AlertType.ERROR,"Please enter an integer.");
+            a.showAndWait();
+        }
+        catch(NullPointerException e){
+            Alert a = new Alert(Alert.AlertType.ERROR,"Please select a product.");
+            a.showAndWait();
+        }
         
     }
     private void updateCartTable(){
@@ -255,7 +279,9 @@ public class CustomerCartSceneController implements Initializable {
 
     @FXML
     private void updateSelectedProduct(MouseEvent event) {
-        this.selectedProduct = cartTableView.getSelectionModel().getSelectedItem();
+        if(!cartTableView.getSelectionModel().isEmpty()){
+            this.selectedProduct = cartTableView.getSelectionModel().getSelectedItem();
+        } 
     }
 
         

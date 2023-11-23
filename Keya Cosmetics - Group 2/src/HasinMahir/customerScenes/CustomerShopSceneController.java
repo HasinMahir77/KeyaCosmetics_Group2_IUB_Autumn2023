@@ -215,24 +215,47 @@ public class CustomerShopSceneController implements Initializable {
 
     @FXML
     private void addButtonOnClick(ActionEvent event) {
-        Product p = this.selectedProduct;
-        //Duplicate Checking implemented in Cart class
-        System.out.println(current.getCart());
-        current.getCart().add(p,Integer.parseInt(quantityTextField.getText()));
-        current.saveInstance();
+        try{
+            Product p = this.selectedProduct;
+            current.getCart().add(p,Integer.parseInt(quantityTextField.getText()));
+            current.saveInstance();
+        }
+        catch(NumberFormatException e){
+            quantityTextField.setText("1");
+            Alert a = new Alert(Alert.AlertType.ERROR,"Please enter an integer.");
+            a.showAndWait();
+        }
+        catch(NullPointerException e){
+            Alert a = new Alert(Alert.AlertType.ERROR,"Please select a product.");
+            a.showAndWait();
+        }
+        
     }
 
     @FXML
     private void removeButtonOnClick(ActionEvent event) {
-        Product p = this.selectedProduct;
-        //Duplicate Checking implemented in Cart class
-        current.getCart().remove(p,Integer.parseInt(quantityTextField.getText()));
-        current.saveInstance();
+        try {
+            Product p = this.selectedProduct;
+            //Duplicate Checking implemented in Cart class
+            current.getCart().remove(p,Integer.parseInt(quantityTextField.getText()));
+            current.saveInstance();
+        }
+        catch(NumberFormatException e){
+            quantityTextField.setText("1");
+            Alert a = new Alert(Alert.AlertType.ERROR,"Please enter an integer.");
+            a.showAndWait();
+        }
+        catch(NullPointerException e){
+            Alert a = new Alert(Alert.AlertType.ERROR,"Please select a product.");
+            a.showAndWait();
+        }
     }
 
     @FXML
     private void updateSelectedProduct(MouseEvent event) {
-        this.selectedProduct = productTableView.getSelectionModel().getSelectedItem();
+        if(!productTableView.getSelectionModel().isEmpty()){
+            this.selectedProduct = productTableView.getSelectionModel().getSelectedItem();
+        } 
     }
         
     
