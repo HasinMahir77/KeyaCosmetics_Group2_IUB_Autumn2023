@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -114,9 +116,12 @@ public class CustomerCartSceneController implements Initializable {
         vatColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Float>("vat"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Integer>("quantity"));
         
+        ObservableList<Product> productArray = FXCollections.observableArrayList();
+        
         Product p = new Product("Soap",20,Product.Category.BODY_SOAP,20);
         ProductOrder po = new ProductOrder(p.getName(),p.getPrice(),p.getCategory(),p.getVatRate(),2);
         cartTableView.getItems().add(po);
+        
         //---
         
     }   
