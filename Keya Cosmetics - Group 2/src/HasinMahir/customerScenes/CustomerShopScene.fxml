@@ -72,7 +72,7 @@
       </VBox>
    </right>
    <center>
-      <TableView fx:id="productTableView" prefHeight="493.0" prefWidth="722.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="productTableView" onMouseClicked="#updateSelectedProduct" prefHeight="493.0" prefWidth="722.0" BorderPane.alignment="CENTER">
         <columns>
             <TableColumn fx:id="nameColumn" prefWidth="238.0" text="Name" />
           <TableColumn fx:id="categoryColumn" minWidth="3.000030517578125" prefWidth="112.66668701171875" text="Category" />

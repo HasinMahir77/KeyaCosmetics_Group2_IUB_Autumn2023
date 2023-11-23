@@ -97,6 +97,8 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private Button cartButton;
     
+    ProductOrder selectedProduct;
+    
 
     /**
      * Initializes the controller class.
@@ -112,6 +114,8 @@ public class CustomerCartSceneController implements Initializable {
         quantityTextField.setText("1");
         
         //Initializing and updating TableView
+        
+        ProductOrder selectedProduct = cartTableView.getSelectionModel().getSelectedItem();
         
         nameColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, String>("name"));
         unitPriceColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Float>("price"));
@@ -227,7 +231,7 @@ public class CustomerCartSceneController implements Initializable {
 
     @FXML
     private void addButtonOnClick(ActionEvent event) {
-        ProductOrder po = cartTableView.getSelectionModel().getSelectedItem();
+        ProductOrder po = this.selectedProduct;
         po.setQuantity(Integer.parseInt(quantityTextField.getText()));
         //Duplicate Checking implemented in Cart class
         current.getCart().add(po);
@@ -236,7 +240,7 @@ public class CustomerCartSceneController implements Initializable {
 
     @FXML
     private void removeButtonOnClick(ActionEvent event) {
-        Product p = cartTableView.getSelectionModel().getSelectedItem();
+        Product p = this.selectedProduct;
         //Duplicate Checking implemented in Cart class
         current.getCart().remove(p,Integer.parseInt(quantityTextField.getText()));
         this.updateCartTable();
@@ -247,6 +251,11 @@ public class CustomerCartSceneController implements Initializable {
         cartTableView.getItems().clear();
         cartTableView.getItems().addAll(current.getCart().getProductOrderList());
         current.saveInstance();
+    }
+
+    @FXML
+    private void updateSelectedProduct(MouseEvent event) {
+        this.selectedProduct = cartTableView.getSelectionModel().getSelectedItem();
     }
 
         

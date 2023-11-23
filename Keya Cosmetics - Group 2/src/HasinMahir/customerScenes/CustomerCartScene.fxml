@@ -172,7 +172,7 @@
       </GridPane>
    </top>
    <center>
-      <TableView fx:id="cartTableView" prefHeight="393.0" prefWidth="592.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="cartTableView" onMouseClicked="#updateSelectedProduct" prefHeight="393.0" prefWidth="592.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Name" />
           <TableColumn minWidth="0.0" prefWidth="0.0" text="Category" />

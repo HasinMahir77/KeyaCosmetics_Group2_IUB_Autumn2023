@@ -91,6 +91,8 @@ public class CustomerShopSceneController implements Initializable {
     private Button removeButton;
     @FXML
     private TableColumn<Product, Integer> vatRateColumn;
+    
+    Product selectedProduct;
 
     /**
      * Initializes the controller class.
@@ -102,6 +104,9 @@ public class CustomerShopSceneController implements Initializable {
         quantityTextField.setText("1");
         // Initializing Category List
         current = (Customer)Main.getMainStage().getUserData(); 
+      
+        
+        //Initializing Product TableView
         
         userMenu.setText(current.getUsername()+" ↓");
         categoryListView.getItems().addAll("Laundry Soap","Body Soap",
@@ -110,8 +115,6 @@ public class CustomerShopSceneController implements Initializable {
         categoryColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("category"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
         vatRateColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("vatRate"));
-        
-        //Initializing Product TableView
         //Collecting products from file
         
         ObservableList<Product> productArray = FXCollections.observableArrayList(); //Array to store products
@@ -212,7 +215,7 @@ public class CustomerShopSceneController implements Initializable {
 
     @FXML
     private void addButtonOnClick(ActionEvent event) {
-        Product p = productTableView.getSelectionModel().getSelectedItem();
+        Product p = this.selectedProduct;
         //Duplicate Checking implemented in Cart class
         System.out.println(current.getCart());
         current.getCart().add(p,Integer.parseInt(quantityTextField.getText()));
@@ -221,10 +224,15 @@ public class CustomerShopSceneController implements Initializable {
 
     @FXML
     private void removeButtonOnClick(ActionEvent event) {
-        Product p = productTableView.getSelectionModel().getSelectedItem();
+        Product p = this.selectedProduct;
         //Duplicate Checking implemented in Cart class
         current.getCart().remove(p,Integer.parseInt(quantityTextField.getText()));
         current.saveInstance();
+    }
+
+    @FXML
+    private void updateSelectedProduct(MouseEvent event) {
+        this.selectedProduct = productTableView.getSelectionModel().getSelectedItem();
     }
         
     

@@ -20,7 +20,7 @@ public class ProductOrder extends Product implements Serializable {
         super(name, price, category, vatRate);
         this.quantity = quantity;
         
-        this.vat = (this.price*this.quantity)*((float)this.vatRate/100);
+        this.vat = (this.price*this.quantity)*(((float)this.vatRate)/100);
         this.totalPrice = (this.price*this.quantity)+vat;
     }
 
@@ -31,7 +31,7 @@ public class ProductOrder extends Product implements Serializable {
         this.category = product.getCategory();
         this.price=product.getPrice();
         
-        this.vat = (this.price*this.quantity)*((float)this.vatRate/100);
+        this.vat = (this.price*this.quantity)*(((float)this.vatRate)/100);
         this.totalPrice = (this.price*this.quantity)+vat;
          
     }
@@ -50,7 +50,7 @@ public class ProductOrder extends Product implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-        this.vat = this.price*this.quantity*(this.vatRate/100);
+        this.vat = (this.price*this.quantity)*(((float)this.vatRate)/100);
         this.totalPrice = (this.price*this.quantity)+vat;
         
     }
