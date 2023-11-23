@@ -56,7 +56,7 @@ public class LoginGridController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // Insert users here
         userComboBox.getItems().addAll("Customer",
-                "Product Manager","HR","Receptionist");
+                "Product Manager","HR","Receptionist", "Accountant");
     }    
 
     @FXML
@@ -131,13 +131,32 @@ public class LoginGridController implements Initializable {
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
             }
           }
-        
+        //------Accountant
+        else if (userComboBox.getValue().equals("Accountant")) {
+            try{
+                File userFile = new File("AccountantList.bin");
+                FileInputStream fis = new FileInputStream(userFile);
+                ObjectInputStream oos = new ObjectInputStream(fis);
+                
+                while(true){
+                    User user = (User)oos.readObject();
+                    if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+                        Main.getMainStage().setUserData(user);
+                        System.out.println("Userdata set for Accountant");
+                        HRSceneSwitcher ss = new HRSceneSwitcher();
+                        ss.switchScene("AccountantDashboardFXML.fxml", "Keya: Dashboard");
+                    }
+                } // Loop's scope ends
+            }
+            
+            catch(Exception e){
+                System.out.println(e.toString()+" at "+ userComboBox.getValue());
+            }
+          }
         // Login done. 
         
         
         }
- 
-        
         
 
     @FXML

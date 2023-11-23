@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML.java to edit this template
  */
 package mainpkg;
-
+import Borhan_Islam.Accountant;
 import HasinMahir.Customer;
 import HasinMahir.User;
 import java.io.File;
@@ -50,8 +50,9 @@ public class Main extends Application {
         userFiles.add(new File("ProductManagerList.bin"));
         userFiles.add(new File("HRList.bin"));
         userFiles.add(new File("ReceptionistList.bin"));
+        userFiles.add(new File("AccountantList.bin"));
         
-        
+         
         //[Failsafe] Creating empty bin file if it doesn't exist
         
         for (File userFile: userFiles){
@@ -72,6 +73,18 @@ public class Main extends Application {
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
                     User user = new Customer("User","User","HR","HR","User","123456");
+                    oos.writeObject(user);
+                    System.out.println("File "+userFile.getName()+" not found.");
+                    System.out.println("Initialized");
+                }
+                catch(Exception e){
+                    System.out.println(e);
+                }
+              }
+                else if (userFile.getName().equals("Accountant.bin")){
+                try(FileOutputStream fos = new FileOutputStream(userFile);
+                        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                    User user = new Customer("User","User","Accountant","Accountant","User","1111");
                     oos.writeObject(user);
                     System.out.println("File "+userFile.getName()+" not found.");
                     System.out.println("Initialized");
