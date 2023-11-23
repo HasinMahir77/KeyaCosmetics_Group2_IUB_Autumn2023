@@ -4,6 +4,7 @@
  */
 package mainpkg;
 
+import Borhan_Islam.Accountant;
 import HasinMahir.User;
 import NadimHR_Receptionist.Hr;
 import java.io.EOFException;
@@ -141,7 +142,16 @@ public class EmployeeSignupGridController implements Initializable {
         
         else if(employeeComboBox.getValue().equals("Accountant")) {
                 //TO DO
-            }
+            try(FileOutputStream fos = new FileOutputStream(employeeFile,true);
+                        ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
+                    Accountant newAccountant = new Accountant(firstNameTextField.getText(),lastNameTextField.getText(),
+                usernameTextField.getText(), passwordTextField.getText());
+                    oos.writeObject(newAccountant);
+                    
+                }
+                catch(Exception e){
+                    e.printStackTrace(System.out);}            
+        }
         else if(employeeComboBox.getValue().equals("Receptionist")) {
                 //TO DO
             }

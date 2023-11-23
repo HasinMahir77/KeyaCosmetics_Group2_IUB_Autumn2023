@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BorhanIslam.DeliverymanDashboardFXMLController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="380.0" layoutY="207.0" opacity="0.24" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/keyaLogo.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="46.0" layoutY="67.0" mnemonicParsing="false" onAction="#profileOnButtonClicked" text="Parcel Status" />
+      <Button layoutX="28.0" layoutY="122.0" mnemonicParsing="false" onAction="#CommsOnButtonClicked" text="Communication with customer" />
+      <Button layoutX="46.0" layoutY="195.0" mnemonicParsing="false" onAction="#seeLocationOnButtonClicked" text="See Location" />
+      <Button layoutX="54.0" layoutY="270.0" mnemonicParsing="false" onAction="#confirmOnButtonClicked" text="Confirm Delivery" />
+      <Button layoutX="36.0" layoutY="342.0" mnemonicParsing="false" onAction="#verifyCustomerIdOnButtonClicked" text="Verify Customer ID" />
+      <Button layoutX="54.0" layoutY="394.0" mnemonicParsing="false" onAction="#checkAmountOnButtonClicked" text="Check Amount" />
+      <Button layoutX="46.0" layoutY="461.0" mnemonicParsing="false" onAction="#incomeOnButtonClicked" text="Income" />
+      <Button layoutX="891.0" layoutY="135.0" mnemonicParsing="false" onAction="#logoutOnButtonClicked" text="Logout" />
+      <Button layoutX="261.0" layoutY="92.0" mnemonicParsing="false" onAction="#updateDeliveryOnButtonClicked" text="Update Delivery" />
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="960.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ImageView fitHeight="57.0" fitWidth="73.0" layoutX="889.0" layoutY="27.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@download.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="892.0" layoutY="92.0" mnemonicParsing="false" onAction="#profileOnButtonClicked" text="Profile" />
+   </children>
+</AnchorPane>

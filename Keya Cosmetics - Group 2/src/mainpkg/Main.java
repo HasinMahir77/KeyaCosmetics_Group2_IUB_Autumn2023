@@ -56,6 +56,7 @@ public class Main extends Application {
         userFiles.add(new File("ProductManagerList.bin"));
         userFiles.add(new File("HRList.bin"));
         userFiles.add(new File("ReceptionistList.bin"));
+        userFiles.add(new File("AccountantList.bin"));
         
         
         //[Failsafe] Creating empty bin file if it doesn't exist
@@ -86,6 +87,18 @@ public class Main extends Application {
                     System.out.println(e);
                 }
               }
+                else if (userFile.getName().equals("AccountantList.bin")){
+                try(FileOutputStream fos = new FileOutputStream(userFile);
+                        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                    User user = new Customer("User","User","acc","acc","User","11111");
+                    oos.writeObject(user);
+                    System.out.println("File "+userFile.getName()+" not found.");
+                    System.out.println("Initialized");
+                }
+                catch(Exception e){
+                    System.out.println(e);
+                }
+              }                
                 
             }
             
