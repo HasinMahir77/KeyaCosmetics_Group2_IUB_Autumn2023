@@ -65,8 +65,6 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private Label profileLabel;
     @FXML
-    private Label voucherLabel;
-    @FXML
     private Label allLabel;
     @FXML
     private Label ongoingLabel;
@@ -98,6 +96,8 @@ public class CustomerCartSceneController implements Initializable {
     private Button cartButton;
     
     ProductOrder selectedProduct;
+    @FXML
+    private Label securityLabel;
     
 
     /**
@@ -282,6 +282,12 @@ public class CustomerCartSceneController implements Initializable {
         if(!cartTableView.getSelectionModel().isEmpty()){
             this.selectedProduct = cartTableView.getSelectionModel().getSelectedItem();
         } 
+    }
+    
+    @FXML
+    private void switchToSecurityScene(MouseEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToSecurityScene();
     }
 
         

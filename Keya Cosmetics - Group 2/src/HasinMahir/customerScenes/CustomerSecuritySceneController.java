@@ -38,17 +38,14 @@ import mainpkg.Main;
  *
  * @author hasin
  */
-public class CustomerAccountSceneController implements Initializable {
+public class CustomerSecuritySceneController implements Initializable {
 
     @FXML
     private MenuBar userMenuBar;
     @FXML
     private MenuItem ordersMenuItem;
-    private ListView<String> categoryListView;    
     @FXML
     private Button cartButton;
-    private Label quantityMinusLabel;
-    private Label quantityPlusLabel;
     @FXML
     private Menu userMenu;
     @FXML
@@ -68,19 +65,9 @@ public class CustomerAccountSceneController implements Initializable {
     @FXML
     private Label cartLabel;
     @FXML
-    private TextField firstNameTextField;
-    @FXML
-    private TextField lastNameTextField;
-    @FXML
-    private TextField phoneTextField;
-    @FXML
-    private TextArea addressTextArea;
-    @FXML
     private Button shopButton;
     @FXML
     private Button applyButton;
-    @FXML
-    private Button editProfileButton;
     @FXML
     private PasswordField passwordTextField;
     @FXML
@@ -89,6 +76,10 @@ public class CustomerAccountSceneController implements Initializable {
     private Label profileLabel;
     @FXML
     private Label securityLabel;
+    @FXML
+    private PasswordField confirmPasswordTextField;
+    @FXML
+    private Button deleteAccountButton;
 
     /**
      * Initializes the controller class.
@@ -97,13 +88,8 @@ public class CustomerAccountSceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        profileLabel.setTextFill(Color.BLUE);
+        securityLabel.setTextFill(Color.BLUE);
         Customer current = (Customer)Main.getMainStage().getUserData();
-        userMenu.setText(current.getUsername()+" ↓");
-        firstNameTextField.setText(current.getFirstName());
-        lastNameTextField.setText(current.getLastName());
-        addressTextArea.setText(current.getAddress());
-        phoneTextField.setText(current.getPhone());
         passwordTextField.setText(current.getPassword());  
     }    
 
@@ -135,88 +121,9 @@ public class CustomerAccountSceneController implements Initializable {
 
 
     @FXML
-    private void switchToAccountScene(ActionEvent event) {
-    }
-
-    @FXML
-    private void editProfileButtonOnClick(ActionEvent event) {
-        firstNameTextField.setDisable(false);
-        lastNameTextField.setDisable(false);
-        addressTextArea.setDisable(false);
-        phoneTextField.setDisable(false);
-        applyButton.setDisable(false);
-        editProfileButton.setDisable(true);
-        changePasswordButton.setDisable(true); 
-    }
-
-    @FXML
-    private void applyEdits(ActionEvent event) {
-        Customer current = (Customer)Main.getMainStage().getUserData();
-        System.out.println(current);
-        if (editProfileButton.isDisabled()){ //If Edit Profile button has been pressed
-            //Checking for empty fields
-            if (firstNameTextField.getText().equals("")|| phoneTextField.getText().equals("")
-                || lastNameTextField.getText().equals("") ||addressTextArea.getText().equals("")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please fill in all of the fields");
-            alert.show();
-            return;
-        }
-            //Validating the Phone number 
-        if (phoneTextField.getText().length()!=11){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
-            alert.show();
-            return;
-        }
-        try{
-            int phone = Integer.parseInt(phoneTextField.getText());
-        } catch(Exception e){
-            System.out.println("Phone num parsing to int failed");
-            System.out.println(e);
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
-            alert.show();
-            return;
-        }
-        //Validating address
-        if (addressTextArea.getText().length()<=5){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid address");
-            alert.show();
-            return;
-        }
-        //Setting the new data
-        try{
-            current.setAddress(addressTextArea.getText());
-        current.setFirstName(firstNameTextField.getText());
-        current.setLastName(lastNameTextField.getText());
-        current.setPhone(phoneTextField.getText());
-        } catch(Exception e){System.out.println(e);}
-        //Disabling the fields again
-        firstNameTextField.setDisable(true);
-        lastNameTextField.setDisable(true);
-        addressTextArea.setDisable(true);
-        phoneTextField.setDisable(true);
-        applyButton.setDisable(true);
-        //Enabling the buttons again
-        editProfileButton.setDisable(false);
-        changePasswordButton.setDisable(false);
-        current.saveInstance(); //Saving instance
-        }
-        else{ //Change password button has been pressed
-            //Validating the password
-        if (passwordTextField.getText().length()<8){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a password that is at least 8 "
-                    + "characters long.");
-            alert.show();
-            return;
-        }
-        current.setPassword(passwordTextField.getText());
-        current.saveInstance();
-        //Enabling the buttons again
-        editProfileButton.setDisable(false);
-        changePasswordButton.setDisable(false);
-        applyButton.setDisable(true);
-        //Disabling the password field again
-        passwordTextField.setDisable(true);
-        }
+    private void switchToAccountScene(ActionEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToAccountScene();
     }
 
     @FXML
@@ -257,9 +164,17 @@ public class CustomerAccountSceneController implements Initializable {
     }
 
     @FXML
-    private void switchToSecurityScene(MouseEvent event) throws IOException {
+    private void deleteAccountButtonOnClick(ActionEvent event) {
+    }
+
+    @FXML
+    private void applyEdits(ActionEvent event) {
+    }
+
+    @FXML
+    private void switchToAccountScene(MouseEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
-        ss.switchToSecurityScene();
+        ss.switchToAccountScene();
     }
 
     

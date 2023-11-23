@@ -37,7 +37,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="securityLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="Security">
+                  <Label fx:id="securityLabel" onMouseClicked="#switchToSecurityScene" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="Security">
                      <font>
                         <Font size="13.0" />
                      </font>

@@ -38,4 +38,7 @@ public class CustomerSceneSwitcher {
     public void switchToCartScene() throws IOException {
         this.switchScene("CustomerCartScene.fxml", "Cart");
     }
+    public void switchToSecurityScene() throws IOException {
+        this.switchScene("CustomerSecurityScene.fxml", "Security");
+    }
 }
