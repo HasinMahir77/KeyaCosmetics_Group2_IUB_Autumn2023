@@ -60,8 +60,6 @@ public class CustomerAccountSceneController implements Initializable {
     @FXML
     private Button cartButton1;
     @FXML
-    private Label voucherLabel;
-    @FXML
     private Label allLabel;
     @FXML
     private Label ongoingLabel;
@@ -89,6 +87,8 @@ public class CustomerAccountSceneController implements Initializable {
     private Button changePasswordButton;
     @FXML
     private Label profileLabel;
+    @FXML
+    private Label securityLabel;
 
     /**
      * Initializes the controller class.
