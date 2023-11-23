@@ -114,6 +114,7 @@ public class LoginGridController implements Initializable {
             catch(Exception e){
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
                 Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \n Look at the error in the console");
+                a.showAndWait();
             }
           }
         //---------------HR
