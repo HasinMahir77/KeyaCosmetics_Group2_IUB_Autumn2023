@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML.java to edit this template
  */
 package mainpkg;
-import Borhan_Islam.Accountant;
+
 import HasinMahir.Customer;
 import HasinMahir.User;
 import java.io.File;
@@ -81,7 +81,7 @@ public class Main extends Application {
                     System.out.println(e);
                 }
               }
-                else if (userFile.getName().equals("Accountant.bin")){
+                else if (userFile.getName().equals("AccountantList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
                     User user = new Customer("User","User","Accountant","Accountant","User","1111");
