@@ -58,6 +58,11 @@ public abstract class User implements Serializable {
         this.username+=".deleted";
     }
 
+    public float getBalance() {
+        return balance;
+    }
+    
+
     public String getFirstName() {
         return firstName;
     }
@@ -93,6 +98,11 @@ public abstract class User implements Serializable {
     public void changePassword(String newPassword){
         this.password=newPassword;
     }
+
+    public void setBalance(float balance) {
+        this.balance = balance;
+    }
+    
     public boolean isDel() {
         return del;
     }
