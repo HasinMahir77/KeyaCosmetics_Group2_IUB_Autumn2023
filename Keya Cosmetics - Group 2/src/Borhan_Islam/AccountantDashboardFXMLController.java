@@ -72,6 +72,7 @@ public class AccountantDashboardFXMLController implements Initializable {
     @FXML
     private void expenseControlSysOnButtonClicked(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("ExpenseControlSysFXML.fxml"));
+
     }
     
 }
