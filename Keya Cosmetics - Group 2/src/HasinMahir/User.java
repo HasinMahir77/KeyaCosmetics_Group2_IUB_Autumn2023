@@ -18,9 +18,11 @@ import javafx.stage.Stage;
 public abstract class User implements Serializable {
     protected String firstName, lastName, username, password,phone;
     protected boolean del;
+    protected float balance;
 
     public User() {
         this.del = false;
+        this.balance = 0;
     }
 
     public User(String firstName, String lastName, String username, String password, String phone) {
@@ -30,6 +32,7 @@ public abstract class User implements Serializable {
         this.password = password;
         this.phone = phone;
         this.del = false;
+        this.balance = 0;
 
     }
     
