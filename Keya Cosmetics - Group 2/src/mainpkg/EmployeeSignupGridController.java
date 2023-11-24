@@ -25,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -49,6 +50,8 @@ public class EmployeeSignupGridController implements Initializable {
     private TextField phoneTextField;
     @FXML
     private ComboBox<String> employeeComboBox;
+    @FXML
+    private DatePicker dobDatePicker;
 
     /**
      * Initializes the controller class.
@@ -153,7 +156,7 @@ public class EmployeeSignupGridController implements Initializable {
            
         //Duplicate checking done, correct File initiated. Main algorithm now.
         
-        //Main SignUp
+        //---------------------Main SignUp
         
         if (employeeComboBox.getValue().equals("Delivery Man")){  
            //TO DO 
@@ -166,7 +169,21 @@ public class EmployeeSignupGridController implements Initializable {
                         ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
                     Accountant newAccountant = new Accountant(firstNameTextField.getText(),lastNameTextField.getText(),
                 usernameTextField.getText(), passwordTextField.getText());
+                    newAccountant.setDob(dobDatePicker.getValue());
                     oos.writeObject(newAccountant);
+                    
+                }
+                catch(Exception e){
+                    e.printStackTrace(System.out);}            
+        }
+        else if(employeeComboBox.getValue().equals("Affiliate Marketer")) {
+                //TO DO
+            try(FileOutputStream fos = new FileOutputStream(employeeFile,true);
+                        ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
+                    Accountant newAM = new Accountant(firstNameTextField.getText(),lastNameTextField.getText(),
+                usernameTextField.getText(), passwordTextField.getText());
+                    newAM.setDob(dobDatePicker.getValue());
+                    oos.writeObject(newAM);
                     
                 }
                 catch(Exception e){
@@ -184,6 +201,7 @@ public class EmployeeSignupGridController implements Initializable {
                         ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
                     Hr newHr = new Hr(firstNameTextField.getText(),lastNameTextField.getText(),
                 usernameTextField.getText(), passwordTextField.getText());
+                    newHr.setDob(dobDatePicker.getValue());
                     oos.writeObject(newHr);
                     
                 }
