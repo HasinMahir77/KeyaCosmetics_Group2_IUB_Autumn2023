@@ -73,19 +73,25 @@ public class CustomerSignupGridController implements Initializable {
                 || lastNameTextField.getText().equals("") ||addressTextArea.getText().equals("")) {
             System.out.println("Username/Password textfield is empty");
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please fill in all of the fields");
-            alert.show();
+            alert.showAndWait();
             return;
         }
         //Validating Address
-        if (addressTextArea.getText().length()<=5){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid address");
-            alert.show();
+        if (addressTextArea.getText().length()<=8){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Address is too short");
+            alert.showAndWait();
+            return;
+        }
+        //Validating Address
+        if (usernameTextField.getText().length()<=4){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Username needs to be at least 4 characters long");
+            alert.showAndWait();
             return;
         }
         //Validating the Phone number 
         if (phoneTextField.getText().length()!=11){
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
-            alert.show();
+            alert.showAndWait();
             return;
         }
         try{
@@ -101,7 +107,7 @@ public class CustomerSignupGridController implements Initializable {
         if (passwordTextField.getText().length()<8){
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a password that is at least 8 "
                     + "characters long.");
-            alert.show();
+            alert.showAndWait();
             return;
         }
         
@@ -115,7 +121,7 @@ public class CustomerSignupGridController implements Initializable {
                 Customer registeredCustomer = (Customer)ois.readObject();
                 if (registeredCustomer.getUsername().equals(usernameTextField.getText())) {
                     Alert a = new Alert(Alert.AlertType.ERROR,"Username already exists");
-                    a.show();
+                    a.showAndWait();
                     return;
                 }
             }
@@ -138,7 +144,7 @@ public class CustomerSignupGridController implements Initializable {
             oos.close();
             System.out.println("Customer written");
             Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Account created successfully",ButtonType.OK);
-            a.show();
+            a.showAndWait();
             
         } catch(Exception e){
             System.out.println(e.toString());
