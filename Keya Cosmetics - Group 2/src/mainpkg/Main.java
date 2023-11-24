@@ -4,8 +4,10 @@
  */
 package mainpkg;
 
+import Borhan_Islam.Accountant;
 import HasinMahir.Customer;
 import HasinMahir.User;
+import NadimHR_Receptionist.Hr;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -82,7 +84,7 @@ public class Main extends Application {
                 else if (userFile.getName().equals("HRList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                    User user = new Customer("User","User","HR","HR","User","123456");
+                    User user = new Hr("User","User","HR","HR");
                     oos.writeObject(user);
                     System.out.println("File "+userFile.getName()+" not found.");
                     System.out.println("Initialized");
@@ -95,7 +97,7 @@ public class Main extends Application {
                 else if (userFile.getName().equals("AccountantList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                    User user = new Customer("User","User","acc","acc","User","11111");
+                    User user = new Accountant("User","User","acc","acc");
                     oos.writeObject(user);
                     System.out.println("File "+userFile.getName()+" not found.");
                     System.out.println("Initialized");

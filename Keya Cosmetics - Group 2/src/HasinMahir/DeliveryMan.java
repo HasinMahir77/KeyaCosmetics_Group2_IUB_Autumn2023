@@ -17,8 +17,22 @@ import mainpkg.ObjectOutputStreamA;
  * @author hasin
  */
 public class DeliveryMan extends User {
+    Cart cart;
     
     
+    
+    public DeliveryMan(String firstName, String lastName, String username, String password) {
+        super(firstName, lastName, username, password);
+        this.cart = new Cart();
+        this.del = false;
+    }
+    
+    public DeliveryMan(String firstName, String lastName, String username, String password, String phone) {
+        super(firstName, lastName, username, password, phone);
+        this.cart = new Cart();
+        this.phone = phone;
+        this.del = false;
+    }
     
     
     

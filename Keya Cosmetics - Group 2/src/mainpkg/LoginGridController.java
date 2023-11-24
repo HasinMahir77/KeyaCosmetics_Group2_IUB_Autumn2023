@@ -5,6 +5,7 @@
 package mainpkg;
 
 import Amit_AffiliateMarketer.AmitSS;
+import Borhan_Islam.Accountant;
 import Borhan_Islam.BorhanSS;
 import HasinMahir.Customer;
 import HasinMahir.User;
@@ -118,6 +119,7 @@ public class LoginGridController implements Initializable {
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
             }
             catch(Exception e){
+                e.printStackTrace(System.out);
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
                 Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \nLook at the error in the console");
                 a.showAndWait();
@@ -144,9 +146,11 @@ public class LoginGridController implements Initializable {
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
             }
             catch(Exception e){
+                e.printStackTrace(System.out);
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
                 Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \nLook at the error in the console");
                 a.showAndWait();
+                
             }
           }
         //---------------Accountant
@@ -157,7 +161,7 @@ public class LoginGridController implements Initializable {
                 ObjectInputStream oos = new ObjectInputStream(fis);
                 
                 while(true){
-                    User user = (User)oos.readObject();
+                    Accountant user = (Accountant)oos.readObject();
                     if (user.getUsername().equals(username) && user.getPassword().equals(password)){
                         Main.getMainStage().setUserData(user);
                         System.out.println("Username-password matched.");
@@ -170,11 +174,14 @@ public class LoginGridController implements Initializable {
             
             catch(EOFException e){
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
+                
             }
             catch(Exception e){
+                e.printStackTrace(System.out);
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
                 Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \nLook at the error in the console");
                 a.showAndWait();
+                
             }
           }
         //---------------Affiliate Marketer
@@ -200,9 +207,11 @@ public class LoginGridController implements Initializable {
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
             }
             catch(Exception e){
+                e.printStackTrace(System.out);
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
                 Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \nLook at the error in the console");
                 a.showAndWait();
+                
             }
           }
         
