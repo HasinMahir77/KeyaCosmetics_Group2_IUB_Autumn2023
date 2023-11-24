@@ -78,8 +78,6 @@ public class CustomerShopSceneController implements Initializable {
     @FXML
     private TableColumn<Product, Integer> vatRateColumn;
     @FXML
-    private Button returnButton;
-    @FXML
     private Button shopButton;
     @FXML
     private Button minusButton;
@@ -346,6 +344,11 @@ public class CustomerShopSceneController implements Initializable {
             }
             productTableView.setItems(selectedProducts);
         }
+    }
+    @FXML
+    private void switchToOrderScene(ActionEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToOrderScene();
     }
         
     

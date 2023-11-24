@@ -104,7 +104,7 @@
                     </menus>
                   </MenuBar>
                   <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" smooth="false" startX="-100.0" stroke="#a1a1a1" />
-                  <Button fx:id="returnButton" mnemonicParsing="false" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #affad3;" text="Initiate Return" />
+                  <Button mnemonicParsing="false" onAction="#switchToOrderScene" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #affad3;" text="Orders" />
                   <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" layoutX="412.0" layoutY="21.0" smooth="false" startX="-100.0" stroke="#a1a1a1" />
                   <Button fx:id="cartButton" mnemonicParsing="false" onAction="#switchToCartScene" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="66.0" style="-fx-background-color: #affad3;" text="🛒 Cart" />
                </children>

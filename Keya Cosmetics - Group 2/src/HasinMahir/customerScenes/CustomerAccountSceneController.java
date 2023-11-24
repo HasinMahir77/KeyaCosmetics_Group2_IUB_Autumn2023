@@ -58,8 +58,6 @@ public class CustomerAccountSceneController implements Initializable {
     @FXML
     private ImageView keyaIcon;
     @FXML
-    private Button cartButton1;
-    @FXML
     private Label allLabel;
     @FXML
     private Label ongoingLabel;
@@ -260,6 +258,18 @@ public class CustomerAccountSceneController implements Initializable {
     private void switchToSecurityScene(MouseEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToSecurityScene();
+    }
+
+    @FXML
+    private void switchToOrderScene(MouseEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToOrderScene();
+    }
+
+    @FXML
+    private void switchToOrderScene(ActionEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToOrderScene();
     }
 
  

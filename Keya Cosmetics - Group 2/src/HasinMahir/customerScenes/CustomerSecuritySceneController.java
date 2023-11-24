@@ -44,8 +44,6 @@ public class CustomerSecuritySceneController implements Initializable {
     @FXML
     private MenuItem logoutMenuItem;
     @FXML
-    private Button returnButton;
-    @FXML
     private Button cartButton;
     @FXML
     private ImageView keyaIcon;
@@ -165,6 +163,18 @@ public class CustomerSecuritySceneController implements Initializable {
     private void switchToCartScene(MouseEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToCartScene();
+    }
+
+    @FXML
+    private void switchToOrderScene(ActionEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToOrderScene();
+    }
+
+    @FXML
+    private void switchToOrderSceneFromLabel(MouseEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToOrderScene();
     }
     
 }
