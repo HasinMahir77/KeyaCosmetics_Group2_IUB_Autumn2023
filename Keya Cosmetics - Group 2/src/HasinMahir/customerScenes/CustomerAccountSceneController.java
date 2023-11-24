@@ -256,6 +256,12 @@ public class CustomerAccountSceneController implements Initializable {
         ss.switchToCartScene();
     }
 
+    @FXML
+    private void switchToSecurityScene(MouseEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToSecurityScene();
+    }
+
  
     
 }

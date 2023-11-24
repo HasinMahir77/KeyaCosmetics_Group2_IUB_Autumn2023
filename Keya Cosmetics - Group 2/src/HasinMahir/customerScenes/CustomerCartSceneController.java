@@ -291,11 +291,6 @@ public class CustomerCartSceneController implements Initializable {
         } 
     }
     
-    @FXML
-    private void switchToSecurityScene(MouseEvent event) throws IOException {
-        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
-        ss.switchToSecurityScene();
-    }
 
     @FXML
     private void orderButtonOnClick(ActionEvent event) {
@@ -312,6 +307,12 @@ public class CustomerCartSceneController implements Initializable {
             grandTotal = grandTotal+p.getTotalPrice()+p.getVat();
         }
         grandTotalLabel.setText(grandTotal.toString()+" BDT");
+    }
+
+    @FXML
+    private void switchToSecurityScene(MouseEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToSecurityScene();
     }
 
         
