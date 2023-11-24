@@ -88,15 +88,17 @@ public class CustomerSignupGridController implements Initializable {
             alert.showAndWait();
             return;
         }
-        //Validating the Phone number 
-        String phone = phoneTextField.getText();
-        if (phone.length()!=11 && phone.substring(0, 2).equals("01")){
+        //Validating the Phone number
+        
+        String phoneS = phoneTextField.getText();
+        if (phoneS.length()!=11 && !phoneS.substring(0, 2).equals("01")){
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
             alert.showAndWait();
-            return;
+            return; 
         }
+        //Checking if it's a number
         try{
-            
+            int phone = Integer.parseInt(phoneTextField.getText());
         } catch(Exception e){
             System.out.println("Phone num parsing to int failed");
             System.out.println(e);

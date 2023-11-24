@@ -106,7 +106,7 @@ public class Main extends Application {
                 }
               }
                 //Affiliate Marketer
-                else if (userFile.getName().equals("AccountantList.bin")){
+                else if (userFile.getName().equals("AffiliateMarketerList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
                     User user = new Customer("User","User","User","User","User","11111");

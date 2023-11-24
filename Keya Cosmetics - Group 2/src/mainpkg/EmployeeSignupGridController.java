@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -56,7 +57,7 @@ public class EmployeeSignupGridController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO     
         employeeComboBox.getItems().addAll("HR","Product Manager",
-                "Accountant","Receptionist");
+                "Accountant","Receptionist","Affiliate Marketer");
         
         employeeComboBox.setValue("Accountant");
     }    
@@ -67,7 +68,7 @@ public class EmployeeSignupGridController implements Initializable {
         File employeeFile;
         //Checking for empty fields
         if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("") ||
-                firstNameTextField.getText().equals("")
+                firstNameTextField.getText().equals("") || phoneTextField.getText().equals("")
                 || lastNameTextField.getText().equals("")) {
             System.out.println("Textfield is empty");
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please fill in all of the fields");
@@ -87,15 +88,16 @@ public class EmployeeSignupGridController implements Initializable {
             alert.showAndWait();
             return;
         }
-        /*
         
-        //Validating the Phone number 
-        if (phoneTextField.getText().length()!=11){
+        //Validating the Phone number
+        
+        String phoneS = phoneTextField.getText();
+        if (phoneS.length()!=11 && !phoneS.substring(0, 2).equals("01")){
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
-            alert.show();
-            return;
+            alert.showAndWait();
+            return; 
         }
-                     
+        //Checking if it's a number
         try{
             int phone = Integer.parseInt(phoneTextField.getText());
         } catch(Exception e){
@@ -105,7 +107,6 @@ public class EmployeeSignupGridController implements Initializable {
             alert.show();
             return;
         }
-                              */
         
         // Assigning the correct User File
 
@@ -121,6 +122,9 @@ public class EmployeeSignupGridController implements Initializable {
             }
         else if(employeeComboBox.getValue().equals("Delivery Man")) {
                 employeeFile = new File("DeliveryManList.bin");
+            }
+        else if(employeeComboBox.getValue().equals("Delivery Man")) {
+                employeeFile = new File("AffiliateMarketer.bin");
             }
         
         //-----------------Insert Code Above This
@@ -143,7 +147,7 @@ public class EmployeeSignupGridController implements Initializable {
             System.out.println("Duplicate checking complete");
         }
         catch(Exception e){
-            System.out.println(e.toString()+" from "+ "HRList.bin");
+            System.out.println(e.toString()+" from "+ employeeFile.getName());
         }
             
            
@@ -187,7 +191,9 @@ public class EmployeeSignupGridController implements Initializable {
                     e.printStackTrace(System.out);}
             
         }
-        
+        System.out.println("Employee written");
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Account created successfully",ButtonType.OK);
+        a.showAndWait();
         
         
     }
