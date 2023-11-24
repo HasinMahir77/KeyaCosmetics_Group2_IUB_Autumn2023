@@ -9,10 +9,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import mainpkg.Main;
+import mainpkg.MainpkgSwitcher;
 /**
  * FXML Controller class
  *
@@ -62,8 +60,8 @@ public class AccountantDashboardFXMLController implements Initializable {
 
     @FXML
     private void logoutOnButtonClicked(ActionEvent event) throws IOException {
-        BorhanSS ss = new BorhanSS();
-        ss.logoutOnButtonClicked();  
+        MainpkgSwitcher logout = new MainpkgSwitcher();
+        logout.switchtoLoginScene();
     }
 
     @FXML

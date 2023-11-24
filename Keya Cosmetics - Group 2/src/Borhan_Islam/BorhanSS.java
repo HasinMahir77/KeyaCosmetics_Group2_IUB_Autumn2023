@@ -7,9 +7,12 @@ package Borhan_Islam;
 import java.io.IOException;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import mainpkg.LoginSignupSceneController;
 import mainpkg.Main;
 
 /**
@@ -43,9 +46,9 @@ public class BorhanSS {
     public void profileOnButtonClicked() throws IOException {
         this.switchScene("ProfileFXML.fxml", "");
     }
-    public void logoutOnButtonClicked() throws IOException {
-        this.switchScene("LoginGrid.fxml", "");
-    }
+//    public void logoutOnButtonClicked() throws IOException {
+//        this.switchScene("LoginGrid.fxml", "");
+//    }
     public void incomeStatementOnButtonClicked() throws IOException {
         this.switchScene("IncomeFXML.fxml", "");
     }
