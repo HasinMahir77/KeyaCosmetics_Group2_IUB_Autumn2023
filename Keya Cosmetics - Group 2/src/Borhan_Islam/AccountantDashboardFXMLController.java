@@ -4,12 +4,15 @@
  */
 package Borhan_Islam;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
+import javafx.scene.Parent;
+import mainpkg.Main;
 /**
  * FXML Controller class
  *
@@ -26,39 +29,49 @@ public class AccountantDashboardFXMLController implements Initializable {
     }    
 
     @FXML
-    private void recordsOnButtonClicked(ActionEvent event) {
+    private void recordsOnButtonClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("RecordsFXML.fxml"));
+        
     }
 
     @FXML
-    private void searchDeleteOnButtonClicked(ActionEvent event) {
+    private void searchDeleteOnButtonClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("SearchOrDeleteFXML.fxml"));
     }
 
     @FXML
-    private void generateReportOnButtonClicked(ActionEvent event) {
+    private void generateReportOnButtonClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("GenerateReportFXML.fxml"));
     }
 
     @FXML
-    private void transactionOnButtonClicked(ActionEvent event) {
+    private void transactionOnButtonClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("TransactionFXML.fxml"));
     }
 
     @FXML
-    private void profileOnButtonClicked(ActionEvent event) {
+    private void profileOnButtonClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ProfileFXML.fxml"));
     }
 
     @FXML
-    private void logoutOnButtonClicked(ActionEvent event) {
+    private void logoutOnButtonClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("LoginGrid.fxml"));
     }
 
     @FXML
-    private void incomeStatementOnButtonClicked(ActionEvent event) {
+    private void incomeStatementOnButtonClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("IncomeFXML.fxml"));
     }
 
     @FXML
-    private void productionAnalysisOnButtonClicked(ActionEvent event) {
+    private void productionAnalysisOnButtonClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ProductionAnalysisFXML.fxml"));
     }
 
     @FXML
-    private void expenseControlSysOnButtonClicked(ActionEvent event) {
+    private void expenseControlSysOnButtonClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ExpenseControlSysFXML.fxml"));
     }
     
 }
