@@ -61,12 +61,10 @@ public abstract class User implements Serializable {
         this.phone = phone;
     }
     
-
     public float getBalance() {
         return balance;
     }
     
-
     public String getFirstName() {
         return firstName;
     }
