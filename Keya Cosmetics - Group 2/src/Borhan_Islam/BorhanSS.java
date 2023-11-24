@@ -31,5 +31,29 @@ public class BorhanSS {
     public void recordsOnButtonClicked() throws IOException {
         this.switchScene("RecordsFXML.fxml", "Records");
     }
+    public void searchDeleteOnButtonClicked() throws IOException {
+        this.switchScene("SearchOrDeleteFXML.fxml", "Search & Delete");
+    }
+    public void generateReportOnButtonClicked() throws IOException {
+        this.switchScene("GenerateReportFXML.fxml", "");
+    }
+    public void transactionOnButtonClicked() throws IOException {
+        this.switchScene("TransactionFXML.fxml", "");
+    }
+    public void profileOnButtonClicked() throws IOException {
+        this.switchScene("ProfileFXML.fxml", "");
+    }
+    public void logoutOnButtonClicked() throws IOException {
+        this.switchScene("LoginGrid.fxml", "");
+    }
+    public void incomeStatementOnButtonClicked() throws IOException {
+        this.switchScene("IncomeFXML.fxml", "");
+    }
+    public void productionAnalysisOnButtonClicked() throws IOException {
+        this.switchScene("ProductionAnalysisFXML.fxml", "");
+    }
+    public void expenseControlSysOnButtonClicked() throws IOException {
+        this.switchScene("ExpenseControlSysFXML.fxml", "");
+    }
   
 }

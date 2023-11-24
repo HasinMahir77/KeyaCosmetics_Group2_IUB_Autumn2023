@@ -37,43 +37,51 @@ public class AccountantDashboardFXMLController implements Initializable {
 
     @FXML
     private void searchDeleteOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("SearchOrDeleteFXML.fxml"));
+        BorhanSS ss = new BorhanSS();
+        ss.searchDeleteOnButtonClicked();  
+
     }
 
     @FXML
     private void generateReportOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("GenerateReportFXML.fxml"));
+        BorhanSS ss = new BorhanSS();
+        ss.generateReportOnButtonClicked();   
     }
 
     @FXML
     private void transactionOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("TransactionFXML.fxml"));
+        BorhanSS ss = new BorhanSS();
+        ss.transactionOnButtonClicked();   
     }
 
     @FXML
     private void profileOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ProfileFXML.fxml"));
+        BorhanSS ss = new BorhanSS();
+        ss.profileOnButtonClicked();    
     }
 
     @FXML
     private void logoutOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("LoginGrid.fxml"));
+        BorhanSS ss = new BorhanSS();
+        ss.logoutOnButtonClicked();  
     }
 
     @FXML
     private void incomeStatementOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("IncomeFXML.fxml"));
+        BorhanSS ss = new BorhanSS();
+        ss.incomeStatementOnButtonClicked();  
     }
 
     @FXML
     private void productionAnalysisOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ProductionAnalysisFXML.fxml"));
+        BorhanSS ss = new BorhanSS();
+        ss.productionAnalysisOnButtonClicked();
     }
 
     @FXML
     private void expenseControlSysOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ExpenseControlSysFXML.fxml"));
-
+        BorhanSS ss = new BorhanSS();
+        ss.expenseControlSysOnButtonClicked();
     }
     
 }
