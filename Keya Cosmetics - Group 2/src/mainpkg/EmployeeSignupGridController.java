@@ -59,10 +59,10 @@ public class EmployeeSignupGridController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO     
-        employeeComboBox.getItems().addAll("HR","Product Manager",
+        employeeComboBox.getItems().addAll("HR","Delivery Man",
                 "Accountant","Receptionist","Affiliate Marketer");
         
-        employeeComboBox.setValue("Accountant");
+        employeeComboBox.setValue("HR");
     }    
 
     @FXML
@@ -126,7 +126,7 @@ public class EmployeeSignupGridController implements Initializable {
         else if(employeeComboBox.getValue().equals("Delivery Man")) {
                 employeeFile = new File("DeliveryManList.bin");
             }
-        else if(employeeComboBox.getValue().equals("Delivery Man")) {
+        else if(employeeComboBox.getValue().equals("Affiliate Marketer")) {
                 employeeFile = new File("AffiliateMarketer.bin");
             }
         
