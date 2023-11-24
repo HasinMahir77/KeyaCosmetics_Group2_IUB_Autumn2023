@@ -254,7 +254,7 @@ public class LoginGridController implements Initializable {
 
     @FXML
     private void switchToObjectWriter(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ObjectWriter.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ProductWriter.fxml"));
         Stage mainStage = Main.getMainStage();
         mainStage.setTitle("Writer");
         Scene scene = Main.getMainStage().getScene();

@@ -78,6 +78,8 @@ public class CustomerShopSceneController implements Initializable {
     @FXML
     private TableColumn<Product, Integer> priceColumn;
     @FXML
+    private TableColumn<Product, Integer> vatRateColumn;
+    @FXML
     private Button returnButton;
     @FXML
     private Button shopButton;
@@ -89,8 +91,7 @@ public class CustomerShopSceneController implements Initializable {
     private Button addButton;
     @FXML
     private Button removeButton;
-    @FXML
-    private TableColumn<Product, Integer> vatRateColumn;
+    
     
     Product selectedProduct;
 
