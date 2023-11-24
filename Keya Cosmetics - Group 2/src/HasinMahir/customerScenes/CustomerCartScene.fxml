@@ -46,7 +46,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="119.0" prefWidth="121.0" spacing="2.0">
                <children>
-                  <Label alignment="TOP_CENTER" prefHeight="19.0" prefWidth="121.0" text="Manage Orders">
+                  <Label alignment="TOP_CENTER" onMouseClicked="#switchToOrderSceneFromLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" prefHeight="19.0" prefWidth="121.0" text="Manage Orders">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -153,7 +153,7 @@
                      </menus>
                   </MenuBar>
                   <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" smooth="false" startX="-100.0" stroke="#a1a1a1" />
-                  <Button fx:id="cartButton1" mnemonicParsing="false" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #affad3;" text="Initiate Return" />
+                  <Button mnemonicParsing="false" onAction="#switchToOrderScene" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #affad3;" text="Orders" />
                   <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" layoutX="412.0" layoutY="21.0" smooth="false" startX="-100.0" stroke="#a1a1a1" visible="false" />
                   <Button fx:id="cartButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="66.0" style="-fx-background-color: #79edad;" text="🛒 Cart" />
                </children>
