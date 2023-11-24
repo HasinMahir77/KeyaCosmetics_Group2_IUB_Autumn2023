@@ -260,7 +260,6 @@ public class CustomerAccountSceneController implements Initializable {
         ss.switchToSecurityScene();
     }
 
-    @FXML
     private void switchToOrderScene(MouseEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToOrderScene();
@@ -268,6 +267,12 @@ public class CustomerAccountSceneController implements Initializable {
 
     @FXML
     private void switchToOrderScene(ActionEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToOrderScene();
+    }
+
+    @FXML
+    private void switchToOrderSceneFromLabel(MouseEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToOrderScene();
     }

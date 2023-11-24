@@ -46,7 +46,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="119.0" prefWidth="121.0" spacing="2.0">
                <children>
-                  <Label alignment="TOP_CENTER" onMouseClicked="#switchToOrderScene" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" prefHeight="19.0" prefWidth="121.0" text="Manage Orders">
+                  <Label alignment="TOP_CENTER" onMouseClicked="#switchToOrderSceneFromLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" prefHeight="19.0" prefWidth="121.0" text="Manage Orders">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>

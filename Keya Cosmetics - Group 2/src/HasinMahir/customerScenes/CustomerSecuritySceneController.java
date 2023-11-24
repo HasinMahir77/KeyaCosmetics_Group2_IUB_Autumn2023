@@ -21,6 +21,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
@@ -72,12 +73,14 @@ public class CustomerSecuritySceneController implements Initializable {
     @FXML
     private Button deleteAccountButton;
     
+    Customer current;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         securityLabel.setTextFill(Color.BLUE);
         // Getting user data
-        Customer current = (Customer)Main.getMainStage().getUserData();
+        this.current = (Customer)Main.getMainStage().getUserData();
         userMenu.setText(current.getUsername()+" ↓");
         
         //Initializing password field
@@ -120,9 +123,24 @@ public class CustomerSecuritySceneController implements Initializable {
         applyButton.setDisable(false);
         changePasswordButton.setDisable(true);
         passwordTextField.setDisable(false);
+        deleteAccountButton.setDisable(true);
+        
         
         TextInputDialog tid = new TextInputDialog();
-        tid.setContentText("Please enter your password to continue.");
+        TextField tf = tid.getEditor();
+        tid.setHeaderText("Please enter your password to continue:");
+        tid.showAndWait();
+        try {
+            if (tf.getText().equals(current.getPassword())){
+                passwordTextField.setDisable(false);
+                System.out.println("Password matched");
+                applyButton.setDisable(false);
+            }
+            else{
+                System.out.println("Password didn't match");
+            }
+        }
+        catch(Exception e){e.printStackTrace(System.out);}
     }
 
     @FXML

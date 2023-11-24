@@ -25,7 +25,7 @@ public class Order implements Serializable {
     Status status;
     String customerUserName,deliveryManUserName;
     Cart cart;
-    int id;
+    String id;
     LocalDate date;
     LocalTime time;
     
@@ -35,45 +35,9 @@ public class Order implements Serializable {
         this.status = Order.Status.PENDING;
         this.time = LocalTime.now();
         this.date = LocalDate.now();
+        this.id = "0"+this.date.toString();
     }
-    
-    public void generateId(){
-        
-        int id;
-        File idFile = new File("OrderID.bin");
-        if (idFile.exists()){
-            //Reading file
-            try(FileInputStream fis = new FileInputStream(idFile);
-                    ObjectInputStream ois = new ObjectInputStream(fis)){
-                id = (Integer)ois.readInt();
-            }
-            catch(Exception e){
-                System.out.println(e.toString() + " from Order class");id=0;}
-            
-            //Deleting file
-            idFile.delete();
-            
-            //Rewriting file
-            try(FileOutputStream fos = new FileOutputStream(idFile);
-                    ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                oos.writeInt(id+1);
-            }
-            catch(Exception e){System.out.println(e.toString() + " from Order class");}
-        }
-        else{ //File doesn't exist. This is the first order.
-            id=0;
-            //Writing file
-            try(FileOutputStream fos = new FileOutputStream(idFile);
-                    ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                oos.writeInt(1);
-            }
-            catch(Exception e){id=0;System.out.println(e.toString() + " from Order class");}
-        }
-        this.id = id;
-        
-    }
-    
-  
+     
 
     public Status getStatus() {
         return status;
@@ -91,7 +55,7 @@ public class Order implements Serializable {
         return cart;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -111,7 +75,7 @@ public class Order implements Serializable {
         this.cart = cart;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     
@@ -125,7 +89,7 @@ public class Order implements Serializable {
             
             while(true){
                 order = (Order)ois.readObject();
-                if ( !(order.getId()==this.getId()) ) {
+                if ( !(order.getId().equals(this.getId())) ) {
                     bufferList.add(order);
                 }
             }
