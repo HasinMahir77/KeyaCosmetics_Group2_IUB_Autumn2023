@@ -15,19 +15,21 @@ import mainpkg.Main;
  * @author hasin
  */
 public class Product implements Serializable {
-    String name;
-    String category;
-    int price;
-    public enum Category{LAUNDRY_SOAP,BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,PETROLEUM_JELLY}
+    protected String name;
+    protected String category;
+    protected float price;
+    protected int vatRate;
+    public enum Category{BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,SHAMPOO,DETERGENT}
 
     public Product(){ 
     }
-
-    public Product(String name, int price ,Category categoryEnum) {
+  
+    public Product(String name, float price ,Category categoryEnum,int vatRate) {
         this.name = name;
         this.price = price;
-        if (categoryEnum.equals(Category.LAUNDRY_SOAP)){
-            this.category = "Laundry Soap";
+        this.vatRate = vatRate;
+        if (categoryEnum.equals(Category.DETERGENT)){
+            this.category = "Detergent";
         }
         else if (categoryEnum.equals(Category.BODY_SOAP)){
             this.category = "Body Soap";
@@ -38,12 +40,22 @@ public class Product implements Serializable {
         else if (categoryEnum.equals(Category.DEODORANT)){
             this.category = "Deodorant";
         }
-        else if (categoryEnum.equals(Category.TOOTHPASTE)){
-            this.category = "Toothpaste";
+        else if (categoryEnum.equals(Category.SHAMPOO)){
+            this.category = "Shampoo";
         }
-        else if (categoryEnum.equals(Category.PETROLEUM_JELLY)){
-            this.category = "Petroleum Jelly";
+        else if (categoryEnum.equals(Category.SKINCARE)){
+            this.category = "Skincare";
         }
+    }
+    public Product(String name, float price ,String category,int vatRate) {
+        this.name = name;
+        this.price = price;
+        this.vatRate = vatRate;
+        this.category = category;
+    }
+    
+    public ProductOrder toProductOrder(int quantity){
+        return new ProductOrder(this.name,this.price,this.category,this.vatRate,quantity);
     }
 
     
@@ -52,7 +64,7 @@ public class Product implements Serializable {
     }
 
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -60,7 +72,7 @@ public class Product implements Serializable {
         return name;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
@@ -71,4 +83,17 @@ public class Product implements Serializable {
     public void setCategory(String category) {
         this.category = category;
     } 
+
+    public int getVatRate() {
+        return vatRate;
+    }
+
+    public void setVatRate(int vatRate) {
+        this.vatRate = vatRate;
+    }
+    @Override
+    public String toString(){
+        return "Product"+this.getName();
+    }
+    
 }

@@ -34,10 +34,10 @@
                   </Label>
                   <Label fx:id="profileLabel" text="Profile">
                      <font>
-                        <Font name="System Bold" size="13.0" />
+                        <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="voucherLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="Vouchers">
+                  <Label fx:id="securityLabel" onMouseClicked="#switchToSecurityScene" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="Security">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -179,7 +179,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
                <children>
-                  <MenuBar fx:id="userMenuBar" onMouseEntered="#darkenUserMenuBar" onMouseExited="#lightenUserMenuBar" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #affad3;">
+                  <MenuBar fx:id="userMenuBar" onMouseEntered="#darkenUserMenuBar" onMouseExited="#lightenUserMenuBar" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #affad3;">
                      <menus>
                         <Menu fx:id="userMenu" mnemonicParsing="false" text="User ↓">
                            <items>

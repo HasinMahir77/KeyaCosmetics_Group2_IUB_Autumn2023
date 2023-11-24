@@ -4,12 +4,14 @@
  */
 package mainpkg;
 
+import Amit_AffiliateMarketer.AmitSS;
 import Borhan_Islam.Accountant;
-import Borhan_Islam.AccountantSceneSwitcher;
+import Borhan_Islam.BorhanSS;
 import HasinMahir.Customer;
 import HasinMahir.User;
 import HasinMahir.customerScenes.CustomerSceneSwitcher;
 import NadimHR_Receptionist.HRSceneSwitcher;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -46,7 +48,7 @@ public class LoginGridController implements Initializable {
     @FXML
     private TextField usernameTextField;
     @FXML
-    private PasswordField passwordTextField;  
+    private PasswordField passwordTextField;
     private CustomerSceneSwitcher customerSceneSwitcher = new CustomerSceneSwitcher();
     @FXML
     private ComboBox<String> userComboBox;
@@ -56,9 +58,15 @@ public class LoginGridController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        userComboBox.setValue("Customer");
         // Insert users here
-        userComboBox.getItems().addAll("Customer",
-                "Product Manager","HR","Receptionist", "Accountant");
+        userComboBox.getItems().addAll("Customer","Affiliate Marketer",
+                "Product Manager","HR","Receptionist","Accountant");
+        
+        
+        //DEFAULT: CUSTOMER
+       usernameTextField.setText("Customer");
+       passwordTextField.setText("Customer");
     }    
 
     @FXML
@@ -94,7 +102,7 @@ public class LoginGridController implements Initializable {
         if (userComboBox.getValue().equals("Customer")) {
             try{
                 File userFile = new File("CustomerList.bin");
-                System.out.println("Customer List opened");
+                System.out.println(userFile.getName()+".bin "+" opened");
                 FileInputStream fis = new FileInputStream(userFile);
                 ObjectInputStream oos = new ObjectInputStream(fis);
                 
@@ -107,9 +115,14 @@ public class LoginGridController implements Initializable {
                     }
                 } // Loop's scope ends
             }
-            
-            catch(Exception e){
+            catch(EOFException e){
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
+            }
+            catch(Exception e){
+                e.printStackTrace(System.out);
+                System.out.println(e.toString()+" at "+ userComboBox.getValue());
+                Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \nLook at the error in the console");
+                a.showAndWait();
             }
           }
         //---------------HR
@@ -129,15 +142,52 @@ public class LoginGridController implements Initializable {
                     }
                 } // Loop's scope ends
             }
-            
-            catch(Exception e){
+            catch(EOFException e){
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
             }
+            catch(Exception e){
+                e.printStackTrace(System.out);
+                System.out.println(e.toString()+" at "+ userComboBox.getValue());
+                Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \nLook at the error in the console");
+                a.showAndWait();
+                
+            }
           }
-        if (userComboBox.getValue().equals("Accountant")) {
+        //---------------Accountant
+        else if (userComboBox.getValue().equals("Accountant")) {
             try{
                 File userFile = new File("AccountantList.bin");
-                System.out.println("Accountant List opened");
+                FileInputStream fis = new FileInputStream(userFile);
+                ObjectInputStream oos = new ObjectInputStream(fis);
+                
+                while(true){
+                    Accountant user = (Accountant)oos.readObject();
+                    if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+                        Main.getMainStage().setUserData(user);
+                        System.out.println("Username-password matched.");
+                        System.out.println("Userdata set for Accountant");
+                        BorhanSS ss = new BorhanSS();
+                        ss.switchScene("AccountantDashboardFXML.fxml", "Keya: Dashboard");
+                    }
+                } // Loop's scope ends
+            }
+            
+            catch(EOFException e){
+                System.out.println(e.toString()+" at "+ userComboBox.getValue());
+                
+            }
+            catch(Exception e){
+                e.printStackTrace(System.out);
+                System.out.println(e.toString()+" at "+ userComboBox.getValue());
+                Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \nLook at the error in the console");
+                a.showAndWait();
+                
+            }
+          }
+        //---------------Affiliate Marketer
+        else if (userComboBox.getValue().equals("Affiliate Marketer")) {
+            try{
+                File userFile = new File("AffiliateMarketerList.bin");
                 FileInputStream fis = new FileInputStream(userFile);
                 ObjectInputStream oos = new ObjectInputStream(fis);
                 
@@ -145,16 +195,26 @@ public class LoginGridController implements Initializable {
                     User user = (User)oos.readObject();
                     if (user.getUsername().equals(username) && user.getPassword().equals(password)){
                         Main.getMainStage().setUserData(user);
-                        AccountantSceneSwitcher ss = new AccountantSceneSwitcher();
-                        ss.switchScene("AccountantDashboardFXML.fxml", "Keya: Dashboard");
+                        System.out.println("Username-password matched.");
+                        System.out.println("Userdata set for Accountant");
+                        AmitSS ss = new AmitSS();
+                        ss.switchScene("AffiliateMarketerHomepageFXML.fxml", "Keya: Home");
                     }
                 } // Loop's scope ends
             }
             
-            catch(Exception e){
+            catch(EOFException e){
                 System.out.println(e.toString()+" at "+ userComboBox.getValue());
             }
-          }        
+            catch(Exception e){
+                e.printStackTrace(System.out);
+                System.out.println(e.toString()+" at "+ userComboBox.getValue());
+                Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \nLook at the error in the console");
+                a.showAndWait();
+                
+            }
+          }
+        
         // Login done. 
         
         
@@ -199,5 +259,14 @@ public class LoginGridController implements Initializable {
         BorderPane sceneBorderPane =(BorderPane) LoginSignupSceneController.getSceneBorderPane();
         Parent root = FXMLLoader.load(getClass().getResource("EmployeeSignupGrid.fxml"));
         sceneBorderPane.setCenter(root);
+    }
+
+    @FXML
+    private void switchToObjectWriter(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ProductWriter.fxml"));
+        Stage mainStage = Main.getMainStage();
+        mainStage.setTitle("Writer");
+        Scene scene = Main.getMainStage().getScene();
+        scene.setRoot(root);
     }
 }

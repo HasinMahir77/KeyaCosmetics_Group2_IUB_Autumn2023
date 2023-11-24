@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -8,7 +9,6 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -20,7 +20,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #eef0f5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HasinMahir.customerScenes.CustomerCartSceneController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #eef0f5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HasinMahir.customerScenes.CustomerOrderSceneController">
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="493.0" prefWidth="121.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
@@ -73,7 +73,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="119.0" prefWidth="121.0" spacing="2.0">
                <children>
-                  <Label fx:id="cartLabel" alignment="TOP_CENTER" prefHeight="19.0" prefWidth="121.0" text="Cart">
+                  <Label fx:id="cartLabel" alignment="TOP_CENTER" onMouseClicked="#switchToCartSceneFromLabel" prefHeight="19.0" prefWidth="121.0" text="Cart">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -88,42 +88,12 @@
    </left>
    <right>
       <VBox alignment="CENTER" prefHeight="393.0" prefWidth="245.0" spacing="5.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Cart" />
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="225.0" spacing="10.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: #eef0f5;">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="51.0" prefWidth="256.0" spacing="10.0">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Quantity:" />
-                        <TextField fx:id="quantityTextField" prefHeight="25.0" prefWidth="58.0" />
-                        <Button fx:id="minusButton" mnemonicParsing="false" onAction="#minusButtonOnClick" prefHeight="25.0" prefWidth="27.0" text="-" />
-                        <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusButtonOnClick" prefHeight="25.0" prefWidth="27.0" text="+" />
-                     </children>
-                  </HBox>
-                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#addButtonOnClick" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 4;" text="Add" />
-                  <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removeButtonOnClick" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 4;" text="Remove" />
-               </children>
-            </VBox>
-            <Label text="Total (Including Vat)">
-               <font>
-                  <Font size="12.5" />
-               </font>
-            </Label>
-            <Label fx:id="grandTotalLabel" text="Total+Vat">
-               <font>
-                  <Font name="System Bold" size="12.5" />
-               </font>
-            </Label>
-         </children>
          <padding>
             <Insets left="10.0" right="10.0" />
          </padding></VBox>
    </right>
    <bottom>
       <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="orderButton" mnemonicParsing="false" onAction="#orderButtonOnClick" prefHeight="32.0" prefWidth="99.0" style="-fx-background-radius: 4;" text="Place Order" />
-         </children>
          <padding>
             <Insets right="70.0" top="10.0" />
          </padding></HBox>
@@ -188,15 +158,36 @@
       </GridPane>
    </top>
    <center>
-      <TableView fx:id="cartTableView" onMouseClicked="#updateSelectedProduct" prefHeight="393.0" prefWidth="592.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="176.0" text="Name" />
-          <TableColumn minWidth="0.0" prefWidth="0.0" text="Category" />
-            <TableColumn fx:id="unitPriceColumn" prefWidth="137.66665649414062" text="Unit Price" />
-            <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="95.0" text="Quantity" />
-            <TableColumn fx:id="totalPriceColumn" prefWidth="100.66668701171875" text="Total Price" />
-            <TableColumn fx:id="vatColumn" prefWidth="96.33331298828125" text="Vat(BDT)" />
-        </columns>
-      </TableView>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <TableView fx:id="orderTableView" onMouseClicked="#updateSelectedOrder" prefHeight="348.0" prefWidth="328.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn prefWidth="75.0" text="ID" />
+                  <TableColumn prefWidth="120.33331298828125" text="Status" />
+                  <TableColumn prefWidth="94.0" text="Total" />
+              </columns>
+            </TableView>
+         </center>
+         <right>
+            <VBox alignment="CENTER" prefHeight="348.0" prefWidth="264.0" BorderPane.alignment="CENTER">
+               <children>
+                  <PieChart fx:id="orderPieChart" prefHeight="211.0" prefWidth="264.0" />
+               </children>
+            </VBox>
+         </right>
+         <bottom>
+            <HBox prefHeight="45.0" prefWidth="594.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#returnButtonOnClick" prefHeight="25.0" prefWidth="71.0" text="Return" />
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </HBox>
+         </bottom>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </BorderPane>
    </center>
 </BorderPane>

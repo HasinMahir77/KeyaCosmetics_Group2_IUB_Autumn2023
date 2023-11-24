@@ -5,6 +5,7 @@
 package mainpkg;
 
 import Borhan_Islam.Accountant;
+import HasinMahir.DeliveryMan;
 import HasinMahir.User;
 import NadimHR_Receptionist.Hr;
 import java.io.EOFException;
@@ -23,7 +24,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -48,6 +51,8 @@ public class EmployeeSignupGridController implements Initializable {
     private TextField phoneTextField;
     @FXML
     private ComboBox<String> employeeComboBox;
+    @FXML
+    private DatePicker dobDatePicker;
 
     /**
      * Initializes the controller class.
@@ -55,8 +60,8 @@ public class EmployeeSignupGridController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO     
-        employeeComboBox.getItems().addAll("HR","Product Manager",
-                "Accountant","Receptionist");
+        employeeComboBox.getItems().addAll("HR","Delivery Man",
+                "Accountant","Receptionist","Affiliate Marketer");
         
         employeeComboBox.setValue("HR");
     }    
@@ -67,22 +72,36 @@ public class EmployeeSignupGridController implements Initializable {
         File employeeFile;
         //Checking for empty fields
         if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("") ||
-                firstNameTextField.getText().equals("")
+                firstNameTextField.getText().equals("") || phoneTextField.getText().equals("")
                 || lastNameTextField.getText().equals("")) {
             System.out.println("Textfield is empty");
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please fill in all of the fields");
             alert.show();
             return;
         }
-        /*
-        
-        //Validating the Phone number 
-        if (phoneTextField.getText().length()!=11){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
-            alert.show();
+        //Validating username
+        if (usernameTextField.getText().length()<=4){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Username needs to be at least 4 characters long");
+            alert.showAndWait();
             return;
         }
-                     
+        //Validating the password
+        if (passwordTextField.getText().length()<8){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a password that is at least 8 "
+                    + "characters long.");
+            alert.showAndWait();
+            return;
+        }
+        
+        //Validating the Phone number
+        
+        String phoneS = phoneTextField.getText();
+        if (phoneS.length()!=11 && !phoneS.substring(0, 2).equals("01")){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
+            alert.showAndWait();
+            return; 
+        }
+        //Checking if it's a number
         try{
             int phone = Integer.parseInt(phoneTextField.getText());
         } catch(Exception e){
@@ -92,7 +111,6 @@ public class EmployeeSignupGridController implements Initializable {
             alert.show();
             return;
         }
-                              */
         
         // Assigning the correct User File
 
@@ -105,6 +123,12 @@ public class EmployeeSignupGridController implements Initializable {
             }
         else if(employeeComboBox.getValue().equals("Receptionist")) {
                 employeeFile = new File("ReceptionistList.bin");
+            }
+        else if(employeeComboBox.getValue().equals("Delivery Man")) {
+                employeeFile = new File("DeliveryManList.bin");
+            }
+        else if(employeeComboBox.getValue().equals("Affiliate Marketer")) {
+                employeeFile = new File("AffiliateMarketer.bin");
             }
         
         //-----------------Insert Code Above This
@@ -127,15 +151,15 @@ public class EmployeeSignupGridController implements Initializable {
             System.out.println("Duplicate checking complete");
         }
         catch(Exception e){
-            System.out.println(e.toString()+" from "+ "HRList.bin");
+            System.out.println(e.toString()+" from "+ employeeFile.getName());
         }
             
            
         //Duplicate checking done, correct File initiated. Main algorithm now.
         
-        //Main SignUp
+        //---------------------Main SignUp
         
-        if (employeeComboBox.getValue().equals("Product Manager")){  
+        if (employeeComboBox.getValue().equals("Delivery Man")){  
            //TO DO 
                 
             }
@@ -146,7 +170,34 @@ public class EmployeeSignupGridController implements Initializable {
                         ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
                     Accountant newAccountant = new Accountant(firstNameTextField.getText(),lastNameTextField.getText(),
                 usernameTextField.getText(), passwordTextField.getText());
+                    newAccountant.setDob(dobDatePicker.getValue());
                     oos.writeObject(newAccountant);
+                    
+                }
+                catch(Exception e){
+                    e.printStackTrace(System.out);}            
+        }
+        else if(employeeComboBox.getValue().equals("Affiliate Marketer")) {
+                //TO DO
+            try(FileOutputStream fos = new FileOutputStream(employeeFile,true);
+                        ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
+                    Accountant newAM = new Accountant(firstNameTextField.getText(),lastNameTextField.getText(),
+                usernameTextField.getText(), passwordTextField.getText());
+                    newAM.setDob(dobDatePicker.getValue());
+                    oos.writeObject(newAM);
+                    
+                }
+                catch(Exception e){
+                    e.printStackTrace(System.out);}            
+        }
+        else if(employeeComboBox.getValue().equals("Delivery Man")) {
+                //TO DO
+            try(FileOutputStream fos = new FileOutputStream(employeeFile,true);
+                        ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
+                    DeliveryMan newDM = new DeliveryMan(firstNameTextField.getText(),lastNameTextField.getText(),
+                usernameTextField.getText(), passwordTextField.getText());
+                    newDM.setDob(dobDatePicker.getValue());
+                    oos.writeObject(newDM);
                     
                 }
                 catch(Exception e){
@@ -164,6 +215,7 @@ public class EmployeeSignupGridController implements Initializable {
                         ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
                     Hr newHr = new Hr(firstNameTextField.getText(),lastNameTextField.getText(),
                 usernameTextField.getText(), passwordTextField.getText());
+                    newHr.setDob(dobDatePicker.getValue());
                     oos.writeObject(newHr);
                     
                 }
@@ -171,7 +223,9 @@ public class EmployeeSignupGridController implements Initializable {
                     e.printStackTrace(System.out);}
             
         }
-        
+        System.out.println("Employee written");
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Account created successfully",ButtonType.OK);
+        a.showAndWait();
         
         
     }
