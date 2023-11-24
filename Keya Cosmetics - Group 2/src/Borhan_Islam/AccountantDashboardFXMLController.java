@@ -30,7 +30,8 @@ public class AccountantDashboardFXMLController implements Initializable {
 
     @FXML
     private void recordsOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("RecordsFXML.fxml"));
+        BorhanSS ss = new BorhanSS();
+        ss.recordsOnButtonClicked();        
         
     }
 

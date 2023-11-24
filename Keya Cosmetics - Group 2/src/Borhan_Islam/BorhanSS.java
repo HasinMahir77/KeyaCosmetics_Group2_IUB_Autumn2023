@@ -5,6 +5,7 @@
 package Borhan_Islam;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,5 +28,8 @@ public class BorhanSS {
         Scene scene = Main.getMainStage().getScene();
         scene.setRoot(root);
     }
-    
+    public void recordsOnButtonClicked() throws IOException {
+        this.switchScene("RecordsFXML.fxml", "Records");
+    }
+  
 }
