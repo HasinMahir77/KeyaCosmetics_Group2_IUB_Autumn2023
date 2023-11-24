@@ -21,6 +21,7 @@ public abstract class User implements Serializable {
     protected boolean del;
     protected float balance;
     protected LocalDate doj;
+    protected LocalDate dob;
 
     public User() {
         this.del = false;
@@ -116,6 +117,13 @@ public abstract class User implements Serializable {
 
     public void setDoj(LocalDate doj) {
         this.doj = doj;
+    }
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.doj = dob;
     }
     
 }
