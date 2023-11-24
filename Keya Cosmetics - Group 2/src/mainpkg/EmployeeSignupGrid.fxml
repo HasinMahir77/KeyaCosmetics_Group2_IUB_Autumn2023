@@ -50,7 +50,7 @@
                   <TextField fx:id="lastNameTextField" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="301.0" spacing="5.0" visible="false">
+            <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="301.0" spacing="5.0">
                <children>
                   <Label text="Phone:" />
                   <TextField fx:id="phoneTextField" />
