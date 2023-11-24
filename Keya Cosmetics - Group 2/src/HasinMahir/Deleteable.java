@@ -10,7 +10,7 @@ package HasinMahir;
  */
 public interface Deleteable {
     
-    public void deleteAccount();
-    public void recoverAccount();
+    public void delete();
+    public void recover();
     
 }

@@ -137,7 +137,7 @@ public class Customer extends User implements Serializable, Deleteable {
         return customerList;
     }
     
-    public void deleteAccount(){
+    public void delete(){
         if (this.isDel()){
             System.out.println("Acoount is already deleted");
         }
@@ -146,7 +146,7 @@ public class Customer extends User implements Serializable, Deleteable {
             this.username+=".deleted";
         }
     }
-    public void recoverAccount(){
+    public void recover(){
         if (this.isDel()){
             this.del = false;
             this.username=".deleted";
