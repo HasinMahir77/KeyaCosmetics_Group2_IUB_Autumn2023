@@ -311,7 +311,7 @@ public class CustomerCartSceneController implements Initializable {
         for(ProductOrder p: products){
             grandTotal = grandTotal+p.getTotalPrice()+p.getVat();
         }
-        grandTotalLabel.setText(grandTotal.toString());
+        grandTotalLabel.setText(grandTotal.toString()+" BDT");
     }
 
         
