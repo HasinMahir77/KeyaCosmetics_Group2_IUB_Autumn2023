@@ -8,6 +8,7 @@ import HasinMahir.Customer;
 import HasinMahir.ProductOrder;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -175,24 +176,38 @@ public class CustomerSecuritySceneController implements Initializable {
         passwordTextField.setText(current.getPassword());
         }
         
-        else {
-            //Validating the username
-        if (passwordTextField.getText().length()<5){
+        else { //Change username is pressed
+            
+            //Duplicate checking
+            
+            ArrayList<Customer> clist = Customer.getCustomerList();
+            boolean duplicate = false;
+            for (Customer c: clist){
+                if (c.getUsername().equals(usernameTextField.getText())){
+                    duplicate = true;
+                }
+            }
+            //Validating the username length
+        if (usernameTextField.getText().length()<5){
             Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a username that is at least 5 "
                     + "characters long.");
             alert.show();
         }
+        
+        else if (duplicate){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Username already exists. Try another.");
+            alert.show();
+        }
         else{ 
             current.setUsername(usernameTextField.getText());
-      
+        }    
+        }
+        
             usernameTextField.setDisable(true);
             applyButton.setDisable(true);
             changePasswordButton.setDisable(false);
             deleteAccountButton.setDisable(false);
             usernameTextField.setText(current.getUsername());
-            
-        }    
-        }
         current.saveInstance();
     }
     @FXML
