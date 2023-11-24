@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,8 +47,6 @@ public class CustomerProductWriterController implements Initializable {
     @FXML
     private ImageView keyaIcon;
     @FXML
-    private ListView<String> filtersListView;
-    @FXML
     private TableView<Product> productTableView;
     @FXML
     private TableColumn<Product, String> nameColumn;
@@ -61,13 +60,15 @@ public class CustomerProductWriterController implements Initializable {
     private TextField nameTextField;
     @FXML
     private TextField priceTextField;
-    @FXML
     private ComboBox<String> categoryBox;
     @FXML
     private TextField vatRateTextField;
     @FXML
     private Button removeButton;
     Product selectedProduct;
+    @FXML
+    private ListView<String> categoryListView;
+    String selectedCategory;
 
     /**
      * Initializes the controller class.
@@ -75,8 +76,11 @@ public class CustomerProductWriterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        categoryBox.getItems().addAll("Laundry Soap","Body Soap",
-                "Toothpaste","Deo","Skincare","Petroleum","Detergent");
+        ArrayList<String> categories = new ArrayList<String>();
+       
+        //Initializing Categories
+        categoryListView.getItems().addAll("Detergent","Body Soap",
+                "Toothpaste","Deodorant","Skincare","Shampoo");
       
         
         //Initializing Product TableView
@@ -108,23 +112,27 @@ public class CustomerProductWriterController implements Initializable {
         String name = nameTextField.getText();
         int price = Integer.parseInt(priceTextField.getText());
         int vatRate = Integer.parseInt(vatRateTextField.getText());
-        if (categoryBox.getValue().equals("Laundry Soap")){
-            p = new Product(name,price,Product.Category.LAUNDRY_SOAP,vatRate);
+        
+        if (selectedCategory.equals("Detergent")){
+            p = new Product(name,price,Product.Category.DETERGENT,vatRate);
         }
-        else if (categoryBox.getValue().equals("Body Soap")){
+        else if (selectedCategory.equals("Body Soap")){
             p = new Product(name,price,Product.Category.BODY_SOAP,vatRate);
         }
-        else if (categoryBox.getValue().equals("Skincare")){
+        else if (selectedCategory.equals("Skincare")){
             p = new Product(name,price,Product.Category.SKINCARE,vatRate);
         }
-        else if (categoryBox.getValue().equals("Toothpaste")){
+        else if (selectedCategory.equals("Toothpaste")){
             p = new Product(name,price,Product.Category.TOOTHPASTE,vatRate);
         }
-        else if (categoryBox.getValue().equals("Deo")){
+        else if (selectedCategory.equals("Deodorant")){
             p = new Product(name,price,Product.Category.DEODORANT,vatRate);
         }
-        else {
-            p = new Product(name,price,Product.Category.PETROLEUM_JELLY,vatRate);
+        else if (selectedCategory.equals("Shampoo")) {
+            p = new Product(name,price,Product.Category.SHAMPOO,vatRate);
+        }
+        else{
+            return;
         }
         //Writing
         FileChooser fc = new FileChooser();
@@ -150,23 +158,27 @@ public class CustomerProductWriterController implements Initializable {
         String name = nameTextField.getText();
         int price = Integer.parseInt(priceTextField.getText());
         int vatRate = Integer.parseInt(vatRateTextField.getText());
-        if (categoryBox.getValue().equals("Laundry Soap")){
-            p = new Product(name,price,Product.Category.LAUNDRY_SOAP,vatRate);
+        
+        if (selectedCategory.equals("Detergent")){
+            p = new Product(name,price,Product.Category.DETERGENT,vatRate);
         }
-        else if (categoryBox.getValue().equals("Body Soap")){
+        else if (selectedCategory.equals("Body Soap")){
             p = new Product(name,price,Product.Category.BODY_SOAP,vatRate);
         }
-        else if (categoryBox.getValue().equals("Skincare")){
+        else if (selectedCategory.equals("Skincare")){
             p = new Product(name,price,Product.Category.SKINCARE,vatRate);
         }
-        else if (categoryBox.getValue().equals("Toothpaste")){
+        else if (selectedCategory.equals("Toothpaste")){
             p = new Product(name,price,Product.Category.TOOTHPASTE,vatRate);
         }
-        else if (categoryBox.getValue().equals("Deo")){
+        else if (selectedCategory.equals("Deodorant")){
             p = new Product(name,price,Product.Category.DEODORANT,vatRate);
         }
-        else {
-            p = new Product(name,price,Product.Category.PETROLEUM_JELLY,vatRate);
+        else if (selectedCategory.equals("Shampoo")) {
+            p = new Product(name,price,Product.Category.SHAMPOO,vatRate);
+        }
+        else{
+            return;
         }
         //Writing
         File productFile = new File("ProductList.bin");
@@ -237,5 +249,10 @@ public class CustomerProductWriterController implements Initializable {
         if(!productTableView.getSelectionModel().isEmpty()){
             this.selectedProduct = productTableView.getSelectionModel().getSelectedItem();
         } 
+    }
+
+    @FXML
+    private void updateSelectedCategory(MouseEvent event) {
+        selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
     }
 }

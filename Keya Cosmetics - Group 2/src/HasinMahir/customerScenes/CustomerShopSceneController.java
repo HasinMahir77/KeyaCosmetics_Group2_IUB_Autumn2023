@@ -65,8 +65,6 @@ public class CustomerShopSceneController implements Initializable {
     @FXML
     private ImageView keyaIcon;
     @FXML
-    private ListView<String> filtersListView;
-    @FXML
     private TextField searchTextField;
     private Label searchLabel;
     @FXML
@@ -94,6 +92,8 @@ public class CustomerShopSceneController implements Initializable {
     
     
     Product selectedProduct;
+    String selectedCategory;
+    ObservableList<Product> productArray = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -105,26 +105,26 @@ public class CustomerShopSceneController implements Initializable {
         quantityTextField.setText("1");
         // Initializing Category List
         current = (Customer)Main.getMainStage().getUserData(); 
-      
+     
+     //Initializing CategoryListView   
+        userMenu.setText(current.getUsername()+" ↓");
+        categoryListView.getItems().addAll("All","Detergent","Body Soap",
+                "Toothpaste","Deodorant","Skincare","Shampoo");
         
         //Initializing Product TableView
-        
-        userMenu.setText(current.getUsername()+" ↓");
-        categoryListView.getItems().addAll("Laundry Soap","Body Soap",
-                "Toothpaste","Deo","Skincare","Petroleum");
         nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("category"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
         vatRateColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("vatRate"));
         //Collecting products from file
         
-        ObservableList<Product> productArray = FXCollections.observableArrayList(); //Array to store products
+        this.productArray = FXCollections.observableArrayList(); //Array to store products
         File productFile = new File("ProductList.bin");
         
         try(FileInputStream fis = new FileInputStream(productFile);
                 ObjectInputStream ois = new ObjectInputStream(fis)){
             while(true){
-                productArray.add((Product)ois.readObject());
+                this.productArray.add((Product)ois.readObject());
             }
         }catch(Exception e){
             System.out.println(e);
@@ -257,6 +257,95 @@ public class CustomerShopSceneController implements Initializable {
         if(!productTableView.getSelectionModel().isEmpty()){
             this.selectedProduct = productTableView.getSelectionModel().getSelectedItem();
         } 
+    }
+
+    @FXML
+    private void updateSelectedCategory(MouseEvent event) {
+        //Checking if any category text was clicked
+        if (categoryListView.getSelectionModel().isEmpty()){
+        }
+        else if(categoryListView.getSelectionModel().getSelectedItem().equals("All")){
+            this.selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
+            
+            productTableView.setItems(this.productArray);
+        }
+        else if(categoryListView.getSelectionModel().getSelectedItem().equals("Skincare")){
+            this.selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
+            
+            ObservableList<Product> selectedProducts = FXCollections.observableArrayList();
+            for (Product p: this.productArray){
+                if (p.getCategory().equals(this.selectedCategory)){
+                    selectedProducts.add(p);
+                }
+            }
+            productTableView.setItems(selectedProducts);
+        }
+        else if(categoryListView.getSelectionModel().getSelectedItem().equals("Toothpaste")){
+            this.selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
+            
+            ObservableList<Product> selectedProducts = FXCollections.observableArrayList();
+            for (Product p: this.productArray){
+                if (p.getCategory().equals(this.selectedCategory)){
+                    selectedProducts.add(p);
+                }
+            }
+            productTableView.setItems(selectedProducts);
+        }
+        else if(categoryListView.getSelectionModel().getSelectedItem().equals("Body Soap")){
+            this.selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
+            
+            ObservableList<Product> selectedProducts = FXCollections.observableArrayList();
+            for (Product p: this.productArray){
+                if (p.getCategory().equals(this.selectedCategory)){
+                    selectedProducts.add(p);
+                }
+            }
+            productTableView.setItems(selectedProducts);
+        }
+        else if(categoryListView.getSelectionModel().getSelectedItem().equals("Shampoo")){
+            this.selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
+            
+            ObservableList<Product> selectedProducts = FXCollections.observableArrayList();
+            for (Product p: this.productArray){
+                if (p.getCategory().equals(this.selectedCategory)){
+                    selectedProducts.add(p);
+                }
+            }
+            productTableView.setItems(selectedProducts);
+        }
+        else if(categoryListView.getSelectionModel().getSelectedItem().equals("Deodorant")){
+            this.selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
+            
+            ObservableList<Product> selectedProducts = FXCollections.observableArrayList();
+            for (Product p: this.productArray){
+                if (p.getCategory().equals(this.selectedCategory)){
+                    selectedProducts.add(p);
+                }
+            }
+            productTableView.setItems(selectedProducts);
+        }
+        else if(categoryListView.getSelectionModel().getSelectedItem().equals("Petroleum")){
+            this.selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
+            
+            ObservableList<Product> selectedProducts = FXCollections.observableArrayList();
+            for (Product p: this.productArray){
+                if (p.getCategory().equals(this.selectedCategory)){
+                    selectedProducts.add(p);
+                }
+            }
+            productTableView.setItems(selectedProducts);
+        }
+        else if(categoryListView.getSelectionModel().getSelectedItem().equals("Detergent")){
+            this.selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
+            
+            ObservableList<Product> selectedProducts = FXCollections.observableArrayList();
+            for (Product p: this.productArray){
+                if (p.getCategory().equals(this.selectedCategory)){
+                    selectedProducts.add(p);
+                }
+            }
+            productTableView.setItems(selectedProducts);
+        }
     }
         
     

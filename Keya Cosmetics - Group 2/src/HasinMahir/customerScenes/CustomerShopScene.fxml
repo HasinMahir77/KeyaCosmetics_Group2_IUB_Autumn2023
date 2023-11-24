@@ -25,9 +25,7 @@
       <VBox alignment="CENTER" prefHeight="493.0" prefWidth="121.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="106.0" text="Category" />
-            <ListView fx:id="categoryListView" prefHeight="187.0" prefWidth="121.0" style="-fx-background-color: white; -fx-border-radius: 6; -fx-border-color: #c9c7c7;" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="106.0" text="Filters" />
-            <ListView fx:id="filtersListView" prefHeight="138.0" prefWidth="121.0" style="-fx-background-color: white; -fx-border-radius: 6; -fx-border-color: #c9c7c7;" />
+            <ListView fx:id="categoryListView" onMouseClicked="#updateSelectedCategory" prefHeight="187.0" prefWidth="121.0" style="-fx-background-color: white; -fx-border-radius: 6; -fx-border-color: #c9c7c7;" />
          </children>
          <padding>
             <Insets left="5.0" right="5.0" />

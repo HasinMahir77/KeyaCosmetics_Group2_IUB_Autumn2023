@@ -19,7 +19,7 @@ public class Product implements Serializable {
     protected String category;
     protected float price;
     protected int vatRate;
-    public enum Category{LAUNDRY_SOAP,BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,PETROLEUM_JELLY, DETERGENT}
+    public enum Category{BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,SHAMPOO,DETERGENT}
 
     public Product(){ 
     }
@@ -28,8 +28,8 @@ public class Product implements Serializable {
         this.name = name;
         this.price = price;
         this.vatRate = vatRate;
-        if (categoryEnum.equals(Category.LAUNDRY_SOAP)){
-            this.category = "Laundry Soap";
+        if (categoryEnum.equals(Category.DETERGENT)){
+            this.category = "Detergent";
         }
         else if (categoryEnum.equals(Category.BODY_SOAP)){
             this.category = "Body Soap";
@@ -40,17 +40,11 @@ public class Product implements Serializable {
         else if (categoryEnum.equals(Category.DEODORANT)){
             this.category = "Deodorant";
         }
-        else if (categoryEnum.equals(Category.TOOTHPASTE)){
-            this.category = "Toothpaste";
-        }
-        else if (categoryEnum.equals(Category.PETROLEUM_JELLY)){
-            this.category = "Petroleum Jelly";
+        else if (categoryEnum.equals(Category.SHAMPOO)){
+            this.category = "Shampoo";
         }
         else if (categoryEnum.equals(Category.SKINCARE)){
             this.category = "Skincare";
-        }
-        else if (categoryEnum.equals(Category.DETERGENT)){
-            this.category = "Detergent";
         }
     }
     public Product(String name, float price ,String category,int vatRate) {
