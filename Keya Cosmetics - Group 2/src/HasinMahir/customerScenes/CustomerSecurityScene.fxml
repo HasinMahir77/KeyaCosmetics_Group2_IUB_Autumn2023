@@ -167,7 +167,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowSpan="3">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowSpan="3">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
@@ -178,14 +178,19 @@
                         <PasswordField fx:id="passwordTextField" disable="true" />
                      </children>
                   </VBox>
+                  <VBox alignment="CENTER" prefHeight="292.0" prefWidth="267.0" spacing="15.0">
+                     <children>
+                        <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePasswordButtonOnClick" prefHeight="42.0" prefWidth="159.0" text="Change Password" />
+                        <Button fx:id="applyButton" disable="true" mnemonicParsing="false" onAction="#applyEdits" prefHeight="42.0" prefWidth="159.0" text="Apply" />
+                     </children>
+                  </VBox>
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
                <children>
                   <VBox alignment="CENTER" prefHeight="147.0" prefWidth="188.0" spacing="10.0">
                      <children>
-                        <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePasswordButtonOnClick" prefHeight="42.0" prefWidth="159.0" text="Change Password" />
-                        <Button fx:id="applyButton" disable="true" mnemonicParsing="false" onAction="#applyEdits" prefHeight="42.0" prefWidth="159.0" text="Apply" />
+                        <Button fx:id="deleteAccountButton" mnemonicParsing="false" onAction="#deleteAccountButtonOnClick" prefHeight="42.0" prefWidth="159.0" text="Delete account" />
                      </children>
                   </VBox>
                </children>

@@ -10,6 +10,8 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import mainpkg.ObjectOutputStreamA;
 
@@ -24,11 +26,15 @@ public class Order implements Serializable {
     String customerUserName,deliveryManUserName;
     Cart cart;
     int id;
+    LocalDate date;
+    LocalTime time;
     
     public Order(String customer, Cart cart) {
         this.cart = cart; 
         this.customerUserName = customer;
         this.status = Order.Status.PENDING;
+        this.time = LocalTime.now();
+        this.date = LocalDate.now();
     }
     
     public void generateId(){

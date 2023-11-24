@@ -8,12 +8,14 @@ import HasinMahir.Customer;
 import HasinMahir.ProductOrder;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -67,6 +69,8 @@ public class CustomerSecuritySceneController implements Initializable {
     private Button changePasswordButton;
     @FXML
     private Button applyButton;
+    @FXML
+    private Button deleteAccountButton;
     
     
     @Override
@@ -175,6 +179,20 @@ public class CustomerSecuritySceneController implements Initializable {
     private void switchToOrderSceneFromLabel(MouseEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToOrderScene();
+    }
+
+    @FXML
+    private void deleteAccountButtonOnClick(ActionEvent event) {
+        Alert a = new Alert(Alert.AlertType.WARNING, "Are you sure about deleting your account?");
+        a.getButtonTypes().add(ButtonType.CANCEL);
+        Optional<ButtonType> bt = a.showAndWait();
+        
+        if (bt.equals(ButtonType.CLOSE)){
+            return;
+        }
+        else{
+            ((Customer)Main.getUserData()).delete();
+        }
     }
     
 }
