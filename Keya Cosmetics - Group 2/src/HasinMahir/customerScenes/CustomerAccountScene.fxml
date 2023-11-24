@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -123,8 +122,8 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="198.0" spacing="10.0">
                      <children>
-                        <Label text="Password" />
-                        <PasswordField fx:id="passwordTextField" disable="true" />
+                        <Label text="Phone number" />
+                        <TextField fx:id="phoneTextField" disable="true" prefHeight="25.0" prefWidth="175.0" />
                      </children>
                   </VBox>
                </children>
@@ -153,12 +152,6 @@
                </padding>
                <children>
                   <VBox prefHeight="74.0" prefWidth="198.0" />
-                  <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="198.0" spacing="10.0">
-                     <children>
-                        <Label text="Phone number" />
-                        <TextField fx:id="phoneTextField" disable="true" prefHeight="25.0" prefWidth="175.0" />
-                     </children>
-                  </VBox>
                   <Label text="Address" />
                   <TextArea fx:id="addressTextArea" disable="true" prefHeight="129.0" prefWidth="208.0" />
                </children>

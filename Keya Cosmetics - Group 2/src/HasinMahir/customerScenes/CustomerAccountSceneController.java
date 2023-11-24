@@ -79,7 +79,6 @@ public class CustomerAccountSceneController implements Initializable {
     private Button applyButton;
     @FXML
     private Button editProfileButton;
-    @FXML
     private PasswordField passwordTextField;
     @FXML
     private Button changePasswordButton;
@@ -102,7 +101,6 @@ public class CustomerAccountSceneController implements Initializable {
         lastNameTextField.setText(current.getLastName());
         addressTextArea.setText(current.getAddress());
         phoneTextField.setText(current.getPhone());
-        passwordTextField.setText(current.getPassword());  
     }    
 
     @FXML

@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -27,6 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import mainpkg.Main;
 import mainpkg.MainpkgSwitcher;
 
@@ -74,6 +76,10 @@ public class CustomerSecuritySceneController implements Initializable {
     private Button deleteAccountButton;
     
     Customer current;
+    @FXML
+    private TextField usernameTextField;
+    @FXML
+    private Button changeUsernameButton;
     
     
     @Override
@@ -85,6 +91,7 @@ public class CustomerSecuritySceneController implements Initializable {
         
         //Initializing password field
         passwordTextField.setText(current.getPassword());
+        usernameTextField.setText(current.getUsername());
    
     }   
 
@@ -120,32 +127,73 @@ public class CustomerSecuritySceneController implements Initializable {
 
     @FXML
     private void changePasswordButtonOnClick(ActionEvent event) {
-        applyButton.setDisable(false);
-        changePasswordButton.setDisable(true);
-        passwordTextField.setDisable(false);
-        deleteAccountButton.setDisable(true);
         
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Please enter your password to continue");
+        PasswordField pf = new PasswordField();
+        a.setGraphic(pf);
+        a.setHeaderText("Current password:");
+        a.setTitle("Change password");
+     
+        Optional<ButtonType> bt = a.showAndWait();
         
-        TextInputDialog tid = new TextInputDialog();
-        TextField tf = tid.getEditor();
-        tid.setHeaderText("Please enter your password to continue:");
-        tid.showAndWait();
-        try {
-            if (tf.getText().equals(current.getPassword())){
-                passwordTextField.setDisable(false);
+        if (bt.get().equals(ButtonType.OK)){
+            if (pf.getText().equals(current.getPassword())){
                 System.out.println("Password matched");
                 applyButton.setDisable(false);
+                passwordTextField.setDisable(false);
+                deleteAccountButton.setDisable(true);
+                changePasswordButton.setDisable(true);
+                usernameTextField.setDisable(true);
             }
             else{
-                System.out.println("Password didn't match");
+                Alert b = new Alert(Alert.AlertType.ERROR,"Incorrect password");
+                b.show();
             }
         }
-        catch(Exception e){e.printStackTrace(System.out);}
+        else{
+            return;
+        }
     }
 
     @FXML
     private void applyEdits(ActionEvent event) {
+        if (!passwordTextField.disableProperty().get()){ //If changing password
+            //Validating the password
+        if (passwordTextField.getText().length()<8){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a password that is at least 8 "
+                    + "characters long.");
+            alert.show();
+        }
+        else{
+            current.setPassword(passwordTextField.getText());
+        }
+        passwordTextField.setDisable(true);
+        applyButton.setDisable(true);
+        changePasswordButton.setDisable(false);
+        deleteAccountButton.setDisable(false);
+        applyButton.setDisable(true);
+        passwordTextField.setText(current.getPassword());
+        }
         
+        else {
+            //Validating the username
+        if (passwordTextField.getText().length()<5){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a username that is at least 5 "
+                    + "characters long.");
+            alert.show();
+        }
+        else{ 
+            current.setUsername(usernameTextField.getText());
+      
+            usernameTextField.setDisable(true);
+            applyButton.setDisable(true);
+            changePasswordButton.setDisable(false);
+            deleteAccountButton.setDisable(false);
+            usernameTextField.setText(current.getUsername());
+            
+        }    
+        }
+        current.saveInstance();
     }
     @FXML
     private void darkenGreenButtonOnHover(MouseEvent event) {
@@ -210,6 +258,34 @@ public class CustomerSecuritySceneController implements Initializable {
         }
         else{
             ((Customer)Main.getUserData()).delete();
+        }
+    }
+
+    @FXML
+    private void changeUsername(ActionEvent event) {
+        
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Please enter your password to continue");
+        TextField pf = new TextField();
+        a.setGraphic(pf);
+        a.setHeaderText("Password:");
+        a.setTitle("Change username");
+     
+        Optional<ButtonType> bt = a.showAndWait();
+        
+        if (bt.get().equals(ButtonType.OK)){
+            if (pf.getText().equals(current.getPassword())){
+                System.out.println("Password matched");
+                applyButton.setDisable(false);
+                usernameTextField.setDisable(false);
+                deleteAccountButton.setDisable(true);
+                changePasswordButton.setDisable(true);
+            }
+            else{
+                Alert b = new Alert(Alert.AlertType.ERROR,"Incorrect password");
+                b.show();
+            }
+        }
+        else{
         }
     }
     
