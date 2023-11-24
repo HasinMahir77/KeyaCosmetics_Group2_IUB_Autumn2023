@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.time.LocalDate;
 import javafx.stage.Stage;
 
 /**
@@ -19,10 +20,13 @@ public abstract class User implements Serializable {
     protected String firstName, lastName, username, password,phone;
     protected boolean del;
     protected float balance;
+    protected LocalDate doj;
 
     public User() {
         this.del = false;
         this.balance = 0;
+        this.doj = java.time.LocalDate.now();
+        
     }
 
     public User(String firstName, String lastName, String username, String password, String phone) {
@@ -33,6 +37,7 @@ public abstract class User implements Serializable {
         this.phone = phone;
         this.del = false;
         this.balance = 0;
+        this.doj = java.time.LocalDate.now();
 
     }
     
@@ -42,6 +47,8 @@ public abstract class User implements Serializable {
         this.username = username;
         this.password = password;
         this.del = false;
+        this.balance = 0;
+        this.doj = java.time.LocalDate.now();
 
     }
 

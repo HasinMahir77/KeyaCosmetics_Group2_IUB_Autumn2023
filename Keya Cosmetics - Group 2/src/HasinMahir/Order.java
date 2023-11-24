@@ -12,12 +12,17 @@ import java.util.ArrayList;
  * @author hasin
  */
 public class Order implements Serializable {
-    ArrayList<Product> productList = new ArrayList<Product>();
-    //LocalDate
-    //String status;
+    
+    String customerUserName,deliveryManUserName,status;
+    Cart cart;
     int id;
+    
+    
+    
 
-    public Order() {
+    public Order(int id) {
+        this.id = id;
+        cart = new Cart();
     }
     
 
