@@ -60,10 +60,6 @@ public abstract class User implements Serializable {
         this.phone = phone;
     }
     
-    public void deleteAccount(){
-        this.setDel(true);
-        this.username+=".deleted";
-    }
 
     public float getBalance() {
         return balance;
@@ -114,8 +110,12 @@ public abstract class User implements Serializable {
         return del;
     }
 
-    public void setDel(boolean del) {
-        this.del = del;
+    public LocalDate getDoj() {
+        return doj;
+    }
+
+    public void setDoj(LocalDate doj) {
+        this.doj = doj;
     }
     
 }
