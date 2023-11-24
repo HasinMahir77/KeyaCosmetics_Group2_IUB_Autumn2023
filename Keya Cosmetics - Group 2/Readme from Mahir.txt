@@ -22,3 +22,8 @@ User subclass.
 Example: 
 
 Customer c = (Customer) Main.getUserData();
+
+4)
+
+Use the Deleteable interface in your User class to allow deleting and recovery on account.
+Code body for the features is available in customer class.
