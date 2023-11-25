@@ -67,7 +67,7 @@ public class DeliveryManDashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        //current = (DeliveryMan)Main.getUserData(); //Initialized user 
+        current = (DeliveryMan)Main.getUserData(); //Initialized user 
         
         //TableView
         ObservableList<Order> orderList = FXCollections.observableArrayList();

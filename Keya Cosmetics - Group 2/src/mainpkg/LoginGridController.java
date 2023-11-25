@@ -8,6 +8,7 @@ import Amit_AffiliateMarketer.AmitSS;
 import Borhan_Islam.Accountant;
 import Borhan_Islam.BorhanSS;
 import HasinMahir.Customer;
+import HasinMahir.DeliveryMan;
 import HasinMahir.User;
 import HasinMahir.customerScenes.CustomerSceneSwitcher;
 import HasinMahir.deliveryManScenes.DMSS;
@@ -108,7 +109,7 @@ public class LoginGridController implements Initializable {
                 ObjectInputStream oos = new ObjectInputStream(fis);
                 
                 while(true){
-                    User user = (Customer)oos.readObject();
+                    User user = (User)oos.readObject();
                     if (user.getUsername().equals(username) && user.getPassword().equals(password)){
                         Main.getMainStage().setUserData(user);
                         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
@@ -223,7 +224,7 @@ public class LoginGridController implements Initializable {
                 ObjectInputStream oos = new ObjectInputStream(fis);
                 
                 while(true){
-                    User user = (Customer)oos.readObject();
+                    DeliveryMan user = (DeliveryMan)oos.readObject();
                     if (user.getUsername().equals(username) && user.getPassword().equals(password)){
                         Main.getMainStage().setUserData(user);
                         DMSS dmss = new DMSS();

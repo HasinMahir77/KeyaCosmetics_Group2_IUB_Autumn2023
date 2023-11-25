@@ -22,9 +22,11 @@ public class Customer extends User implements Serializable, Deleteable {
     private Cart cart;
     private ArrayList<Order> orderHistory;
     private String address;
+    private float balance;
 
     public Customer() {
         this.del = false;
+        this.balance=0;
     }
 
     public Customer(String firstName, String lastName, String username, String password, String address, String phone) {
@@ -33,6 +35,7 @@ public class Customer extends User implements Serializable, Deleteable {
         this.address = address;
         this.phone = phone;
         this.del = false;
+        this.balance=0;
     }
 
     

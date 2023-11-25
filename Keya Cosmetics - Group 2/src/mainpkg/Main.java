@@ -6,6 +6,7 @@ package mainpkg;
 
 import Borhan_Islam.Accountant;
 import HasinMahir.Customer;
+import HasinMahir.DeliveryMan;
 import HasinMahir.User;
 import NadimHR_Receptionist.Hr;
 import java.io.File;
@@ -125,7 +126,7 @@ public class Main extends Application {
                 else if (userFile.getName().equals("DeliveryManList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                    User user = new Customer("User","User","User","User","User","11111");
+                    User user = new DeliveryMan("User","User","User","User","11111");
                     oos.writeObject(user);
                     System.out.println("File "+userFile.getName()+" not found.");
                     System.out.println("Initialized");
