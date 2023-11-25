@@ -57,5 +57,8 @@ public class BorhanSS {
     public void goBackToDashboardButton() throws IOException {
         this.switchScene("AccountantDashboardFXML.fxml", "");
     }
+    public void recordsToDashboardButton() throws IOException {
+        this.switchScene("AccountantDashboardFXML.fxml", "");
+    }
   
 }
