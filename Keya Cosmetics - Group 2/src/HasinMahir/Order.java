@@ -20,7 +20,7 @@ import mainpkg.ObjectOutputStreamA;
  * @author hasin
  */
 public class Order implements Serializable {
-    public enum Status{PENDING,OUT_FOR_DELIVERY,DELIVERED};
+    public enum Status{PENDING,OUT_FOR_DELIVERY,DELIVERED,RETURNED,CANCELED};
     
     Status status;
     String customerUserName,deliveryManUserName,id,address;

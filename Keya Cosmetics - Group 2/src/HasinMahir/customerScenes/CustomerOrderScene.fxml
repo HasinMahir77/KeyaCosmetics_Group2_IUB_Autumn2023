@@ -163,8 +163,8 @@
             <TableView fx:id="orderTableView" onMouseClicked="#updateSelectedOrder" prefHeight="348.0" prefWidth="328.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="statusColumn" prefWidth="120.33331298828125" text="Status" />
                   <TableColumn fx:id="priceColumn" prefWidth="94.0" text="Price" />
+                  <TableColumn fx:id="statusColumn" prefWidth="120.33331298828125" text="Status" />
               </columns>
             </TableView>
          </center>

@@ -6,6 +6,7 @@ package HasinMahir.deliveryManScenes;
 
 import HasinMahir.DeliveryMan;
 import HasinMahir.Order;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -19,7 +20,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import mainpkg.Main;
+import mainpkg.MainpkgSS;
 
 /**
  * FXML Controller class
@@ -31,7 +34,7 @@ public class DeliveryManDashboardController implements Initializable {
     @FXML
     private ImageView keyaIcon;
     @FXML
-    private Button dashboardButton;
+    private VBox dashboardButton;
     @FXML
     private Button pendingTasksButton;
     @FXML
@@ -59,10 +62,12 @@ public class DeliveryManDashboardController implements Initializable {
      * Initializes the controller class.
      */
     DeliveryMan current;
+    @FXML
+    private Button dashboardButton1;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        current = (DeliveryMan)Main.getUserData(); //Initialized user 
+        //current = (DeliveryMan)Main.getUserData(); //Initialized user 
         
         //TableView
         ObservableList<Order> orderList = FXCollections.observableArrayList();
@@ -91,15 +96,20 @@ public class DeliveryManDashboardController implements Initializable {
     }
 
     @FXML
-    private void logout(ActionEvent event) {
+    private void logout(ActionEvent event) throws IOException {
+        current.saveInstance();
+        MainpkgSS ss = new MainpkgSS();
+        ss.switchtoLoginScene();
     }
 
     @FXML
     private void lightenGreyButton(MouseEvent event) {
+        ((Button)event.getSource()).setStyle("-fx-background-color:  #eef0f5");
     }
 
     @FXML
     private void darkenGreyButton(MouseEvent event) {
+        ((Button)event.getSource()).setStyle("-fx-background-color: #d0d0db");
     }
     
 }

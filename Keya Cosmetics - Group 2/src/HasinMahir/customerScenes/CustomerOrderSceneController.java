@@ -34,7 +34,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import mainpkg.Main;
-import mainpkg.MainpkgSwitcher;
+import mainpkg.MainpkgSS;
 
 /**
  * FXML Controller class
@@ -106,17 +106,7 @@ public class CustomerOrderSceneController implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<Order, Float>("price"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<Order, Status>("status"));
         
-        ObservableList<Order> orderList = FXCollections.observableArrayList();
-        File orderFile = new File("OrderList.bin"); 
-        
-        try(FileInputStream fis = new FileInputStream(orderFile);
-                ObjectInputStream ois = new ObjectInputStream(fis);){
-            while(true){
-                orderList.add((Order)ois.readObject());
-            }
-        }
-        catch(Exception e){System.out.println(e.toString()+" from CustomerOrderScene");}
-        orderTableView.setItems(orderList);
+        this.updateOrderTable();
     }    
     
     
@@ -132,7 +122,7 @@ public class CustomerOrderSceneController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
-        MainpkgSwitcher logout = new MainpkgSwitcher();
+        MainpkgSS logout = new MainpkgSS();
         logout.switchtoLoginScene();
     }
 
@@ -194,6 +184,12 @@ public class CustomerOrderSceneController implements Initializable {
 
     @FXML
     private void returnButtonOnClick(ActionEvent event) {
+        try{
+            this.selectedOrder.setStatus(Status.RETURNED);
+        }
+        catch(Exception e){
+            System.out.println(e.toString()+" from customerOrderScene");
+        }
     }
 
     @FXML
@@ -209,7 +205,14 @@ public class CustomerOrderSceneController implements Initializable {
         ss.switchToCartScene();
     }
     private void updateOrderTable(){
-        
+        ObservableList<Order> orderList = FXCollections.observableArrayList();
+        orderList.addAll(Order.getOrderList());
+        orderTableView.getItems().clear();
+        for (Order o: orderList){
+            if (o.getCustomerUserName().equals(current.getUsername())){
+                orderTableView.getItems().add(o);
+            }
+        }
     }
 
     
