@@ -162,9 +162,9 @@
          <center>
             <TableView fx:id="orderTableView" onMouseClicked="#updateSelectedOrder" prefHeight="348.0" prefWidth="328.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn prefWidth="75.0" text="ID" />
-                  <TableColumn prefWidth="120.33331298828125" text="Status" />
-                  <TableColumn prefWidth="94.0" text="Total" />
+                <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="statusColumn" prefWidth="120.33331298828125" text="Status" />
+                  <TableColumn fx:id="priceColumn" prefWidth="94.0" text="Price" />
               </columns>
             </TableView>
          </center>
@@ -178,7 +178,7 @@
          <bottom>
             <HBox prefHeight="45.0" prefWidth="594.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#returnButtonOnClick" prefHeight="25.0" prefWidth="71.0" text="Return" />
+                  <Button disable="true" mnemonicParsing="false" onAction="#returnButtonOnClick" prefHeight="25.0" prefWidth="71.0" text="Return" />
                </children>
                <padding>
                   <Insets top="5.0" />

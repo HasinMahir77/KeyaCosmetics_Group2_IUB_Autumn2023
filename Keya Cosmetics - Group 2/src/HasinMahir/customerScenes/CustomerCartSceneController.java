@@ -6,6 +6,7 @@ package HasinMahir.customerScenes;
 
 import HasinMahir.Cart;
 import HasinMahir.Customer;
+import HasinMahir.Order;
 import HasinMahir.Product;
 import HasinMahir.ProductOrder;
 import HasinMahir.User;
@@ -293,8 +294,8 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private void orderButtonOnClick(ActionEvent event) {
         //PLACEHOLDER CODE. CLEARS CART.
-        current.getCart().getProductOrderList().clear();
-        this.updateCartTable();
+        Order order = new Order(current);
+        order.saveInstance();
         
     }
     public void updateGrandTotal(){
@@ -321,11 +322,6 @@ public class CustomerCartSceneController implements Initializable {
     private void switchToOrderSceneFromLabel(MouseEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToOrderScene();
-    }
-
-
-    
-
-        
+    }    
     
 }

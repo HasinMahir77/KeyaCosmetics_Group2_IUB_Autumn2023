@@ -20,25 +20,26 @@ import mainpkg.ObjectOutputStreamA;
  * @author hasin
  */
 public class Order implements Serializable {
-    public enum Status{PENDING,ACCEPTED,DELIVERED};
+    public enum Status{PENDING,OUT_FOR_DELIVERY,DELIVERED};
     
     Status status;
-    String customerUserName,deliveryManUserName;
+    String customerUserName,deliveryManUserName,id,address;
     Cart cart;
-    String id;
+    float price;
     LocalDate date;
     LocalTime time;
     
-    public Order(String customer, Cart cart) {
-        this.cart = cart; 
-        this.customerUserName = customer;
+    public Order(Customer customer) {
+        this.customerUserName = customer.getUsername();
         this.status = Order.Status.PENDING;
+        this.cart = customer.getCart();
+        this.price = cart.getPrice();
         this.time = LocalTime.now();
         this.date = LocalDate.now();
-        this.id = "0"+this.date.toString();
+        this.id = "OID"+this.time.toString()+this.date.toString();
+        this.address = customer.getAddress();
     }
-     
-
+    
     public Status getStatus() {
         return status;
     }
@@ -49,10 +50,6 @@ public class Order implements Serializable {
 
     public String getDeliveryManUserName() {
         return deliveryManUserName;
-    }
-
-    public Cart getCart() {
-        return cart;
     }
 
     public String getId() {
@@ -71,13 +68,51 @@ public class Order implements Serializable {
         this.deliveryManUserName = deliveryManUserName;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setAddress(String address) {
+        this.address = address;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
 
     public void setId(String id) {
         this.id = id;
     }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
+    
     
     public void saveInstance(){
         File oldCustomerList = new File("OrderList.bin");

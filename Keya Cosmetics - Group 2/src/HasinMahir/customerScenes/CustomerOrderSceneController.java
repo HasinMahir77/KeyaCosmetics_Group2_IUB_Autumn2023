@@ -4,11 +4,20 @@
  */
 package HasinMahir.customerScenes;
 
+import HasinMahir.Cart;
 import HasinMahir.Customer;
 import HasinMahir.Order;
+import HasinMahir.Order.Status;
+import HasinMahir.ProductOrder;
+import static HasinMahir.customerScenes.CustomerShopSceneController.current;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +27,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -42,8 +53,6 @@ public class CustomerOrderSceneController implements Initializable {
     private MenuItem ordersMenuItem;
     @FXML
     private MenuItem logoutMenuItem;
-    @FXML
-    private Button cartButton1;
     @FXML
     private Button cartButton;
     @FXML
@@ -72,6 +81,12 @@ public class CustomerOrderSceneController implements Initializable {
     Order selectedOrder;
     @FXML
     private Label orderLabel;
+    @FXML
+    private TableColumn<Order, String> idColumn;
+    @FXML
+    private TableColumn<Order, Status> statusColumn;
+    @FXML
+    private TableColumn<Order, Float> priceColumn;
 
     /**
      * Initializes the controller class.
@@ -84,6 +99,24 @@ public class CustomerOrderSceneController implements Initializable {
         // Getting user data
         Customer current = (Customer)Main.getMainStage().getUserData();
         userMenu.setText(current.getUsername()+" ↓");
+         
+        //TableView
+        //orderTableView.setPlaceholder("No orders placed yet");
+        idColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Order, Float>("price"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<Order, Status>("status"));
+        
+        ObservableList<Order> orderList = FXCollections.observableArrayList();
+        File orderFile = new File("OrderList.bin"); 
+        
+        try(FileInputStream fis = new FileInputStream(orderFile);
+                ObjectInputStream ois = new ObjectInputStream(fis);){
+            while(true){
+                orderList.add((Order)ois.readObject());
+            }
+        }
+        catch(Exception e){System.out.println(e.toString()+" from CustomerOrderScene");}
+        orderTableView.setItems(orderList);
     }    
     
     
@@ -174,6 +207,9 @@ public class CustomerOrderSceneController implements Initializable {
     private void switchToCartScene(MouseEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToCartScene();
+    }
+    private void updateOrderTable(){
+        
     }
 
     

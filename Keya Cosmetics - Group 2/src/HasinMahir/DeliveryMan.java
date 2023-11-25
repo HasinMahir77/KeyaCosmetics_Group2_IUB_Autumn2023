@@ -79,9 +79,7 @@ public class DeliveryMan extends User {
                 }
         } catch(Exception e){
             System.out.println(e.toString());
-        } 
-        
-        
+        }   
     }
     
     public static ArrayList<DeliveryMan> getDeliveryManList(){
