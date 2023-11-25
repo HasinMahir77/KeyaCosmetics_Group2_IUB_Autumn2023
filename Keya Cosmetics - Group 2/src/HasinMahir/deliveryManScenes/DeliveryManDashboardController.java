@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -64,11 +65,23 @@ public class DeliveryManDashboardController implements Initializable {
     DeliveryMan current;
     @FXML
     private Button dashboardButton1;
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Label odersAcceptedLabel;
+    @FXML
+    private Label balanceLabel;
+    @FXML
+    private Label dojLabel;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         current = (DeliveryMan)Main.getUserData(); //Initialized user 
         
+        nameLabel.setText(nameLabel.getText()+" "+current.getFirstName()+" "+current.getLastName());
+        dojLabel.setText(dojLabel.getText()+" "+current.getDoj().toString());
+        dobLabel.setText(dojLabel.getText()+" "+current.getDob().toString());
+        balanceLabel.setText(balanceLabel.getText()+" "+current.getBalance());
         //TableView
         ObservableList<Order> orderList = FXCollections.observableArrayList();
         orderList.addAll(Order.getOrderList());
