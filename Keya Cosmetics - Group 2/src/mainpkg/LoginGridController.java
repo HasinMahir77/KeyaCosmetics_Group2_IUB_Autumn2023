@@ -167,7 +167,7 @@ public class LoginGridController implements Initializable {
                         System.out.println("Username-password matched.");
                         System.out.println("Userdata set for Accountant");
                         BorhanSS ss = new BorhanSS();
-                        ss.switchScene("AccountantDashboardFXML.fxml", "Keya: Dashboard");
+                        ss.switchScene("AccountantDashboardFXML.fxml", "Dashboard");
                     }
                 } // Loop's scope ends
             }
