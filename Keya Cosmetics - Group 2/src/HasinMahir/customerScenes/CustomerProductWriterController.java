@@ -33,7 +33,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import mainpkg.Main;
-import mainpkg.MainpkgSS;
+import mainpkg.MainpkgSwitcher;
 import mainpkg.ObjectOutputStreamA;
 
 
@@ -148,7 +148,7 @@ public class CustomerProductWriterController implements Initializable {
 
     @FXML
     private void switchToHome(ActionEvent event) throws IOException {
-        MainpkgSS ss = new MainpkgSS();
+        MainpkgSwitcher ss = new MainpkgSwitcher();
         ss.switchtoLoginScene();
     }
 

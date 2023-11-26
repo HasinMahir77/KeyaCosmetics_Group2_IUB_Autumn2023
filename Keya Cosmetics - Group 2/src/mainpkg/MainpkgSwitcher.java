@@ -13,7 +13,7 @@ import javafx.scene.Scene;
  *
  * @author hasin
  */
-public class MainpkgSS {
+public class MainpkgSwitcher {
     public void switchScene(String fxml, String title) throws IOException{
         Main.getMainStage().setTitle(title);
         Parent root = FXMLLoader.load(getClass().getResource(fxml));

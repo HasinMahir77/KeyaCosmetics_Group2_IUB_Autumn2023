@@ -20,7 +20,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import mainpkg.Main;
 import mainpkg.MainpkgSS;
-//import mainpkg.MainpkgSS;
 /**
  * FXML Controller class
  *
