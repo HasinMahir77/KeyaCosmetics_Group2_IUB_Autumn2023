@@ -28,7 +28,7 @@ public class OutsidersAttendanceController implements Initializable {
     @FXML
     private TextField phoneNumberTextField;
     @FXML
-    private ComboBox<?> employeeComboBox;
+    private ComboBox<String> employeeComboBox;
     @FXML
     private DatePicker datePicker;
     @FXML
