@@ -16,6 +16,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import mainpkg.Main;
 import mainpkg.MainpkgSwitcher;
 /**
@@ -27,14 +29,17 @@ public class AccountantDashboardFXMLController implements Initializable {
 
     @FXML
     private Label timeLabel;
+    @FXML
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy ---- hh:mm:ss a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy | hh:mm:ss a");
         timeLabel.setText(LocalDateTime.now().format(formatter));
 
             }),
@@ -53,7 +58,8 @@ public class AccountantDashboardFXMLController implements Initializable {
     @FXML
     private void searchDeleteOnButtonClicked(ActionEvent event) throws IOException {
         BorhanSS ss = new BorhanSS();
-        ss.searchDeleteOnButtonClicked();  
+        ss.searchDeleteOnButtonClicked(); 
+
 
     }
 

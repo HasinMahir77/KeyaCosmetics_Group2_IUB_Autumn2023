@@ -26,6 +26,7 @@ public class BorhanSS {
         mainStage.setTitle("Keya Cosmetics: "+title);
         Scene scene = Main.getMainStage().getScene();
         scene.setRoot(root);
+        
     }
     public void recordsOnButtonClicked() throws IOException {
         this.switchScene("RecordsFXML.fxml", "Records");
