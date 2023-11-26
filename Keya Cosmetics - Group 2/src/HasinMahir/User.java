@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  * @author hasin
  */
 public abstract class User implements Serializable {
-    protected String firstName, lastName, username, password,phone;
+    protected String firstName, lastName, username, password,phone,nid;
     protected boolean del;
     protected float balance;
     protected LocalDate doj;
@@ -27,6 +27,7 @@ public abstract class User implements Serializable {
         this.del = false;
         this.balance = 0;
         this.doj = java.time.LocalDate.now();
+        this.dob = this.doj;
         
     }
 
@@ -39,6 +40,7 @@ public abstract class User implements Serializable {
         this.del = false;
         this.balance = 0;
         this.doj = java.time.LocalDate.now();
+        this.dob = this.doj;
 
     }
     
@@ -50,6 +52,7 @@ public abstract class User implements Serializable {
         this.del = false;
         this.balance = 0;
         this.doj = java.time.LocalDate.now();
+        this.dob = this.doj;
 
     }
 
@@ -123,5 +126,18 @@ public abstract class User implements Serializable {
     public void setDob(LocalDate dob) {
         this.doj = dob;
     }
+
+    public void setDel(boolean del) {
+        this.del = del;
+    }
+
+    public String getNid() {
+        return nid;
+    }
+
+    public void setNid(String nid) {
+        this.nid = nid;
+    }
+    
     
 }

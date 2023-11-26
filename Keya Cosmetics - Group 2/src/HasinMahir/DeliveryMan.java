@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import mainpkg.ObjectOutputStreamA;
 
@@ -17,21 +18,22 @@ import mainpkg.ObjectOutputStreamA;
  * @author hasin
  */
 public class DeliveryMan extends User {
-    Cart cart;
     
     
     
     public DeliveryMan(String firstName, String lastName, String username, String password) {
         super(firstName, lastName, username, password);
-        this.cart = new Cart();
         this.del = false;
+        this.doj = LocalDate.now();
+        this.nid="";
     }
     
     public DeliveryMan(String firstName, String lastName, String username, String password, String phone) {
         super(firstName, lastName, username, password, phone);
-        this.cart = new Cart();
         this.phone = phone;
         this.del = false;
+        this.doj = LocalDate.now();
+        this.nid = "";
     }
     
     
@@ -79,9 +81,7 @@ public class DeliveryMan extends User {
                 }
         } catch(Exception e){
             System.out.println(e.toString());
-        } 
-        
-        
+        }   
     }
     
     public static ArrayList<DeliveryMan> getDeliveryManList(){

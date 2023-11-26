@@ -17,12 +17,13 @@ import mainpkg.Main;
  * @author hasin
  */
 public class Cart implements Serializable {
+    float price;
     
     protected ArrayList<ProductOrder> productOrderList;
-    int price; 
     
     public Cart(){
         this.productOrderList = new ArrayList<ProductOrder>();
+       
         
     }
 
@@ -34,7 +35,12 @@ public class Cart implements Serializable {
         this.productOrderList = productOrderList;
     }
 
-    public int getPrice() {
+    public float getPrice() {
+        float price = 0;
+        for (ProductOrder po: this.productOrderList){
+            price+=po.getTotalPrice();
+        }
+        this.price=price;
         return price;
     }
     

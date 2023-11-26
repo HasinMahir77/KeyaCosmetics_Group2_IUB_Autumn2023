@@ -8,8 +8,10 @@ import Amit_AffiliateMarketer.AmitSS;
 import Borhan_Islam.Accountant;
 import Borhan_Islam.BorhanSS;
 import HasinMahir.Customer;
+import HasinMahir.DeliveryMan;
 import HasinMahir.User;
 import HasinMahir.customerScenes.CustomerSceneSwitcher;
+import HasinMahir.deliveryManScenes.DMSS;
 import NadimHR_Receptionist.HRSceneSwitcher;
 import java.io.EOFException;
 import java.io.File;
@@ -60,7 +62,7 @@ public class LoginGridController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         userComboBox.setValue("Customer");
         // Insert users here
-        userComboBox.getItems().addAll("Customer","Affiliate Marketer",
+        userComboBox.getItems().addAll("Customer","Delivery Man","Affiliate Marketer",
                 "Product Manager","HR","Receptionist","Accountant");
         
         
@@ -107,7 +109,7 @@ public class LoginGridController implements Initializable {
                 ObjectInputStream oos = new ObjectInputStream(fis);
                 
                 while(true){
-                    User user = (Customer)oos.readObject();
+                    User user = (User)oos.readObject();
                     if (user.getUsername().equals(username) && user.getPassword().equals(password)){
                         Main.getMainStage().setUserData(user);
                         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
@@ -212,6 +214,32 @@ public class LoginGridController implements Initializable {
                 Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \nLook at the error in the console");
                 a.showAndWait();
                 
+            }
+          }
+        else if (userComboBox.getValue().equals("Delivery Man")) {
+            try{
+                File userFile = new File("DeliveryManList.bin");
+                System.out.println(userFile.getName()+".bin "+" opened");
+                FileInputStream fis = new FileInputStream(userFile);
+                ObjectInputStream oos = new ObjectInputStream(fis);
+                
+                while(true){
+                    DeliveryMan user = (DeliveryMan)oos.readObject();
+                    if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+                        Main.getMainStage().setUserData(user);
+                        DMSS dmss = new DMSS();
+                        dmss.switchToDashboard();
+                    }
+                } // Loop's scope ends
+            }
+            catch(EOFException e){
+                System.out.println(e.toString()+" at "+ userComboBox.getValue());
+            }
+            catch(Exception e){
+                e.printStackTrace(System.out);
+                System.out.println(e.toString()+" at "+ userComboBox.getValue());
+                Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \nLook at the error in the console");
+                a.showAndWait();
             }
           }
         
