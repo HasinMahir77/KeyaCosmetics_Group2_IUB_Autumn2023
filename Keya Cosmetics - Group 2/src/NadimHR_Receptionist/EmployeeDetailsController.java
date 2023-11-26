@@ -7,6 +7,8 @@ package NadimHR_Receptionist;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,34 +35,41 @@ public class EmployeeDetailsController implements Initializable {
 
     @FXML
     private void loadButton(ActionEvent event) {
-         PositionTypeChart.getData().clear();
+        PositionTypeChart.getData().clear();
         barchart.getData().clear();
         
-        ArrayList<Applicant> Applicants = Hr.loademployeeFromFile("Applicant.bin");
-        int totalCases = caseAssignments.size();
+        ArrayList<Applicant> Applicants = Hr.loadApplicantsFromFile("Recruiment data of employees.bin");
+        int totalCases = Applicants.size();
         int[] caseTypeCounts = new int[5];
-        for (CaseAssignment assignment : caseAssignments) {
-            String caseType = assignment.getCaseType();
-            if (caseType.equals("Emergency")) {
+        for (Applicant assignment : Applicants) {
+            String caseType = assignment.getPosition();
+            if (caseType.equals("Accountant")) {
                 caseTypeCounts[0]++;
-            } else if (caseType.equals("Pro bono")) {
+            } else if (caseType.equals("Customer Service Executive")) {
                 caseTypeCounts[1]++;
-            } else if (caseType.equals("National security")) {
+            } else if (caseType.equals("Production manager")) {
                 caseTypeCounts[2]++;
-            } else if (caseType.equals("Special")) {
+            } else if (caseType.equals("Receptionist")) {
                 caseTypeCounts[3]++;
-            } else if (caseType.equals("Random")) {
-                caseTypeCounts[4]++;
+
             }
         }
          XYChart.Series<String, Integer> series = new XYChart.Series<>();
-            series.getData().add(new XYChart.Data<>("Emergency", caseTypeCounts[0]));
-            series.getData().add(new XYChart.Data<>("Pro bono", caseTypeCounts[1]));
-            series.getData().add(new XYChart.Data<>("National security", caseTypeCounts[2]));
-            series.getData().add(new XYChart.Data<>("Special", caseTypeCounts[3]));
-            series.getData().add(new XYChart.Data<>("Random", caseTypeCounts[4]));
+            series.getData().add(new XYChart.Data<>("Accountant", caseTypeCounts[0]));
+            series.getData().add(new XYChart.Data<>("Customer Service Executive", caseTypeCounts[1]));
+            series.getData().add(new XYChart.Data<>("Production manager", caseTypeCounts[2]));
+            series.getData().add(new XYChart.Data<>("Receptionist", caseTypeCounts[3]));
             barchart.getData().add(series);
+            
+    ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+            new PieChart.Data("Accountant (" + caseTypeCounts[0] + " cases)", (double) caseTypeCounts[0] / totalCases),
+            new PieChart.Data("Customer Service Executive(" + caseTypeCounts[1] + " cases)", (double) caseTypeCounts[1] / totalCases),
+            new PieChart.Data("Production manager (" + caseTypeCounts[2] + " cases)", (double) caseTypeCounts[2] / totalCases),
+            new PieChart.Data("Receptionist (" + caseTypeCounts[3] + " cases)", (double) caseTypeCounts[3] / totalCases)
+ 
+        );
 
+        PositionTypeChart.setData(pieChartData);
     }
     
 }

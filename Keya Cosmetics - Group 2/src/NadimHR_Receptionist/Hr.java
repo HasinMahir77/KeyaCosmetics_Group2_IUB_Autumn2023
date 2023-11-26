@@ -156,7 +156,7 @@ public class Hr extends User implements Serializable{
 
         for (String Position : getapplicantstypes(applicants)) {
             long count = applicants.stream()
-                    .filter(ca -> ca.getPositionType().equals(Position))
+                    .filter(ca -> ca.getPosition().equals(Position))
                     .count();
             double ratio = (double) count / totalApplicants * 100;
             positionTypeRatioMap.put(Position, ratio);
@@ -168,8 +168,8 @@ public class Hr extends User implements Serializable{
     private static ArrayList<String> getapplicantstypes(ArrayList<Applicant> applicants) {
         ArrayList<String> ApplicantType = new ArrayList<>();
         for (Applicant Position : applicants) {
-            if (!ApplicantType.contains(Position.getPositionType())) {
-                ApplicantType.add(Position.getPositionType());
+            if (!ApplicantType.contains(Position.getPosition())) {
+                ApplicantType.add(Position.getPosition());
             }
         }
         return ApplicantType;

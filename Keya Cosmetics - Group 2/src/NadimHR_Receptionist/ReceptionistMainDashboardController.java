@@ -6,6 +6,8 @@ package NadimHR_Receptionist;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -22,5 +24,21 @@ public class ReceptionistMainDashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void employeeattendenceOnclick(ActionEvent event) {
+    }
+
+    @FXML
+    private void OutsidersattendenceOnclick(ActionEvent event) {
+    }
+
+    @FXML
+    private void EmployeeovertimeOnclick(ActionEvent event) {
+    }
+
+    @FXML
+    private void createappointmentswithstaffsOnclick(ActionEvent event) {
+    }
     
 }

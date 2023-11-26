@@ -15,9 +15,9 @@
         <menus>
           <Menu mnemonicParsing="false" text="Tasks">
             <items>
-              <MenuItem mnemonicParsing="false" text="Employee Attendance" />
-                  <MenuItem mnemonicParsing="false" text="Outsiders Attendance" />
-                  <MenuItem mnemonicParsing="false" text="Employee overtime data" />
+              <MenuItem mnemonicParsing="false" onAction="#employeeattendenceOnclick" text="Employee Attendance" />
+                  <MenuItem mnemonicParsing="false" onAction="#OutsidersattendenceOnclick" text="Outsiders Attendance" />
+                  <MenuItem mnemonicParsing="false" onAction="#EmployeeovertimeOnclick" text="Employee overtime data" />
                   <MenuItem mnemonicParsing="false" onAction="#createappointmentswithstaffsOnclick" text="Create Appointment " />
             </items>
           </Menu>
