@@ -8,7 +8,9 @@ import HasinMahir.Cart;
 import HasinMahir.Customer;
 import HasinMahir.Order;
 import HasinMahir.Order.Status;
+import HasinMahir.Product;
 import HasinMahir.ProductOrder;
+import HasinMahir.Review;
 import static HasinMahir.customerScenes.CustomerShopSceneController.current;
 import java.io.File;
 import java.io.FileInputStream;
@@ -87,6 +89,12 @@ public class CustomerOrderSceneController implements Initializable {
     private TableColumn<Order, Status> statusColumn;
     @FXML
     private TableColumn<Order, Float> priceColumn;
+    @FXML
+    private Button cancelButton;
+    @FXML
+    private Button reviewButton;
+    @FXML
+    private Button returnButton;
 
     /**
      * Initializes the controller class.
@@ -213,6 +221,22 @@ public class CustomerOrderSceneController implements Initializable {
                 orderTableView.getItems().add(o);
             }
         }
+    }
+
+    @FXML
+    private void cancelButtonOnClick(ActionEvent event) {
+    }
+
+    @FXML
+    private void reviewButtonOnClick(ActionEvent event) throws IOException {
+        Product p = new Product();//Creating product for test
+        p.setName("Mahir");
+        
+        //Taking a review
+        Review r = new Review();
+        r.setSender(current.getUsername());
+        r.takeReview(p);//This opens the review popup
+        
     }
 
     

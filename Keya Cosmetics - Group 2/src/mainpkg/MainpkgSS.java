@@ -36,16 +36,6 @@ public class MainpkgSS {
         Scene scene = Main.getMainStage().getScene();
         scene.setRoot(root);
     }
-    public void takeReviewScene(Stage stage) throws IOException{
-        reviewStage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("TakeReview.fxml"));
-        stage.setTitle("Review");
-        Scene scene = new Scene(root);
-        stage.show();
-    }
-    public static Stage getReviewStage(){
-        return reviewStage;
-    }
     
     
 }

@@ -2,11 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package mainpkg;
+package HasinMahir;
 
-import HasinMahir.Product;
-import HasinMahir.Review;
-import HasinMahir.User;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import mainpkg.MainpkgSS;
 
 /**
  * FXML Controller class
@@ -25,38 +24,36 @@ import javafx.scene.control.TextField;
 public class TakeReviewController implements Initializable {
 
     @FXML
-    private Button reviewButton;
-    @FXML
-    private TextField ratingTextField;
-    @FXML
     private TextArea reviewTextField;
     @FXML
+    private Button reviewButton;
+    @FXML
     private Label reviewingLabel;
+    @FXML
+    private TextField ratingTextField;
 
     /**
      * Initializes the controller class.
      */
-    Object subject;
+    Review review;
     MainpkgSS ss;
+    Stage stage;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        //Setting the subject
-        try{
-            subject = (Product)MainpkgSS.getReviewStage().getUserData();
-            System.out.println("Reviewing product");
-        }
-        catch(Exception e){
-            subject = (User)MainpkgSS.getReviewStage().getUserData();
-            System.out.println("Reviewing user");
-        }
+        stage = Review.getStage();
+        review = (Review)stage.getUserData();
+       
+        
+        reviewingLabel.setText(reviewingLabel.getText()+" "+review.getSubject());
        
     }    
 
     @FXML
     private void reviewButtonOnClick(ActionEvent event) {
-        Review review;
+       review.setRating(Integer.parseInt(ratingTextField.getText()));
+       review.setReview(reviewTextField.getText());
+       stage.close();
     }
-    
     
 }

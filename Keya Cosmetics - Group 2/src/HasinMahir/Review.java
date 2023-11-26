@@ -5,6 +5,9 @@
 package HasinMahir;
 
 import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mainpkg.MainpkgSS;
 
@@ -14,21 +17,26 @@ import mainpkg.MainpkgSS;
  */
 public class Review {
     private String sender,subject, review;
+    private int rating;
+    private static Stage stage;
 
     public Review() {
         this.sender = null;
         this.review = null;
         this.subject = null;
+        this.rating = -1;
     }
     public Review(User sender) {
         this.sender = sender.getUsername();
         this.review = null;
         this.subject = null;
+        this.rating = -1;
     }
     public Review(User sender,String subject) {
         this.sender = sender.getUsername();
         this.review = null;
         this.subject = null;
+        this.rating = -1;
     }
 
     public String getSender() {
@@ -46,6 +54,10 @@ public class Review {
         this.sender = sender;
     }
 
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
 
     public void setReview(String review) {
         this.review = review;
@@ -53,12 +65,40 @@ public class Review {
     public void setSubject(String subject) {
         this.subject = subject;
     }
-    public void takeReview(Product product) throws IOException{
+
+    public int getRating() {
+        return rating;
+    }
+
+    public static Stage getStage() {
+        return stage;
+    }
+    
+    
+    public boolean takeReview(Product product) throws IOException{
         //Set the userdata to takereview scene
+        this.subject = product.getName();
+        //Setting up the new stage and passing data
         MainpkgSS ss = new MainpkgSS();
-        Stage reviewStage = new Stage();
-        reviewStage.setUserData(product);
-        ss.takeReviewScene(reviewStage);
+        stage = new Stage();
+        stage.setUserData(this);
+        //Scene popping 
+        Parent root = FXMLLoader.load(getClass().getResource("TakeReview.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Keya Cosmetics: Login");
+        stage.showAndWait();
+        
+        //Popup closed
+        Review review = (Review) stage.getUserData();
+        if (review.getRating()==-1){//Taking review failed
+            return false;
+        }
+        else{
+            this.setRating(review.getRating());
+            this.setReview(review.getReview());
+            return true;
+        }
     }
     
     

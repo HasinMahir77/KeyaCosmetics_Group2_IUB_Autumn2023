@@ -32,10 +32,7 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        
-        LocalDate d = LocalDate.now();
-        System.out.println(d);
-        
+
         mainStage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("LoginSignupScene.fxml"));
         Scene scene = new Scene(root);
