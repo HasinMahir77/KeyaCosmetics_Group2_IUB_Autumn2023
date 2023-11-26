@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -46,7 +45,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="119.0" prefWidth="121.0" spacing="2.0">
                <children>
-                  <Label alignment="TOP_CENTER" onMouseClicked="#switchToOrderScene" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" prefHeight="19.0" prefWidth="121.0" text="Manage Orders">
+                  <Label alignment="TOP_CENTER" onMouseClicked="#switchToOrderSceneFromLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" prefHeight="19.0" prefWidth="121.0" text="Manage Orders">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -123,8 +122,8 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="198.0" spacing="10.0">
                      <children>
-                        <Label text="Password" />
-                        <PasswordField fx:id="passwordTextField" disable="true" />
+                        <Label text="Phone number" />
+                        <TextField fx:id="phoneTextField" disable="true" prefHeight="25.0" prefWidth="175.0" />
                      </children>
                   </VBox>
                </children>
@@ -137,7 +136,6 @@
                   <VBox alignment="CENTER" prefHeight="147.0" prefWidth="188.0" spacing="10.0">
                      <children>
                         <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#editProfileButtonOnClick" prefHeight="42.0" prefWidth="159.0" text="Edit Profile" />
-                        <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePasswordButtonOnClick" prefHeight="42.0" prefWidth="159.0" text="Change Password" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -153,12 +151,6 @@
                </padding>
                <children>
                   <VBox prefHeight="74.0" prefWidth="198.0" />
-                  <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="198.0" spacing="10.0">
-                     <children>
-                        <Label text="Phone number" />
-                        <TextField fx:id="phoneTextField" disable="true" prefHeight="25.0" prefWidth="175.0" />
-                     </children>
-                  </VBox>
                   <Label text="Address" />
                   <TextArea fx:id="addressTextArea" disable="true" prefHeight="129.0" prefWidth="208.0" />
                </children>

@@ -4,11 +4,22 @@
  */
 package HasinMahir.customerScenes;
 
+import HasinMahir.Cart;
 import HasinMahir.Customer;
 import HasinMahir.Order;
+import HasinMahir.Order.Status;
+import HasinMahir.Product;
+import HasinMahir.ProductOrder;
+import HasinMahir.Review;
+import static HasinMahir.customerScenes.CustomerShopSceneController.current;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,12 +29,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import mainpkg.Main;
-import mainpkg.MainpkgSwitcher;
+import mainpkg.MainpkgSS;
 
 /**
  * FXML Controller class
@@ -42,8 +55,6 @@ public class CustomerOrderSceneController implements Initializable {
     private MenuItem ordersMenuItem;
     @FXML
     private MenuItem logoutMenuItem;
-    @FXML
-    private Button cartButton1;
     @FXML
     private Button cartButton;
     @FXML
@@ -72,6 +83,18 @@ public class CustomerOrderSceneController implements Initializable {
     Order selectedOrder;
     @FXML
     private Label orderLabel;
+    @FXML
+    private TableColumn<Order, String> idColumn;
+    @FXML
+    private TableColumn<Order, Status> statusColumn;
+    @FXML
+    private TableColumn<Order, Float> priceColumn;
+    @FXML
+    private Button cancelButton;
+    @FXML
+    private Button reviewButton;
+    @FXML
+    private Button returnButton;
 
     /**
      * Initializes the controller class.
@@ -84,6 +107,14 @@ public class CustomerOrderSceneController implements Initializable {
         // Getting user data
         Customer current = (Customer)Main.getMainStage().getUserData();
         userMenu.setText(current.getUsername()+" ↓");
+         
+        //TableView
+        //orderTableView.setPlaceholder("No orders placed yet");
+        idColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Order, Float>("price"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<Order, Status>("status"));
+        
+        this.updateOrderTable();
     }    
     
     
@@ -99,7 +130,7 @@ public class CustomerOrderSceneController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
-        MainpkgSwitcher logout = new MainpkgSwitcher();
+        MainpkgSS logout = new MainpkgSS();
         logout.switchtoLoginScene();
     }
 
@@ -161,6 +192,12 @@ public class CustomerOrderSceneController implements Initializable {
 
     @FXML
     private void returnButtonOnClick(ActionEvent event) {
+        try{
+            this.selectedOrder.setStatus(Status.RETURNED);
+        }
+        catch(Exception e){
+            System.out.println(e.toString()+" from customerOrderScene");
+        }
     }
 
     @FXML
@@ -174,6 +211,32 @@ public class CustomerOrderSceneController implements Initializable {
     private void switchToCartScene(MouseEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToCartScene();
+    }
+    private void updateOrderTable(){
+        ObservableList<Order> orderList = FXCollections.observableArrayList();
+        orderList.addAll(Order.getOrderList());
+        orderTableView.getItems().clear();
+        for (Order o: orderList){
+            if (o.getCustomerUserName().equals(current.getUsername())){
+                orderTableView.getItems().add(o);
+            }
+        }
+    }
+
+    @FXML
+    private void cancelButtonOnClick(ActionEvent event) {
+    }
+
+    @FXML
+    private void reviewButtonOnClick(ActionEvent event) throws IOException {
+        Customer p = new Customer();//Creating product for test
+        p.setUsername("Mahir");
+        
+        //Taking a review
+        Review r = new Review();
+        r.setSender(current.getUsername());
+        r.takeReview(p);//This opens the review popup
+        
     }
 
     

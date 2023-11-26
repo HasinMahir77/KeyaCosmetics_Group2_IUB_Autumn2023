@@ -162,9 +162,9 @@
          <center>
             <TableView fx:id="orderTableView" onMouseClicked="#updateSelectedOrder" prefHeight="348.0" prefWidth="328.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn prefWidth="75.0" text="ID" />
-                  <TableColumn prefWidth="120.33331298828125" text="Status" />
-                  <TableColumn prefWidth="94.0" text="Total" />
+                <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="priceColumn" prefWidth="94.0" text="Price" />
+                  <TableColumn fx:id="statusColumn" prefWidth="120.33331298828125" text="Status" />
               </columns>
             </TableView>
          </center>
@@ -176,12 +176,21 @@
             </VBox>
          </right>
          <bottom>
-            <HBox prefHeight="45.0" prefWidth="594.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="594.0" spacing="5.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#returnButtonOnClick" prefHeight="25.0" prefWidth="71.0" text="Return" />
+                  <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" onAction="#cancelButtonOnClick" prefHeight="25.0" prefWidth="71.0" text="Cancel" />
+                  <Button fx:id="reviewButton" mnemonicParsing="false" onAction="#reviewButtonOnClick" prefHeight="25.0" prefWidth="71.0" text="Review" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="425.0" spacing="5.0">
+                     <children>
+                        <Button fx:id="returnButton" disable="true" mnemonicParsing="false" onAction="#returnButtonOnClick" prefHeight="25.0" prefWidth="71.0" text="Return" />
+                     </children>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </HBox>
                </children>
                <padding>
-                  <Insets top="5.0" />
+                  <Insets bottom="5.0" right="5.0" top="5.0" />
                </padding>
             </HBox>
          </bottom>

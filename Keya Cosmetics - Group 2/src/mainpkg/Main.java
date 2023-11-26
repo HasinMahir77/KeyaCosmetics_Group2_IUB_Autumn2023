@@ -6,6 +6,7 @@ package mainpkg;
 
 import Borhan_Islam.Accountant;
 import HasinMahir.Customer;
+import HasinMahir.DeliveryMan;
 import HasinMahir.User;
 import NadimHR_Receptionist.Hr;
 import java.io.File;
@@ -31,10 +32,7 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        
-        LocalDate d = LocalDate.now();
-        System.out.println(d);
-        
+
         mainStage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("LoginSignupScene.fxml"));
         Scene scene = new Scene(root);
@@ -112,6 +110,23 @@ public class Main extends Application {
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
                     User user = new Customer("User","User","User","User","User","11111");
+                    oos.writeObject(user);
+                    System.out.println("File "+userFile.getName()+" not found.");
+                    System.out.println("Initialized");
+                }
+                
+                catch(Exception e){
+                    System.out.println(e);
+                }
+              }  
+                //Delivery Man
+                else if (userFile.getName().equals("DeliveryManList.bin")){
+                try(FileOutputStream fos = new FileOutputStream(userFile);
+                        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                    User user = new DeliveryMan("User","User","User","User","01824441272");
+                    user.setDob(LocalDate.now());
+                    user.setDoj(LocalDate.now());
+                    user.setNid("2152328");
                     oos.writeObject(user);
                     System.out.println("File "+userFile.getName()+" not found.");
                     System.out.println("Initialized");
