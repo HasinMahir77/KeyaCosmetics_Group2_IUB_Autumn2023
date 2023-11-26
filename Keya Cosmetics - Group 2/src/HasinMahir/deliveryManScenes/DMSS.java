@@ -29,4 +29,7 @@ public class DMSS {
     public void switchToDashboard() throws IOException{
         this.switchScene("DeliveryManDashboard.fxml", "Dashboard");
     }
+    public void switchToProfile() throws IOException{
+        this.switchScene("DeliveryManProfile.fxml", "Profile");
+    }
 }

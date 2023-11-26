@@ -8,6 +8,7 @@ import HasinMahir.DeliveryMan;
 import HasinMahir.Order;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -55,8 +59,6 @@ public class DeliveryManDashboardController implements Initializable {
     @FXML
     private Button paymentsButton;
     @FXML
-    private Button accountsButton;
-    @FXML
     private Button logoutButton;
 
     /**
@@ -68,19 +70,36 @@ public class DeliveryManDashboardController implements Initializable {
     @FXML
     private Label nameLabel;
     @FXML
-    private Label odersAcceptedLabel;
-    @FXML
     private Label balanceLabel;
     @FXML
     private Label dojLabel;
+    @FXML
+    private Label dobLabel;
+    @FXML
+    private Label phoneLabel;
+    @FXML
+    private Button profileButton;
+    @FXML
+    private MenuBar userMenuBar;
+    @FXML
+    private Menu userMenu;
+    @FXML
+    private MenuItem accountMenuItem;
+    @FXML
+    private MenuItem ordersMenuItem;
+    @FXML
+    private MenuItem logoutMenuItem;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         current = (DeliveryMan)Main.getUserData(); //Initialized user 
         
+        
         nameLabel.setText(nameLabel.getText()+" "+current.getFirstName()+" "+current.getLastName());
         dojLabel.setText(dojLabel.getText()+" "+current.getDoj().toString());
-        dobLabel.setText(dojLabel.getText()+" "+current.getDob().toString());
+        phoneLabel.setText(phoneLabel.getText()+" "+current.getPhone().toString());
+        current.setDob(LocalDate.now());
+        dobLabel.setText(dobLabel.getText()+" "+current.getDob().toString());
         balanceLabel.setText(balanceLabel.getText()+" "+current.getBalance());
         //TableView
         ObservableList<Order> orderList = FXCollections.observableArrayList();
@@ -104,9 +123,6 @@ public class DeliveryManDashboardController implements Initializable {
     private void paymentsButtonOnClick(ActionEvent event) {
     }
 
-    @FXML
-    private void accountsButtonOnClick(ActionEvent event) {
-    }
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
@@ -123,6 +139,26 @@ public class DeliveryManDashboardController implements Initializable {
     @FXML
     private void darkenGreyButton(MouseEvent event) {
         ((Button)event.getSource()).setStyle("-fx-background-color: #d0d0db");
+    }
+
+    @FXML
+    private void profileButtonOnClick(ActionEvent event) throws IOException {
+        DMSS ss = new DMSS();
+        ss.switchToProfile();;
+    }
+
+    @FXML
+    private void switchToAccountScene(ActionEvent event) {
+    }
+
+    @FXML
+    private void lightenUserMenuBar(MouseEvent event) {
+        userMenu.setStyle("-fx-background-color: #affad3");
+    }
+
+    @FXML
+    private void darkenUserMenuBar(MouseEvent event) {
+        userMenu.setStyle("-fx-background-color: #79edad");
     }
     
 }

@@ -126,7 +126,10 @@ public class Main extends Application {
                 else if (userFile.getName().equals("DeliveryManList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                    User user = new DeliveryMan("User","User","User","User","11111");
+                    User user = new DeliveryMan("User","User","User","User","01824441272");
+                    user.setDob(LocalDate.now());
+                    user.setDoj(LocalDate.now());
+                    user.setNid("2152328");
                     oos.writeObject(user);
                     System.out.println("File "+userFile.getName()+" not found.");
                     System.out.println("Initialized");

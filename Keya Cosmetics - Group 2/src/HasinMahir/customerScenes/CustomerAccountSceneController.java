@@ -80,7 +80,6 @@ public class CustomerAccountSceneController implements Initializable {
     @FXML
     private Button editProfileButton;
     private PasswordField passwordTextField;
-    @FXML
     private Button changePasswordButton;
     @FXML
     private Label profileLabel;
@@ -215,7 +214,6 @@ public class CustomerAccountSceneController implements Initializable {
         }
     }
 
-    @FXML
     private void changePasswordButtonOnClick(ActionEvent event) {
         applyButton.setDisable(false);
         changePasswordButton.setDisable(true);

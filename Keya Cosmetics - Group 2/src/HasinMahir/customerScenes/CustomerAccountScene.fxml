@@ -136,7 +136,6 @@
                   <VBox alignment="CENTER" prefHeight="147.0" prefWidth="188.0" spacing="10.0">
                      <children>
                         <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#editProfileButtonOnClick" prefHeight="42.0" prefWidth="159.0" text="Edit Profile" />
-                        <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePasswordButtonOnClick" prefHeight="42.0" prefWidth="159.0" text="Change Password" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
