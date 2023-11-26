@@ -229,8 +229,8 @@ public class CustomerOrderSceneController implements Initializable {
 
     @FXML
     private void reviewButtonOnClick(ActionEvent event) throws IOException {
-        Product p = new Product();//Creating product for test
-        p.setName("Mahir");
+        Customer p = new Customer();//Creating product for test
+        p.setUsername("Mahir");
         
         //Taking a review
         Review r = new Review();

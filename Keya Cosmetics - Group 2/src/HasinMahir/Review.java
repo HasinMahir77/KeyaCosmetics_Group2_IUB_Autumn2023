@@ -100,6 +100,31 @@ public class Review {
             return true;
         }
     }
+    public boolean takeReview(User product) throws IOException{
+        //Set the userdata to takereview scene
+        this.subject = product.getUsername();
+        //Setting up the new stage and passing data
+        MainpkgSS ss = new MainpkgSS();
+        stage = new Stage();
+        stage.setUserData(this);
+        //Scene popping 
+        Parent root = FXMLLoader.load(getClass().getResource("TakeReview.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Keya Cosmetics: Login");
+        stage.showAndWait();
+        
+        //Popup closed
+        Review review = (Review) stage.getUserData();
+        if (review.getRating()==-1){//Taking review failed
+            return false;
+        }
+        else{
+            this.setRating(review.getRating());
+            this.setReview(review.getReview());
+            return true;
+        }
+    }
     
     
     
