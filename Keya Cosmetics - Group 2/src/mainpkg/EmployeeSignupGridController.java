@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -111,6 +112,18 @@ public class EmployeeSignupGridController implements Initializable {
             alert.show();
             return;
         }
+        //Validating DOB
+        
+        if (dobDatePicker.getValue()==null){
+            Alert a = new Alert(Alert.AlertType.ERROR,"Please enter your date of birth.");
+            a.show();
+            return;
+        }
+        else if (LocalDate.now().getYear()-dobDatePicker.getValue().getYear()<18){
+            Alert a = new Alert(Alert.AlertType.ERROR,"You must be at least 18 years old to register");
+            a.show();
+            return;
+        }
         
         // Assigning the correct User File
 
@@ -159,7 +172,7 @@ public class EmployeeSignupGridController implements Initializable {
         
         //---------------------Main SignUp
         
-        if (employeeComboBox.getValue().equals("Delivery Man")){  
+        if (employeeComboBox.getValue().equals("Product Manager")){  
            //TO DO 
                 
             }
@@ -195,7 +208,7 @@ public class EmployeeSignupGridController implements Initializable {
             try(FileOutputStream fos = new FileOutputStream(employeeFile,true);
                         ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
                     DeliveryMan newDM = new DeliveryMan(firstNameTextField.getText(),lastNameTextField.getText(),
-                usernameTextField.getText(), passwordTextField.getText());
+                usernameTextField.getText(), passwordTextField.getText(),phoneTextField.getText());
                     newDM.setDob(dobDatePicker.getValue());
                     oos.writeObject(newDM);
                     

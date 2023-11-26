@@ -21,7 +21,7 @@ public class TrackCampaignOnBudgetOnClickFXMLController implements Initializable
         ObservableList <Campaign> cmpList = AffiliateMarketer.GetCampaignList();
         for (int i = 0; i < cmpList.size(); i ++) {
             String ss = cmpList.get(i).getProductName() + ", " + cmpList.get(i).getInfluencerName();
-            list.add( new PieChart.Data(ss,cmpList.get(i).getBudget()));
+            list.add( new PieChart.Data(ss,cmpList.get(i).hashCode()));
         }
         pieChart.setData(list);
     }    

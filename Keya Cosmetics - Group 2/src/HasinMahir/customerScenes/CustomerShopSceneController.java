@@ -35,7 +35,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import mainpkg.MainpkgSwitcher;
+import mainpkg.MainpkgSS;
 import mainpkg.Main;
 
 /**
@@ -143,7 +143,7 @@ public class CustomerShopSceneController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
-        MainpkgSwitcher logout = new MainpkgSwitcher();
+        MainpkgSS logout = new MainpkgSS();
         logout.switchtoLoginScene();
     }
 

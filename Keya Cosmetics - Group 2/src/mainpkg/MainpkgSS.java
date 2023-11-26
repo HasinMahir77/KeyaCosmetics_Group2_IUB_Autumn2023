@@ -8,12 +8,16 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  *
  * @author hasin
  */
-public class MainpkgSwitcher {
+public class MainpkgSS {
+    
+    static Stage reviewStage;
+    
     public void switchScene(String fxml, String title) throws IOException{
         Main.getMainStage().setTitle(title);
         Parent root = FXMLLoader.load(getClass().getResource(fxml));

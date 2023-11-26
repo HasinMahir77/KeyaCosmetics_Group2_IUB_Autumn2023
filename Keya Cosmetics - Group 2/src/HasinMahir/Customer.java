@@ -22,9 +22,11 @@ public class Customer extends User implements Serializable, Deleteable {
     private Cart cart;
     private ArrayList<Order> orderHistory;
     private String address;
+    private float balance;
 
     public Customer() {
         this.del = false;
+        this.balance=0;
     }
 
     public Customer(String firstName, String lastName, String username, String password, String address, String phone) {
@@ -33,6 +35,7 @@ public class Customer extends User implements Serializable, Deleteable {
         this.address = address;
         this.phone = phone;
         this.del = false;
+        this.balance=0;
     }
 
     
@@ -93,7 +96,8 @@ public class Customer extends User implements Serializable, Deleteable {
        
         try{
             FileOutputStream temp = new FileOutputStream(oldCustomerList);
-            temp.close();
+            ObjectOutputStream temp2 = new ObjectOutputStream(temp);
+            temp2.close();
         }catch(Exception e){
             System.out.println(e);
         }
@@ -101,9 +105,9 @@ public class Customer extends User implements Serializable, Deleteable {
         try(FileOutputStream fos = new FileOutputStream(oldCustomerList);
         ObjectOutputStream oos = new ObjectOutputStream(fos);){
             oos.writeObject(this);
+            System.out.println("Current customer written. Other customers next");
         } catch(Exception e){
             System.out.println(e.toString());
-            System.out.println("Only current customer written. Other customers next");
         }
         try(FileOutputStream fos = new FileOutputStream(oldCustomerList,true);
         ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
