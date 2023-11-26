@@ -9,13 +9,29 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 /**
  * FXML Controller class
  *
  * @author Nadimul
  */
-public class ReceptionistMainDashboardController implements Initializable {
+public class EmployeeAttendanceController implements Initializable {
+
+    @FXML
+    private ComboBox<?> positionComboBox;
+    @FXML
+    private ComboBox<?> nameComboBox;
+    @FXML
+    private TableView<?> tableView;
+    @FXML
+    private TableColumn<?, ?> nameCol;
+    @FXML
+    private TableColumn<?, ?> positiontCol;
+    @FXML
+    private TableColumn<?, ?> TimeCol;
 
     /**
      * Initializes the controller class.
@@ -26,19 +42,15 @@ public class ReceptionistMainDashboardController implements Initializable {
     }    
 
     @FXML
-    private void employeeattendenceOnclick(ActionEvent event) {
+    private void AddButtonOnClick(ActionEvent event) {
     }
 
     @FXML
-    private void OutsidersattendenceOnclick(ActionEvent event) {
+    private void createButtonOnClick(ActionEvent event) {
     }
 
     @FXML
-    private void EmployeeovertimeOnclick(ActionEvent event) {
-    }
-
-    @FXML
-    private void createappointmentswithstaffsOnclick(ActionEvent event) {
+    private void saveAsPDF(ActionEvent event) {
     }
     
 }
