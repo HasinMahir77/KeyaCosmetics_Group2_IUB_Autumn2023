@@ -25,7 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import mainpkg.Main;
-import mainpkg.MainpkgSwitcher;
+import mainpkg.MainpkgSS;
 
 /**
  *
@@ -137,7 +137,7 @@ public class CustomerSecuritySceneController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
-        MainpkgSwitcher logout = new MainpkgSwitcher();
+        MainpkgSS logout = new MainpkgSS();
         logout.switchtoLoginScene();
     }
 
