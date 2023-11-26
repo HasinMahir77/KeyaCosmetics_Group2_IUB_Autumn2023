@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Amit_AffiliateMarketer.GenerateCouponCodeFXMLController">
+   <children>
+      <Label layoutX="193.0" layoutY="73.0" text="Select Percentage:" />
+      <ComboBox fx:id="percentageCombobox" layoutX="300.0" layoutY="69.0" prefWidth="150.0" />
+      <Button layoutX="274.0" layoutY="140.0" mnemonicParsing="false" onMouseClicked="#generateCouponCodeButtonOnClick" text="Generate" />
+   </children>
+</AnchorPane>

@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import mainpkg.Main;
 
 /**
@@ -16,42 +18,105 @@ import mainpkg.Main;
  */
 public class Cart implements Serializable {
     
-    protected Hashtable<Product,Integer> productList = new Hashtable<Product,Integer>();
-
-    public Hashtable<Product,Integer> getProductList() {
-        return productList;
+    protected ArrayList<ProductOrder> productOrderList;
+    int price; 
+    
+    public Cart(){
+        this.productOrderList = new ArrayList<ProductOrder>();
+        
     }
 
-    public void setProductList(Hashtable<Product,Integer> productList) {
-        this.productList = productList;
+    public ArrayList<ProductOrder> getProductOrderList() {
+        return productOrderList;
     }
-    public void addProduct(Product product, int quantity){
-        productList.put(product, quantity);
-        Customer c = (Customer)Main.getMainStage().getUserData();
-        c.saveInstance();
+
+    public void setProductOrderList(ArrayList<ProductOrder> productOrderList) {
+        this.productOrderList = productOrderList;
     }
-    public void removeProduct(Product product){
-        this.productList.remove(product);
-        Customer c = (Customer)Main.getMainStage().getUserData();
-        c.saveInstance();
+
+    public int getPrice() {
+        return price;
     }
     
-    public void removeProduct(Product product, int quantity){
-        int currentQuantity = this.productList.get(product);
-        if ((currentQuantity-quantity)<=0){
-            this.removeProduct(product);
+    public void add(Product product, int quantity){
+        //Converting to ProductOrder
+        ProductOrder productOder = product.toProductOrder(quantity);
+        
+        //Checking for duplicate
+        
+        for(ProductOrder p: this.productOrderList){
+            if (product.getName().equals(p.getName())){
+                p.setQuantity(p.getQuantity()+quantity);
+                return;
+            }  
+        }
+        
+        this.productOrderList.add(productOder);
+    }
+    public void add(ProductOrder product,int quantity){
+        //Converting to ProductOrder
+        ProductOrder productOder = product.toProductOrder(quantity);
+        
+        //Checking for duplicate
+        
+        for(ProductOrder p: this.productOrderList){
+            if (product.getName().equals(p.getName())){
+                p.setQuantity(p.getQuantity()+quantity);
+                return;
+            }  
+        }
+        
+        this.productOrderList.add(productOder);
+    }
+    
+    public void remove(Product product, int quantity){
+        //Checking if the product exists in cart
+        ProductOrder target=null;
+        boolean exists = false;
+        int newQuantity = 1; //Arbitrary value to check if item needs removal
+        
+        for(ProductOrder p: this.productOrderList){
+            if (product.getName().equals(p.getName())){
+                exists = true;
+                target = p;
+                newQuantity = target.getQuantity()-quantity;
+            }  
+        }
+        if (!exists){
+            System.out.println("Doesn't exist in cart");
+        }
+        else if(newQuantity<=0){
+            this.productOrderList.remove(target);
         }
         else{
-            this.productList.replace(product,currentQuantity-quantity);
+            target.setQuantity(newQuantity);
         }
-        Customer c = (Customer)Main.getMainStage().getUserData();
-        c.saveInstance();
+        
     }
     
- 
-
-   
-    
+    public void remove(ProductOrder product){
+        //Checking if the product exists in cart
+        ProductOrder target=null;
+        boolean exists = false;
+        int newQuantity = 1; //Arbitrary value to check if item needs removal
+        
+        for(ProductOrder p: this.productOrderList){
+            if (product.getName().equals(p.getName())){
+                exists = true;
+                target = p;
+                newQuantity = target.getQuantity()-product.getQuantity();
+            }  
+        }
+        if (!exists){
+            System.out.println("Doesn't exist in cart");
+        }
+        else if(newQuantity<=0){
+            this.productOrderList.remove(target);
+        }
+        else{
+            target.setQuantity(newQuantity);
+        }
+    }
     
     
 }

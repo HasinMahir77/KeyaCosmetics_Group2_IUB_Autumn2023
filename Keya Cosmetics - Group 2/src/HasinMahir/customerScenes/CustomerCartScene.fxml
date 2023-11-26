@@ -37,7 +37,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="voucherLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="Vouchers">
+                  <Label fx:id="securityLabel" onMouseClicked="#switchToSecurityScene" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="Security">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -46,7 +46,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="119.0" prefWidth="121.0" spacing="2.0">
                <children>
-                  <Label alignment="TOP_CENTER" prefHeight="19.0" prefWidth="121.0" text="Manage Orders">
+                  <Label alignment="TOP_CENTER" onMouseClicked="#switchToOrderSceneFromLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" prefHeight="19.0" prefWidth="121.0" text="Manage Orders">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -87,30 +87,46 @@
       </VBox>
    </left>
    <right>
-      <VBox alignment="CENTER" prefHeight="393.0" prefWidth="259.0" spacing="5.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="393.0" prefWidth="245.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Cart" />
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: #eef0f5;">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="225.0" spacing="10.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: #eef0f5;">
                <children>
                   <HBox alignment="CENTER" prefHeight="51.0" prefWidth="256.0" spacing="10.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Quantity:" />
-                        <TextField fx:id="quantityTextField" prefHeight="25.0" prefWidth="92.0" />
-                        <Button fx:id="minusButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="-" />
-                        <Button fx:id="plusButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="+" />
+                        <TextField fx:id="quantityTextField" prefHeight="25.0" prefWidth="58.0" />
+                        <Button fx:id="minusButton" mnemonicParsing="false" onAction="#minusButtonOnClick" prefHeight="25.0" prefWidth="27.0" text="-" />
+                        <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusButtonOnClick" prefHeight="25.0" prefWidth="27.0" text="+" />
                      </children>
                   </HBox>
-                  <Button fx:id="addButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 4;" text="Add" />
-                  <Button fx:id="removeButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 4;" text="Remove" />
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#addButtonOnClick" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 4;" text="Add" />
+                  <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removeButtonOnClick" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 4;" text="Remove" />
                </children>
             </VBox>
+            <Label text="Total (Including Vat)">
+               <font>
+                  <Font size="12.5" />
+               </font>
+            </Label>
+            <Label fx:id="grandTotalLabel" text="Total+Vat">
+               <font>
+                  <Font name="System Bold" size="12.5" />
+               </font>
+            </Label>
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />
          </padding></VBox>
    </right>
    <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="orderButton" mnemonicParsing="false" onAction="#orderButtonOnClick" prefHeight="32.0" prefWidth="99.0" style="-fx-background-radius: 4;" text="Place Order" />
+         </children>
+         <padding>
+            <Insets right="70.0" top="10.0" />
+         </padding></HBox>
    </bottom>
    <top>
       <GridPane prefHeight="47.0" prefWidth="960.0" style="-fx-background-color: #affad3;" BorderPane.alignment="CENTER">
@@ -125,7 +141,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
                <children>
-                  <MenuBar fx:id="userMenuBar" onMouseEntered="#darkenUserMenuBar" onMouseExited="#lightenUserMenuBar" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #affad3;">
+                  <MenuBar fx:id="userMenuBar" onMouseEntered="#darkenUserMenuBar" onMouseExited="#lightenUserMenuBar" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #affad3;">
                      <menus>
                         <Menu fx:id="userMenu" mnemonicParsing="false" text="User ↓">
                            <items>
@@ -137,7 +153,7 @@
                      </menus>
                   </MenuBar>
                   <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" smooth="false" startX="-100.0" stroke="#a1a1a1" />
-                  <Button fx:id="cartButton1" mnemonicParsing="false" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #affad3;" text="Initiate Return" />
+                  <Button mnemonicParsing="false" onAction="#switchToOrderScene" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #affad3;" text="Orders" />
                   <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" layoutX="412.0" layoutY="21.0" smooth="false" startX="-100.0" stroke="#a1a1a1" visible="false" />
                   <Button fx:id="cartButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="66.0" style="-fx-background-color: #79edad;" text="🛒 Cart" />
                </children>
@@ -172,13 +188,14 @@
       </GridPane>
    </top>
    <center>
-      <TableView fx:id="cartTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="cartTableView" onMouseClicked="#updateSelectedProduct" prefHeight="393.0" prefWidth="592.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Name" />
+          <TableColumn fx:id="nameColumn" prefWidth="176.0" text="Name" />
           <TableColumn minWidth="0.0" prefWidth="0.0" text="Category" />
-            <TableColumn fx:id="quantityColumn" prefWidth="130.6666259765625" text="Quantity" />
-            <TableColumn fx:id="unitPriceColumn" prefWidth="165.0" text="Unit Price(BDT)" />
-            <TableColumn fx:id="totalPriceColumn" prefWidth="132.0" text="Total Price" />
+            <TableColumn fx:id="unitPriceColumn" prefWidth="137.66665649414062" text="Unit Price" />
+            <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="95.0" text="Quantity" />
+            <TableColumn fx:id="totalPriceColumn" prefWidth="100.66668701171875" text="Total Price" />
+            <TableColumn fx:id="vatColumn" prefWidth="96.33331298828125" text="Vat(BDT)" />
         </columns>
       </TableView>
    </center>

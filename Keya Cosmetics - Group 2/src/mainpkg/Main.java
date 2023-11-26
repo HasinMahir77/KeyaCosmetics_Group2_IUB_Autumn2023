@@ -4,8 +4,10 @@
  */
 package mainpkg;
 
+import Borhan_Islam.Accountant;
 import HasinMahir.Customer;
 import HasinMahir.User;
+import NadimHR_Receptionist.Hr;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -53,15 +55,19 @@ public class Main extends Application {
         ArrayList<File> userFiles = new ArrayList<File>();
         
         userFiles.add(new File("CustomerList.bin"));
-        userFiles.add(new File("ProductManagerList.bin"));
+        userFiles.add(new File("DeliveryManList.bin"));
         userFiles.add(new File("HRList.bin"));
         userFiles.add(new File("ReceptionistList.bin"));
+        userFiles.add(new File("AccountantList.bin"));
+        userFiles.add(new File("AffiliateMarketerList.bin"));
         
         
         //[Failsafe] Creating empty bin file if it doesn't exist
         
         for (File userFile: userFiles){
             if (!userFile.exists()){
+                
+                //Customer
                 if (userFile.getName().equals("CustomerList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
@@ -74,10 +80,11 @@ public class Main extends Application {
                     System.out.println(e);
                 }
               }
+                //HR
                 else if (userFile.getName().equals("HRList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                    User user = new Customer("User","User","HR","HR","User","123456");
+                    User user = new Hr("User","User","HR","HR");
                     oos.writeObject(user);
                     System.out.println("File "+userFile.getName()+" not found.");
                     System.out.println("Initialized");
@@ -86,6 +93,34 @@ public class Main extends Application {
                     System.out.println(e);
                 }
               }
+                //Accountant
+                else if (userFile.getName().equals("AccountantList.bin")){
+                try(FileOutputStream fos = new FileOutputStream(userFile);
+                        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                    User user = new Accountant("User","User","acc","acc");
+                    oos.writeObject(user);
+                    System.out.println("File "+userFile.getName()+" not found.");
+                    System.out.println("Initialized");
+                }
+                
+                catch(Exception e){
+                    System.out.println(e);
+                }
+              }
+                //Affiliate Marketer
+                else if (userFile.getName().equals("AffiliateMarketerList.bin")){
+                try(FileOutputStream fos = new FileOutputStream(userFile);
+                        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                    User user = new Customer("User","User","User","User","User","11111");
+                    oos.writeObject(user);
+                    System.out.println("File "+userFile.getName()+" not found.");
+                    System.out.println("Initialized");
+                }
+                
+                catch(Exception e){
+                    System.out.println(e);
+                }
+              }  
                 
             }
             
