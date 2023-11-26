@@ -2,8 +2,11 @@
 package Amit_AffiliateMarketer;
 
 import HasinMahir.Product;
+import java.io.Serializable;
 
-public class ProductReview {
+public class ProductReview implements Serializable { 
+    
+   
     private Product product;
     private String review;
 

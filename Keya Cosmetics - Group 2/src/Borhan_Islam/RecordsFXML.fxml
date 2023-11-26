@@ -59,6 +59,5 @@
             <Image url="@../images/keyaLogo.png" />
          </image>
       </ImageView>
-      <Button layoutX="806.0" layoutY="38.0" mnemonicParsing="false" onAction="#recordsToDashboardButton" text="Go Back to Dashboard" />
    </children>
 </AnchorPane>

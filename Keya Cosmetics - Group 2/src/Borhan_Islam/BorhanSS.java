@@ -5,10 +5,14 @@
 package Borhan_Islam;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import mainpkg.LoginSignupSceneController;
 import mainpkg.Main;
 
 /**
@@ -23,10 +27,9 @@ public class BorhanSS {
     public void switchScene(String fxml, String title) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource(fxml));
         Stage mainStage = Main.getMainStage();
-        mainStage.setTitle("Keya Cosmetics: "+title);
+        mainStage.setTitle("Keya: "+title);
         Scene scene = Main.getMainStage().getScene();
         scene.setRoot(root);
-        
     }
     public void recordsOnButtonClicked() throws IOException {
         this.switchScene("RecordsFXML.fxml", "Records");
@@ -41,7 +44,7 @@ public class BorhanSS {
         this.switchScene("TransactionFXML.fxml", "");
     }
     public void profileOnButtonClicked() throws IOException {
-        this.switchScene("ProfileFXML.fxml", "Profile");
+        this.switchScene("ProfileFXML.fxml", "");
     }
 //    public void logoutOnButtonClicked() throws IOException {
 //        this.switchScene("LoginGrid.fxml", "");
@@ -54,12 +57,6 @@ public class BorhanSS {
     }
     public void expenseControlSysOnButtonClicked() throws IOException {
         this.switchScene("ExpenseControlSysFXML.fxml", "");
-    }
-    public void goBackToDashboardButton() throws IOException {
-        this.switchScene("AccountantDashboardFXML.fxml", "");
-    }
-    public void recordsToDashboardButton() throws IOException {
-        this.switchScene("AccountantDashboardFXML.fxml", "");
     }
   
 }

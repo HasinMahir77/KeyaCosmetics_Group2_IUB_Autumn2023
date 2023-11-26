@@ -4,7 +4,6 @@
  */
 package Borhan_Islam;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -47,13 +46,6 @@ public class RecordsFXMLController implements Initializable {
 
     @FXML
     private void searchTextfieldOnEnterPressed(ActionEvent event) {
-    }
-
-    @FXML
-    private void recordsToDashboardButton(ActionEvent event) throws IOException {
-        BorhanSS ss = new BorhanSS();
-        ss.recordsToDashboardButton();    
-    
     }
     
 }
