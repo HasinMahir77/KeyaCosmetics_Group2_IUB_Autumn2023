@@ -16,6 +16,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class AffiliateMarketer extends User implements Serializable {
+
+    public AffiliateMarketer(String firstName, String lastName, String username, String password) {
+        super(firstName, lastName, username, password);
+    }
+    
+    
     
     public static void AddNewReview(ProductReview pr) {
         File f = null;

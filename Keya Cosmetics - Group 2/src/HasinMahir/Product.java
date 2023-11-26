@@ -19,6 +19,7 @@ public class Product implements Serializable {
     protected String category;
     protected float price;
     protected int vatRate;
+    protected Review review;
     public enum Category{BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,SHAMPOO,DETERGENT}
 
     public Product(){ 

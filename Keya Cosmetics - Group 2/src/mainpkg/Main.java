@@ -4,6 +4,7 @@
  */
 package mainpkg;
 
+import Amit_AffiliateMarketer.AffiliateMarketer;
 import Borhan_Islam.Accountant;
 import HasinMahir.Customer;
 import HasinMahir.DeliveryMan;
@@ -109,7 +110,7 @@ public class Main extends Application {
                 else if (userFile.getName().equals("AffiliateMarketerList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                    User user = new Customer("User","User","User","User","User","11111");
+                    User user = new AffiliateMarketer("User","User","User","User");
                     oos.writeObject(user);
                     System.out.println("File "+userFile.getName()+" not found.");
                     System.out.println("Initialized");
