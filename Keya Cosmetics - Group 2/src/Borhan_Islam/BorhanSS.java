@@ -61,5 +61,8 @@ public class BorhanSS {
     public void recordsToDashboardButton() throws IOException {
         this.switchScene("AccountantDashboardFXML.fxml", "");
     }
+    public void dashboardMenuButton() throws IOException {
+        this.switchScene("AccountantDashboardFXML.fxml", "");
+    }
   
 }

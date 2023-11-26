@@ -17,20 +17,10 @@
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="960.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
+          <Menu mnemonicParsing="false" text="Go To ↓">
+               <items>
+              <MenuItem fx:id="recordsToDashboardButton" mnemonicParsing="false" text="Dashboard" />
+               </items>
           </Menu>
         </menus>
       </MenuBar>
@@ -59,6 +49,5 @@
             <Image url="@../images/keyaLogo.png" />
          </image>
       </ImageView>
-      <Button layoutX="806.0" layoutY="38.0" mnemonicParsing="false" onAction="#recordsToDashboardButton" text="Go Back to Dashboard" />
    </children>
 </AnchorPane>

@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
@@ -24,6 +25,8 @@ public class RecordsFXMLController implements Initializable {
     private TableView<?> recordsTableView;
     @FXML
     private TextField searchTextfield;
+    @FXML
+    private MenuItem recordsToDashboardButton;
 
     /**
      * Initializes the controller class.
@@ -49,7 +52,6 @@ public class RecordsFXMLController implements Initializable {
     private void searchTextfieldOnEnterPressed(ActionEvent event) {
     }
 
-    @FXML
     private void recordsToDashboardButton(ActionEvent event) throws IOException {
         BorhanSS ss = new BorhanSS();
         ss.recordsToDashboardButton();    
