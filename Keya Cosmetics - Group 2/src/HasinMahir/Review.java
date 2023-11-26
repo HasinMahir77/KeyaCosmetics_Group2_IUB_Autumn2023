@@ -4,6 +4,10 @@
  */
 package HasinMahir;
 
+import java.io.IOException;
+import javafx.stage.Stage;
+import mainpkg.MainpkgSS;
+
 /**
  *
  * @author hasin
@@ -49,8 +53,12 @@ public class Review {
     public void setSubject(String subject) {
         this.subject = subject;
     }
-    public void takeReview(User user){
-        
+    public void takeReview(Product product) throws IOException{
+        //Set the userdata to takereview scene
+        MainpkgSS ss = new MainpkgSS();
+        Stage reviewStage = new Stage();
+        reviewStage.setUserData(product);
+        ss.takeReviewScene(reviewStage);
     }
     
     
