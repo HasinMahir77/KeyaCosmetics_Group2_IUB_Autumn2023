@@ -19,7 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import mainpkg.Main;
-import mainpkg.MainpkgSwitcher;
+import mainpkg.MainpkgSS;
 /**
  * FXML Controller class
  *
@@ -83,7 +83,7 @@ public class AccountantDashboardFXMLController implements Initializable {
 
     @FXML
     private void logoutOnButtonClicked(ActionEvent event) throws IOException {
-        MainpkgSwitcher logout = new MainpkgSwitcher();
+        MainpkgSS logout = new MainpkgSS();
         logout.switchtoLoginScene();
     }
 
