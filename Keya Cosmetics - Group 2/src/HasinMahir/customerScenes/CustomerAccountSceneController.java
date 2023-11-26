@@ -30,7 +30,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import mainpkg.MainpkgSS;
+import mainpkg.MainpkgSwitcher;
 import mainpkg.Main;
 
 /**
@@ -79,7 +79,9 @@ public class CustomerAccountSceneController implements Initializable {
     private Button applyButton;
     @FXML
     private Button editProfileButton;
+    @FXML
     private PasswordField passwordTextField;
+    @FXML
     private Button changePasswordButton;
     @FXML
     private Label profileLabel;
@@ -100,6 +102,7 @@ public class CustomerAccountSceneController implements Initializable {
         lastNameTextField.setText(current.getLastName());
         addressTextArea.setText(current.getAddress());
         phoneTextField.setText(current.getPhone());
+        passwordTextField.setText(current.getPassword());  
     }    
 
     @FXML
@@ -114,7 +117,7 @@ public class CustomerAccountSceneController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
-        MainpkgSS logout = new MainpkgSS();
+        MainpkgSwitcher logout = new MainpkgSwitcher();
         logout.switchtoLoginScene();
     }
 
@@ -214,6 +217,7 @@ public class CustomerAccountSceneController implements Initializable {
         }
     }
 
+    @FXML
     private void changePasswordButtonOnClick(ActionEvent event) {
         applyButton.setDisable(false);
         changePasswordButton.setDisable(true);
@@ -256,6 +260,7 @@ public class CustomerAccountSceneController implements Initializable {
         ss.switchToSecurityScene();
     }
 
+    @FXML
     private void switchToOrderScene(MouseEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToOrderScene();
@@ -263,12 +268,6 @@ public class CustomerAccountSceneController implements Initializable {
 
     @FXML
     private void switchToOrderScene(ActionEvent event) throws IOException {
-        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
-        ss.switchToOrderScene();
-    }
-
-    @FXML
-    private void switchToOrderSceneFromLabel(MouseEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToOrderScene();
     }

@@ -35,7 +35,7 @@ public class ReviewProductsFXMLController implements Initializable {
             while(true){
                 c = (Product) ois.readObject();
                 list.add(c);
-                selectProductCombobox.getItems().addAll(c.getName());
+                selectProductCombobox.getItems().add(c.getName());
             }
         }
         catch(RuntimeException e){

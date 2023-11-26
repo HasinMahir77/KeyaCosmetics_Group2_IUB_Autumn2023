@@ -10,8 +10,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import mainpkg.ObjectOutputStreamA;
 
@@ -20,26 +18,57 @@ import mainpkg.ObjectOutputStreamA;
  * @author hasin
  */
 public class Order implements Serializable {
-    public enum Status{PENDING,OUT_FOR_DELIVERY,DELIVERED,RETURNED,CANCELED};
+    public enum Status{PENDING,ACCEPTED,DELIVERED};
     
     Status status;
-    String customerUserName,deliveryManUserName,id,address;
+    String customerUserName,deliveryManUserName;
     Cart cart;
-    float price;
-    LocalDate date;
-    LocalTime time;
+    int id;
     
-    public Order(Customer customer) {
-        this.customerUserName = customer.getUsername();
+    public Order(String customer, Cart cart) {
+        this.cart = cart; 
+        this.customerUserName = customer;
         this.status = Order.Status.PENDING;
-        this.cart = customer.getCart();
-        this.price = cart.getPrice();
-        this.time = LocalTime.now();
-        this.date = LocalDate.now();
-        this.id = "OID"+this.time.toString()+this.date.toString();
-        this.address = customer.getAddress();
     }
     
+    public void generateId(){
+        
+        int id;
+        File idFile = new File("OrderID.bin");
+        if (idFile.exists()){
+            //Reading file
+            try(FileInputStream fis = new FileInputStream(idFile);
+                    ObjectInputStream ois = new ObjectInputStream(fis)){
+                id = (Integer)ois.readInt();
+            }
+            catch(Exception e){
+                System.out.println(e.toString() + " from Order class");id=0;}
+            
+            //Deleting file
+            idFile.delete();
+            
+            //Rewriting file
+            try(FileOutputStream fos = new FileOutputStream(idFile);
+                    ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                oos.writeInt(id+1);
+            }
+            catch(Exception e){System.out.println(e.toString() + " from Order class");}
+        }
+        else{ //File doesn't exist. This is the first order.
+            id=0;
+            //Writing file
+            try(FileOutputStream fos = new FileOutputStream(idFile);
+                    ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                oos.writeInt(1);
+            }
+            catch(Exception e){id=0;System.out.println(e.toString() + " from Order class");}
+        }
+        this.id = id;
+        
+    }
+    
+  
+
     public Status getStatus() {
         return status;
     }
@@ -52,7 +81,11 @@ public class Order implements Serializable {
         return deliveryManUserName;
     }
 
-    public String getId() {
+    public Cart getCart() {
+        return cart;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -68,51 +101,13 @@ public class Order implements Serializable {
         this.deliveryManUserName = deliveryManUserName;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public LocalTime getTime() {
-        return time;
-    }
-
     public void setCart(Cart cart) {
         this.cart = cart;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setId(int id) {
+        this.id = id;
     }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public void setTime(LocalTime time) {
-        this.time = time;
-    }
-    
     
     public void saveInstance(){
         File oldCustomerList = new File("OrderList.bin");
@@ -124,7 +119,7 @@ public class Order implements Serializable {
             
             while(true){
                 order = (Order)ois.readObject();
-                if ( !(order.getId().equals(this.getId())) ) {
+                if ( !(order.getId()==this.getId()) ) {
                     bufferList.add(order);
                 }
             }

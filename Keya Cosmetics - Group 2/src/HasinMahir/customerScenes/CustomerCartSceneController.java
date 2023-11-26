@@ -6,7 +6,6 @@ package HasinMahir.customerScenes;
 
 import HasinMahir.Cart;
 import HasinMahir.Customer;
-import HasinMahir.Order;
 import HasinMahir.Product;
 import HasinMahir.ProductOrder;
 import HasinMahir.User;
@@ -35,7 +34,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import mainpkg.MainpkgSS;
+import mainpkg.MainpkgSwitcher;
 import mainpkg.Main;
 
 /**
@@ -148,7 +147,7 @@ public class CustomerCartSceneController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
-        MainpkgSS logout = new MainpkgSS();
+        MainpkgSwitcher logout = new MainpkgSwitcher();
         logout.switchtoLoginScene();
     }
 
@@ -294,8 +293,8 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private void orderButtonOnClick(ActionEvent event) {
         //PLACEHOLDER CODE. CLEARS CART.
-        Order order = new Order(current);
-        order.saveInstance();
+        current.getCart().getProductOrderList().clear();
+        this.updateCartTable();
         
     }
     public void updateGrandTotal(){
@@ -322,6 +321,11 @@ public class CustomerCartSceneController implements Initializable {
     private void switchToOrderSceneFromLabel(MouseEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToOrderScene();
-    }    
+    }
+
+
+    
+
+        
     
 }
