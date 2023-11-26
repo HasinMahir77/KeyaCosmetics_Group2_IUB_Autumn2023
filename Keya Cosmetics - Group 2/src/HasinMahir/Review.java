@@ -9,21 +9,26 @@ package HasinMahir;
  * @author hasin
  */
 public class Review {
-    String sender, receiver,subject, review;
+    private String sender,subject, review;
 
     public Review() {
         this.sender = null;
-        this.receiver = null;
+        this.review = null;
+        this.subject = null;
+    }
+    public Review(User sender) {
+        this.sender = sender.getUsername();
+        this.review = null;
+        this.subject = null;
+    }
+    public Review(User sender,String subject) {
+        this.sender = sender.getUsername();
         this.review = null;
         this.subject = null;
     }
 
     public String getSender() {
         return sender;
-    }
-
-    public String getReceiver() {
-        return receiver;
     }
 
     public String getReview() {
@@ -37,9 +42,6 @@ public class Review {
         this.sender = sender;
     }
 
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
-    }
 
     public void setReview(String review) {
         this.review = review;
@@ -47,7 +49,9 @@ public class Review {
     public void setSubject(String subject) {
         this.subject = subject;
     }
-    
+    public void takeReview(User user){
+        
+    }
     
     
     
