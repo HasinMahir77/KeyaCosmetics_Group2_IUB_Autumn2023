@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mainpkg.Main;
 
-public class HRSceneSwitcher {
+public class NadimSS {
     public void switchScene(String fxml, String title) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource(fxml));
         Stage mainStage = Main.getMainStage();
@@ -24,6 +24,9 @@ public class HRSceneSwitcher {
         Stage mainStage = Main.getMainStage();
         Scene scene = Main.getMainStage().getScene();
         scene.setRoot(root);
+    }
+    public void switchToReceptionistDash() throws IOException{
+        this.switchScene("Receptionist mainDashboard.fxml", "Dashboard");
     }
     
 }

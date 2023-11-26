@@ -8,6 +8,7 @@ package NadimHR_Receptionist;
  *
  * @author Nadimul
  */
+import HasinMahir.User;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,7 +23,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
-    public class Receptionist implements Serializable {
+    public class Receptionist extends User implements Serializable {
+
+    public Receptionist(String firstName, String lastName, String username, String password, String phone) {
+        super(firstName, lastName, username, password, phone);
+    }
+        
+        
 
    // static boolean writeObjectsToFile(ObservableList<Attendance> items, String lawyer_Appointmentbin) {
       //   throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

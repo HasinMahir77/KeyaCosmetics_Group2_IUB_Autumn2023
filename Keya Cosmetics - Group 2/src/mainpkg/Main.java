@@ -10,6 +10,7 @@ import HasinMahir.Customer;
 import HasinMahir.DeliveryMan;
 import HasinMahir.User;
 import NadimHR_Receptionist.Hr;
+import NadimHR_Receptionist.Receptionist;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -137,6 +138,19 @@ public class Main extends Application {
                     System.out.println(e);
                 }
               }  
+                //Receptionist
+                else if (userFile.getName().equals("ReceptionistList.bin")){
+                try(FileOutputStream fos = new FileOutputStream(userFile);
+                        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                    User user = new Receptionist("User","User","HR","HR","");
+                    oos.writeObject(user);
+                    System.out.println("File "+userFile.getName()+" not found.");
+                    System.out.println("Initialized");
+                }
+                catch(Exception e){
+                    System.out.println(e);
+                }
+              }
                 
             }
             
