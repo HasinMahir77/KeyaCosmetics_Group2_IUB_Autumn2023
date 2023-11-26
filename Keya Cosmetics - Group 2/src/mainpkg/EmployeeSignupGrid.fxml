@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -51,18 +50,13 @@
                   <TextField fx:id="lastNameTextField" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="301.0" spacing="5.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="301.0" spacing="5.0" visible="false">
                <children>
                   <Label text="Phone:" />
                   <TextField fx:id="phoneTextField" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="301.0" spacing="5.0">
-               <children>
-                  <Label text="Date of birth:" />
-                  <DatePicker fx:id="dobDatePicker" prefHeight="25.0" prefWidth="150.0" />
-               </children>
-            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="261.0" spacing="5.0" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#signup" text="Sign up" />

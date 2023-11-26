@@ -18,7 +18,7 @@ import mainpkg.ObjectOutputStreamA;
  *
  * @author hasin
  */
-public class Customer extends User implements Serializable, Deleteable {
+public class Customer extends User implements Serializable {
     private Cart cart;
     private ArrayList<Order> orderHistory;
     private String address;
@@ -38,7 +38,7 @@ public class Customer extends User implements Serializable, Deleteable {
     
     
     public void addToCart(Product selectedProduct, int quantity){
-        this.cart.add(selectedProduct,quantity);   
+        this.cart.productList.put(selectedProduct,quantity);   
     }
 
     @Override
@@ -135,26 +135,6 @@ public class Customer extends User implements Serializable, Deleteable {
         } 
         // Arraylist of Customers made.
         return customerList;
-    }
-    
-    public void delete(){
-        if (this.isDel()){
-            System.out.println("Acoount is already deleted");
-        }
-        else{
-            this.del = true;
-            this.username+=".deleted";
-        }
-    }
-    public void recover(){
-        if (this.isDel()){
-            this.del = false;
-            this.username=".deleted";
-        }
-        else{
-            this.del = true;
-            this.username = this.username.substring(0,this.username.length()-8);
-        }
     }
     /* Broken and probably redundant.
     public static void setCustomerList(ArrayList<Customer> newCustomerList){

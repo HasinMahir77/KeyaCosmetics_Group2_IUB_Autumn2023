@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package Borhan_Islam;
+package HasinMahir.customerScenes;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,9 +11,9 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author 88019
+ * @author hasin
  */
-public class ProductionAnalysisFXMLController implements Initializable {
+public class FXMLController implements Initializable {
 
     /**
      * Initializes the controller class.
