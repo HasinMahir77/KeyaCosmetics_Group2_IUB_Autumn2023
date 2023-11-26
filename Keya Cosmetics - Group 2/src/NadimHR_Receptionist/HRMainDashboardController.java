@@ -86,4 +86,8 @@ public class HRMainDashboardController implements Initializable {
         borderpane.setCenter(root);
     }
 
+    @FXML
+    private void AnalyzedapplicantsOnclick(ActionEvent event) {
+    }
+
 }
