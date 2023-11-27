@@ -19,7 +19,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Go To ↓">
                <items>
-              <MenuItem fx:id="recordsToDashboardButton" mnemonicParsing="false" text="Dashboard" />
+              <MenuItem mnemonicParsing="false" onAction="#switchToDashboardButton" text="Dashboard" />
                </items>
           </Menu>
         </menus>

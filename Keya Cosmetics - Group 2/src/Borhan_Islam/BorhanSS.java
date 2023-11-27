@@ -31,9 +31,6 @@ public class BorhanSS {
     public void recordsOnButtonClicked() throws IOException {
         this.switchScene("RecordsFXML.fxml", "Records");
     }
-    public void searchDeleteOnButtonClicked() throws IOException {
-        this.switchScene("SearchOrDeleteFXML.fxml", "Search & Delete");
-    }
     public void generateReportOnButtonClicked() throws IOException {
         this.switchScene("GenerateReportFXML.fxml", "");
     }
@@ -55,14 +52,14 @@ public class BorhanSS {
     public void expenseControlSysOnButtonClicked() throws IOException {
         this.switchScene("ExpenseControlSysFXML.fxml", "");
     }
-    public void goBackToDashboardButton() throws IOException {
+    public void switchToDashboardButton() throws IOException {
         this.switchScene("AccountantDashboardFXML.fxml", "");
+    }  
+
+    void UpdatedTermsOnButtonClicked() throws IOException {
+        this.switchScene("UpdatedTermsFXML.fxml", "");        
     }
-    public void recordsToDashboardButton() throws IOException {
-        this.switchScene("AccountantDashboardFXML.fxml", "");
+    void AuditReportOnButtonClicked() throws IOException {
+        this.switchScene("AuditReportFXML.fxml", "");        
     }
-    public void dashboardMenuButton() throws IOException {
-        this.switchScene("AccountantDashboardFXML.fxml", "");
-    }
-  
 }

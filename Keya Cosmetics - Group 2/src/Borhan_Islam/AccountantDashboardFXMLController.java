@@ -29,8 +29,6 @@ public class AccountantDashboardFXMLController implements Initializable {
 
     @FXML
     private Label timeLabel;
-    @FXML
-    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
@@ -52,27 +50,13 @@ public class AccountantDashboardFXMLController implements Initializable {
     private void recordsOnButtonClicked(ActionEvent event) throws IOException {
         BorhanSS ss = new BorhanSS();
         ss.recordsOnButtonClicked();        
-        
-    }
-
-    @FXML
-    private void searchDeleteOnButtonClicked(ActionEvent event) throws IOException {
-        BorhanSS ss = new BorhanSS();
-        ss.searchDeleteOnButtonClicked(); 
-
-
+   
     }
 
     @FXML
     private void generateReportOnButtonClicked(ActionEvent event) throws IOException {
         BorhanSS ss = new BorhanSS();
         ss.generateReportOnButtonClicked();   
-    }
-
-    @FXML
-    private void transactionOnButtonClicked(ActionEvent event) throws IOException {
-        BorhanSS ss = new BorhanSS();
-        ss.transactionOnButtonClicked();   
     }
 
     @FXML
@@ -104,5 +88,17 @@ public class AccountantDashboardFXMLController implements Initializable {
         BorhanSS ss = new BorhanSS();
         ss.expenseControlSysOnButtonClicked();
     }
+
+    @FXML
+    private void UpdatedTermsOnButtonClicked(ActionEvent event) throws IOException {
+        BorhanSS ss = new BorhanSS();
+        ss.UpdatedTermsOnButtonClicked();         
+    }
+
+    @FXML
+    private void AuditReportOnButtonClicked(ActionEvent event) throws IOException {
+        BorhanSS ss = new BorhanSS();
+        ss.AuditReportOnButtonClicked();       
+    } 
     
 }

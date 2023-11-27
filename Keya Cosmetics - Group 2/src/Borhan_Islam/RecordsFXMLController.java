@@ -25,8 +25,6 @@ public class RecordsFXMLController implements Initializable {
     private TableView<?> recordsTableView;
     @FXML
     private TextField searchTextfield;
-    @FXML
-    private MenuItem recordsToDashboardButton;
 
     /**
      * Initializes the controller class.
@@ -53,9 +51,14 @@ public class RecordsFXMLController implements Initializable {
     }
 
     private void recordsToDashboardButton(ActionEvent event) throws IOException {
+
+    }
+
+    @FXML
+    private void switchToDashboardButton(ActionEvent event) throws IOException {
         BorhanSS ss = new BorhanSS();
-        ss.recordsToDashboardButton();    
-    
+        ss.switchToDashboardButton();    
+            
     }
     
 }
