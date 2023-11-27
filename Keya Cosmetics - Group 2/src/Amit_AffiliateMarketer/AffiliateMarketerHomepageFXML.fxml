@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Amit_AffiliateMarketer.AffiliateMarketerHomepageFXMLController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Content">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#submitContentOnClick" text="Submit Content" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Product">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#reviewProductOnClick" text="Review Product" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Coupon">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#generateCouponCode" text="Generate Coupon Code" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Influencer">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#addNewInfluencerOnClick" text="Add New Influencer" />
+                  <MenuItem mnemonicParsing="false" onAction="#viewInfluencerListOnClick" text="View Influencer List" />
+                  <MenuItem mnemonicParsing="false" onAction="#analyzeInfluencersOnClick" text="Analyze Influencers" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Ad Campaign">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#createAdCampaignOnClick" text="Create Ad Campaign" />
+                  <MenuItem mnemonicParsing="false" onAction="#viewAdCampaignListOnClick" text="View Ad Campaign List" />
+                  <MenuItem mnemonicParsing="false" onAction="#trackCampaignOnBudgetOnClick" text="Track Campaign (Budget)" />
+                  <MenuItem mnemonicParsing="false" onAction="#trackCampaignOnDurationOnClick" text="Track Campaign (Duration)" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>

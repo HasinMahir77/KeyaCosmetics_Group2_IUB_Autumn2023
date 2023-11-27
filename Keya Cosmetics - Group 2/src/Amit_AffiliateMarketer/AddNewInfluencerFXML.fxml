@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Amit_AffiliateMarketer.AddNewInfluencerFXMLController">
+   <children>
+      <Label layoutX="93.0" layoutY="55.0" text="Name:" />
+      <Label layoutX="93.0" layoutY="88.0" text="Social Media ID:" />
+      <Label layoutX="93.0" layoutY="123.0" text="Followers" />
+      <Label layoutX="93.0" layoutY="159.0" text="Gender:" />
+      <Label layoutX="93.0" layoutY="191.0" text="Age of Incluence:" />
+      <TextField fx:id="nameTextField" layoutX="209.0" layoutY="51.0" />
+      <TextField fx:id="socialmediaIDTextField" layoutX="209.0" layoutY="84.0" />
+      <TextField fx:id="followersTextField" layoutX="209.0" layoutY="119.0" />
+      <TextField fx:id="ageOfInfluence" layoutX="209.0" layoutY="187.0" />
+      <RadioButton fx:id="maleradioButton" layoutX="209.0" layoutY="159.0" mnemonicParsing="false" text="Male">
+         <toggleGroup>
+            <ToggleGroup fx:id="gender" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="femaleRadioButton" layoutX="284.0" layoutY="159.0" mnemonicParsing="false" text="Female" toggleGroup="$gender" />
+      <Button layoutX="429.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#addInfluencerButtonOnClick" text="Add" />
+   </children>
+</AnchorPane>
