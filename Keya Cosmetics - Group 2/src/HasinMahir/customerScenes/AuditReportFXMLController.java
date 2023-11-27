@@ -2,13 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package Amit_AffiliateMarketer;
+package Borhan_Islam;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-public class SubmitContentFXMLController implements Initializable {
+/**
+ * FXML Controller class
+ *
+ * @author 88019
+ */
+public class AuditReportFXMLController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -17,5 +25,11 @@ public class SubmitContentFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void switchToDashboardButton(ActionEvent event) throws IOException {
+        BorhanSS ss = new BorhanSS();
+        ss.switchToDashboardButton();          
+    }
     
 }
