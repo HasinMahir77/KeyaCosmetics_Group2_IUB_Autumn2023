@@ -30,7 +30,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import mainpkg.LogoutSceneSwitcher;
+import mainpkg.MainpkgSS;
 import mainpkg.Main;
 
 /**
@@ -58,10 +58,6 @@ public class CustomerAccountSceneController implements Initializable {
     @FXML
     private ImageView keyaIcon;
     @FXML
-    private Button cartButton1;
-    @FXML
-    private Label voucherLabel;
-    @FXML
     private Label allLabel;
     @FXML
     private Label ongoingLabel;
@@ -83,12 +79,12 @@ public class CustomerAccountSceneController implements Initializable {
     private Button applyButton;
     @FXML
     private Button editProfileButton;
-    @FXML
     private PasswordField passwordTextField;
-    @FXML
     private Button changePasswordButton;
     @FXML
     private Label profileLabel;
+    @FXML
+    private Label securityLabel;
 
     /**
      * Initializes the controller class.
@@ -103,8 +99,7 @@ public class CustomerAccountSceneController implements Initializable {
         firstNameTextField.setText(current.getFirstName());
         lastNameTextField.setText(current.getLastName());
         addressTextArea.setText(current.getAddress());
-        phoneTextField.setText(current.getPhoneNum());
-        passwordTextField.setText(current.getPassword());  
+        phoneTextField.setText(current.getPhone());
     }    
 
     @FXML
@@ -119,8 +114,8 @@ public class CustomerAccountSceneController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
-        LogoutSceneSwitcher logout = new LogoutSceneSwitcher();
-        logout.switchScene();
+        MainpkgSS logout = new MainpkgSS();
+        logout.switchtoLoginScene();
     }
 
     @FXML
@@ -187,7 +182,7 @@ public class CustomerAccountSceneController implements Initializable {
             current.setAddress(addressTextArea.getText());
         current.setFirstName(firstNameTextField.getText());
         current.setLastName(lastNameTextField.getText());
-        current.setPhoneNum(phoneTextField.getText());
+        current.setPhone(phoneTextField.getText());
         } catch(Exception e){System.out.println(e);}
         //Disabling the fields again
         firstNameTextField.setDisable(true);
@@ -219,7 +214,6 @@ public class CustomerAccountSceneController implements Initializable {
         }
     }
 
-    @FXML
     private void changePasswordButtonOnClick(ActionEvent event) {
         applyButton.setDisable(false);
         changePasswordButton.setDisable(true);
@@ -256,5 +250,29 @@ public class CustomerAccountSceneController implements Initializable {
         ss.switchToCartScene();
     }
 
+    @FXML
+    private void switchToSecurityScene(MouseEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToSecurityScene();
+    }
+
+    private void switchToOrderScene(MouseEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToOrderScene();
+    }
+
+    @FXML
+    private void switchToOrderScene(ActionEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToOrderScene();
+    }
+
+    @FXML
+    private void switchToOrderSceneFromLabel(MouseEvent event) throws IOException {
+        CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
+        ss.switchToOrderScene();
+    }
+
+ 
     
 }

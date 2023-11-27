@@ -63,14 +63,14 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#signup" text="Sign up" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#signup" prefHeight="25.0" prefWidth="110.0" style="-fx-border-radius: 5;" text="Sign up" />
                </children>
             </HBox>
          </children>
       </VBox>
       <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <children>
-            <Button mnemonicParsing="false" onAction="#switchToLoginScreen" text="Back to Login" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToLoginScreen" prefHeight="25.0" prefWidth="110.0" style="-fx-border-radius: 5;" text="Back to Login" />
          </children>
       </VBox>
    </children>

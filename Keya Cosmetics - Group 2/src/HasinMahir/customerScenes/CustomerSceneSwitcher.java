@@ -25,7 +25,7 @@ public class CustomerSceneSwitcher {
     public void switchScene(String fxml, String title) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource(fxml));
         Stage mainStage = Main.getMainStage();
-        mainStage.setTitle(title);
+        mainStage.setTitle("Keya: "+title);
         Scene scene = Main.getMainStage().getScene();
         scene.setRoot(root);
     }
@@ -37,5 +37,11 @@ public class CustomerSceneSwitcher {
     }
     public void switchToCartScene() throws IOException {
         this.switchScene("CustomerCartScene.fxml", "Cart");
+    }
+    public void switchToSecurityScene() throws IOException {
+        this.switchScene("CustomerSecurityScene.fxml", "Security");
+    }
+    public void switchToOrderScene() throws IOException {
+        this.switchScene("CustomerOrderScene.fxml", "Orders");
     }
 }
