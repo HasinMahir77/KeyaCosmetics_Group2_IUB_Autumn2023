@@ -85,5 +85,12 @@ public class HRMainDashboardController implements Initializable {
     private void backOnCLick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("HR mainDashboard.fxml"));
         Main.getMainStage().getScene().setRoot(root);    }
+<<<<<<< HEAD
+=======
+
+    @FXML
+    private void AnalyzedapplicantsOnclick(ActionEvent event) {
+    }
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 
 }

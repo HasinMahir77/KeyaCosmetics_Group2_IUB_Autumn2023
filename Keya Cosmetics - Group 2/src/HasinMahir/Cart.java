@@ -17,6 +17,7 @@ import mainpkg.Main;
 public class Cart implements Serializable {
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     protected ArrayList<OrderedProduct> productOrderList;
     
     public Cart(){
@@ -32,8 +33,26 @@ public class Cart implements Serializable {
 
     public Hashtable<Product,Integer> getProductList() {
         return productList;
+=======
+    protected Hashtable<Product,Integer> productList = new Hashtable<Product,Integer>();
+
+    public Hashtable<Product,Integer> getProductList() {
+        return productList;
     }
 
+    public void setProductList(Hashtable<Product,Integer> productList) {
+        this.productList = productList;
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
+    }
+    public void addProduct(Product product, int quantity){
+        productList.put(product, quantity);
+        Customer c = (Customer)Main.getMainStage().getUserData();
+       // c.saveInstance();
+    }
+    
+ 
+
+<<<<<<< HEAD
     public void setProductList(Hashtable<Product,Integer> productList) {
         this.productList = productList;
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
@@ -139,6 +158,10 @@ public class Cart implements Serializable {
             target.setQuantity(newQuantity);
         }
     }
+=======
+   
+    
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 =======
    
     

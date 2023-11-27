@@ -7,7 +7,10 @@ package HasinMahir.customerScenes;
 import HasinMahir.Customer;
 import HasinMahir.Product;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import HasinMahir.OrderedProduct;
+=======
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 =======
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 import HasinMahir.User;
@@ -76,6 +79,7 @@ public class CustomerCartSceneController implements Initializable {
     private Label cartLabel;
     @FXML
 <<<<<<< HEAD
+<<<<<<< HEAD
     private TableView<OrderedProduct> cartTableView;
     @FXML
     private TableColumn<OrderedProduct, String> nameColumn;
@@ -96,6 +100,15 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private TableColumn<?, ?> totalPriceColumn;
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
+=======
+    private TableView<?> cartTable;
+    @FXML
+    private TableColumn<?, ?> quantityColumn;
+    @FXML
+    private TableColumn<?, ?> unitPriceColumn;
+    @FXML
+    private TableColumn<?, ?> totalPriceColumn;
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
     @FXML
     private Button minusButton;
     @FXML
@@ -106,6 +119,7 @@ public class CustomerCartSceneController implements Initializable {
     private Button removeButton;
     @FXML
     private Button cartButton;
+<<<<<<< HEAD
 <<<<<<< HEAD
     
     OrderedProduct selectedProduct;
@@ -118,6 +132,8 @@ public class CustomerCartSceneController implements Initializable {
     
 =======
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
+=======
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 
     /**
      * Initializes the controller class.
@@ -128,6 +144,7 @@ public class CustomerCartSceneController implements Initializable {
         // TODO
         Customer current = (Customer)Main.getMainStage().getUserData();
         userMenu.setText(current.getUsername()+" ↓");
+<<<<<<< HEAD
 <<<<<<< HEAD
         //Setting quantity text field 
         
@@ -148,6 +165,9 @@ public class CustomerCartSceneController implements Initializable {
         this.updateGrandTotal();
         
         //---
+=======
+        cartLabel.setTextFill(Color.BLUE);
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 =======
         cartLabel.setTextFill(Color.BLUE);
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
@@ -214,6 +234,7 @@ public class CustomerCartSceneController implements Initializable {
         ss.switchToAccountScene();
     }
         
+<<<<<<< HEAD
 <<<<<<< HEAD
     }
 
@@ -324,6 +345,8 @@ public class CustomerCartSceneController implements Initializable {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToOrderScene();
     }    
+=======
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 =======
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
     

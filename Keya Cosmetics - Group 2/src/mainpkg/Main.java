@@ -5,9 +5,12 @@
 package mainpkg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Amit_AffiliateMarketer.AffiliateMarketer;
 import Borhan_Islam.Accountant;
 import Borhan_Islam.ProductManager;
+=======
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 =======
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 import HasinMahir.Customer;
@@ -44,6 +47,7 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+<<<<<<< HEAD
 <<<<<<< HEAD
         // TODO
         
@@ -171,6 +175,8 @@ public class Main extends Application {
         
         //------------------------------------------------------
 =======
+=======
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
         File f = new File("HRList.bin");
         if (f.exists()){
             System.out.println("HRList.bin exists");
@@ -182,6 +188,9 @@ public class Main extends Application {
                 System.out.println("HR Written");
             }catch(Exception e){System.out.println(e);}
         }
+<<<<<<< HEAD
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
+=======
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
         launch(args);
     }

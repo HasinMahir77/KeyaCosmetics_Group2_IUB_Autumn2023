@@ -7,10 +7,13 @@ package HasinMahir;
 import java.io.IOException;
 import java.io.Serializable;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
+=======
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 =======
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 import javafx.scene.image.ImageView;
@@ -20,6 +23,7 @@ import mainpkg.Main;
  *
  * @author hasin
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 public class Product implements Serializable,Reviewable {
     protected String name, category;
@@ -48,12 +52,17 @@ public class Product implements Serializable,Reviewable {
     }
     public enum Category{BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,SHAMPOO,DETERGENT}
 =======
+=======
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 public class Product implements Serializable {
     String name;
     Category category;
     int price;
     ImageView image;
     public enum Category{LAUNDRY_SOAP,BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,PETROLEUM_JELLY}
+<<<<<<< HEAD
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
+=======
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 
     public Product(){ 
@@ -61,6 +70,7 @@ public class Product implements Serializable {
 
     public Product(String name, int price ,Category category) {
         this.name = name;
+<<<<<<< HEAD
 <<<<<<< HEAD
         this.price = price;
         this.vatRate = vatRate;
@@ -94,6 +104,10 @@ public class Product implements Serializable {
     
     public OrderedProduct toProductOrder(int quantity){
         return new OrderedProduct(this.name,this.price,this.category,this.vatRate,quantity);
+=======
+        this.category = category;
+        this.price = price;
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 =======
         this.category = category;
         this.price = price;

@@ -5,11 +5,14 @@
 package mainpkg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Amit_AffiliateMarketer.AmitSS;
 import Borhan_Islam.Accountant;
 import Borhan_Islam.BorhanSS;
 import Borhan_Islam.ProductManager;
 import Borhan_Islam.ProductManagerSS;
+=======
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 =======
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 import HasinMahir.Customer;
@@ -59,6 +62,7 @@ public class LoginGridController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         userComboBox.setValue("Customer");
         // Insert users here
         userComboBox.getItems().addAll("Customer","Delivery Man","Affiliate Marketer",
@@ -68,6 +72,9 @@ public class LoginGridController implements Initializable {
         //DEFAULT: CUSTOMER
        usernameTextField.setText("Customer");
        passwordTextField.setText("Customer");
+=======
+        // TODO
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 =======
         // TODO
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
@@ -119,6 +126,7 @@ public class LoginGridController implements Initializable {
                         HRSceneSwitcher ss = new HRSceneSwitcher();
                         ss.switchScene("HR mainDashboard.fxml", "Dashboard");
                         return;
+<<<<<<< HEAD
                     }
 <<<<<<< HEAD
                 } // Loop's scope ends
@@ -183,6 +191,11 @@ public class LoginGridController implements Initializable {
                         AmitSS ss = new AmitSS();
                         ss.switchScene("AffiliateMarketerHomepageFXML.fxml", "Keya: Home");
 =======
+                    if (userListFile.equals("ReceptionistList.bin")){
+                        // TO DO
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
+=======
+                    }
                     if (userListFile.equals("ReceptionistList.bin")){
                         // TO DO
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)

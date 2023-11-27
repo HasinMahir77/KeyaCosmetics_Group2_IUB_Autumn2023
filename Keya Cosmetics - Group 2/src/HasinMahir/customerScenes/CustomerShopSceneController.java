@@ -7,8 +7,11 @@ package HasinMahir.customerScenes;
 import HasinMahir.Customer;
 import HasinMahir.Product;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import HasinMahir.Product.Category;
 import HasinMahir.OrderedProduct;
+=======
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 =======
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 import HasinMahir.User;
