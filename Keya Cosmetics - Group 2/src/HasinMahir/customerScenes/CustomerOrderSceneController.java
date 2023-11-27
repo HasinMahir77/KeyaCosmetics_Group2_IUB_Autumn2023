@@ -17,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +25,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -73,21 +75,17 @@ public class CustomerOrderSceneController implements Initializable {
     private Label returnedLabel;
     @FXML
     private Label cartLabel;
-    @FXML
     private TableView<Order> orderTableView;
     @FXML
     private PieChart orderPieChart;
+    private Order selectedOrder;
     
     
     
-    Order selectedOrder;
     @FXML
     private Label orderLabel;
-    @FXML
     private TableColumn<Order, String> idColumn;
-    @FXML
     private TableColumn<Order, Status> statusColumn;
-    @FXML
     private TableColumn<Order, Float> priceColumn;
     @FXML
     private Button cancelButton;
@@ -115,6 +113,9 @@ public class CustomerOrderSceneController implements Initializable {
         statusColumn.setCellValueFactory(new PropertyValueFactory<Order, Status>("status"));
         
         this.updateOrderTable();
+        //Pie Chart
+        
+        
     }    
     
     
@@ -225,6 +226,9 @@ public class CustomerOrderSceneController implements Initializable {
 
     @FXML
     private void cancelButtonOnClick(ActionEvent event) {
+        if(this.orderTableView.getSelectionModel().isEmpty()){
+            Alert a = new Alert(Alert.AlertType.INFORMATION,"Please select an order");
+        }
     }
 
     @FXML
@@ -237,6 +241,10 @@ public class CustomerOrderSceneController implements Initializable {
         r.setSender(current.getUsername());
         r.takeReview(p);//This opens the review popup
         System.out.println(r.getRating()+" Review: "+r.getReview());
+        
+    }
+    private void updatePieChart(){
+        ArrayList<Product> productList = new ArrayList<Product>();
         
     }
 

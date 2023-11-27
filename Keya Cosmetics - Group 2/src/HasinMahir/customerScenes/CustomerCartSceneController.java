@@ -293,9 +293,10 @@ public class CustomerCartSceneController implements Initializable {
 
     @FXML
     private void orderButtonOnClick(ActionEvent event) {
-        //PLACEHOLDER CODE. CLEARS CART.
         Order order = new Order(current);
         order.saveInstance();
+        current.getCart().getProductOrderList().clear();
+        this.updateCartTable();
         
     }
     public void updateGrandTotal(){
