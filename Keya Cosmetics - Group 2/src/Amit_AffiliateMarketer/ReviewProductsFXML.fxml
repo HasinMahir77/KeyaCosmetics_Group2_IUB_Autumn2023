@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Amit_AffiliateMarketer.ReviewProductsFXMLController">
+   <children>
+      <ComboBox fx:id="selectProductCombobox" layoutX="274.0" layoutY="37.0" prefWidth="150.0" />
+      <Label layoutX="167.0" layoutY="41.0" text="Select Product:" />
+      <TextArea fx:id="reviewTextArea" layoutX="22.0" layoutY="114.0" prefHeight="200.0" prefWidth="555.0" />
+      <Label layoutX="22.0" layoutY="86.0" text="Write a Review:" />
+      <Button layoutX="485.0" layoutY="336.0" mnemonicParsing="false" onMouseClicked="#submitButtonOnClick" text="Submit" />
+   </children>
+</AnchorPane>
