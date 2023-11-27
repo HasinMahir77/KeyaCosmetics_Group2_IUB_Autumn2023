@@ -4,11 +4,16 @@
  */
 package NadimHR_Receptionist;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.layout.BorderPane;
+import mainpkg.Main;
 
 /**
  * FXML Controller class
@@ -17,28 +22,39 @@ import javafx.fxml.Initializable;
  */
 public class ReceptionistMainDashboardController implements Initializable {
 
+    @FXML
+    private BorderPane borderpane;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
-    @FXML
-    private void employeeattendenceOnclick(ActionEvent event) {
     }
 
     @FXML
-    private void OutsidersattendenceOnclick(ActionEvent event) {
+    private void employeeattendenceOnclick(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("Employee attendance.fxml"));
+         borderpane.setCenter(root);
     }
 
     @FXML
-    private void EmployeeovertimeOnclick(ActionEvent event) {
+    private void OutsidersattendenceOnclick(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("Outsiders attendance.fxml"));
+         borderpane.setCenter(root);
     }
 
     @FXML
-    private void createappointmentswithstaffsOnclick(ActionEvent event) {
+    private void EmployeeovertimeOnclick(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("Employee attendance.fxml"));
+         borderpane.setCenter(root);
     }
-    
+
+    @FXML
+    private void createappointmentswithstaffsOnclick(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("Create appointment.fxml"));
+         borderpane.setCenter(root);
+    }
+
 }
