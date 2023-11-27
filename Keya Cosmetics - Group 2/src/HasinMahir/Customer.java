@@ -18,30 +18,27 @@ import mainpkg.ObjectOutputStreamA;
  *
  * @author hasin
  */
-public class Customer extends User implements Serializable, Deleteable {
+public class Customer extends User implements Serializable {
     private Cart cart;
     private ArrayList<Order> orderHistory;
-    private String address;
-    private float balance;
+    private String address, phoneNum;
 
     public Customer() {
         this.del = false;
-        this.balance=0;
     }
 
-    public Customer(String firstName, String lastName, String username, String password, String address, String phone) {
-        super(firstName, lastName, username, password, phone);
+    public Customer(String firstName, String lastName, String username, String password, String address, String phoneNum) {
+        super(firstName, lastName, username, password);
         this.cart = new Cart();
         this.address = address;
-        this.phone = phone;
+        this.phoneNum = phoneNum;
         this.del = false;
-        this.balance=0;
     }
 
     
     
     public void addToCart(Product selectedProduct, int quantity){
-        this.cart.add(selectedProduct,quantity);   
+        this.cart.productList.put(selectedProduct,quantity);   
     }
 
     @Override
@@ -49,6 +46,9 @@ public class Customer extends User implements Serializable, Deleteable {
         return ("Name: "+this.firstName+" "+this.lastName+", Username: "+this.username);
     }
 
+    public String getPhoneNum() {
+        return phoneNum;
+    }
 
     public void setOrderHistory(ArrayList<Order> orderHistory) {
         this.orderHistory = orderHistory;
@@ -58,7 +58,10 @@ public class Customer extends User implements Serializable, Deleteable {
         this.address = address;
     }
 
- 
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
     public Cart getCart() {
         return cart;
     }
@@ -96,8 +99,7 @@ public class Customer extends User implements Serializable, Deleteable {
        
         try{
             FileOutputStream temp = new FileOutputStream(oldCustomerList);
-            ObjectOutputStream temp2 = new ObjectOutputStream(temp);
-            temp2.close();
+            temp.close();
         }catch(Exception e){
             System.out.println(e);
         }
@@ -105,9 +107,9 @@ public class Customer extends User implements Serializable, Deleteable {
         try(FileOutputStream fos = new FileOutputStream(oldCustomerList);
         ObjectOutputStream oos = new ObjectOutputStream(fos);){
             oos.writeObject(this);
-            System.out.println("Current customer written. Other customers next");
         } catch(Exception e){
             System.out.println(e.toString());
+            System.out.println("Only current customer written. Other customers next");
         }
         try(FileOutputStream fos = new FileOutputStream(oldCustomerList,true);
         ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
@@ -139,26 +141,6 @@ public class Customer extends User implements Serializable, Deleteable {
         } 
         // Arraylist of Customers made.
         return customerList;
-    }
-    
-    public void delete(){
-        if (this.isDel()){
-            System.out.println("Acoount is already deleted");
-        }
-        else{
-            this.del = true;
-            this.username+=".deleted";
-        }
-    }
-    public void recover(){
-        if (this.isDel()){
-            this.del = false;
-            this.username=".deleted";
-        }
-        else{
-            this.del = true;
-            this.username = this.username.substring(0,this.username.length()-8);
-        }
     }
     /* Broken and probably redundant.
     public static void setCustomerList(ArrayList<Customer> newCustomerList){

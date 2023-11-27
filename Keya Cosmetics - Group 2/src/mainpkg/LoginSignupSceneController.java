@@ -63,8 +63,7 @@ public class LoginSignupSceneController implements Initializable {
 
     public static BorderPane getSceneBorderPane() {
         return currentBorderPane;
-    }  
-    
+    }
 
 
     

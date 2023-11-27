@@ -4,23 +4,20 @@
  */
 package HasinMahir.customerScenes;
 
-import HasinMahir.Cart;
 import HasinMahir.Customer;
-import HasinMahir.Order;
 import HasinMahir.Product;
+<<<<<<< HEAD
 import HasinMahir.OrderedProduct;
+=======
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 import HasinMahir.User;
-import static HasinMahir.customerScenes.CustomerShopSceneController.current;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -30,12 +27,11 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import mainpkg.MainpkgSS;
+import mainpkg.LogoutSceneSwitcher;
 import mainpkg.Main;
 
 /**
@@ -59,10 +55,17 @@ public class CustomerCartSceneController implements Initializable {
     private MenuItem logoutMenuItem;
     @FXML
     private ImageView keyaIcon;
+    private Label searchLabel;
+    @FXML
+    private TableColumn<Product, String> nameColumn;
     @FXML
     private Button shopButton;
     @FXML
+    private Button cartButton1;
+    @FXML
     private Label profileLabel;
+    @FXML
+    private Label voucherLabel;
     @FXML
     private Label allLabel;
     @FXML
@@ -72,6 +75,7 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private Label cartLabel;
     @FXML
+<<<<<<< HEAD
     private TableView<OrderedProduct> cartTableView;
     @FXML
     private TableColumn<OrderedProduct, String> nameColumn;
@@ -83,6 +87,15 @@ public class CustomerCartSceneController implements Initializable {
     private TableColumn<OrderedProduct, Float> totalPriceColumn;
     @FXML
     private TableColumn<OrderedProduct, Float> vatColumn;
+=======
+    private TableView<?> cartTable;
+    @FXML
+    private TableColumn<?, ?> quantityColumn;
+    @FXML
+    private TableColumn<?, ?> unitPriceColumn;
+    @FXML
+    private TableColumn<?, ?> totalPriceColumn;
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
     @FXML
     private Button minusButton;
     @FXML
@@ -93,6 +106,7 @@ public class CustomerCartSceneController implements Initializable {
     private Button removeButton;
     @FXML
     private Button cartButton;
+<<<<<<< HEAD
     
     OrderedProduct selectedProduct;
     @FXML
@@ -102,6 +116,8 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private Label grandTotalLabel;
     
+=======
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 
     /**
      * Initializes the controller class.
@@ -109,11 +125,10 @@ public class CustomerCartSceneController implements Initializable {
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cartTableView.setPlaceholder(new Label("No products in cart."));
-        cartLabel.setTextFill(Color.BLUE);
-        // Getting user data
+        // TODO
         Customer current = (Customer)Main.getMainStage().getUserData();
         userMenu.setText(current.getUsername()+" ↓");
+<<<<<<< HEAD
         //Setting quantity text field 
         
         quantityTextField.setText("1");
@@ -133,6 +148,9 @@ public class CustomerCartSceneController implements Initializable {
         this.updateGrandTotal();
         
         //---
+=======
+        cartLabel.setTextFill(Color.BLUE);
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
         
     }   
 
@@ -148,8 +166,8 @@ public class CustomerCartSceneController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
-        MainpkgSS logout = new MainpkgSS();
-        logout.switchtoLoginScene();
+        LogoutSceneSwitcher logout = new LogoutSceneSwitcher();
+        logout.switchScene();
     }
 
     @FXML
@@ -195,25 +213,8 @@ public class CustomerCartSceneController implements Initializable {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToAccountScene();
     }
-
-    @FXML
-    private void minusButtonOnClick(ActionEvent event) {
-        int q;
-        try{
-            q = Integer.parseInt(quantityTextField.getText())-1;
-        }
-        catch(Exception e){
-            Alert a = new Alert(Alert.AlertType.ERROR,"Please enter an integer.");
-            a.showAndWait();
-            return;
-        }
-        if (q<=1){
-            quantityTextField.setText(Integer.toString(1));
-        }
-        else {
-            quantityTextField.setText(Integer.toString(q));
-        }
         
+<<<<<<< HEAD
     }
 
     @FXML
@@ -323,5 +324,7 @@ public class CustomerCartSceneController implements Initializable {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToOrderScene();
     }    
+=======
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
     
 }

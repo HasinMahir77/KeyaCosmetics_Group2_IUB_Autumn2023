@@ -6,18 +6,21 @@ package HasinMahir;
 
 import java.io.IOException;
 import java.io.Serializable;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
+=======
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 import javafx.scene.image.ImageView;
 import mainpkg.Main;
-//import mainpkg.Main;
 
 /**
  *
  * @author hasin
  */
+<<<<<<< HEAD
 public class Product implements Serializable,Reviewable {
     protected String name, category;
     protected ArrayList<Review> reviewList; 
@@ -44,12 +47,21 @@ public class Product implements Serializable,Reviewable {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
     public enum Category{BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,SHAMPOO,DETERGENT}
+=======
+public class Product implements Serializable {
+    String name;
+    Category category;
+    int price;
+    ImageView image;
+    public enum Category{LAUNDRY_SOAP,BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,PETROLEUM_JELLY}
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 
     public Product(){ 
     }
-  
-    public Product(String name, float price ,Category categoryEnum,int vatRate) {
+
+    public Product(String name, int price ,Category category) {
         this.name = name;
+<<<<<<< HEAD
         this.price = price;
         this.vatRate = vatRate;
         this.reviewList = new ArrayList<Review>();
@@ -82,15 +94,41 @@ public class Product implements Serializable,Reviewable {
     
     public OrderedProduct toProductOrder(int quantity){
         return new OrderedProduct(this.name,this.price,this.category,this.vatRate,quantity);
+=======
+        this.category = category;
+        this.price = price;
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public ImageView getImage() {
+        return image;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setImage(ImageView image) {
+        this.image = image;
+    }
     
+    
+    public void addToCart(int quantity){
+        Customer c = (Customer)Main.getMainStage().getUserData();
+        c.addToCart(this,quantity);
+        //c.saveInstance();
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -98,28 +136,9 @@ public class Product implements Serializable,Reviewable {
         return name;
     }
 
-    public float getPrice() {
+
+    public int getPrice() {
         return price;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    } 
-
-    public int getVatRate() {
-        return vatRate;
-    }
-
-    public void setVatRate(int vatRate) {
-        this.vatRate = vatRate;
-    }
-    @Override
-    public String toString(){
-        return "Product"+this.getName();
     }
     
 }

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -33,10 +34,10 @@
                   </Label>
                   <Label fx:id="profileLabel" text="Profile">
                      <font>
-                        <Font size="13.0" />
+                        <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="securityLabel" onMouseClicked="#switchToSecurityScene" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="Security">
+                  <Label fx:id="voucherLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="Vouchers">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -45,7 +46,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="119.0" prefWidth="121.0" spacing="2.0">
                <children>
-                  <Label alignment="TOP_CENTER" onMouseClicked="#switchToOrderSceneFromLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" prefHeight="19.0" prefWidth="121.0" text="Manage Orders">
+                  <Label alignment="TOP_CENTER" prefHeight="19.0" prefWidth="121.0" text="Manage Orders">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -122,8 +123,8 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="198.0" spacing="10.0">
                      <children>
-                        <Label text="Phone number" />
-                        <TextField fx:id="phoneTextField" disable="true" prefHeight="25.0" prefWidth="175.0" />
+                        <Label text="Password" />
+                        <PasswordField fx:id="passwordTextField" disable="true" />
                      </children>
                   </VBox>
                </children>
@@ -136,6 +137,7 @@
                   <VBox alignment="CENTER" prefHeight="147.0" prefWidth="188.0" spacing="10.0">
                      <children>
                         <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#editProfileButtonOnClick" prefHeight="42.0" prefWidth="159.0" text="Edit Profile" />
+                        <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePasswordButtonOnClick" prefHeight="42.0" prefWidth="159.0" text="Change Password" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -151,6 +153,12 @@
                </padding>
                <children>
                   <VBox prefHeight="74.0" prefWidth="198.0" />
+                  <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="198.0" spacing="10.0">
+                     <children>
+                        <Label text="Phone number" />
+                        <TextField fx:id="phoneTextField" disable="true" prefHeight="25.0" prefWidth="175.0" />
+                     </children>
+                  </VBox>
                   <Label text="Address" />
                   <TextArea fx:id="addressTextArea" disable="true" prefHeight="129.0" prefWidth="208.0" />
                </children>
@@ -169,9 +177,9 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="1.0" GridPane.columnIndex="2">
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
                <children>
-                  <MenuBar fx:id="userMenuBar" onMouseEntered="#darkenUserMenuBar" onMouseExited="#lightenUserMenuBar" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #affad3;">
+                  <MenuBar fx:id="userMenuBar" onMouseEntered="#darkenUserMenuBar" onMouseExited="#lightenUserMenuBar" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #affad3;">
                      <menus>
                         <Menu fx:id="userMenu" mnemonicParsing="false" text="User ↓">
                            <items>
@@ -183,7 +191,7 @@
                      </menus>
                   </MenuBar>
                   <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" smooth="false" startX="-100.0" stroke="#a1a1a1" />
-                  <Button mnemonicParsing="false" onAction="#switchToOrderScene" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #affad3;" text="Orders" />
+                  <Button fx:id="cartButton1" mnemonicParsing="false" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #affad3;" text="Initiate Return" />
                   <Line endX="-99.70710754394531" endY="24.959556579589844" fill="BLACK" layoutX="412.0" layoutY="21.0" smooth="false" startX="-100.0" stroke="#a1a1a1" />
                   <Button fx:id="cartButton" mnemonicParsing="false" onAction="#switchToCartScene" onMouseEntered="#darkenGreenButtonOnHover" onMouseExited="#lightenGreenButtonOnHover" prefHeight="38.0" prefWidth="66.0" style="-fx-background-color: #affad3;" text="🛒 Cart" />
                </children>

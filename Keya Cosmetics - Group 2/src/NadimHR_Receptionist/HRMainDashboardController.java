@@ -84,7 +84,6 @@ public class HRMainDashboardController implements Initializable {
     @FXML
     private void backOnCLick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("HR mainDashboard.fxml"));
-        Main.getMainStage().getScene().setRoot(root);
-    }
+        Main.getMainStage().getScene().setRoot(root);    }
 
 }

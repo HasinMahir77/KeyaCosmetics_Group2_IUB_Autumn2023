@@ -4,22 +4,19 @@
  */
 package mainpkg;
 
+<<<<<<< HEAD
 import Amit_AffiliateMarketer.AffiliateMarketer;
 import Borhan_Islam.Accountant;
 import Borhan_Islam.ProductManager;
+=======
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
 import HasinMahir.Customer;
-import HasinMahir.DeliveryMan;
-import HasinMahir.User;
 import NadimHR_Receptionist.Hr;
-import NadimHR_Receptionist.Receptionist;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Hashtable;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,22 +32,19 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-
         mainStage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("LoginSignupScene.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Keya Cosmetics: Login");
+        stage.setTitle("Login");
         stage.show();
-        
-        //Inserting a user
-        
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+<<<<<<< HEAD
         // TODO
         
         ArrayList<File> userFiles = new ArrayList<File>();
@@ -176,15 +170,24 @@ public class Main extends Application {
             
         
         //------------------------------------------------------
+=======
+        File f = new File("HRList.bin");
+        if (f.exists()){
+            System.out.println("HRList.bin exists");
+        } else{
+            try(FileOutputStream fos = new FileOutputStream(f);
+                    ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                Hr HR = new Hr("hr","nadim","hr","12345678");
+                oos.writeObject(HR);
+                System.out.println("HR Written");
+            }catch(Exception e){System.out.println(e);}
+        }
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
         launch(args);
     }
     public static Stage getMainStage(){
         return mainStage;
     }
-    public static void setUserData(User user){
-        mainStage.setUserData(user);
-    }
-    public static Object getUserData(){
-        return mainStage.getUserData();
-    }
+    
+    
 }

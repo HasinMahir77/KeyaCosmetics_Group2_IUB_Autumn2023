@@ -8,8 +8,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import mainpkg.Main;
 
 /**
@@ -17,8 +15,8 @@ import mainpkg.Main;
  * @author hasin
  */
 public class Cart implements Serializable {
-    float price;
     
+<<<<<<< HEAD
     protected ArrayList<OrderedProduct> productOrderList;
     
     public Cart(){
@@ -29,8 +27,26 @@ public class Cart implements Serializable {
 
     public ArrayList<OrderedProduct> getProductOrderList() {
         return productOrderList;
+=======
+    protected Hashtable<Product,Integer> productList = new Hashtable<Product,Integer>();
+
+    public Hashtable<Product,Integer> getProductList() {
+        return productList;
     }
 
+    public void setProductList(Hashtable<Product,Integer> productList) {
+        this.productList = productList;
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
+    }
+    public void addProduct(Product product, int quantity){
+        productList.put(product, quantity);
+        Customer c = (Customer)Main.getMainStage().getUserData();
+       // c.saveInstance();
+    }
+    
+ 
+
+<<<<<<< HEAD
     public void setProductOrderList(ArrayList<OrderedProduct> productOrderList) {
         this.productOrderList = productOrderList;
     }
@@ -123,6 +139,10 @@ public class Cart implements Serializable {
             target.setQuantity(newQuantity);
         }
     }
+=======
+   
+    
+>>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
     
     
 }
