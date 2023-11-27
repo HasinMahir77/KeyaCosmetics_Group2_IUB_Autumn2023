@@ -80,15 +80,16 @@ public class HRMainDashboardController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("Audited Financial Managements.fxml"));
         borderpane.setCenter(root);
     }
-
+     @FXML
+    private void AnalyzedapplicantsOnclick(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ApplicantSorting.fxml"));
+        borderpane.setCenter(root);
+    }
     @FXML
     private void backOnCLick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("HR mainDashboard.fxml"));
         Main.getMainStage().getScene().setRoot(root);
     }
-
-    @FXML
-    private void AnalyzedapplicantsOnclick(ActionEvent event) {
-    }
+   
 
 }

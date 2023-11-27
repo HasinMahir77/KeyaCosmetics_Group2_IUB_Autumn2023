@@ -21,9 +21,9 @@ import javafx.scene.control.TableView;
 public class EmployeeAttendanceController implements Initializable {
 
     @FXML
-    private ComboBox<?> positionComboBox;
+    private ComboBox<String> positionComboBox;
     @FXML
-    private ComboBox<?> nameComboBox;
+    private ComboBox<String> nameComboBox;
     @FXML
     private TableView<?> tableView;
     @FXML
