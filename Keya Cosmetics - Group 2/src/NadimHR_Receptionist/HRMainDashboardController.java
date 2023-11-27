@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
+import mainpkg.Main;
 
 /**
  * FXML Controller class
@@ -83,7 +84,11 @@ public class HRMainDashboardController implements Initializable {
     @FXML
     private void backOnCLick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("HR mainDashboard.fxml"));
-        borderpane.setCenter(root);
+        Main.getMainStage().getScene().setRoot(root);
+    }
+
+    @FXML
+    private void AnalyzedapplicantsOnclick(ActionEvent event) {
     }
 
 }
