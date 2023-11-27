@@ -13,6 +13,7 @@ import HasinMahir.User;
 import HasinMahir.customerScenes.CustomerSceneSwitcher;
 import HasinMahir.deliveryManScenes.DMSS;
 import NadimHR_Receptionist.NadimSS;
+import NadimHR_Receptionist.Receptionist;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -242,6 +243,33 @@ public class LoginGridController implements Initializable {
                 a.showAndWait();
             }
           }
+        else if (userComboBox.getValue().equals("Receptionist")) {
+            try{
+                File userFile = new File("ReceptionistList.bin");
+                System.out.println(userFile.getName()+".bin "+" opened");
+                FileInputStream fis = new FileInputStream(userFile);
+                ObjectInputStream oos = new ObjectInputStream(fis);
+                
+                while(true){
+                    Receptionist user = (Receptionist)oos.readObject();
+                    if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+                        Main.getMainStage().setUserData(user);
+                        NadimSS ss = new NadimSS();
+                        ss.switchToReceptionistDash();
+                    }
+                } // Loop's scope ends
+            }
+            catch(EOFException e){
+                System.out.println(e.toString()+" at "+ userComboBox.getValue());
+            }
+            catch(Exception e){
+                e.printStackTrace(System.out);
+                System.out.println(e.toString()+" at "+ userComboBox.getValue());
+                Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \nLook at the error in the console");
+                a.showAndWait();
+            }
+          }
+        
         
         // Login done. 
         

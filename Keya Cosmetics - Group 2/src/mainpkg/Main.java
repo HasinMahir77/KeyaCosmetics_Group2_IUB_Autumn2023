@@ -9,6 +9,7 @@ import HasinMahir.Customer;
 import HasinMahir.DeliveryMan;
 import HasinMahir.User;
 import NadimHR_Receptionist.Hr;
+import NadimHR_Receptionist.Receptionist;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -124,6 +125,23 @@ public class Main extends Application {
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
                     User user = new DeliveryMan("User","User","User","User","01824441272");
+                    user.setDob(LocalDate.now());
+                    user.setDoj(LocalDate.now());
+                    user.setNid("2152328");
+                    oos.writeObject(user);
+                    System.out.println("File "+userFile.getName()+" not found.");
+                    System.out.println("Initialized");
+                }
+                
+                catch(Exception e){
+                    System.out.println(e);
+                }
+              }  
+                //Delivery Man
+                else if (userFile.getName().equals("ReceptionistList.bin")){
+                try(FileOutputStream fos = new FileOutputStream(userFile);
+                        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                    User user = new Receptionist("User","User","User","User","01824441272");
                     user.setDob(LocalDate.now());
                     user.setDoj(LocalDate.now());
                     user.setNid("2152328");
