@@ -22,6 +22,7 @@
               <MenuItem mnemonicParsing="false" onAction="#switchToDashboardButton" text="Dashboard" />
                </items>
           </Menu>
+            <Menu fx:id="timeLabel" mnemonicParsing="false" />
         </menus>
       </MenuBar>
       <Label layoutX="442.0" layoutY="37.0" text="RECORDS">

@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import mainpkg.ObjectOutputStreamA;
 
 
-public class Accountant extends User implements Serializable, Deleteable{ 
-    public Accountant() {
+public class ProductManager extends User implements Serializable, Deleteable{ 
+    public ProductManager() {
         this.del = false;
     }
-    public Accountant(String firstName, String lastName, String username, String password, String phone) {
+    public ProductManager(String firstName, String lastName, String username, String password, String phone) {
         super(firstName, lastName, username, password, phone);
         this.del = false;
     }
@@ -80,44 +80,44 @@ public class Accountant extends User implements Serializable, Deleteable{
 
     @Override
     public String toString() {
-        return ("Accountant "+"Name: "+this.firstName+" "+this.lastName+", Username: "+this.username);
+        return ("Product Manager "+"Name: "+this.firstName+" "+this.lastName+", Username: "+this.username);
     }
      
     public void saveInstance(){
-        File oldAccountantList = new File("AccountantList.bin");
-        Accountant accountant;
-        ArrayList<Accountant> bufferList = new ArrayList<Accountant>();
-        try(FileInputStream fis = new FileInputStream(oldAccountantList);
+        File oldProductManagerList = new File("ProductManagerList.bin");
+        ProductManager product_manager;
+        ArrayList<ProductManager> bufferList = new ArrayList<ProductManager>();
+        try(FileInputStream fis = new FileInputStream(oldProductManagerList);
                 ObjectInputStream ois = new ObjectInputStream(fis);) {
             
             while(true){
-                accountant = (Accountant)ois.readObject();
-                if (!(accountant.getUsername().equals(this.getUsername()))) {
-                    bufferList.add(accountant);
+                product_manager = (ProductManager)ois.readObject();
+                if (!(product_manager.getUsername().equals(this.getUsername()))) {
+                    bufferList.add(product_manager);
                 }
             }
         } catch(Exception e) {
-            System.out.println("From accountant.saveInstance() : "+e.toString());
-            System.out.println("ArrayList of accountant made");
+            System.out.println("From product_manager.saveInstance() : "+e.toString());
+            System.out.println("ArrayList of product_manager made");
         } 
 
         try{
-            FileOutputStream temp = new FileOutputStream(oldAccountantList);
+            FileOutputStream temp = new FileOutputStream(oldProductManagerList);
             temp.close();
         }catch(Exception e){
             System.out.println(e);
         }
         
-        try(FileOutputStream fos = new FileOutputStream(oldAccountantList);
+        try(FileOutputStream fos = new FileOutputStream(oldProductManagerList);
         ObjectOutputStream oos = new ObjectOutputStream(fos);){
             oos.writeObject(this);
         } catch(Exception e){
             System.out.println(e.toString());
-            System.out.println("Only current accountant written. Other accountants next");
+            System.out.println("Only current product manager written. Other product managers next");
         }
-        try(FileOutputStream fos = new FileOutputStream(oldAccountantList,true);
+        try(FileOutputStream fos = new FileOutputStream(oldProductManagerList,true);
         ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
-            for(Accountant c: bufferList){
+            for(ProductManager c: bufferList){
                     oos.writeObject(c);
                 }
         } catch(Exception e){
@@ -127,24 +127,22 @@ public class Accountant extends User implements Serializable, Deleteable{
         
     }
     
-    public static ArrayList<Accountant> getAccountantList(){
-        File oldAccountantList = new File("AccountantList.bin");
-        Accountant accountant;
-        ArrayList<Accountant> accountantList = new ArrayList<Accountant>();
-        //Collecting all the other users of same type
-        try(FileInputStream fis = new FileInputStream(oldAccountantList);
+    public static ArrayList<ProductManager> getProductManagerList(){
+        File oldProductManagerList = new File("ProductManagerList.bin");
+        ProductManager product_manager;
+        ArrayList<ProductManager> product_managerList = new ArrayList<ProductManager>();
+        try(FileInputStream fis = new FileInputStream(oldProductManagerList);
                 ObjectInputStream ois = new ObjectInputStream(fis);) {
             
             while(true){
-                accountant = (Accountant)ois.readObject();
-                accountantList.add(accountant);
+                product_manager = (ProductManager)ois.readObject();
+                product_managerList.add(product_manager);
             }
         } catch(Exception e) {
-            System.out.println("From accountant.getAccountantList() : "+e.toString());
-            System.out.println("ArrayList of accountants made");
+            System.out.println("From product manager.getProductManagerList() : "+e.toString());
+            System.out.println("ArrayList of product managers made");
         } 
-        // Arraylist of Customers made.
-        return accountantList;
+        return product_managerList;
     }
     
     public void delete(){

@@ -5,6 +5,7 @@
 package mainpkg;
 
 import Borhan_Islam.Accountant;
+import Borhan_Islam.ProductManager;
 import HasinMahir.Customer;
 import HasinMahir.DeliveryMan;
 import HasinMahir.User;
@@ -58,6 +59,8 @@ public class Main extends Application {
         userFiles.add(new File("ReceptionistList.bin"));
         userFiles.add(new File("AccountantList.bin"));
         userFiles.add(new File("AffiliateMarketerList.bin"));
+        userFiles.add(new File("ProductManagerList.bin"));
+        
         
         
         //[Failsafe] Creating empty bin file if it doesn't exist
@@ -95,7 +98,21 @@ public class Main extends Application {
                 else if (userFile.getName().equals("AccountantList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                    User user = new Accountant("User","User","acc","acc");
+                    User user = new Accountant("User","User","acc","acc","123");
+                    oos.writeObject(user);
+                    System.out.println("File "+userFile.getName()+" not found.");
+                    System.out.println("Initialized");
+                }
+                
+                catch(Exception e){
+                    System.out.println(e);
+                }
+              }
+                //Product Manager
+                else if (userFile.getName().equals("ProductManagerList.bin")){
+                try(FileOutputStream fos = new FileOutputStream(userFile);
+                        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                    User user = new ProductManager("User","User","pm","pm", "01976967342");
                     oos.writeObject(user);
                     System.out.println("File "+userFile.getName()+" not found.");
                     System.out.println("Initialized");
