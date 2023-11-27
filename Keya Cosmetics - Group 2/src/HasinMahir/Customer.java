@@ -18,27 +18,30 @@ import mainpkg.ObjectOutputStreamA;
  *
  * @author hasin
  */
-public class Customer extends User implements Serializable {
+public class Customer extends User implements Serializable, Deleteable, Reviewable {
     private Cart cart;
     private ArrayList<Order> orderHistory;
-    private String address, phoneNum;
+    private String address;
+    private float balance;
 
     public Customer() {
         this.del = false;
+        this.balance=0;
     }
 
-    public Customer(String firstName, String lastName, String username, String password, String address, String phoneNum) {
-        super(firstName, lastName, username, password);
+    public Customer(String firstName, String lastName, String username, String password, String address, String phone) {
+        super(firstName, lastName, username, password, phone);
         this.cart = new Cart();
         this.address = address;
-        this.phoneNum = phoneNum;
+        this.phone = phone;
         this.del = false;
+        this.balance=0;
     }
 
     
     
     public void addToCart(Product selectedProduct, int quantity){
-        this.cart.productList.put(selectedProduct,quantity);   
+        this.cart.add(selectedProduct,quantity);   
     }
 
     @Override
@@ -46,9 +49,6 @@ public class Customer extends User implements Serializable {
         return ("Name: "+this.firstName+" "+this.lastName+", Username: "+this.username);
     }
 
-    public String getPhoneNum() {
-        return phoneNum;
-    }
 
     public void setOrderHistory(ArrayList<Order> orderHistory) {
         this.orderHistory = orderHistory;
@@ -58,10 +58,7 @@ public class Customer extends User implements Serializable {
         this.address = address;
     }
 
-    public void setPhoneNum(String phoneNum) {
-        this.phoneNum = phoneNum;
-    }
-
+ 
     public Cart getCart() {
         return cart;
     }
@@ -99,7 +96,8 @@ public class Customer extends User implements Serializable {
        
         try{
             FileOutputStream temp = new FileOutputStream(oldCustomerList);
-            temp.close();
+            ObjectOutputStream temp2 = new ObjectOutputStream(temp);
+            temp2.close();
         }catch(Exception e){
             System.out.println(e);
         }
@@ -107,9 +105,9 @@ public class Customer extends User implements Serializable {
         try(FileOutputStream fos = new FileOutputStream(oldCustomerList);
         ObjectOutputStream oos = new ObjectOutputStream(fos);){
             oos.writeObject(this);
+            System.out.println("Current customer written. Other customers next");
         } catch(Exception e){
             System.out.println(e.toString());
-            System.out.println("Only current customer written. Other customers next");
         }
         try(FileOutputStream fos = new FileOutputStream(oldCustomerList,true);
         ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
@@ -142,6 +140,26 @@ public class Customer extends User implements Serializable {
         // Arraylist of Customers made.
         return customerList;
     }
+    
+    public void delete(){
+        if (this.isDel()){
+            System.out.println("Acoount is already deleted");
+        }
+        else{
+            this.del = true;
+            this.username+=".deleted";
+        }
+    }
+    public void recover(){
+        if (this.isDel()){
+            this.del = false;
+            this.username=".deleted";
+        }
+        else{
+            this.del = true;
+            this.username = this.username.substring(0,this.username.length()-8);
+        }
+    }
     /* Broken and probably redundant.
     public static void setCustomerList(ArrayList<Customer> newCustomerList){
         //Rewriting the bin file with the updated customer object.
@@ -169,6 +187,13 @@ public class Customer extends User implements Serializable {
         }
         }
 */
+
+    @Override
+    public void addReview(String sender) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+   
 
     
     

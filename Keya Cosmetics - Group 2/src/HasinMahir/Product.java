@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 =======
 >>>>>>> parent of 247bdc8 (Merge branch 'Newnadim' into Nadim)
@@ -31,24 +32,30 @@ public class Product implements Serializable,Reviewable {
     protected float price;
     protected int vatRate;
 
-    @Override
-    public void setReview(String sender) {
+    public void addReview(String sender) {
         Review review = new Review();
         review.setSender(sender);
+        boolean success = false;
         try {
             review.takeReview(this);
-            this.reviewList.add(review);
+            success = true;
         } catch (IOException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+        if (success){
+            this.reviewList.add(review);
+            Alert a = new Alert(Alert.AlertType.INFORMATION,"Review saved");
+            a.showAndWait();
+        }
+        else{
+            Alert a = new Alert(Alert.AlertType.ERROR,"Review failed");
+            a.showAndWait();
+        }
     }
 
-    @Override
-    public void getReview() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+ 
+    public ArrayList<Review> getReviewList() {
+        return this.reviewList;
     }
     public enum Category{BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,SHAMPOO,DETERGENT}
 =======

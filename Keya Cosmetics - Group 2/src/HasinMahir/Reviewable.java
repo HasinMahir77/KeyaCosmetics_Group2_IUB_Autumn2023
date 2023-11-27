@@ -12,7 +12,6 @@ import java.util.ArrayList;
  */
 public interface Reviewable {
     
-    public void setReview(String sender);
-    public void getReview();
+    public void addReview(String sender);
     
 }
