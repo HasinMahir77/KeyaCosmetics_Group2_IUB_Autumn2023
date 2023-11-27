@@ -12,7 +12,7 @@ import HasinMahir.DeliveryMan;
 import HasinMahir.User;
 import HasinMahir.customerScenes.CustomerSceneSwitcher;
 import HasinMahir.deliveryManScenes.DMSS;
-import NadimHR_Receptionist.HRSceneSwitcher;
+import NadimHR_Receptionist.NadimSS;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -139,7 +139,7 @@ public class LoginGridController implements Initializable {
                     if (user.getUsername().equals(username) && user.getPassword().equals(password)){
                         Main.getMainStage().setUserData(user);
                         System.out.println("Userdata set for HR");
-                        HRSceneSwitcher ss = new HRSceneSwitcher();
+                        NadimSS ss = new NadimSS();
                         ss.switchScene("HR mainDashboard.fxml", "Keya: Dashboard");
                     }
                 } // Loop's scope ends
