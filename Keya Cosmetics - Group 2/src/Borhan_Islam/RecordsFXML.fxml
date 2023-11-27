@@ -19,9 +19,10 @@
         <menus>
           <Menu mnemonicParsing="false" text="Go To ↓">
                <items>
-              <MenuItem fx:id="recordsToDashboardButton" mnemonicParsing="false" text="Dashboard" />
+              <MenuItem mnemonicParsing="false" onAction="#switchToDashboardButton" text="Dashboard" />
                </items>
           </Menu>
+            <Menu fx:id="timeLabel" mnemonicParsing="false" />
         </menus>
       </MenuBar>
       <Label layoutX="442.0" layoutY="37.0" text="RECORDS">

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Borhan_Islam.ProfileFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Borhan_Islam.ProfileFXMLController">
    <children>
       <Label alignment="CENTER" layoutX="282.0" layoutY="160.0" text="Username:">
          <font>
@@ -21,7 +21,6 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="960.0" layoutY="540.0" text="Last Name:" />
       <Label alignment="CENTER" layoutX="280.0" layoutY="235.0" text="Last Name:">
          <font>
             <Font size="20.0" />
@@ -72,6 +71,6 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button layoutX="871.0" layoutY="478.0" mnemonicParsing="false" onAction="#goBackToDashboardButton" text="Go Back" />
+      <Button layoutX="871.0" layoutY="478.0" mnemonicParsing="false" onAction="#switchToDashboardButton" text="Go Back" />
    </children>
 </AnchorPane>

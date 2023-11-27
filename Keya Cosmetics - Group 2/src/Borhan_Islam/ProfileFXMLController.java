@@ -59,10 +59,9 @@ public class ProfileFXMLController implements Initializable {
     }
 
     @FXML
-    private void goBackToDashboardButton(ActionEvent event) throws IOException {
+    private void switchToDashboardButton(ActionEvent event) throws IOException {
         BorhanSS ss = new BorhanSS();
-        ss.goBackToDashboardButton();    
-
+        ss.switchToDashboardButton();           
     }
         
 }

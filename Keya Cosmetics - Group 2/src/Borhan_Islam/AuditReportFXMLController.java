@@ -4,8 +4,11 @@
  */
 package Borhan_Islam;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -13,7 +16,7 @@ import javafx.fxml.Initializable;
  *
  * @author 88019
  */
-public class SearchOrDeleteFXMLController implements Initializable {
+public class AuditReportFXMLController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -22,5 +25,11 @@ public class SearchOrDeleteFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void switchToDashboardButton(ActionEvent event) throws IOException {
+        BorhanSS ss = new BorhanSS();
+        ss.switchToDashboardButton();          
+    }
     
 }

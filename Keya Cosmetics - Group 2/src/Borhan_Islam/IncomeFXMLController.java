@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import mainpkg.MainpkgSS;
 
 /**
  * FXML Controller class
@@ -61,17 +62,13 @@ public class IncomeFXMLController implements Initializable {
     }
 
     @FXML
-    private void dashboardMenuButton(ActionEvent event) throws IOException {
-        BorhanSS ss = new BorhanSS();
-        ss.dashboardMenuButton();           
-    }
-
-    @FXML
     private void employeeListMenuButton(ActionEvent event) {
     }
 
     @FXML
-    private void logoutMenuButton(ActionEvent event) {
+    private void switchToDashboardButton(ActionEvent event) throws IOException {
+        BorhanSS ss = new BorhanSS();
+        ss.switchToDashboardButton();          
     }
-    
+
 }

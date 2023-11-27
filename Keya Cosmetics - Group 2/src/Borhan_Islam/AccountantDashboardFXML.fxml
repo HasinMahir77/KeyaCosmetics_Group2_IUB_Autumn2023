@@ -36,7 +36,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button layoutX="75.0" layoutY="414.0" mnemonicParsing="false" onAction="#searchDeleteOnButtonClicked" style="-fx-background-radius: 12;" text="Updated Terms &amp; Policies">
+      <Button layoutX="75.0" layoutY="414.0" mnemonicParsing="false" onAction="#UpdatedTermsOnButtonClicked" style="-fx-background-radius: 12;" text="Updated Terms &amp; Policies">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font></Button>
@@ -44,7 +44,7 @@
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font></Button>
-      <Button layoutX="74.0" layoutY="244.0" mnemonicParsing="false" onAction="#transactionOnButtonClicked" style="-fx-background-radius: 12;" text="Submit Audit Report ">
+      <Button layoutX="74.0" layoutY="244.0" mnemonicParsing="false" onAction="#AuditReportOnButtonClicked" style="-fx-background-radius: 12;" text="Submit Audit Report ">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font></Button>

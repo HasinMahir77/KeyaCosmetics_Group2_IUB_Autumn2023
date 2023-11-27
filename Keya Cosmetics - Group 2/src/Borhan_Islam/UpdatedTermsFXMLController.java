@@ -16,7 +16,7 @@ import javafx.fxml.Initializable;
  *
  * @author 88019
  */
-public class ProductionAnalysisFXMLController implements Initializable {
+public class UpdatedTermsFXMLController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -29,7 +29,7 @@ public class ProductionAnalysisFXMLController implements Initializable {
     @FXML
     private void switchToDashboardButton(ActionEvent event) throws IOException {
         BorhanSS ss = new BorhanSS();
-        ss.switchToDashboardButton();           
+        ss.switchToDashboardButton();          
     }
     
 }

@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author 88019
  */
-public class TransactionFXMLController implements Initializable {
+public class ProductManagerDashboardFXMLController implements Initializable {
 
     /**
      * Initializes the controller class.

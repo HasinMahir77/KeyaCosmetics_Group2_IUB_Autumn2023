@@ -20,11 +20,10 @@
         <menus>
           <Menu mnemonicParsing="false" text="Go To ↓">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#dashboardMenuButton" text="Dashboard" />
+              <MenuItem mnemonicParsing="false" onAction="#switchToDashboardButton" text="Dashboard" />
                   <MenuItem mnemonicParsing="false" onAction="#employeeListMenuButton" text="Employee List" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" onAction="#logoutMenuButton" text="Logout" />
         </menus>
       </MenuBar>
       <Label layoutX="353.0" layoutY="37.0" text="Payroll Processing">
