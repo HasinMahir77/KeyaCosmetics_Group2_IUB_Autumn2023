@@ -18,7 +18,7 @@ import mainpkg.ObjectOutputStreamA;
  *
  * @author hasin
  */
-public class Customer extends User implements Serializable, Deleteable {
+public class Customer extends User implements Serializable, Deleteable, Reviewable {
     private Cart cart;
     private ArrayList<Order> orderHistory;
     private String address;
@@ -187,6 +187,13 @@ public class Customer extends User implements Serializable, Deleteable {
         }
         }
 */
+
+    @Override
+    public void addReview(String sender) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+   
 
     
     
