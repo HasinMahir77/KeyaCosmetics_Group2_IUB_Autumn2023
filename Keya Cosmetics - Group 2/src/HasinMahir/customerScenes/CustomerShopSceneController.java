@@ -7,7 +7,7 @@ package HasinMahir.customerScenes;
 import HasinMahir.Customer;
 import HasinMahir.Product;
 import HasinMahir.Product.Category;
-import HasinMahir.ProductOrder;
+import HasinMahir.OrderedProduct;
 import HasinMahir.User;
 import java.io.File;
 import java.io.FileInputStream;

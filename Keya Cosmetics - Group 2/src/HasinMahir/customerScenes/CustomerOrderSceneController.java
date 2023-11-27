@@ -9,7 +9,7 @@ import HasinMahir.Customer;
 import HasinMahir.Order;
 import HasinMahir.Order.Status;
 import HasinMahir.Product;
-import HasinMahir.ProductOrder;
+import HasinMahir.OrderedProduct;
 import HasinMahir.Review;
 import static HasinMahir.customerScenes.CustomerShopSceneController.current;
 import java.io.File;
@@ -236,6 +236,7 @@ public class CustomerOrderSceneController implements Initializable {
         Review r = new Review();
         r.setSender(current.getUsername());
         r.takeReview(p);//This opens the review popup
+        System.out.println(r.getRating()+" Review: "+r.getReview());
         
     }
 

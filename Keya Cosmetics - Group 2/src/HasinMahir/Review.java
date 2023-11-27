@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import mainpkg.Main;
 import mainpkg.MainpkgSS;
 
 /**
@@ -111,17 +112,20 @@ public class Review {
         Parent root = FXMLLoader.load(getClass().getResource("TakeReview.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Keya Cosmetics: Login");
+        stage.setTitle("Review");
+        Main.getMainStage().getScene().getRoot().setDisable(true);
         stage.showAndWait();
         
         //Popup closed
         Review review = (Review) stage.getUserData();
         if (review.getRating()==-1){//Taking review failed
+            Main.getMainStage().getScene().getRoot().setDisable(false);
             return false;
         }
         else{
             this.setRating(review.getRating());
             this.setReview(review.getReview());
+            Main.getMainStage().getScene().getRoot().setDisable(false);
             return true;
         }
     }

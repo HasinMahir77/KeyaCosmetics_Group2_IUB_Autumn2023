@@ -5,7 +5,7 @@
 package HasinMahir.customerScenes;
 
 import HasinMahir.Customer;
-import HasinMahir.ProductOrder;
+import HasinMahir.OrderedProduct;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
