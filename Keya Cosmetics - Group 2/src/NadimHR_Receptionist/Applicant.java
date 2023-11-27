@@ -83,10 +83,4 @@ public class Applicant implements Serializable {
         this.contactInformation = contactInformation;
     }
 
-    @Override
-    public String toString() {
-        return "Applicant{" + "applicantName=" + applicantName + ", contactInfo=" + contactInfo + ", position=" + position + ", id=" + id + ", assignedbyhr=" + assignedbyhr + ", assignedDate=" + assignedDate + ", contactInformation=" + contactInformation + '}';
-    }
-
- 
 }

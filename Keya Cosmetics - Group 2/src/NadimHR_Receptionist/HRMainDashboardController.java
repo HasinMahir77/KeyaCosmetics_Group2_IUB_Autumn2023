@@ -87,8 +87,4 @@ public class HRMainDashboardController implements Initializable {
         Main.getMainStage().getScene().setRoot(root);
     }
 
-    @FXML
-    private void AnalyzedapplicantsOnclick(ActionEvent event) {
-    }
-
 }

@@ -4,7 +4,11 @@
  */
 package HasinMahir;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import mainpkg.Main;
@@ -14,12 +18,31 @@ import mainpkg.Main;
  *
  * @author hasin
  */
-public class Product implements Serializable {
-    protected String name;
-    protected String category;
+public class Product implements Serializable,Reviewable {
+    protected String name, category;
+    protected ArrayList<Review> reviewList; 
     protected float price;
     protected int vatRate;
-    protected Review review;
+
+    @Override
+    public void setReview(String sender) {
+        Review review = new Review();
+        review.setSender(sender);
+        try {
+            review.takeReview(this);
+            this.reviewList.add(review);
+        } catch (IOException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }
+
+    @Override
+    public void getReview() {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
     public enum Category{BODY_SOAP,TOOTHPASTE,DEODORANT,SKINCARE,SHAMPOO,DETERGENT}
 
     public Product(){ 
@@ -29,6 +52,7 @@ public class Product implements Serializable {
         this.name = name;
         this.price = price;
         this.vatRate = vatRate;
+        this.reviewList = new ArrayList<Review>();
         if (categoryEnum.equals(Category.DETERGENT)){
             this.category = "Detergent";
         }
@@ -53,10 +77,11 @@ public class Product implements Serializable {
         this.price = price;
         this.vatRate = vatRate;
         this.category = category;
+        this.reviewList = new ArrayList<Review>();
     }
     
-    public ProductOrder toProductOrder(int quantity){
-        return new ProductOrder(this.name,this.price,this.category,this.vatRate,quantity);
+    public OrderedProduct toProductOrder(int quantity){
+        return new OrderedProduct(this.name,this.price,this.category,this.vatRate,quantity);
     }
 
     

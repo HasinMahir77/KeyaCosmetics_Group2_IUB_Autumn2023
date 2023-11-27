@@ -19,25 +19,25 @@ import mainpkg.Main;
 public class Cart implements Serializable {
     float price;
     
-    protected ArrayList<ProductOrder> productOrderList;
+    protected ArrayList<OrderedProduct> productOrderList;
     
     public Cart(){
-        this.productOrderList = new ArrayList<ProductOrder>();
+        this.productOrderList = new ArrayList<OrderedProduct>();
        
         
     }
 
-    public ArrayList<ProductOrder> getProductOrderList() {
+    public ArrayList<OrderedProduct> getProductOrderList() {
         return productOrderList;
     }
 
-    public void setProductOrderList(ArrayList<ProductOrder> productOrderList) {
+    public void setProductOrderList(ArrayList<OrderedProduct> productOrderList) {
         this.productOrderList = productOrderList;
     }
 
     public float getPrice() {
         float price = 0;
-        for (ProductOrder po: this.productOrderList){
+        for (OrderedProduct po: this.productOrderList){
             price+=po.getTotalPrice();
         }
         this.price=price;
@@ -45,12 +45,12 @@ public class Cart implements Serializable {
     }
     
     public void add(Product product, int quantity){
-        //Converting to ProductOrder
-        ProductOrder productOder = product.toProductOrder(quantity);
+        //Converting to OrderedProduct
+        OrderedProduct productOder = product.toProductOrder(quantity);
         
         //Checking for duplicate
         
-        for(ProductOrder p: this.productOrderList){
+        for(OrderedProduct p: this.productOrderList){
             if (product.getName().equals(p.getName())){
                 p.setQuantity(p.getQuantity()+quantity);
                 return;
@@ -59,13 +59,13 @@ public class Cart implements Serializable {
         
         this.productOrderList.add(productOder);
     }
-    public void add(ProductOrder product,int quantity){
-        //Converting to ProductOrder
-        ProductOrder productOder = product.toProductOrder(quantity);
+    public void add(OrderedProduct product,int quantity){
+        //Converting to OrderedProduct
+        OrderedProduct productOder = product.toProductOrder(quantity);
         
         //Checking for duplicate
         
-        for(ProductOrder p: this.productOrderList){
+        for(OrderedProduct p: this.productOrderList){
             if (product.getName().equals(p.getName())){
                 p.setQuantity(p.getQuantity()+quantity);
                 return;
@@ -77,11 +77,11 @@ public class Cart implements Serializable {
     
     public void remove(Product product, int quantity){
         //Checking if the product exists in cart
-        ProductOrder target=null;
+        OrderedProduct target=null;
         boolean exists = false;
         int newQuantity = 1; //Arbitrary value to check if item needs removal
         
-        for(ProductOrder p: this.productOrderList){
+        for(OrderedProduct p: this.productOrderList){
             if (product.getName().equals(p.getName())){
                 exists = true;
                 target = p;
@@ -100,13 +100,13 @@ public class Cart implements Serializable {
         
     }
     
-    public void remove(ProductOrder product){
+    public void remove(OrderedProduct product){
         //Checking if the product exists in cart
-        ProductOrder target=null;
+        OrderedProduct target=null;
         boolean exists = false;
         int newQuantity = 1; //Arbitrary value to check if item needs removal
         
-        for(ProductOrder p: this.productOrderList){
+        for(OrderedProduct p: this.productOrderList){
             if (product.getName().equals(p.getName())){
                 exists = true;
                 target = p;

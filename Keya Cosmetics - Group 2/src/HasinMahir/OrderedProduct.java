@@ -10,13 +10,13 @@ import java.io.Serializable;
  *
  * @author hasin
  */
-public class ProductOrder extends Product implements Serializable {
+public class OrderedProduct extends Product implements Serializable {
     private int quantity;
     private float totalPrice, vat;
 
     //Easier constructor
     
-    public ProductOrder(String name, float price, String category, int vatRate, int quantity) {
+    public OrderedProduct(String name, float price, String category, int vatRate, int quantity) {
         super(name, price, category, vatRate);
         this.quantity = quantity;
         
@@ -25,7 +25,7 @@ public class ProductOrder extends Product implements Serializable {
     }
 
     
-    public ProductOrder(Product product, int quantity) {
+    public OrderedProduct(Product product, int quantity) {
         this.quantity = quantity;
         this.name = product.getName();
         this.category = product.getCategory();

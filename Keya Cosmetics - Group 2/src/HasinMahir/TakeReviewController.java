@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -41,7 +42,7 @@ public class TakeReviewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        stage = Review.getStage();
+        stage = Review.getStage(); //Getting current 
         review = (Review)stage.getUserData();
        
         
@@ -51,9 +52,30 @@ public class TakeReviewController implements Initializable {
 
     @FXML
     private void reviewButtonOnClick(ActionEvent event) {
-       review.setRating(Integer.parseInt(ratingTextField.getText()));
-       review.setReview(reviewTextField.getText());
-       stage.close();
+        int rating;
+        
+       try{ //Trying to make a review with integer rating
+           
+           rating = Integer.parseInt(ratingTextField.getText());
+           
+           if (rating>=0 && rating<=10){ //Success
+               review.setRating(rating);
+               review.setReview(reviewTextField.getText());
+               stage.close(); //Closed popup
+           }
+           else {
+               Alert a = new Alert(Alert.AlertType.ERROR,"Please enter a rating between 0 and 10.");
+               a.showAndWait();
+               //Canceled writing the review
+           }
+       }
+       catch(Exception e){ //Integer rating not found
+           Alert a = new Alert(Alert.AlertType.ERROR,"Please enter an integer rating.");
+           a.showAndWait();
+           //Canceled writing the review
+       }
+       
+       
     }
     
 }

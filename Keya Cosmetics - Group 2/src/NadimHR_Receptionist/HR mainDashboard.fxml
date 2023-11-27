@@ -21,7 +21,6 @@
           <Menu mnemonicParsing="false" text="View">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#employeeDetailsChartsOnClick" text="Employee details " />
-                  <MenuItem mnemonicParsing="false" onAction="#AnalyzedapplicantsOnclick" text="Analyze Applicants" />
               <MenuItem mnemonicParsing="false" onAction="#administerpayrollreportsOnclick" text="Administer payroll reports" />
                   <MenuItem mnemonicParsing="false" onAction="#attendenceleavemanagementOnclick" text="Attendance/Leave management" />
                   <MenuItem mnemonicParsing="false" onAction="#auditfinancialmanagementsOnclick" text="Audited Financial Managements" />

@@ -8,7 +8,7 @@ import HasinMahir.Cart;
 import HasinMahir.Customer;
 import HasinMahir.Order;
 import HasinMahir.Product;
-import HasinMahir.ProductOrder;
+import HasinMahir.OrderedProduct;
 import HasinMahir.User;
 import static HasinMahir.customerScenes.CustomerShopSceneController.current;
 import java.io.IOException;
@@ -72,17 +72,17 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private Label cartLabel;
     @FXML
-    private TableView<ProductOrder> cartTableView;
+    private TableView<OrderedProduct> cartTableView;
     @FXML
-    private TableColumn<ProductOrder, String> nameColumn;
+    private TableColumn<OrderedProduct, String> nameColumn;
     @FXML
-    private TableColumn<ProductOrder, Integer> quantityColumn;
+    private TableColumn<OrderedProduct, Integer> quantityColumn;
     @FXML
-    private TableColumn<ProductOrder, Float> unitPriceColumn;
+    private TableColumn<OrderedProduct, Float> unitPriceColumn;
     @FXML
-    private TableColumn<ProductOrder, Float> totalPriceColumn;
+    private TableColumn<OrderedProduct, Float> totalPriceColumn;
     @FXML
-    private TableColumn<ProductOrder, Float> vatColumn;
+    private TableColumn<OrderedProduct, Float> vatColumn;
     @FXML
     private Button minusButton;
     @FXML
@@ -94,7 +94,7 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private Button cartButton;
     
-    ProductOrder selectedProduct;
+    OrderedProduct selectedProduct;
     @FXML
     private Label securityLabel;
     @FXML
@@ -120,13 +120,13 @@ public class CustomerCartSceneController implements Initializable {
         
         //Initializing and updating TableView
         
-        ProductOrder selectedProduct = cartTableView.getSelectionModel().getSelectedItem();
+        OrderedProduct selectedProduct = cartTableView.getSelectionModel().getSelectedItem();
         
-        nameColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, String>("name"));
-        unitPriceColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Float>("price"));
-        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Float>("totalPrice"));
-        vatColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Float>("vat"));
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, Integer>("quantity"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, String>("name"));
+        unitPriceColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Float>("price"));
+        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Float>("totalPrice"));
+        vatColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Float>("vat"));
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Integer>("quantity"));
         
        
         this.updateCartTable();
@@ -238,7 +238,7 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private void addButtonOnClick(ActionEvent event) {
         try{
-            ProductOrder po = this.selectedProduct;
+            OrderedProduct po = this.selectedProduct;
             int quantity = Integer.parseInt(quantityTextField.getText());
             //Duplicate Checking implemented in Cart class
             current.getCart().add(po,quantity);
@@ -299,10 +299,10 @@ public class CustomerCartSceneController implements Initializable {
         
     }
     public void updateGrandTotal(){
-        ArrayList<ProductOrder> products = current.getCart().getProductOrderList();
+        ArrayList<OrderedProduct> products = current.getCart().getProductOrderList();
         Float grandTotal = new Float(0);
         
-        for(ProductOrder p: products){
+        for(OrderedProduct p: products){
             grandTotal = grandTotal+p.getTotalPrice()+p.getVat();
         }
         grandTotalLabel.setText(grandTotal.toString()+" BDT");
