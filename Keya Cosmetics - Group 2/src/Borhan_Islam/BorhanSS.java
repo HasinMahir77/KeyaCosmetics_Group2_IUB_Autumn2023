@@ -40,6 +40,9 @@ public class BorhanSS {
     public void profileOnButtonClicked() throws IOException {
         this.switchScene("ProfileFXML.fxml", "Profile");
     }
+    public void pmprofileButtonClicked() throws IOException {
+        this.switchScene("PmProfileFXML.fxml", "Profile");
+    }
 //    public void logoutOnButtonClicked() throws IOException {
 //        this.switchScene("LoginGrid.fxml", "");
 //    }
@@ -54,6 +57,9 @@ public class BorhanSS {
     }
     public void switchToDashboardButton() throws IOException {
         this.switchScene("AccountantDashboardFXML.fxml", "");
+    }  
+    public void switchToPmDashboardButton() throws IOException {
+        this.switchScene("ProductManagerDashboardFXML.fxml", "");
     }  
 
     void UpdatedTermsOnButtonClicked() throws IOException {

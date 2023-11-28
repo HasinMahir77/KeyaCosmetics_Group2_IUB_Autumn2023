@@ -3,11 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package Borhan_Islam;
-import Borhan_Islam.Accountant;
+
+
 import java.io.IOException;
 import java.net.URL;
+
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import Borhan_Islam.ProductManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,7 +22,7 @@ import mainpkg.Main;
  *
  * @author 88019
  */
-public class ProfileFXMLController implements Initializable {
+public class PmProfileFXMLController implements Initializable {
 
     @FXML
     private TextField usernameTextField;
@@ -39,7 +42,7 @@ public class ProfileFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Accountant current = (Accountant) Main.getMainStage().getUserData();
+        ProductManager current = (ProductManager) Main.getMainStage().getUserData();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
         usernameTextField.setText(current.getUsername());
@@ -51,9 +54,9 @@ public class ProfileFXMLController implements Initializable {
     }
 
     @FXML
-    private void switchToDashboardButton(ActionEvent event) throws IOException {
+    private void switchToPmDashboardButton(ActionEvent event) throws IOException {
         BorhanSS ss = new BorhanSS();
-        ss.switchToDashboardButton();           
+        ss.switchToPmDashboardButton();           
     }
         
 }
