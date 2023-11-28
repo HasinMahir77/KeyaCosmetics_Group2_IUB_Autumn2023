@@ -29,19 +29,16 @@ public class Product implements Serializable,Reviewable {
         Review review = new Review();
         review.setSender(sender);
         boolean success = false;
-        try {
-            review.takeReview(this);
-            success = true;
-        } catch (IOException ex) {
-            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        review.setSubject(this.getName());
+        success = review.takeReview();
+        
         if (success){
             this.reviewList.add(review);
             Alert a = new Alert(Alert.AlertType.INFORMATION,"Review saved");
             a.showAndWait();
         }
         else{
-            Alert a = new Alert(Alert.AlertType.ERROR,"Review failed");
+            Alert a = new Alert(Alert.AlertType.ERROR,"Failed to save review");
             a.showAndWait();
         }
     }

@@ -5,6 +5,9 @@
 package HasinMahir;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,7 +19,7 @@ import mainpkg.MainpkgSS;
  *
  * @author hasin
  */
-public class Review {
+public class Review implements Serializable {
     private String sender,subject, review;
     private int rating;
     private static Stage stage;
@@ -76,30 +79,35 @@ public class Review {
     }
     
     
-    public boolean takeReview(Product product) throws IOException{
-        //Set the userdata to takereview scene
-        this.subject = product.getName();
-        //Setting up the new stage and passing data
-        MainpkgSS ss = new MainpkgSS();
-        stage = new Stage();
-        stage.setUserData(this);
-        //Scene popping 
-        Parent root = FXMLLoader.load(getClass().getResource("TakeReview.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Keya Cosmetics: Login");
-        stage.showAndWait();
-        
-        //Popup closed
-        Review review = (Review) stage.getUserData();
-        if (review.getRating()==-1){//Taking review failed
-            return false;
+    public boolean takeReview(){
+        try {
+            //Set the userdata to takereview scene
+            //this.subject = product.getName();
+            //Setting up the new stage and passing data
+            MainpkgSS ss = new MainpkgSS();
+            stage = new Stage();
+            stage.setUserData(this);
+            //Scene popping
+            Parent root = FXMLLoader.load(getClass().getResource("TakeReview.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Keya Cosmetics: Login");
+            stage.showAndWait();
+            
+            //Popup closed
+            Review review = (Review) stage.getUserData();
+            if (review.getRating()==-1){//Taking review failed
+                return false;
+            }
+            else{
+                this.setRating(review.getRating());
+                this.setReview(review.getReview());
+                return true;
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
         }
-        else{
-            this.setRating(review.getRating());
-            this.setReview(review.getReview());
-            return true;
-        }
+        return false;
     }
     public boolean takeReview(User product) throws IOException{
         //Set the userdata to takereview scene

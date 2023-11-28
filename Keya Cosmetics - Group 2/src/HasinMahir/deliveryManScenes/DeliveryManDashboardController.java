@@ -6,6 +6,7 @@ package HasinMahir.deliveryManScenes;
 
 import HasinMahir.DeliveryMan;
 import HasinMahir.Order;
+import HasinMahir.Order.Status;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -64,7 +65,8 @@ public class DeliveryManDashboardController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    DeliveryMan current;
+    private DeliveryMan current;
+    private Order selectedOrder;
     @FXML
     private Button dashboardButton1;
     @FXML
@@ -93,6 +95,7 @@ public class DeliveryManDashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         current = (DeliveryMan)Main.getUserData(); //Initialized user 
+        this.selectedOrder=null;
         
         
         nameLabel.setText(nameLabel.getText()+" "+current.getFirstName()+" "+current.getLastName());
@@ -159,6 +162,22 @@ public class DeliveryManDashboardController implements Initializable {
     @FXML
     private void darkenUserMenuBar(MouseEvent event) {
         userMenu.setStyle("-fx-background-color: #79edad");
+    }
+
+    @FXML
+    private void viewDetailButtonOnClick(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void acceptButtonOnClick(ActionEvent event) {
+        if (selectedOrder!=null && !this.orderTableView.getItems().isEmpty()){
+            selectedOrder.setStatus(Status.ACCEPTED);
+        }
+    }
+
+    @FXML
+    private void updateOrderTable(MouseEvent event) {
     }
     
 }

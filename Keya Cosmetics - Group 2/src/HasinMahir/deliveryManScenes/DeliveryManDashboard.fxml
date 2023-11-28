@@ -109,7 +109,7 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowSpan="2">
                <children>
-                  <TableView fx:id="orderTableView" prefHeight="318.0" prefWidth="354.0">
+                  <TableView fx:id="orderTableView" onMouseClicked="#updateOrderTable" prefHeight="318.0" prefWidth="354.0">
                     <columns>
                       <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
                       <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
@@ -151,8 +151,8 @@
                </padding></VBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
                <children>
-                  <Button fx:id="viewDetailButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="88.0" text="View Detail" />
-                  <Button fx:id="acceptButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="88.0" text="✔ Accept" />
+                  <Button fx:id="viewDetailButton" mnemonicParsing="false" onAction="#viewDetailButtonOnClick" prefHeight="30.0" prefWidth="88.0" text="View Detail" />
+                  <Button fx:id="acceptButton" mnemonicParsing="false" onAction="#acceptButtonOnClick" prefHeight="30.0" prefWidth="88.0" text="✔ Accept" />
                </children>
                <padding>
                   <Insets left="5.0" top="5.0" />

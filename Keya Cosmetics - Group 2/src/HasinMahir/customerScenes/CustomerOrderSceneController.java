@@ -75,6 +75,7 @@ public class CustomerOrderSceneController implements Initializable {
     private Label returnedLabel;
     @FXML
     private Label cartLabel;
+    @FXML
     private TableView<Order> orderTableView;
     @FXML
     private PieChart orderPieChart;
@@ -84,8 +85,11 @@ public class CustomerOrderSceneController implements Initializable {
     
     @FXML
     private Label orderLabel;
+    @FXML
     private TableColumn<Order, String> idColumn;
+    @FXML
     private TableColumn<Order, Status> statusColumn;
+    @FXML
     private TableColumn<Order, Float> priceColumn;
     @FXML
     private Button cancelButton;
@@ -97,14 +101,25 @@ public class CustomerOrderSceneController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    ObservableList<Order> orderList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        this.selectedOrder = null;
         orderTableView.setPlaceholder(new Label("No orders to show."));
         orderLabel.setTextFill(Color.BLUE);
         // Getting user data
         Customer current = (Customer)Main.getMainStage().getUserData();
         userMenu.setText(current.getUsername()+" ↓");
+        
+        //Collecting orders
+        ArrayList<Order> allOrders = Order.getOrderList();
+        
+        for (Order o: allOrders){
+            if (o.getCustomerUserName().equals(current.getUsername())){ //Order belongs to current customer
+                this.orderList.add(o);
+            }
+        }
          
         //TableView
         //orderTableView.setPlaceholder("No orders placed yet");
@@ -112,7 +127,7 @@ public class CustomerOrderSceneController implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<Order, Float>("price"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<Order, Status>("status"));
         
-        this.updateOrderTable();
+        orderTableView.setItems(orderList);
         //Pie Chart
         
         
@@ -193,11 +208,8 @@ public class CustomerOrderSceneController implements Initializable {
 
     @FXML
     private void returnButtonOnClick(ActionEvent event) {
-        try{
+        if (this.selectedOrder!=null){
             this.selectedOrder.setStatus(Status.RETURNED);
-        }
-        catch(Exception e){
-            System.out.println(e.toString()+" from customerOrderScene");
         }
     }
 
@@ -205,7 +217,31 @@ public class CustomerOrderSceneController implements Initializable {
     private void updateSelectedOrder(MouseEvent event) {
        if(!orderTableView.getSelectionModel().isEmpty()){
             this.selectedOrder = orderTableView.getSelectionModel().getSelectedItem();
+            this.updateButton();
         } 
+    }
+    private void updateButton() {
+       if (selectedOrder.getStatus()==Status.DELIVERED){
+           cancelButton.setDisable(true);
+           reviewButton.setDisable(false);
+           returnButton.setDisable(false);
+           
+       }
+       else if (selectedOrder.getStatus()==Status.CANCELED){
+           cancelButton.setDisable(true);
+           reviewButton.setDisable(true);
+           returnButton.setDisable(true);
+       }
+       else if (selectedOrder.getStatus()==Status.RETURNED){
+           cancelButton.setDisable(true);
+           reviewButton.setDisable(false);
+           returnButton.setDisable(true);
+       }
+       else if (selectedOrder.getStatus()==Status.PENDING || selectedOrder.getStatus()==Status.ACCEPTED){
+           cancelButton.setDisable(false);
+           reviewButton.setDisable(true);
+           returnButton.setDisable(true);
+       }
     }
 
     @FXML
@@ -226,25 +262,21 @@ public class CustomerOrderSceneController implements Initializable {
 
     @FXML
     private void cancelButtonOnClick(ActionEvent event) {
-        if(this.orderTableView.getSelectionModel().isEmpty()){
-            Alert a = new Alert(Alert.AlertType.INFORMATION,"Please select an order");
+        if (!(this.selectedOrder==null)){
+            this.selectedOrder.setStatus(Status.CANCELED);
         }
     }
 
     @FXML
     private void reviewButtonOnClick(ActionEvent event) throws IOException {
-        Customer p = new Customer();//Creating product for test
-        p.setUsername("Mahir");
-        
-        //Taking a review
-        Review r = new Review();
-        r.setSender(current.getUsername());
-        r.takeReview(p);//This opens the review popup
-        System.out.println(r.getRating()+" Review: "+r.getReview());
-        
+        if (this.selectedOrder!=null){
+            this.selectedOrder.addReview(current.getUsername());
+        }
     }
     private void updatePieChart(){
-        ArrayList<Product> productList = new ArrayList<Product>();
+        if (this.selectedOrder!=null){
+        }
+        
         
     }
 

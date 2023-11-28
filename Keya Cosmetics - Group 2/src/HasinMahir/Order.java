@@ -7,21 +7,43 @@ package HasinMahir;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.Alert;
 import mainpkg.ObjectOutputStreamA;
 
 /**
  *
  * @author hasin
  */
-public class Order implements Serializable {
-    public enum Status{PENDING,OUT_FOR_DELIVERY,DELIVERED,RETURNED,CANCELED};
+public class Order implements Serializable,Reviewable {
+
+    @Override
+    public void addReview(String sender) {
+        Review r = new Review();
+        r.setSender(sender);
+        r.setSubject(this.getId());
+        boolean success = r.takeReview();
+        if (success){
+            this.reviewList.add(r);
+            Alert a = new Alert(Alert.AlertType.INFORMATION,"Review saved");
+            a.showAndWait();
+        }
+        else{
+            Alert a = new Alert(Alert.AlertType.ERROR,"Failed to save review");
+            a.showAndWait();
+        }
+    }
+    public enum Status{PENDING,ACCEPTED,OUT_FOR_DELIVERY,DELIVERED,RETURNED,CANCELED};
     
+    ArrayList<Review> reviewList;
     Status status;
     String customerUserName,deliveryManUserName,id,address;
     Cart cart;
@@ -38,6 +60,7 @@ public class Order implements Serializable {
         this.date = LocalDate.now();
         this.id = "OID"+this.time.toString()+this.date.toString();
         this.address = customer.getAddress();
+        this.reviewList= new ArrayList<Review>();
     }
     
     public Status getStatus() {

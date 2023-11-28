@@ -170,36 +170,17 @@
                   <Insets left="5.0" right="5.0" top="10.0" />
                </padding></VBox>
          </right>
-         <bottom>
-            <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="594.0" spacing="5.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="reviewButton" mnemonicParsing="false" onAction="#reviewButtonOnClick" prefHeight="25.0" prefWidth="71.0" text="Review" />
-                  <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="532.0" spacing="5.0">
-                     <children>
-                        <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" onAction="#cancelButtonOnClick" prefHeight="25.0" prefWidth="71.0" text="Cancel" />
-                        <Button fx:id="returnButton" disable="true" mnemonicParsing="false" onAction="#returnButtonOnClick" prefHeight="25.0" prefWidth="71.0" text="Return" />
-                     </children>
-                     <padding>
-                        <Insets top="5.0" />
-                     </padding>
-                  </HBox>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </padding>
-            </HBox>
-         </bottom>
          <padding>
             <Insets left="5.0" top="5.0" />
          </padding>
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView onMouseClicked="#updateSelectedOrder" prefHeight="305.0" prefWidth="348.0">
+                  <TableView fx:id="orderTableView" onMouseClicked="#updateSelectedOrder" prefHeight="305.0" prefWidth="348.0">
                     <columns>
-                      <TableColumn prefWidth="98.33334350585938" text="ID" />
-                      <TableColumn prefWidth="90.0" text="Price" />
-                        <TableColumn prefWidth="111.0" text="Status" />
+                      <TableColumn fx:id="idColumn" prefWidth="98.33334350585938" text="ID" />
+                      <TableColumn fx:id="priceColumn" prefWidth="90.0" text="Price" />
+                        <TableColumn fx:id="statusColumn" prefWidth="111.0" text="Status" />
                     </columns>
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="45.0" prefWidth="390.0" spacing="10.0">
@@ -212,6 +193,36 @@
                </children>
             </VBox>
          </center>
+         <bottom>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Button fx:id="reviewButton" disable="true" mnemonicParsing="false" onAction="#reviewButtonOnClick" prefHeight="25.0" prefWidth="71.0" text="Review" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1">
+                     <padding>
+                        <Insets bottom="5.0" right="5.0" />
+                     </padding>
+                     <children>
+                        <Button fx:id="returnButton" disable="true" mnemonicParsing="false" onAction="#returnButtonOnClick" prefHeight="25.0" prefWidth="71.0" text="Return" />
+                        <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" onAction="#cancelButtonOnClick" prefHeight="25.0" prefWidth="71.0" text="Cancel" />
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+         </bottom>
       </BorderPane>
    </center>
 </BorderPane>
