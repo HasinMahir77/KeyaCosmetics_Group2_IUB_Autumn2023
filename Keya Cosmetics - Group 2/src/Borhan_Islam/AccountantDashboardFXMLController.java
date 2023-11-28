@@ -3,73 +3,99 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package Borhan_Islam;
-
+import Borhan_Islam.Accountant;
+import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-
+import javafx.scene.control.Label;
+import mainpkg.MainpkgSS;
+/**
+ * FXML Controller class
+ *
+ * @author hasin
+ */
 public class AccountantDashboardFXMLController implements Initializable {
+
+    @FXML
+    private Label timeLabel;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy | hh:mm:ss a");
+        timeLabel.setText(LocalDateTime.now().format(formatter));
+
+            }),
+        new KeyFrame(Duration.seconds(1)));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }    
 
     @FXML
     private void recordsOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("RecordsFXML.fxml"));
+        BorhanSS ss = new BorhanSS();
+        ss.recordsOnButtonClicked();        
+   
     }
 
     @FXML
     private void generateReportOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("GenerateReportFXML.fxml"));
-    }
-
-    @FXML
-    private void transactionOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("transactionFXML.fxml"));
-
+        BorhanSS ss = new BorhanSS();
+        ss.generateReportOnButtonClicked();   
     }
 
     @FXML
     private void profileOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ProfileFXML.fxml"));
+        BorhanSS ss = new BorhanSS();
+        ss.profileOnButtonClicked();    
     }
 
     @FXML
     private void logoutOnButtonClicked(ActionEvent event) throws IOException {
-        //LOGOUT CODES
+        MainpkgSS logout = new MainpkgSS();
+        logout.switchtoLoginScene();
     }
 
     @FXML
     private void incomeStatementOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("IncomeFXML.fxml"));
-
+        BorhanSS ss = new BorhanSS();
+        ss.incomeStatementOnButtonClicked();  
     }
 
     @FXML
     private void productionAnalysisOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ProductionAnalysisFXML.fxml"));
-
+        BorhanSS ss = new BorhanSS();
+        ss.productionAnalysisOnButtonClicked();
     }
 
     @FXML
     private void expenseControlSysOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ExpenseControlSysFXML.fxml"));
-
+        BorhanSS ss = new BorhanSS();
+        ss.expenseControlSysOnButtonClicked();
     }
 
     @FXML
-    private void searchDeleteOnButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("SearchOrDeleteFXML.fxml"));
+    private void UpdatedTermsOnButtonClicked(ActionEvent event) throws IOException {
+        BorhanSS ss = new BorhanSS();
+        ss.UpdatedTermsOnButtonClicked();         
     }
 
+    @FXML
+    private void AuditReportOnButtonClicked(ActionEvent event) throws IOException {
+        BorhanSS ss = new BorhanSS();
+        ss.AuditReportOnButtonClicked();       
+    } 
+    
 }

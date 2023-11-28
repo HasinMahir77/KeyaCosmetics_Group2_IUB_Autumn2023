@@ -23,9 +23,49 @@ public class BorhanSS {
     public void switchScene(String fxml, String title) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource(fxml));
         Stage mainStage = Main.getMainStage();
-        mainStage.setTitle("Keya: "+title);
+        mainStage.setTitle("Keya Cosmetics: "+title);
         Scene scene = Main.getMainStage().getScene();
         scene.setRoot(root);
+        
     }
-    
+    public void recordsOnButtonClicked() throws IOException {
+        this.switchScene("RecordsFXML.fxml", "Records");
+    }
+    public void generateReportOnButtonClicked() throws IOException {
+        this.switchScene("GenerateReportFXML.fxml", "");
+    }
+    public void transactionOnButtonClicked() throws IOException {
+        this.switchScene("TransactionFXML.fxml", "");
+    }
+    public void profileOnButtonClicked() throws IOException {
+        this.switchScene("ProfileFXML.fxml", "Profile");
+    }
+    public void pmprofileButtonClicked() throws IOException {
+        this.switchScene("PmProfileFXML.fxml", "Profile");
+    }
+//    public void logoutOnButtonClicked() throws IOException {
+//        this.switchScene("LoginGrid.fxml", "");
+//    }
+    public void incomeStatementOnButtonClicked() throws IOException {
+        this.switchScene("IncomeFXML.fxml", "");
+    }
+    public void productionAnalysisOnButtonClicked() throws IOException {
+        this.switchScene("ProductionAnalysisFXML.fxml", "");
+    }
+    public void expenseControlSysOnButtonClicked() throws IOException {
+        this.switchScene("ExpenseControlSysFXML.fxml", "");
+    }
+    public void switchToDashboardButton() throws IOException {
+        this.switchScene("AccountantDashboardFXML.fxml", "");
+    }  
+    public void switchToPmDashboardButton() throws IOException {
+        this.switchScene("ProductManagerDashboardFXML.fxml", "");
+    }  
+
+    void UpdatedTermsOnButtonClicked() throws IOException {
+        this.switchScene("UpdatedTermsFXML.fxml", "");        
+    }
+    void AuditReportOnButtonClicked() throws IOException {
+        this.switchScene("AuditReportFXML.fxml", "");        
+    }
 }
