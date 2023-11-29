@@ -8,8 +8,6 @@ import Amit_AffiliateMarketer.AmitSS;
 import Borhan_Islam.Accountant;
 import Borhan_Islam.BorhanSS;
 import Borhan_Islam.ProductManager;
-import Borhan_Islam.ProductManagerSS;
-
 import HasinMahir.Customer;
 import HasinMahir.DeliveryMan;
 import HasinMahir.User;
@@ -204,7 +202,7 @@ public class LoginGridController implements Initializable {
                         Main.getMainStage().setUserData(user);
                         System.out.println("Username-password matched.");
                         System.out.println("Userdata set for Product Manager");
-                        ProductManagerSS ss = new ProductManagerSS();
+                        BorhanSS ss = new BorhanSS();
                         ss.switchScene("ProductManagerDashboardFXML.fxml", "Dashboard");
                     }
                 } // Loop's scope ends
