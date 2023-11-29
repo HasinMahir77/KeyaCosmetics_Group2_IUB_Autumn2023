@@ -26,6 +26,41 @@ public class BorhanSS {
         mainStage.setTitle("Keya: "+title);
         Scene scene = Main.getMainStage().getScene();
         scene.setRoot(root);
+
+    }
+    public void recordsOnButtonClicked() throws IOException {
+        this.switchScene("RecordsFXML.fxml", "Records");
+    }
+    public void generateReportOnButtonClicked() throws IOException {
+        this.switchScene("GenerateReportFXML.fxml", "");
+    }
+    public void transactionOnButtonClicked() throws IOException {
+        this.switchScene("TransactionFXML.fxml", "");
+    }
+    public void profileOnButtonClicked() throws IOException {
+        this.switchScene("ProfileFXML.fxml", "Profile");
+    }
+//    public void logoutOnButtonClicked() throws IOException {
+//        this.switchScene("LoginGrid.fxml", "");
+//    }
+    public void incomeStatementOnButtonClicked() throws IOException {
+        this.switchScene("IncomeFXML.fxml", "");
+    }
+    public void productionAnalysisOnButtonClicked() throws IOException {
+        this.switchScene("ProductionAnalysisFXML.fxml", "");
+    }
+    public void expenseControlSysOnButtonClicked() throws IOException {
+        this.switchScene("ExpenseControlSysFXML.fxml", "");
+    }
+    public void switchToDashboardButton() throws IOException {
+        this.switchScene("AccountantDashboardFXML.fxml", "");
+    }  
+
+    void UpdatedTermsOnButtonClicked() throws IOException {
+        this.switchScene("UpdatedTermsFXML.fxml", "");        
+    }
+    void AuditReportOnButtonClicked() throws IOException {
+        this.switchScene("AuditReportFXML.fxml", "");        
     }
     
 }
