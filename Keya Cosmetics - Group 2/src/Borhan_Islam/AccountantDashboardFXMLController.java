@@ -3,99 +3,73 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package Borhan_Islam;
-import Borhan_Islam.Accountant;
-import javafx.util.Duration;
+
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import mainpkg.MainpkgSS;
-/**
- * FXML Controller class
- *
- * @author hasin
- */
-public class AccountantDashboardFXMLController implements Initializable {
+import javafx.scene.Parent;
 
-    @FXML
-    private Label timeLabel;
+public class AccountantDashboardFXMLController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy | hh:mm:ss a");
-        timeLabel.setText(LocalDateTime.now().format(formatter));
-
-            }),
-        new KeyFrame(Duration.seconds(1)));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-    }    
+        // TODO
+    }
 
     @FXML
     private void recordsOnButtonClicked(ActionEvent event) throws IOException {
-        BorhanSS ss = new BorhanSS();
-        ss.recordsOnButtonClicked();        
-   
+        Parent root = FXMLLoader.load(getClass().getResource("RecordsFXML.fxml"));
     }
 
     @FXML
     private void generateReportOnButtonClicked(ActionEvent event) throws IOException {
-        BorhanSS ss = new BorhanSS();
-        ss.generateReportOnButtonClicked();   
+        Parent root = FXMLLoader.load(getClass().getResource("GenerateReportFXML.fxml"));
+    }
+
+    @FXML
+    private void transactionOnButtonClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("transactionFXML.fxml"));
+
     }
 
     @FXML
     private void profileOnButtonClicked(ActionEvent event) throws IOException {
-        BorhanSS ss = new BorhanSS();
-        ss.profileOnButtonClicked();    
+        Parent root = FXMLLoader.load(getClass().getResource("ProfileFXML.fxml"));
     }
 
     @FXML
     private void logoutOnButtonClicked(ActionEvent event) throws IOException {
-        MainpkgSS logout = new MainpkgSS();
-        logout.switchtoLoginScene();
+        //LOGOUT CODES
     }
 
     @FXML
     private void incomeStatementOnButtonClicked(ActionEvent event) throws IOException {
-        BorhanSS ss = new BorhanSS();
-        ss.incomeStatementOnButtonClicked();  
+        Parent root = FXMLLoader.load(getClass().getResource("IncomeFXML.fxml"));
+
     }
 
     @FXML
     private void productionAnalysisOnButtonClicked(ActionEvent event) throws IOException {
-        BorhanSS ss = new BorhanSS();
-        ss.productionAnalysisOnButtonClicked();
+        Parent root = FXMLLoader.load(getClass().getResource("ProductionAnalysisFXML.fxml"));
+
     }
 
     @FXML
     private void expenseControlSysOnButtonClicked(ActionEvent event) throws IOException {
-        BorhanSS ss = new BorhanSS();
-        ss.expenseControlSysOnButtonClicked();
+        Parent root = FXMLLoader.load(getClass().getResource("ExpenseControlSysFXML.fxml"));
+
     }
 
     @FXML
-    private void UpdatedTermsOnButtonClicked(ActionEvent event) throws IOException {
-        BorhanSS ss = new BorhanSS();
-        ss.UpdatedTermsOnButtonClicked();         
+    private void searchDeleteOnButtonClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("SearchOrDeleteFXML.fxml"));
     }
 
-    @FXML
-    private void AuditReportOnButtonClicked(ActionEvent event) throws IOException {
-        BorhanSS ss = new BorhanSS();
-        ss.AuditReportOnButtonClicked();       
-    } 
-    
 }

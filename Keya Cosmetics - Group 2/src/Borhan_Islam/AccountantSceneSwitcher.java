@@ -4,6 +4,7 @@
  */
 package Borhan_Islam;
 
+
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,21 +12,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mainpkg.Main;
 
-/**
- *
- * @author hasin
- */
-public class BorhanSS {
-    
-    public BorhanSS() {
-    }
-    
+public class AccountantSceneSwitcher {
+    public AccountantSceneSwitcher() {
+    }    
     public void switchScene(String fxml, String title) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource(fxml));
         Stage mainStage = Main.getMainStage();
-        mainStage.setTitle("Keya: "+title);
+        mainStage.setTitle("Keya Cosmetics: "+title);
         Scene scene = Main.getMainStage().getScene();
         scene.setRoot(root);
     }
-    
+       
 }
