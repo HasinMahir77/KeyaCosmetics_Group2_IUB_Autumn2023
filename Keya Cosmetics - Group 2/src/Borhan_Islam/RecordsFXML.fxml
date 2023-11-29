@@ -39,15 +39,15 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <TableView fx:id="recordsTableView" layoutX="14.0" layoutY="156.0" prefHeight="374.0" prefWidth="927.0">
+      <TableView fx:id="recordsTableView" layoutX="17.0" layoutY="166.0" prefHeight="374.0" prefWidth="927.0">
         <columns>
-          <TableColumn prefWidth="49.0" text="SL" />
-          <TableColumn prefWidth="107.0" text="Order no." />
-            <TableColumn prefWidth="106.0" text="Date" />
-            <TableColumn prefWidth="128.0" text="Time" />
-            <TableColumn prefWidth="173.0" text="Status of Payment" />
-            <TableColumn prefWidth="145.0" text="Refund" />
-            <TableColumn prefWidth="218.0" text="Total Amount" />
+          <TableColumn fx:id="nameTable" prefWidth="124.0" text="Name" />
+          <TableColumn fx:id="statusTable" prefWidth="151.0" text="Status " />
+            <TableColumn fx:id="priceTable" prefWidth="164.0" text="Price" />
+            <TableColumn fx:id="timeTable" prefWidth="151.0" text="Time" />
+            <TableColumn fx:id="dateTable" prefWidth="134.0" text="Date" />
+            <TableColumn fx:id="idTable" prefWidth="202.0" text="ID" />
+            <TableColumn minWidth="0.0" prefWidth="0.0" />
         </columns>
       </TableView>
       <TextField fx:id="searchTextfield" alignment="CENTER" layoutX="746.0" layoutY="95.0" onAction="#searchTextfieldOnEnterPressed" prefHeight="25.0" prefWidth="195.0" promptText="Search" />
@@ -66,7 +66,7 @@
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="864.0" layoutY="124.0" mnemonicParsing="false" onAction="#filterOnButtonClicked" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" text="Filter">
+      <Button fx:id="filterfxid" layoutX="864.0" layoutY="124.0" mnemonicParsing="false" onAction="#filterOnButtonClicked" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" text="Filter">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font>
