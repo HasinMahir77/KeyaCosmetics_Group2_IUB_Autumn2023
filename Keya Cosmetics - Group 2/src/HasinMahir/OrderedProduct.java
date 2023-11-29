@@ -14,10 +14,11 @@ import java.util.ArrayList;
 public class OrderedProduct extends Product implements Serializable {
     private int quantity;
     private float unitPrice, price, totalPrice, vat;
+    
 
     //Easier constructor
     
-    public OrderedProduct(String name, float price, String category, int vatRate, int quantity) {
+    public OrderedProduct(String name, float price, String category, float vatRate, int quantity) {
         this.name = name;
         this.quantity = quantity;
         this.vatRate = vatRate;
@@ -87,9 +88,6 @@ public class OrderedProduct extends Product implements Serializable {
         return price;
     }
 
-    public int getVatRate() {
-        return vatRate;
-    }
 
     public float getUnitPrice() {
         return unitPrice;

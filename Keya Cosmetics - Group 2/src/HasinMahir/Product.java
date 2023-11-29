@@ -26,8 +26,7 @@ import mainpkg.Main;
 public class Product implements Serializable,Reviewable {
     protected String name, category;
     protected ArrayList<Review> reviewList; 
-    protected float price;
-    protected int vatRate;
+    protected float price, vatRate;
 
     public void addReview(String sender) {
         Review review = new Review();
@@ -80,7 +79,7 @@ public class Product implements Serializable,Reviewable {
             this.category = "Skincare";
         }
     }
-    public Product(String name, float price ,String category,int vatRate) {
+    public Product(String name, float price ,String category,float vatRate) {
         this.name = name;
         this.price = price;
         this.vatRate = vatRate;
@@ -118,11 +117,11 @@ public class Product implements Serializable,Reviewable {
         this.category = category;
     } 
 
-    public int getVatRate() {
+    public float getVatRate() {
         return vatRate;
     }
 
-    public void setVatRate(int vatRate) {
+    public void setVatRate(float vatRate) {
         this.vatRate = vatRate;
     }
     @Override
