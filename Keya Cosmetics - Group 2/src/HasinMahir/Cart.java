@@ -4,12 +4,17 @@
  */
 package HasinMahir;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import mainpkg.Main;
 
 /**
@@ -17,8 +22,7 @@ import mainpkg.Main;
  * @author hasin
  */
 public class Cart implements Serializable {
-    float price;
-    
+    protected float price;
     protected ArrayList<OrderedProduct> productOrderList;
     
     public Cart(){
@@ -123,6 +127,7 @@ public class Cart implements Serializable {
             target.setQuantity(newQuantity);
         }
     }
+    
     
     
 }

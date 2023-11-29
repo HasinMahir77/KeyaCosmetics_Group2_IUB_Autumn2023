@@ -15,7 +15,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -27,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import mainpkg.Main;
 import mainpkg.MainpkgSS;
 
@@ -112,6 +116,7 @@ public class DeliveryManDashboardController implements Initializable {
         idColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Order, Float>("price"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("address"));
+         
     }    
 
     @FXML
@@ -165,8 +170,11 @@ public class DeliveryManDashboardController implements Initializable {
     }
 
     @FXML
-    private void viewDetailButtonOnClick(ActionEvent event) {
-        
+    private void viewDetailButtonOnClick(ActionEvent event) throws IOException {
+        if (selectedOrder!=null && !this.orderTableView.getItems().isEmpty()){
+            System.out.println("view cart now");
+            selectedOrder.viewCart();
+        }
     }
 
     @FXML
@@ -178,6 +186,10 @@ public class DeliveryManDashboardController implements Initializable {
 
     @FXML
     private void updateOrderTable(MouseEvent event) {
+        if(!orderTableView.getSelectionModel().isEmpty()){
+            this.selectedOrder = orderTableView.getSelectionModel().getSelectedItem();
+        } 
     }
     
+ 
 }

@@ -16,7 +16,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 import mainpkg.ObjectOutputStreamA;
 
 /**
@@ -24,6 +28,8 @@ import mainpkg.ObjectOutputStreamA;
  * @author hasin
  */
 public class Order implements Serializable,Reviewable {
+    
+    private static Stage stage;
 
     @Override
     public void addReview(String sender) {
@@ -135,6 +141,9 @@ public class Order implements Serializable,Reviewable {
     public void setTime(LocalTime time) {
         this.time = time;
     }
+    public static Stage getStage() {
+        return Order.stage;
+    }
     
     
     public void saveInstance(){
@@ -205,5 +214,21 @@ public class Order implements Serializable,Reviewable {
         // Arraylist of Orders made.
         return customerList;
     }
+    
+    public void viewCart() throws IOException{
+        System.out.println("Order.viewCart accessed");
+        
+        Order.stage = new Stage();
+        Order.stage.setUserData(this);
+        Parent root = FXMLLoader.load(getClass().getResource("ViewCart.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Order details");
+        
+        
+        stage.show();
+          
+    }
+    
 
 }

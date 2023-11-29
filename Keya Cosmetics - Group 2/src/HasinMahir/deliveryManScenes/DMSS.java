@@ -4,6 +4,7 @@
  */
 package HasinMahir.deliveryManScenes;
 
+import HasinMahir.Order;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +17,7 @@ import mainpkg.Main;
  * @author hasin
  */
 public class DMSS {
+    private static Stage cartStage;
     
     public DMSS(){}
     
@@ -31,5 +33,18 @@ public class DMSS {
     }
     public void switchToProfile() throws IOException{
         this.switchScene("DeliveryManProfile.fxml", "Profile");
+    }
+  
+    public void showCart(Order order) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("OrderCart.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setUserData(order);
+        cartStage = stage;
+        stage.setScene(scene);
+        stage.setTitle("Order Details");        
+    }
+    public static Stage getCartStage(){
+        return cartStage;
     }
 }
