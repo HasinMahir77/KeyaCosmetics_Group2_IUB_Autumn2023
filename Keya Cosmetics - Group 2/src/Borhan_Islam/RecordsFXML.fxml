@@ -48,11 +48,6 @@
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="filterfxid" layoutX="864.0" layoutY="124.0" mnemonicParsing="false" onAction="#filterOnButtonClicked" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" text="Filter">
-         <font>
-            <Font name="Lucida Console" size="15.0" />
-         </font>
-      </Button>
       <Label layoutX="430.0" layoutY="34.0" text="Records">
          <font>
             <Font name="Arial Bold" size="25.0" />

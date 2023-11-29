@@ -50,8 +50,6 @@ public class RecordsFXMLController implements Initializable {
     @FXML
     private TableColumn<Order, String> idTable;
     @FXML
-    private Button filterfxid;
-    @FXML
     private Button showRecordsFXID;
 
     /**
@@ -111,30 +109,6 @@ public class RecordsFXMLController implements Initializable {
             searchTextfield.setText(null);    
     }
 
-    @FXML
-    private void editOnButtonClicked(ActionEvent event) {
-//       Records records = new Records(  
-//            nameText.getText(),
-//            Integer.parseInt(idText.getText()),
-//            Double.parseDouble(salaryText.getText())  
-//            );
-//        nameText.setText(null); idText.setText(null);  salaryText.setText(null);
-//        employee.display();
-//        try {
-//            ObjectOutputStream oos = new ObjectOutputStream(
-//                    new FileOutputStream("Stud.bin", true)
-//            );
-//            oos.writeObject(employee);
-//            oos.close();
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//    
-    }
-
-    @FXML
-    private void filterOnButtonClicked(ActionEvent event) {
-    }
 
     @FXML
     private void switchToAccDashboard(ActionEvent event) throws IOException {
