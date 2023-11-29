@@ -17,16 +17,15 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #eef0f5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HasinMahir.deliveryManScenes.DeliveryManDashboardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #eef0f5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HasinMahir.deliveryManScenes.DeliveryManTasksController">
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="493.0" prefWidth="121.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <TilePane alignment="CENTER" prefHeight="318.0" prefWidth="111.0">
                <children>
-                  <Button fx:id="dashboardButton1" mnemonicParsing="false" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #d0d0db;" text="Dashboard" />
-                  <Button fx:id="tasksButton" mnemonicParsing="false" onAction="#tasksButtonOnClick" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Tasks" />
+                  <Button fx:id="dashboardButton1" mnemonicParsing="false" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Dashboard" />
+                  <Button fx:id="tasksButton" mnemonicParsing="false" onAction="#tasksButtonOnClick" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #d0d0db;" text="Tasks" />
                   <Button fx:id="paymentsButton" mnemonicParsing="false" onAction="#paymentsButtonOnClick" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Payments" />
                   <Button fx:id="profileButton" mnemonicParsing="false" onAction="#profileButtonOnClick" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Profile" />
                   <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Logout" />
@@ -93,9 +92,9 @@
       <GridPane style="-fx-background-color: white;" BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.66668701171875" minWidth="10.0" prefWidth="351.66668701171875" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.3333740234375" minWidth="10.0" prefWidth="107.33331298828125" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="118.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -106,52 +105,27 @@
             <Insets left="5.0" top="5.0" />
          </padding>
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowSpan="2">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowSpan="2">
                <children>
-                  <TableView fx:id="orderTableView" onMouseClicked="#updateOrderTable" prefHeight="318.0" prefWidth="354.0">
+                  <Label text="Pending Tasks" />
+                  <TableView fx:id="taskTableView" onMouseClicked="#updateSelectedTask" prefHeight="318.0" prefWidth="354.0">
                     <columns>
-                      <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
-                      <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
-                        <TableColumn fx:id="addressColumn" prefWidth="203.0" text="Address" />
+                      <TableColumn fx:id="idColumn" prefWidth="101.66665649414062" text="ID" />
+                      <TableColumn fx:id="priceColumn" prefWidth="82.33331298828125" text="Price" />
+                        <TableColumn fx:id="addressColumn" prefWidth="109.33331298828125" text="Status" />
+                        <TableColumn fx:id="addressColumn1" prefWidth="133.33331298828125" text="Task" />
                     </columns>
                   </TableView>
                </children>
             </VBox>
-            <VBox fx:id="dashboardButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowSpan="2">
-               <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="237.0" prefWidth="214.0" spacing="10.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: #eef0f5;">
-                     <children>
-                        <Label text="Delivery Man">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label />
-                        <Label fx:id="nameLabel" text="Name:" />
-                        <Label fx:id="phoneLabel" text="Phone:" />
-                        <Label fx:id="dobLabel" text="DOB:" />
-                        <Label fx:id="dojLabel" text="Joining date:" />
-                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label fx:id="balanceLabel" text="Balance:" />
-                           </children>
-                           <padding>
-                              <Insets bottom="15.0" />
-                           </padding>
-                        </HBox>
-                     </children>
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </VBox>
-               </children>
+            <VBox fx:id="dashboardButton" alignment="CENTER" prefHeight="306.0" prefWidth="120.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowSpan="2">
                <padding>
                   <Insets bottom="50.0" left="70.0" right="70.0" top="2.0" />
                </padding></VBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
                <children>
                   <Button fx:id="viewDetailButton" mnemonicParsing="false" onAction="#viewDetailButtonOnClick" prefHeight="30.0" prefWidth="88.0" text="View Detail" />
-                  <Button fx:id="acceptButton" mnemonicParsing="false" onAction="#acceptButtonOnClick" prefHeight="30.0" prefWidth="88.0" text="✔ Accept" />
+                  <Button fx:id="taskButton" mnemonicParsing="false" onAction="#taskButtonOnClick" prefHeight="30.0" prefWidth="88.0" text="Do task" />
                </children>
                <padding>
                   <Insets left="5.0" top="5.0" />

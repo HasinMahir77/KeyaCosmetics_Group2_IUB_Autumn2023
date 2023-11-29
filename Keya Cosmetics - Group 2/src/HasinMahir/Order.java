@@ -31,7 +31,7 @@ public class Order implements Serializable,Reviewable {
     
     private static Stage stage;
     
-    public enum Status{PENDING,ACCEPTED,OUT_FOR_DELIVERY,DELIVERED,RETURNED,CANCELED};
+    public enum Status{PENDING,OUT_FOR_DELIVERY,DELIVERED,INITIATED_RETURN,RETURNED,CANCELED};
     
     private Review review;
     private Status status;

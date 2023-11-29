@@ -211,7 +211,7 @@ public class CustomerOrderSceneController implements Initializable {
     @FXML
     private void returnButtonOnClick(ActionEvent event) {
         if (this.selectedOrder!=null){
-            this.selectedOrder.setStatus(Status.RETURNED);
+            this.selectedOrder.setStatus(Status.INITIATED_RETURN);
         }
     }
 
@@ -234,12 +234,12 @@ public class CustomerOrderSceneController implements Initializable {
            reviewButton.setDisable(true);
            returnButton.setDisable(true);
        }
-       else if (selectedOrder.getStatus()==Status.RETURNED){
+       else if (selectedOrder.getStatus()==Status.INITIATED_RETURN || selectedOrder.getStatus()==Status.RETURNED){
            cancelButton.setDisable(true);
            reviewButton.setDisable(false);
            returnButton.setDisable(true);
        }
-       else if (selectedOrder.getStatus()==Status.PENDING || selectedOrder.getStatus()==Status.ACCEPTED){
+       else if (selectedOrder.getStatus()==Status.PENDING || selectedOrder.getStatus()==Status.OUT_FOR_DELIVERY){
            cancelButton.setDisable(false);
            reviewButton.setDisable(true);
            returnButton.setDisable(true);
