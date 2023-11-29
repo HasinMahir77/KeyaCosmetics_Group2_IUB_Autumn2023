@@ -174,4 +174,28 @@ public class Hr extends User implements Serializable{
         }
         return ApplicantType;
     }
+    //sort
+        public static void updateFile(ObservableList<Applicant> sortedApp, String fileName) {
+    try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName))) {
+        for (Applicant applicant : sortedApp) {
+            output.writeObject(applicant);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        }
+    }
+    
+    public static void sortedapplicant(Applicant applicant, String fileName) {
+        ArrayList<Applicant> exsApp = loadApplicantsFromFile(fileName);
+        exsApp.add(applicant);
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            for (Applicant sortedapplicant : exsApp) {
+                oos.writeObject(sortedapplicant);
+            }
+            System.out.println("Sorted Applicants saved: " + applicant);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
