@@ -4,7 +4,8 @@
  */
 package Borhan_Islam;
 
-import Borhan_Islam.Records.Status;
+import HasinMahir.Order;
+import HasinMahir.Order.Status;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -33,21 +34,21 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class RecordsFXMLController implements Initializable {
 
     @FXML
-    private TableView<Records> recordsTableView;
+    private TableView<Order> recordsTableView;
     @FXML
     private TextField searchTextfield;
     @FXML
-    private TableColumn<Records, String> nameTable;
+    private TableColumn<Order, String> nameTable;
     @FXML
-    private TableColumn<Records, Status> statusTable;
+    private TableColumn<Order, Status> statusTable;
     @FXML
-    private TableColumn<Records, Float> priceTable;
+    private TableColumn<Order, Float> priceTable;
     @FXML
-    private TableColumn<Records, LocalTime> timeTable;
+    private TableColumn<Order, LocalTime> timeTable;
     @FXML
-    private TableColumn<Records, LocalDate> dateTable;
+    private TableColumn<Order, LocalDate> dateTable;
     @FXML
-    private TableColumn<Records, String> idTable;
+    private TableColumn<Order, String> idTable;
     @FXML
     private Button filterfxid;
     @FXML
@@ -78,13 +79,11 @@ public class RecordsFXMLController implements Initializable {
             while (true) {
                 try {
                     // Read an object of type HasinMahir.Order
-                    HasinMahir.Order order = (HasinMahir.Order) ois.readObject();
-
-                    // Convert the Order object to a Records object
-                    Records record = convertOrderToRecords(order);
+                    Order order = (Order) ois.readObject();
 
                     // Add the converted record to the TableView
-                    recordsTableView.getItems().add(record);
+                    recordsTableView.getItems().add(order);
+                    System.out.println(order.getPrice());
                 } catch (EOFException e) {
                     // End of file reached
                     break;
@@ -107,45 +106,6 @@ public class RecordsFXMLController implements Initializable {
         }
 
     }
-
-    // Method to convert an Order object to a Records object
-    private Records convertOrderToRecords(HasinMahir.Order order) {
-        Records records = new Records(
-                getStatusFromOrder(order),
-                order.getCustomerUserName(),
-                order.getPrice(),
-                LocalTime.now(),
-                LocalDate.now(),
-                "OID" + LocalTime.now().toString() + LocalDate.now().toString()
-        );
-
-        return records;
-    }
-
-
-    // Method to map Order status to Records.Status
-    private Records.Status getStatusFromOrder(HasinMahir.Order order) {
-        // Your logic to map Order status to Records.Status
-        // Example: Assuming Order has getStatus() method
-        switch (order.getStatus()) {
-            case PENDING:
-                return Records.Status.PENDING;
-            case OUT_FOR_DELIVERY:
-                return Records.Status.OUT_FOR_DELIVERY;
-            case DELIVERED:
-                return Records.Status.DELIVERED;
-            case RETURNED:   
-                return Records.Status.RETURNED;
-            case CANCELED:
-                return Records.Status.CANCELED;
-            default:
-                return Records.Status.PENDING;  // Default status if not mapped
-    
-        }
-        
-}
-   
-
     @FXML
     private void searchTextfieldOnEnterPressed(ActionEvent event) {
             searchTextfield.setText(null);    
@@ -182,4 +142,4 @@ public class RecordsFXMLController implements Initializable {
         ss.switchToAccDashboard(); 
     }
     
-}
+} 
