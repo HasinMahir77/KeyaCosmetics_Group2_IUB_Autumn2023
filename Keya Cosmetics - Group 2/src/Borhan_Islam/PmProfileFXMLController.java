@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author 88019
  */
-public class IncomeFXMLController implements Initializable {
+public class PmProfileFXMLController implements Initializable {
 
     /**
      * Initializes the controller class.

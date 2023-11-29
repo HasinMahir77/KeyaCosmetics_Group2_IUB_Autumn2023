@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BorhanIslam.RecordsFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Borhan_Islam.RecordsFXMLController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="960.0">
         <menus>
@@ -39,9 +39,6 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Button layoutX="35.0" layoutY="95.0" mnemonicParsing="false" onAction="#showRecordsOnButtonClicked" text="Show Records" />
-      <Button layoutX="143.0" layoutY="95.0" mnemonicParsing="false" onAction="#editOnButtonClicked" text="Edit " />
-      <Button layoutX="898.0" layoutY="131.0" mnemonicParsing="false" onAction="#filterOnButtonClicked" text="Filter" />
       <TableView fx:id="recordsTableView" layoutX="14.0" layoutY="156.0" prefHeight="374.0" prefWidth="927.0">
         <columns>
           <TableColumn prefWidth="49.0" text="SL" />
@@ -59,5 +56,20 @@
             <Image url="@../images/keyaLogo.png" />
          </image>
       </ImageView>
+      <Button layoutX="14.0" layoutY="96.0" mnemonicParsing="false" onAction="#showRecordsOnButtonClicked" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" text="Show Records">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="164.0" layoutY="96.0" mnemonicParsing="false" onAction="#editOnButtonClicked" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" text="Edit">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="864.0" layoutY="124.0" mnemonicParsing="false" onAction="#filterOnButtonClicked" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" text="Filter">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

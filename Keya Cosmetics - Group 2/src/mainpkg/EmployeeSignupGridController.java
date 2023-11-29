@@ -5,6 +5,7 @@
 package mainpkg;
 
 import Borhan_Islam.Accountant;
+import Borhan_Islam.ProductManager;
 import HasinMahir.DeliveryMan;
 import HasinMahir.User;
 import NadimHR_Receptionist.Hr;
@@ -62,7 +63,7 @@ public class EmployeeSignupGridController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO     
         employeeComboBox.getItems().addAll("HR","Delivery Man",
-                "Accountant","Receptionist","Affiliate Marketer");
+                "Accountant", "Product Manager","Receptionist","Affiliate Marketer");
         
         employeeComboBox.setValue("HR");
     }    
@@ -173,16 +174,24 @@ public class EmployeeSignupGridController implements Initializable {
         //---------------------Main SignUp
         
         if (employeeComboBox.getValue().equals("Product Manager")){  
-           //TO DO 
-                
-            }
-        
+            try(FileOutputStream fos = new FileOutputStream(employeeFile,true);
+                        ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
+                    ProductManager newProductManager = new ProductManager(firstNameTextField.getText(),lastNameTextField.getText(),
+                usernameTextField.getText(), passwordTextField.getText(), phoneTextField.getText());
+                    newProductManager.setDob(dobDatePicker.getValue());
+                    oos.writeObject(newProductManager);
+                    
+                }
+                catch(Exception e){
+                    e.printStackTrace(System.out);}            
+        }
+                 
         else if(employeeComboBox.getValue().equals("Accountant")) {
                 //TO DO
             try(FileOutputStream fos = new FileOutputStream(employeeFile,true);
                         ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
                     Accountant newAccountant = new Accountant(firstNameTextField.getText(),lastNameTextField.getText(),
-                usernameTextField.getText(), passwordTextField.getText());
+                usernameTextField.getText(), passwordTextField.getText(), phoneTextField.getText());
                     newAccountant.setDob(dobDatePicker.getValue());
                     oos.writeObject(newAccountant);
                     
@@ -195,7 +204,7 @@ public class EmployeeSignupGridController implements Initializable {
             try(FileOutputStream fos = new FileOutputStream(employeeFile,true);
                         ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
                     Accountant newAM = new Accountant(firstNameTextField.getText(),lastNameTextField.getText(),
-                usernameTextField.getText(), passwordTextField.getText());
+                usernameTextField.getText(), passwordTextField.getText(), phoneTextField.getText());
                     newAM.setDob(dobDatePicker.getValue());
                     oos.writeObject(newAM);
                     
