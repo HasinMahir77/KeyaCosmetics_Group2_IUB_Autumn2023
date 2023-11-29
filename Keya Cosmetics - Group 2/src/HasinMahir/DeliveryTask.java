@@ -12,14 +12,16 @@ import java.io.Serializable;
  *
  * @author hasin
  */
-public class Task implements Serializable {
+public class DeliveryTask implements Serializable {
     public enum Type{DELIVERY,DEPOSIT};
     
     private Type type;
     private Order order;
     private String id;
+    private boolean done;
 
-    public Task(Order order) {
+    public DeliveryTask(Order order) {
+        this.done = false;
         this.order = order;
         this.id = order.getId();
         if (order.getStatus()==Status.OUT_FOR_DELIVERY || order.getStatus()==Status.INITIATED_RETURN){

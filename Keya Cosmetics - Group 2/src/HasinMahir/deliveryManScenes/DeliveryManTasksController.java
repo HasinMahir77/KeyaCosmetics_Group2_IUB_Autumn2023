@@ -5,7 +5,7 @@
 package HasinMahir.deliveryManScenes;
 
 import HasinMahir.DeliveryMan;
-import HasinMahir.Task;
+import HasinMahir.DeliveryTask;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,15 +48,15 @@ public class DeliveryManTasksController implements Initializable {
     @FXML
     private Button logoutButton;
     @FXML
-    private TableView<Task> taskTableView;
+    private TableView<DeliveryTask> taskTableView;
     @FXML
-    private TableColumn<Task, String> idColumn;
+    private TableColumn<DeliveryTask, String> idColumn;
     @FXML
-    private TableColumn<Task, Float> priceColumn;
+    private TableColumn<DeliveryTask, Float> priceColumn;
     @FXML
-    private TableColumn<Task, String> addressColumn;
+    private TableColumn<DeliveryTask, String> addressColumn;
     @FXML
-    private TableColumn<Task, String> addressColumn1;
+    private TableColumn<DeliveryTask, String> addressColumn1;
     @FXML
     private Button dashboardButton;
     @FXML
@@ -67,7 +67,7 @@ public class DeliveryManTasksController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    Task selectedTask;
+    DeliveryTask selectedTask;
     DeliveryMan current;
     @Override
     public void initialize(URL url, ResourceBundle rb) {

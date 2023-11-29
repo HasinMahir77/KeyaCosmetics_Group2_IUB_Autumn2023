@@ -19,7 +19,6 @@ import mainpkg.ObjectOutputStreamA;
  * @author hasin
  */
 public class DeliveryMan extends User {
-    private ArrayList<String> deliveryList;
     
     
     
@@ -27,7 +26,6 @@ public class DeliveryMan extends User {
     public DeliveryMan(String firstName, String lastName, String username, String password, String phone) {
         super(firstName, lastName, username, password, phone);
         this.phone = phone;
-        this.deliveryList = new ArrayList<String>();
         this.del = false;
         this.doj = LocalDate.now();
         this.nid = "";
@@ -122,18 +120,28 @@ public class DeliveryMan extends User {
     }
     public void acceptOrder(Order order){
         if (order.getStatus().equals(Status.PENDING)){
+            
             order.setDeliveryManUserName(this.username);
             order.setDeliveryManName(this.firstName+" "+this.lastName);
-            this.deliveryList.add(order.getId());
             order.setStatus(Status.OUT_FOR_DELIVERY);
+           
             order.saveInstance();
         }
     }
     public void deliverOrder(Order order){
-        if (order.getStatus().equals(Status.DELIVERED)){
-            this.deliveryList.add(order.getId());
+        if (order.getStatus().equals(Status.OUT_FOR_DELIVERY)){
             order.setStatus(Status.DELIVERED);
             order.saveInstance();
         }
     }
+    /*
+    public Task getTask(String id){
+        for (Task task: this.taskList){
+            if (task.getId().equals(id)){
+                return task;
+            }
+        }
+        return null; //Task not found
+    }
+*/
 }

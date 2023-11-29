@@ -255,6 +255,16 @@ public class Order implements Serializable,Reviewable {
     public void setDeliveryManName(String deliveryManName) {
         this.deliveryManName = deliveryManName;
     }
+    public static Order getOrder(String id){
+        ArrayList<Order> orderList = Order.getOrderList();
+        
+        for (Order order: orderList){
+            if (order.getId().equals(id)){
+                return order;
+            }
+        }
+        return null; //Order not found(Shouldn't happen without incorrect id)
+    }
     
 
 }
