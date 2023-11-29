@@ -53,6 +53,7 @@ public class PayrollFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         saveRecordsFXID.setDisable(true);        
         seePayrollFXID.setDisable(true);        
+        calculateFXID.setDisable(false);        
     }    
 
     @FXML
@@ -63,10 +64,17 @@ public class PayrollFXMLController implements Initializable {
 
     @FXML
     private void calculateButton(ActionEvent event) {
+        float calculated = Float.parseFloat(basicSalaryText.getText())+ Float.parseFloat(bonusText.getText())- 
+                Float.parseFloat(deductionsText.getText());
+        calculationLabel.setText(Float.toString(calculated));
+        saveRecordsFXID.setDisable(false);        
+        seePayrollFXID.setDisable(false);        
+        calculateFXID.setDisable(true);           
     }
 
     @FXML
     private void saveRecordsButton(ActionEvent event) {
+    
     }
 
     @FXML
