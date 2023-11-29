@@ -4,6 +4,9 @@
  */
 package HasinMahir.deliveryManScenes;
 
+import HasinMahir.DeliveryMan;
+import HasinMahir.Task;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -18,6 +21,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import mainpkg.Main;
+import mainpkg.MainpkgSS;
 
 /**
  * FXML Controller class
@@ -33,13 +38,7 @@ public class DeliveryManTasksController implements Initializable {
     @FXML
     private Menu userMenu;
     @FXML
-    private MenuItem accountMenuItem;
-    @FXML
-    private MenuItem ordersMenuItem;
-    @FXML
     private MenuItem logoutMenuItem;
-    @FXML
-    private Button dashboardButton1;
     @FXML
     private Button tasksButton;
     @FXML
@@ -49,17 +48,17 @@ public class DeliveryManTasksController implements Initializable {
     @FXML
     private Button logoutButton;
     @FXML
-    private TableView<?> taskTableView;
+    private TableView<Task> taskTableView;
     @FXML
-    private TableColumn<?, ?> idColumn;
+    private TableColumn<Task, String> idColumn;
     @FXML
-    private TableColumn<?, ?> priceColumn;
+    private TableColumn<Task, Float> priceColumn;
     @FXML
-    private TableColumn<?, ?> addressColumn;
+    private TableColumn<Task, String> addressColumn;
     @FXML
-    private TableColumn<?, ?> addressColumn1;
+    private TableColumn<Task, String> addressColumn1;
     @FXML
-    private VBox dashboardButton;
+    private Button dashboardButton;
     @FXML
     private Button viewDetailButton;
     @FXML
@@ -68,37 +67,21 @@ public class DeliveryManTasksController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    Task selectedTask;
+    DeliveryMan current;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        selectedTask = null;
+        current = (DeliveryMan)Main.getUserData();
     }    
 
-    @FXML
-    private void switchToAccountScene(ActionEvent event) {
-    }
 
+   
     @FXML
-    private void logout(ActionEvent event) {
-    }
-
-    @FXML
-    private void lightenUserMenuBar(MouseEvent event) {
-    }
-
-    @FXML
-    private void darkenUserMenuBar(MouseEvent event) {
-    }
-
-    @FXML
-    private void lightenGreyButton(MouseEvent event) {
-    }
-
-    @FXML
-    private void darkenGreyButton(MouseEvent event) {
-    }
-
-    @FXML
-    private void tasksButtonOnClick(ActionEvent event) {
+    private void tasksButtonOnClick(ActionEvent event) throws IOException {
+        DMSS ss = new DMSS();
+        ss.switchToTasks();
     }
 
     @FXML
@@ -106,11 +89,10 @@ public class DeliveryManTasksController implements Initializable {
     }
 
     @FXML
-    private void profileButtonOnClick(ActionEvent event) {
-    }
-
-    @FXML
     private void updateSelectedTask(MouseEvent event) {
+        if(!taskTableView.getSelectionModel().isEmpty()){
+            this.selectedTask = taskTableView.getSelectionModel().getSelectedItem();
+        }
     }
 
     @FXML
@@ -119,6 +101,47 @@ public class DeliveryManTasksController implements Initializable {
 
     @FXML
     private void taskButtonOnClick(ActionEvent event) {
+        //Nothing
+    }
+    
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        current.saveInstance();
+        MainpkgSS ss = new MainpkgSS();
+        ss.switchtoLoginScene();
+    }
+
+    @FXML
+    private void lightenGreyButton(MouseEvent event) {
+        ((Button)event.getSource()).setStyle("-fx-background-color:  #eef0f5");
+    }
+
+    @FXML
+    private void darkenGreyButton(MouseEvent event) {
+        ((Button)event.getSource()).setStyle("-fx-background-color: #d0d0db");
+    }
+
+    @FXML
+    private void profileButtonOnClick(ActionEvent event) throws IOException {
+        DMSS ss = new DMSS();
+        ss.switchToProfile();;
+    }
+
+
+    @FXML
+    private void lightenUserMenuBar(MouseEvent event) {
+        userMenu.setStyle("-fx-background-color: #affad3");
+    }
+
+    @FXML
+    private void darkenUserMenuBar(MouseEvent event) {
+        userMenu.setStyle("-fx-background-color: #79edad");
+    }
+
+    @FXML
+    private void dashboardButtonOnClick(ActionEvent event) throws IOException {
+        DMSS ss = new DMSS();
+        ss.switchToDashboard();
     }
     
 }

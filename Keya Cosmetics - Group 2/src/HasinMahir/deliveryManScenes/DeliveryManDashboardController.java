@@ -44,7 +44,7 @@ public class DeliveryManDashboardController implements Initializable {
     @FXML
     private ImageView keyaIcon;
     @FXML
-    private VBox dashboardButton;
+    private Button dashboardButton;
     @FXML
     private TableView<Order> orderTableView;
     @FXML
@@ -68,8 +68,6 @@ public class DeliveryManDashboardController implements Initializable {
     private DeliveryMan current;
     private Order selectedOrder;
     @FXML
-    private Button dashboardButton1;
-    @FXML
     private Label nameLabel;
     @FXML
     private Label balanceLabel;
@@ -85,10 +83,6 @@ public class DeliveryManDashboardController implements Initializable {
     private MenuBar userMenuBar;
     @FXML
     private Menu userMenu;
-    @FXML
-    private MenuItem accountMenuItem;
-    @FXML
-    private MenuItem ordersMenuItem;
     @FXML
     private MenuItem logoutMenuItem;
     @FXML
@@ -147,9 +141,6 @@ public class DeliveryManDashboardController implements Initializable {
         ss.switchToProfile();;
     }
 
-    @FXML
-    private void switchToAccountScene(ActionEvent event) {
-    }
 
     @FXML
     private void lightenUserMenuBar(MouseEvent event) {
@@ -172,7 +163,8 @@ public class DeliveryManDashboardController implements Initializable {
     @FXML
     private void acceptButtonOnClick(ActionEvent event) {
         if (selectedOrder!=null && !this.orderTableView.getItems().isEmpty()){
-            selectedOrder.setStatus(Status.ACCEPTED);
+            selectedOrder.setStatus(Status.OUT_FOR_DELIVERY);
+            
         }
     }
 

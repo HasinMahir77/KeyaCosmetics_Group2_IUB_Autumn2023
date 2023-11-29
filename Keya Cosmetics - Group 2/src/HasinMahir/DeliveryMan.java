@@ -125,13 +125,15 @@ public class DeliveryMan extends User {
             order.setDeliveryManUserName(this.username);
             order.setDeliveryManName(this.firstName+" "+this.lastName);
             this.deliveryList.add(order.getId());
-            order.setStatus(Status.ACCEPTED);
+            order.setStatus(Status.OUT_FOR_DELIVERY);
+            order.saveInstance();
         }
     }
     public void deliverOrder(Order order){
-        if (order.getStatus().equals(Status.ACCEPTED)){
+        if (order.getStatus().equals(Status.DELIVERED)){
             this.deliveryList.add(order.getId());
             order.setStatus(Status.DELIVERED);
+            order.saveInstance();
         }
     }
 }

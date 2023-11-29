@@ -25,7 +25,7 @@
          <children>
             <TilePane alignment="CENTER" prefHeight="318.0" prefWidth="111.0">
                <children>
-                  <Button fx:id="dashboardButton1" mnemonicParsing="false" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #d0d0db;" text="Dashboard" />
+                  <Button fx:id="dashboardButton" mnemonicParsing="false" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #d0d0db;" text="Dashboard" />
                   <Button fx:id="tasksButton" mnemonicParsing="false" onAction="#tasksButtonOnClick" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Tasks" />
                   <Button fx:id="paymentsButton" mnemonicParsing="false" onAction="#paymentsButtonOnClick" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Payments" />
                   <Button fx:id="profileButton" mnemonicParsing="false" onAction="#profileButtonOnClick" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Profile" />
@@ -74,8 +74,6 @@
                      <menus>
                         <Menu fx:id="userMenu" mnemonicParsing="false" text="User ↓">
                            <items>
-                              <MenuItem fx:id="accountMenuItem" mnemonicParsing="false" onAction="#switchToAccountScene" text="Account" />
-                              <MenuItem fx:id="ordersMenuItem" mnemonicParsing="false" text="Orders" />
                               <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#logout" text="Logout" />
                            </items>
                         </Menu>
@@ -117,7 +115,7 @@
                   </TableView>
                </children>
             </VBox>
-            <VBox fx:id="dashboardButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowSpan="2">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowSpan="2">
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="237.0" prefWidth="214.0" spacing="10.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: #eef0f5;">
                      <children>

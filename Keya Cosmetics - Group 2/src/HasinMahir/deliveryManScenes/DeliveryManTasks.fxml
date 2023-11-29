@@ -24,7 +24,7 @@
          <children>
             <TilePane alignment="CENTER" prefHeight="318.0" prefWidth="111.0">
                <children>
-                  <Button fx:id="dashboardButton1" mnemonicParsing="false" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Dashboard" />
+                  <Button fx:id="dashboardButton" mnemonicParsing="false" onAction="#dashboardButtonOnClick" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Dashboard" />
                   <Button fx:id="tasksButton" mnemonicParsing="false" onAction="#tasksButtonOnClick" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #d0d0db;" text="Tasks" />
                   <Button fx:id="paymentsButton" mnemonicParsing="false" onAction="#paymentsButtonOnClick" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Payments" />
                   <Button fx:id="profileButton" mnemonicParsing="false" onAction="#profileButtonOnClick" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Profile" />
@@ -73,8 +73,6 @@
                      <menus>
                         <Menu fx:id="userMenu" mnemonicParsing="false" text="User ↓">
                            <items>
-                              <MenuItem fx:id="accountMenuItem" mnemonicParsing="false" onAction="#switchToAccountScene" text="Account" />
-                              <MenuItem fx:id="ordersMenuItem" mnemonicParsing="false" text="Orders" />
                               <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#logout" text="Logout" />
                            </items>
                         </Menu>
@@ -118,7 +116,7 @@
                   </TableView>
                </children>
             </VBox>
-            <VBox fx:id="dashboardButton" alignment="CENTER" prefHeight="306.0" prefWidth="120.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowSpan="2">
+            <VBox alignment="CENTER" prefHeight="306.0" prefWidth="120.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowSpan="2">
                <padding>
                   <Insets bottom="50.0" left="70.0" right="70.0" top="2.0" />
                </padding></VBox>

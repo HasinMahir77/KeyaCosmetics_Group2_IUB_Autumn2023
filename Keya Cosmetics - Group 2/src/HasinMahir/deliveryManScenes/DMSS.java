@@ -34,6 +34,9 @@ public class DMSS {
     public void switchToProfile() throws IOException{
         this.switchScene("DeliveryManProfile.fxml", "Profile");
     }
+    public void switchToTasks() throws IOException{
+        this.switchScene("DeliveryManTasks.fxml", "Tasks");
+    }
   
     public void showCart(Order order) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("OrderCart.fxml"));
@@ -44,6 +47,7 @@ public class DMSS {
         stage.setScene(scene);
         stage.setTitle("Order Details");        
     }
+    
     public static Stage getCartStage(){
         return cartStage;
     }
