@@ -44,7 +44,7 @@
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="380.0" layoutY="170.0" opacity="0.24" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="381.0" layoutY="207.0" opacity="0.24" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/keyaLogo.png" />
          </image>
@@ -99,6 +99,9 @@
          </font>
       </Button>
       <Label fx:id="timeLabel" layoutX="749.0" layoutY="518.0" prefHeight="17.0" prefWidth="212.0" />
-      <Label layoutX="772.0" layoutY="518.0" prefHeight="17.0" prefWidth="188.0" text="Label" />
+      <Label fx:id="timeLabel" layoutX="772.0" layoutY="518.0" prefHeight="17.0" prefWidth="188.0">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
    </children>
 </AnchorPane>

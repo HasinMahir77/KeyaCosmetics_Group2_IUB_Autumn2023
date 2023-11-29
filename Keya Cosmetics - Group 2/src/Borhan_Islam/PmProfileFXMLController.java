@@ -55,11 +55,6 @@ public class PmProfileFXMLController implements Initializable {
         
     }     
 
-    @FXML
-    private void switchToAccDashboard(ActionEvent event) throws IOException {
-        BorhanSS ss = new BorhanSS();
-        ss.switchToAccDashboard();  
-    }
 
     @FXML
     private void editButton(ActionEvent event) {
@@ -123,5 +118,11 @@ public class PmProfileFXMLController implements Initializable {
         current.saveInstance();
 
         }
+    }
+
+    @FXML
+    private void switchToPmDashboard(ActionEvent event) throws IOException {
+        BorhanSS ss = new BorhanSS();
+        ss.switchToPmDashboard();         
     }
 }

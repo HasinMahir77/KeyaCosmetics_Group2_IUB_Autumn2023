@@ -72,7 +72,7 @@
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="422.0" layoutY="43.0" text="Dashbard">
+      <Label layoutX="350.0" layoutY="38.0" text="Accountant Dashbard">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>

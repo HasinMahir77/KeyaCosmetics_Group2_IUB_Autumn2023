@@ -76,5 +76,8 @@ public class BorhanSS {
     public void switchToAccDashboard() throws IOException {
         this.switchScene("AccountantDashboardFXML.fxml", "");
     }
+    public void switchToPmDashboard() throws IOException {
+        this.switchScene("ProductManagerDashboardFXML.fxml", "");
+    }
 
 }

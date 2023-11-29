@@ -49,7 +49,7 @@
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="UsernameTextField" disable="true" layoutX="436.0" layoutY="142.0" />
+      <TextField fx:id="UsernameTextField" disable="true" layoutX="436.0" layoutY="142.0" prefHeight="25.0" prefWidth="174.0" />
       <Label layoutX="290.0" layoutY="188.0" text="First Name">
          <font>
             <Font name="Lucida Console" size="15.0" />
@@ -71,9 +71,9 @@
          </font>
       </Label>
       <Line endX="-77.0" endY="263.0" layoutX="360.0" layoutY="120.0" startX="-77.0" startY="10.0" />
-      <TextField fx:id="firstNameTextField" disable="true" layoutX="436.0" layoutY="184.0" />
-      <TextField fx:id="lastNameTextField" disable="true" layoutX="436.0" layoutY="221.0" />
-      <TextField fx:id="phoneTextField" disable="true" layoutX="436.0" layoutY="263.0" />
+      <TextField fx:id="firstNameTextField" disable="true" layoutX="436.0" layoutY="184.0" prefHeight="25.0" prefWidth="174.0" />
+      <TextField fx:id="lastNameTextField" disable="true" layoutX="436.0" layoutY="221.0" prefHeight="25.0" prefWidth="174.0" />
+      <TextField fx:id="phoneTextField" disable="true" layoutX="436.0" layoutY="263.0" prefHeight="25.0" prefWidth="174.0" />
       <Label layoutX="291.0" layoutY="352.0" text="Date of Joining">
          <font>
             <Font name="Lucida Console" size="15.0" />
@@ -97,7 +97,7 @@
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
-      <DatePicker fx:id="dobDatePicker" layoutX="436.0" layoutY="306.0" />
-      <DatePicker fx:id="dojDatePicker" layoutX="436.0" layoutY="348.0" />
+      <DatePicker fx:id="dobDatePicker" disable="true" layoutX="436.0" layoutY="306.0" />
+      <DatePicker fx:id="dojDatePicker" disable="true" layoutX="436.0" layoutY="348.0" />
    </children>
 </AnchorPane>

@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -49,6 +50,8 @@ public class RecordsFXMLController implements Initializable {
     private TableColumn<Records, String> idTable;
     @FXML
     private Button filterfxid;
+    @FXML
+    private Button showRecordsFXID;
 
     /**
      * Initializes the controller class.
@@ -61,11 +64,13 @@ public class RecordsFXMLController implements Initializable {
         timeTable.setCellValueFactory(new PropertyValueFactory<>("time"));
         dateTable.setCellValueFactory(new PropertyValueFactory<>("date"));
         idTable.setCellValueFactory(new PropertyValueFactory<>("id"));
-    }    
-
+        showRecordsFXID.setDisable(false);
+    } 
+    
 
     @FXML
     private void showRecordsOnButtonClicked(ActionEvent event) {
+
         ObjectInputStream ois = null;
         try {
             ois = new ObjectInputStream(new FileInputStream("OrderList.bin"));
@@ -97,7 +102,10 @@ public class RecordsFXMLController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        showRecordsFXID.setDisable(true);        
+
         }
+
     }
 
     // Method to convert an Order object to a Records object
@@ -132,7 +140,9 @@ public class RecordsFXMLController implements Initializable {
                 return Records.Status.CANCELED;
             default:
                 return Records.Status.PENDING;  // Default status if not mapped
-    }
+    
+        }
+        
 }
    
 
@@ -164,6 +174,12 @@ public class RecordsFXMLController implements Initializable {
 
     @FXML
     private void filterOnButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void switchToAccDashboard(ActionEvent event) throws IOException {
+        BorhanSS ss = new BorhanSS();
+        ss.switchToAccDashboard(); 
     }
     
 }
