@@ -4,7 +4,11 @@
  */
 package HasinMahir;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -124,6 +128,18 @@ public class Product implements Serializable,Reviewable {
     @Override
     public String toString(){
         return "Product"+this.getName();
+    }
+    public ArrayList<Product> getProductList(){
+        File productFile = new File("ProductList.bin");
+        ArrayList<Product> productList = new ArrayList<Product>();
+        
+        try(FileInputStream fis = new FileInputStream(productFile);
+                ObjectInputStream ois = new ObjectInputStream(fis) ){
+            productList.add((Product)ois.readObject());
+        }
+        catch(Exception e){}
+        
+        return productList;
     }
     
 }

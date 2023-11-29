@@ -122,7 +122,7 @@ public class CustomerOrderSceneController implements Initializable {
                 this.orderList.add(o);
             }
         }
-         
+        
         //TableView
         //orderTableView.setPlaceholder("No orders placed yet");
         idColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));

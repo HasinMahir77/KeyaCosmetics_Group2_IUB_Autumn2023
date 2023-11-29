@@ -68,7 +68,7 @@ public class EmployeeSignupGridController implements Initializable {
     }    
 
     @FXML
-    private void signup(ActionEvent event) {
+    private void signup(ActionEvent event) throws IOException {
         String employeeType = employeeComboBox.getValue();
         File employeeFile;
         //Checking for empty fields
@@ -237,8 +237,21 @@ public class EmployeeSignupGridController implements Initializable {
             
         }
         System.out.println("Employee written");
-        Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Account created successfully",ButtonType.OK);
-        a.showAndWait();
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Account created successfully",
+                    ButtonType.OK,ButtonType.CLOSE);
+            a.showAndWait();
+            if (a.getResult()==ButtonType.OK){
+                this.switchToLoginScreen(event);
+            }
+            else{
+                this.usernameTextField.clear();
+                this.firstNameTextField.clear();
+                this.passwordTextField.clear();
+                this.phoneTextField.clear();
+                this.usernameTextField.clear();
+                this.lastNameTextField.clear();
+                this.dobDatePicker.getEditor().clear();
+            }
         
         
     }

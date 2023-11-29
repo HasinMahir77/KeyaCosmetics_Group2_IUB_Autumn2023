@@ -138,7 +138,7 @@ public class DeliveryManDashboardController implements Initializable {
     @FXML
     private void profileButtonOnClick(ActionEvent event) throws IOException {
         DMSS ss = new DMSS();
-        ss.switchToProfile();;
+        ss.switchToProfile();
     }
 
 
