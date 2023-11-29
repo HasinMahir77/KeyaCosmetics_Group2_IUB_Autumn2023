@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NadimHR_Receptionist.HRMainDashboardController">
    <top>
@@ -22,7 +24,7 @@
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#employeeDetailsChartsOnClick" text="Employee details " />
                   <MenuItem mnemonicParsing="false" onAction="#AnalyzedapplicantsOnclick" text="Analyze Applicants" />
-              <MenuItem mnemonicParsing="false" onAction="#administerpayrollreportsOnclick" text="Administer payroll reports" />
+              <MenuItem mnemonicParsing="false" onAction="#empFeedbackOnClick" text="Feedback from employees" />
                   <MenuItem mnemonicParsing="false" onAction="#attendenceleavemanagementOnclick" text="Attendance/Leave management" />
                   <MenuItem mnemonicParsing="false" onAction="#auditfinancialmanagementsOnclick" text="Audited Financial Managements" />
             </items>
@@ -36,6 +38,18 @@
       </MenuBar>
    </top>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="145.0" layoutY="40.0" text="Keya Cosmetics Ltd." textFill="#07d371">
+               <font>
+                  <Font name="Lucida Sans Typewriter Bold" size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="39.0" layoutY="87.0" prefHeight="38.0" prefWidth="511.0" text="Welcome  to  HR  Manager  Dashboard" textFill="#f2ff00">
+               <font>
+                  <Font name="Gill Sans Ultra Bold Condensed" size="29.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
    </center>
 </BorderPane>

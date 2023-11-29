@@ -74,7 +74,7 @@ public class ApplicantSortingController implements Initializable {
         applicantNameColumn1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getApplicantName()));
         contactInfoColumn1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getContactInfo()));
         PositionColumn1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue(). getPosition()));
-      IDcolumn1.setCellValueFactory(cellData -> new ReadOnlyIntegerWrapper(cellData.getValue().getId()).asObject());
+        IDcolumn1.setCellValueFactory(cellData -> new ReadOnlyIntegerWrapper(cellData.getValue().getId()).asObject());
 
 
         AssignedbyColumn1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getAssignedbyhr()));

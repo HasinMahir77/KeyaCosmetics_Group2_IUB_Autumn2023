@@ -63,7 +63,6 @@ public class HRMainDashboardController implements Initializable {
         borderpane.setCenter(root);
     }
 
-    @FXML
     private void administerpayrollreportsOnclick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Administer payroll reports.fxml"));
         borderpane.setCenter(root);
@@ -88,6 +87,12 @@ public class HRMainDashboardController implements Initializable {
     @FXML
     private void backOnCLick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("HR mainDashboard.fxml"));
+        Main.getMainStage().getScene().setRoot(root);
+    }
+
+    @FXML
+    private void empFeedbackOnClick(ActionEvent event)throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("empFeedback.fxml"));
         Main.getMainStage().getScene().setRoot(root);
     }
    

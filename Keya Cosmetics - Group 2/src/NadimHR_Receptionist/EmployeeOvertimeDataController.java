@@ -5,6 +5,7 @@
 package NadimHR_Receptionist;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,9 +25,9 @@ import javafx.scene.control.TextField;
 public class EmployeeOvertimeDataController implements Initializable {
 
     @FXML
-    private ComboBox<?> positionComboBox;
+    private ComboBox<String> positionComboBox;
     @FXML
-    private ComboBox<?> NameComboBox;
+    private ComboBox<String> NameComboBox;
     @FXML
     private TextField timeTextField;
     @FXML
@@ -34,15 +35,15 @@ public class EmployeeOvertimeDataController implements Initializable {
     @FXML
     private Button LoadInformationButton;
     @FXML
-    private TableView<?> TableView;
+    private TableView<Applicant> TableView;
     @FXML
-    private TableColumn<?, ?> PositionColumn;
+    private TableColumn<Applicant, String> PositionColumn;
     @FXML
-    private TableColumn<?, ?> NameColumn;
+    private TableColumn<Applicant, String> NameColumn;
     @FXML
-    private TableColumn<?, ?> HoursColumn;
+    private TableColumn<Applicant, Integer> HoursColumn;
     @FXML
-    private TableColumn<?, ?> DateColumn;
+    private TableColumn<Applicant, LocalDate> DateColumn;
     @FXML
     private Button SendButton;
 
