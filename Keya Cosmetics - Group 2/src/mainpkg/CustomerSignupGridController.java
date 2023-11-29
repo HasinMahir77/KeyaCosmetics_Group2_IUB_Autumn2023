@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -146,12 +148,27 @@ public class CustomerSignupGridController implements Initializable {
             oos.writeObject(newUser);
             oos.close();
             System.out.println("Customer written");
-            Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Account created successfully",ButtonType.OK);
+            Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Account created successfully",
+                    ButtonType.OK,ButtonType.CLOSE);
             a.showAndWait();
+            if (a.getResult()==ButtonType.OK){
+                this.switchToLoginScreen(event);
+            }
+            else{
+                this.usernameTextField.clear();
+                this.addressTextArea.clear();
+                this.firstNameTextField.clear();
+                this.passwordTextField.clear();
+                this.phoneTextField.clear();
+                this.usernameTextField.clear();
+                this.lastNameTextField.clear();
+            }
             
         } catch(Exception e){
             System.out.println(e.toString());
         }
+        
+        
     }
 
     @FXML
