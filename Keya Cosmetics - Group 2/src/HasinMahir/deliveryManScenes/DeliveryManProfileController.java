@@ -34,10 +34,6 @@ public class DeliveryManProfileController implements Initializable {
     @FXML
     private ImageView keyaIcon;
     @FXML
-    private Button pendingTasksButton;
-    @FXML
-    private Button handoverButton;
-    @FXML
     private Button paymentsButton;
     @FXML
     private Button logoutButton;
@@ -88,6 +84,8 @@ public class DeliveryManProfileController implements Initializable {
     private Button profileButton;
     @FXML
     private Button dashboardButton;
+    @FXML
+    private Button tasksButton;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -112,13 +110,6 @@ public class DeliveryManProfileController implements Initializable {
         ((Button)event.getSource()).setStyle("-fx-background-color: #d0d0db");
     }
 
-    @FXML
-    private void pendingTasksButtonOnClick(ActionEvent event) {
-    }
-
-    @FXML
-    private void handoverButtonOnClick(ActionEvent event) {
-    }
 
     @FXML
     private void paymentsButtonOnClick(ActionEvent event) {
@@ -169,6 +160,10 @@ public class DeliveryManProfileController implements Initializable {
     private void switchToDashboard(ActionEvent event) throws IOException {
         DMSS ss = new DMSS();
         ss.switchToDashboard();
+    }
+
+    @FXML
+    private void tasksButtonOnClick(ActionEvent event) {
     }
     
     

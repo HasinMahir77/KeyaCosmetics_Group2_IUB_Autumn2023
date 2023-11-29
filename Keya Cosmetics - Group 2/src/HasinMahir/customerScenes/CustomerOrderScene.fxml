@@ -205,6 +205,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                      <children>
+                        <Button fx:id="viewDetailsButton" disable="true" mnemonicParsing="false" onAction="#viewDetailsButtonOnClick" prefHeight="25.0" prefWidth="102.0" text="View details" />
                         <Button fx:id="reviewButton" disable="true" mnemonicParsing="false" onAction="#reviewButtonOnClick" prefHeight="25.0" prefWidth="71.0" text="Review" />
                      </children>
                      <padding>

@@ -30,6 +30,33 @@ import mainpkg.ObjectOutputStreamA;
 public class Order implements Serializable,Reviewable {
     
     private static Stage stage;
+    
+    public enum Status{PENDING,ACCEPTED,OUT_FOR_DELIVERY,DELIVERED,RETURNED,CANCELED};
+    
+    private Review review;
+    private Status status;
+    private String customerName,customerUserName,deliveryManUserName,deliveryManName,id,address;
+    private Cart cart;
+    private float price;
+    private  LocalDate date;
+    private LocalTime time;
+    
+    public Order(Customer customer) {
+        this.customerUserName = customer.getUsername();
+        this.customerName = customer.getFirstName()+" "+customer.getLastName();
+        this.address = customer.getAddress();
+        this.deliveryManName = null;
+        this.deliveryManUserName = null;
+        this.status = Order.Status.PENDING;
+        this.cart = customer.getCart();
+        this.price = cart.getPrice();
+        this.time = LocalTime.now();
+        this.date = LocalDate.now();
+        this.id = "OID"+this.time.toString()+this.date.toString();
+        this.review = null;
+        customer.getOrderIdList().add(this.id);
+    }
+    
 
     @Override
     public void addReview(String sender) {
@@ -38,7 +65,7 @@ public class Order implements Serializable,Reviewable {
         r.setSubject(this.getId());
         boolean success = r.takeReview();
         if (success){
-            this.reviewList.add(r);
+            this.review = r;
             Alert a = new Alert(Alert.AlertType.INFORMATION,"Review saved");
             a.showAndWait();
         }
@@ -46,27 +73,6 @@ public class Order implements Serializable,Reviewable {
             Alert a = new Alert(Alert.AlertType.ERROR,"Failed to save review");
             a.showAndWait();
         }
-    }
-    public enum Status{PENDING,ACCEPTED,OUT_FOR_DELIVERY,DELIVERED,RETURNED,CANCELED};
-    
-    ArrayList<Review> reviewList;
-    Status status;
-    String customerUserName,deliveryManUserName,id,address;
-    Cart cart;
-    float price;
-    LocalDate date;
-    LocalTime time;
-    
-    public Order(Customer customer) {
-        this.customerUserName = customer.getUsername();
-        this.status = Order.Status.PENDING;
-        this.cart = customer.getCart();
-        this.price = cart.getPrice();
-        this.time = LocalTime.now();
-        this.date = LocalDate.now();
-        this.id = "OID"+this.time.toString()+this.date.toString();
-        this.address = customer.getAddress();
-        this.reviewList= new ArrayList<Review>();
     }
     
     public Status getStatus() {
@@ -228,6 +234,26 @@ public class Order implements Serializable,Reviewable {
         
         stage.show();
           
+    }
+
+    public Review getReview() {
+        return review;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public String getDeliveryManName() {
+        return deliveryManName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public void setDeliveryManName(String deliveryManName) {
+        this.deliveryManName = deliveryManName;
     }
     
 

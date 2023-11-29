@@ -4,6 +4,7 @@
  */
 package HasinMahir;
 
+import HasinMahir.Order.Status;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,19 +19,15 @@ import mainpkg.ObjectOutputStreamA;
  * @author hasin
  */
 public class DeliveryMan extends User {
+    private ArrayList<String> deliveryList;
     
     
     
-    public DeliveryMan(String firstName, String lastName, String username, String password) {
-        super(firstName, lastName, username, password);
-        this.del = false;
-        this.doj = LocalDate.now();
-        this.nid="";
-    }
     
     public DeliveryMan(String firstName, String lastName, String username, String password, String phone) {
         super(firstName, lastName, username, password, phone);
         this.phone = phone;
+        this.deliveryList = new ArrayList<String>();
         this.del = false;
         this.doj = LocalDate.now();
         this.nid = "";
@@ -123,5 +120,18 @@ public class DeliveryMan extends User {
             this.username = this.username.substring(0,this.username.length()-8);
         }
     }
-    
+    public void acceptOrder(Order order){
+        if (order.getStatus().equals(Status.PENDING)){
+            order.setDeliveryManUserName(this.username);
+            order.setDeliveryManName(this.firstName+" "+this.lastName);
+            this.deliveryList.add(order.getId());
+            order.setStatus(Status.ACCEPTED);
+        }
+    }
+    public void deliverOrder(Order order){
+        if (order.getStatus().equals(Status.ACCEPTED)){
+            this.deliveryList.add(order.getId());
+            order.setStatus(Status.DELIVERED);
+        }
+    }
 }

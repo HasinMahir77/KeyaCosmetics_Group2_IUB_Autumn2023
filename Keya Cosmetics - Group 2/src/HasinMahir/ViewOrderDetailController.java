@@ -18,10 +18,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author hasin
  */
-public class ViewCartController implements Initializable {
+public class ViewOrderDetailController implements Initializable {
 
     @FXML
     private Label orderIdLabel;
+    @FXML
+    private Label orderTimeLabel;
+    @FXML
+    private Label orderDateLabel;
+    @FXML
+    private Label deliveryManLabel;
+    @FXML
+    private Label customerNameLabel;
+    @FXML
+    private Label addressLabel;
     @FXML
     private TableView<OrderedProduct> cartTableView;
     @FXML
@@ -32,6 +42,8 @@ public class ViewCartController implements Initializable {
     private TableColumn<OrderedProduct, Float> totalPriceColumn;
     @FXML
     private Label priceLabel;
+    @FXML
+    private Label statusLabel;
 
     /**
      * Initializes the controller class.
@@ -43,13 +55,19 @@ public class ViewCartController implements Initializable {
         
         this.orderIdLabel.setText("Order ID: "+ current.getId());
         this.priceLabel.setText("Total: " + Float.toString(current.getPrice()) + " BDT");
+        this.statusLabel.setText("Status: " + current.getStatus().toString());
+        this.orderDateLabel.setText("Order date: " + current.getDate());
+        this.orderTimeLabel.setText("Order time: " + current.getTime());
+        
+        this.customerNameLabel.setText("Name: "+current.getCustomerName() );
+        this.addressLabel.setText("Address: " + current.getAddress());
+        
         
         nameColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, String>("name"));
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Float>("totalPrice"));
         unitColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Integer>("quantity"));
         
         this.cartTableView.getItems().addAll(current.getCart().getProductOrderList());
-    
     }    
     
 }

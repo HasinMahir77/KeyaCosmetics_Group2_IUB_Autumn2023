@@ -80,8 +80,6 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private TableColumn<OrderedProduct, Float> unitPriceColumn;
     @FXML
-    private TableColumn<OrderedProduct, Float> totalPriceColumn;
-    @FXML
     private TableColumn<OrderedProduct, Float> vatColumn;
     @FXML
     private Button minusButton;
@@ -101,6 +99,8 @@ public class CustomerCartSceneController implements Initializable {
     private Button orderButton;
     @FXML
     private Label grandTotalLabel;
+    @FXML
+    private TableColumn<OrderedProduct, Float> PriceColumn;
     
 
     /**
@@ -123,17 +123,15 @@ public class CustomerCartSceneController implements Initializable {
         OrderedProduct selectedProduct = cartTableView.getSelectionModel().getSelectedItem();
         
         nameColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, String>("name"));
-        unitPriceColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Float>("price"));
-        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Float>("totalPrice"));
+        unitPriceColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Float>("unitPrice"));
+        PriceColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Float>("Price"));
         vatColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Float>("vat"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Integer>("quantity"));
         
        
         this.updateCartTable();
-        this.updateGrandTotal();
         
         //---
-        
     }   
 
     @FXML
@@ -281,6 +279,15 @@ public class CustomerCartSceneController implements Initializable {
         cartTableView.getItems().clear();
         cartTableView.getItems().addAll(current.getCart().getProductOrderList());
         current.saveInstance();
+        
+        //Updating total
+        ArrayList<OrderedProduct> products = current.getCart().getProductOrderList();
+        Float grandTotal = new Float(0);
+        
+        for(OrderedProduct p: products){
+            grandTotal = grandTotal+p.getTotalPrice();
+        }
+        grandTotalLabel.setText(grandTotal.toString()+" BDT");
     }
 
     @FXML
@@ -300,13 +307,7 @@ public class CustomerCartSceneController implements Initializable {
         
     }
     public void updateGrandTotal(){
-        ArrayList<OrderedProduct> products = current.getCart().getProductOrderList();
-        Float grandTotal = new Float(0);
         
-        for(OrderedProduct p: products){
-            grandTotal = grandTotal+p.getTotalPrice()+p.getVat();
-        }
-        grandTotalLabel.setText(grandTotal.toString()+" BDT");
     }
 
     @FXML

@@ -102,6 +102,8 @@ public class CustomerOrderSceneController implements Initializable {
      * Initializes the controller class.
      */
     ObservableList<Order> orderList = FXCollections.observableArrayList();
+    @FXML
+    private Button viewDetailsButton;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -116,7 +118,7 @@ public class CustomerOrderSceneController implements Initializable {
         ArrayList<Order> allOrders = Order.getOrderList();
         
         for (Order o: allOrders){
-            if (o.getCustomerUserName().equals(current.getUsername())){ //Order belongs to current customer
+            if (current.getOrderIdList().contains(o.getId())){ //Order belongs to current customer
                 this.orderList.add(o);
             }
         }
@@ -278,6 +280,10 @@ public class CustomerOrderSceneController implements Initializable {
         }
         
         
+    }
+
+    @FXML
+    private void viewDetailsButtonOnClick(ActionEvent event) {
     }
 
     

@@ -46,10 +46,6 @@ public class DeliveryManDashboardController implements Initializable {
     @FXML
     private VBox dashboardButton;
     @FXML
-    private Button pendingTasksButton;
-    @FXML
-    private Button handoverButton;
-    @FXML
     private TableView<Order> orderTableView;
     @FXML
     private TableColumn<Order, String> idColumn;
@@ -95,6 +91,8 @@ public class DeliveryManDashboardController implements Initializable {
     private MenuItem ordersMenuItem;
     @FXML
     private MenuItem logoutMenuItem;
+    @FXML
+    private Button tasksButton;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -119,13 +117,7 @@ public class DeliveryManDashboardController implements Initializable {
          
     }    
 
-    @FXML
-    private void pendingTasksButtonOnClick(ActionEvent event) {
-    }
 
-    @FXML
-    private void handoverButtonOnClick(ActionEvent event) {
-    }
 
     @FXML
     private void paymentsButtonOnClick(ActionEvent event) {
@@ -189,6 +181,10 @@ public class DeliveryManDashboardController implements Initializable {
         if(!orderTableView.getSelectionModel().isEmpty()){
             this.selectedOrder = orderTableView.getSelectionModel().getSelectedItem();
         } 
+    }
+
+    @FXML
+    private void tasksButtonOnClick(ActionEvent event) {
     }
     
  

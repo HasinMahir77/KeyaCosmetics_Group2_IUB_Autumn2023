@@ -194,7 +194,7 @@
           <TableColumn minWidth="0.0" prefWidth="0.0" text="Category" />
             <TableColumn fx:id="unitPriceColumn" prefWidth="137.66665649414062" text="Unit Price" />
             <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="95.0" text="Quantity" />
-            <TableColumn fx:id="totalPriceColumn" prefWidth="100.66668701171875" text="Total Price" />
+            <TableColumn fx:id="PriceColumn" prefWidth="100.66668701171875" text="Price" />
             <TableColumn fx:id="vatColumn" prefWidth="96.33331298828125" text="Vat(BDT)" />
         </columns>
       </TableView>

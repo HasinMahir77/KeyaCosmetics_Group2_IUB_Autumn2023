@@ -28,8 +28,7 @@
             <TilePane alignment="CENTER" prefHeight="318.0" prefWidth="111.0">
                <children>
                   <Button fx:id="dashboardButton" mnemonicParsing="false" onAction="#switchToDashboard" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Dashboard" />
-                  <Button fx:id="pendingTasksButton" mnemonicParsing="false" onAction="#pendingTasksButtonOnClick" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Pending Tasks" />
-                  <Button fx:id="handoverButton" mnemonicParsing="false" onAction="#handoverButtonOnClick" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Handover" />
+                  <Button fx:id="tasksButton" mnemonicParsing="false" onAction="#tasksButtonOnClick" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Tasks" />
                   <Button fx:id="paymentsButton" mnemonicParsing="false" onAction="#paymentsButtonOnClick" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Payments" />
                   <Button fx:id="profileButton" mnemonicParsing="false" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #d0d0db;" text="Profile" />
                   <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" onMouseEntered="#darkenGreyButton" onMouseExited="#lightenGreyButton" prefHeight="37.0" prefWidth="122.0" style="-fx-background-color: #eef0f5;" text="Logout" />

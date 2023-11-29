@@ -5,6 +5,7 @@
 package HasinMahir;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,16 +13,19 @@ import java.io.Serializable;
  */
 public class OrderedProduct extends Product implements Serializable {
     private int quantity;
-    private float totalPrice, vat;
+    private float unitPrice, price, totalPrice, vat;
 
     //Easier constructor
     
     public OrderedProduct(String name, float price, String category, int vatRate, int quantity) {
-        super(name, price, category, vatRate);
+        this.name = name;
         this.quantity = quantity;
+        this.vatRate = vatRate;
+        this.unitPrice = price;
+        this.price = this.unitPrice*this.quantity;
+        this.vat = this.price*this.vatRate/100;
         
-        this.vat = (this.price*this.quantity)*(((float)this.vatRate)/100);
-        this.totalPrice = (this.price*this.quantity);
+        this.totalPrice = this.price+this.vat;
     }
 
     
@@ -29,10 +33,13 @@ public class OrderedProduct extends Product implements Serializable {
         this.quantity = quantity;
         this.name = product.getName();
         this.category = product.getCategory();
-        this.price=product.getPrice();
+        this.vatRate = product.getVatRate();
         
-        this.vat = (this.price*this.quantity)*(((float)this.vatRate)/100);
-        this.totalPrice = (this.price*this.quantity);
+        this.unitPrice=product.getPrice();
+        this.price = this.unitPrice*this.quantity;
+        this.vat = this.price*this.vatRate/100;
+        
+        this.totalPrice = this.price+this.vat;
          
     }
 
@@ -83,6 +90,20 @@ public class OrderedProduct extends Product implements Serializable {
     public int getVatRate() {
         return vatRate;
     }
+
+    public float getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(float unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+    
+
     
     
         

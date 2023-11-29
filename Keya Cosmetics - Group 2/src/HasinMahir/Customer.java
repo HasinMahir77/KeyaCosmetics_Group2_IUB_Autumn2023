@@ -20,7 +20,7 @@ import mainpkg.ObjectOutputStreamA;
  */
 public class Customer extends User implements Serializable, Deleteable, Reviewable {
     private Cart cart;
-    private ArrayList<Order> orderList;
+    private ArrayList<String> orderIdList;
     private String address;
     private float balance;
 
@@ -32,6 +32,7 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
     public Customer(String firstName, String lastName, String username, String password, String address, String phone) {
         super(firstName, lastName, username, password, phone);
         this.cart = new Cart();
+        this.orderIdList = new ArrayList<String>();
         this.address = address;
         this.phone = phone;
         this.del = false;
@@ -49,16 +50,12 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
         return ("Name: "+this.firstName+" "+this.lastName+", Username: "+this.username);
     }
 
-    public ArrayList<Order> getOrderList() {
-        return orderList;
+    public ArrayList<String> getOrderIdList() {
+        return orderIdList;
     }
 
     public void setCart(Cart cart) {
         this.cart = cart;
-    }
-
-    public void setOrderList(ArrayList<Order> orderList) {
-        this.orderList = orderList;
     }
 
 
