@@ -114,8 +114,8 @@ public class AccProfileFXMLController implements Initializable {
         firstNameTextField.setDisable(true);
         lastNameTextField.setDisable(true);
         phoneTextField.setDisable(true);
-        dobDatePicker.setDisable(false);
-        dojDatePicker.setDisable(false);        
+        dobDatePicker.setDisable(true);
+        dojDatePicker.setDisable(true);        
         applyButtonFXID.setDisable(true);
         //Enabling the buttons again
         editButtonFXID.setDisable(false);
