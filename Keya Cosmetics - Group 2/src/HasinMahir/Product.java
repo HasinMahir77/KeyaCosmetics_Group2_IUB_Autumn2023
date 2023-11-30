@@ -55,7 +55,7 @@ public class Product implements Serializable,Reviewable {
     public Product(){ 
     }
   
-    public Product(String name, float price ,Category categoryEnum,int vatRate) {
+    public Product(String name, float price ,Category categoryEnum,float vatRate) {
         this.name = name;
         this.price = price;
         this.vatRate = vatRate;

@@ -45,8 +45,6 @@ import mainpkg.ObjectOutputStreamA;
 public class CustomerProductWriterController implements Initializable {
 
     @FXML
-    private ImageView keyaIcon;
-    @FXML
     private TableView<Product> productTableView;
     @FXML
     private TableColumn<Product, String> nameColumn;
@@ -69,6 +67,8 @@ public class CustomerProductWriterController implements Initializable {
     @FXML
     private ListView<String> categoryListView;
     String selectedCategory;
+    @FXML
+    private ImageView keyaIconS;
 
     /**
      * Initializes the controller class.
@@ -110,8 +110,8 @@ public class CustomerProductWriterController implements Initializable {
     private void writeN(ActionEvent event) {
         Product p;
         String name = nameTextField.getText();
-        int price = Integer.parseInt(priceTextField.getText());
-        int vatRate = Integer.parseInt(vatRateTextField.getText());
+        float price = Float.parseFloat(priceTextField.getText());
+        float vatRate = Float.parseFloat(vatRateTextField.getText());
         
         if (selectedCategory.equals("Detergent")){
             p = new Product(name,price,Product.Category.DETERGENT,vatRate);
@@ -136,7 +136,9 @@ public class CustomerProductWriterController implements Initializable {
         }
         //Writing
         FileChooser fc = new FileChooser();
-        File productFile = fc.showSaveDialog(null);
+        File productFile = new File("ProductList.bin");
+        productFile.delete();
+        
         
         try(FileOutputStream fos = new FileOutputStream(productFile);
                     ObjectOutputStream oos = new ObjectOutputStream(fos)){
@@ -156,8 +158,8 @@ public class CustomerProductWriterController implements Initializable {
     private void writeE(ActionEvent event) {
         Product p;
         String name = nameTextField.getText();
-        int price = Integer.parseInt(priceTextField.getText());
-        int vatRate = Integer.parseInt(vatRateTextField.getText());
+        float price = Float.parseFloat(priceTextField.getText());
+        float vatRate = Float.parseFloat(vatRateTextField.getText());
         
         if (selectedCategory.equals("Detergent")){
             p = new Product(name,price,Product.Category.DETERGENT,vatRate);

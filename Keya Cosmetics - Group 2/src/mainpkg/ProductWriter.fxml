@@ -71,7 +71,7 @@
             <HBox alignment="CENTER" prefHeight="47.0" prefWidth="301.0" spacing="5.0" GridPane.columnIndex="1" />
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <ImageView fx:id="keyaIcon" fitHeight="46.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="keyaIconS" fitHeight="46.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/keyaLogoClear.png" />
                      </image>
