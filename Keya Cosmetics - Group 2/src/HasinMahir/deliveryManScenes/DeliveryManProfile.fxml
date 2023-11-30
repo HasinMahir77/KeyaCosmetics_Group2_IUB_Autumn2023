@@ -63,8 +63,6 @@
                      <menus>
                         <Menu fx:id="userMenu" mnemonicParsing="false" text="User ↓">
                            <items>
-                              <MenuItem fx:id="accountMenuItem" mnemonicParsing="false" onAction="#switchToAccountScene" text="Account" />
-                              <MenuItem fx:id="ordersMenuItem" mnemonicParsing="false" text="Orders" />
                               <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#logout" text="Logout" />
                            </items>
                         </Menu>

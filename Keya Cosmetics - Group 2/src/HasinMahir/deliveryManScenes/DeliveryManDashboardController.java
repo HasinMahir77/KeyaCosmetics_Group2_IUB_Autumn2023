@@ -40,6 +40,7 @@ import mainpkg.MainpkgSS;
  * @author hasin
  */
 public class DeliveryManDashboardController implements Initializable {
+    DMSS ss = new DMSS();
 
     @FXML
     private ImageView keyaIcon;
@@ -114,7 +115,9 @@ public class DeliveryManDashboardController implements Initializable {
 
 
     @FXML
-    private void paymentsButtonOnClick(ActionEvent event) {
+    private void paymentsButtonOnClick(ActionEvent event) throws IOException {
+        DMSS ss = new DMSS();
+        ss.switchToPayments();
     }
 
 
@@ -176,7 +179,8 @@ public class DeliveryManDashboardController implements Initializable {
     }
 
     @FXML
-    private void tasksButtonOnClick(ActionEvent event) {
+    private void tasksButtonOnClick(ActionEvent event) throws IOException {
+        ss.switchToTasks();
     }
     
  

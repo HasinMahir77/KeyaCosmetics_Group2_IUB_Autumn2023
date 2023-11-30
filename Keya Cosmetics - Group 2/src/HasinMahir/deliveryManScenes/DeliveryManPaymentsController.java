@@ -5,23 +5,25 @@
 package HasinMahir.deliveryManScenes;
 
 import HasinMahir.DeliveryMan;
-import HasinMahir.Order;
 import HasinMahir.DeliveryPayment;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import mainpkg.Main;
 import mainpkg.MainpkgSS;
 
@@ -30,8 +32,8 @@ import mainpkg.MainpkgSS;
  *
  * @author hasin
  */
-public class DeliveryManTasksController implements Initializable {
-
+public class DeliveryManPaymentsController implements Initializable {
+    DMSS ss = new DMSS();
     @FXML
     private ImageView keyaIcon;
     @FXML
@@ -41,6 +43,8 @@ public class DeliveryManTasksController implements Initializable {
     @FXML
     private MenuItem logoutMenuItem;
     @FXML
+    private Button dashboardButton;
+    @FXML
     private Button tasksButton;
     @FXML
     private Button paymentsButton;
@@ -48,66 +52,47 @@ public class DeliveryManTasksController implements Initializable {
     private Button profileButton;
     @FXML
     private Button logoutButton;
-    private TableView<Order> taskTableView;
     @FXML
-    private TableColumn<Order, String> idColumn;
+    private TabPane mainTabPane;
     @FXML
-    private TableColumn<Order, Float> priceColumn;
+    private Tab depositTab;
     @FXML
-    private TableColumn<Order, String> addressColumn;
+    private ListView<DeliveryPayment> paymentListView;
     @FXML
-    private TableColumn<Order, String> addressColumn1;
-    @FXML
-    private Button dashboardButton;
-    @FXML
-    private Button viewDetailButton;
-    @FXML
-    private Button taskButton;
+    private Tab withdrawTab;
 
     /**
      * Initializes the controller class.
      */
-    Order selectedOrder;
     DeliveryMan current;
-    @FXML
-    private TableView<Order> orderTableView;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        selectedOrder = null;
         current = (DeliveryMan)Main.getUserData();
+        
     }    
 
 
-   
+    @FXML
+    private void dashboardButtonOnClick(ActionEvent event) throws IOException {
+        ss.switchToDashboard();
+    }
+
     @FXML
     private void tasksButtonOnClick(ActionEvent event) throws IOException {
-        DMSS ss = new DMSS();
         ss.switchToTasks();
     }
 
-    @FXML
-    private void paymentsButtonOnClick(ActionEvent event) throws IOException {
-        DMSS ss = new DMSS();
-        ss.switchToPayments();
-    }
 
     @FXML
-    private void updateSelectedOrder(MouseEvent event) {
-        if(!orderTableView.getSelectionModel().isEmpty()){
-            this.selectedOrder = taskTableView.getSelectionModel().getSelectedItem();
+    private void withdrawTabOnClick(Event event) throws IOException {
+        if (withdrawTab.getContent()==null){
+            Parent root = FXMLLoader.load(getClass().getResource("DeliveryManWithdrawEarning.fxml"));
+        withdrawTab.setContent(root);
         }
     }
 
-    @FXML
-    private void viewDetailButtonOnClick(ActionEvent event) {
-    }
 
-    @FXML
-    private void taskButtonOnClick(ActionEvent event) {
-        //Nothing
-    }
-    
     @FXML
     private void logout(ActionEvent event) throws IOException {
         current.saveInstance();
@@ -128,7 +113,7 @@ public class DeliveryManTasksController implements Initializable {
     @FXML
     private void profileButtonOnClick(ActionEvent event) throws IOException {
         DMSS ss = new DMSS();
-        ss.switchToProfile();;
+        ss.switchToProfile();
     }
 
 
@@ -140,12 +125,6 @@ public class DeliveryManTasksController implements Initializable {
     @FXML
     private void darkenUserMenuBar(MouseEvent event) {
         userMenu.setStyle("-fx-background-color: #79edad");
-    }
-
-    @FXML
-    private void dashboardButtonOnClick(ActionEvent event) throws IOException {
-        DMSS ss = new DMSS();
-        ss.switchToDashboard();
     }
     
 }

@@ -29,6 +29,7 @@ import mainpkg.MainpkgSS;
  *
  * @author hasin
  */
+
 public class DeliveryManProfileController implements Initializable {
 
     @FXML
@@ -70,15 +71,12 @@ public class DeliveryManProfileController implements Initializable {
     @FXML
     private Menu userMenu;
     @FXML
-    private MenuItem accountMenuItem;
-    @FXML
-    private MenuItem ordersMenuItem;
-    @FXML
     private MenuItem logoutMenuItem;
 
     /**
      * Initializes the controller class.
      */
+    DMSS ss = new DMSS();
     DeliveryMan current;
     @FXML
     private Button profileButton;
@@ -112,7 +110,8 @@ public class DeliveryManProfileController implements Initializable {
 
 
     @FXML
-    private void paymentsButtonOnClick(ActionEvent event) {
+    private void paymentsButtonOnClick(ActionEvent event) throws IOException {
+        ss.switchToPayments();
     }
 
 
@@ -142,8 +141,8 @@ public class DeliveryManProfileController implements Initializable {
     private void applyEdits(ActionEvent event) {
     }
 
-    @FXML
-    private void switchToAccountScene(ActionEvent event) {
+    private void switchToProfileScene(ActionEvent event) throws IOException {
+        ss.switchToProfile();
     }
 
     @FXML
@@ -156,14 +155,19 @@ public class DeliveryManProfileController implements Initializable {
         userMenu.setStyle("-fx-background-color: #79edad");
     }
     
-    @FXML
     private void switchToDashboard(ActionEvent event) throws IOException {
         DMSS ss = new DMSS();
         ss.switchToDashboard();
     }
 
     @FXML
-    private void tasksButtonOnClick(ActionEvent event) {
+    private void tasksButtonOnClick(ActionEvent event) throws IOException {
+        ss.switchToTasks();
+    }
+
+    @FXML
+    private void dashboardButtonOnClick(ActionEvent event) throws IOException {
+        ss.switchToDashboard();
     }
     
     

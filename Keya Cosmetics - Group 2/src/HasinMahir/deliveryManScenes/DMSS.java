@@ -37,6 +37,9 @@ public class DMSS {
     public void switchToTasks() throws IOException{
         this.switchScene("DeliveryManTasks.fxml", "Tasks");
     }
+    public void switchToPayments() throws IOException{
+        this.switchScene("DeliveryManPayments.fxml", "Payments");
+    }
   
     public void showCart(Order order) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("OrderCart.fxml"));

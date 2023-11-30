@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HasinMahir.deliveryManScenes.DeliveryManWithdrawEarningController">
+   <children>
+      <GridPane style="-fx-background-color: white;">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="163.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.66668701171875" minWidth="10.0" prefWidth="156.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.3333740234375" minWidth="10.0" prefWidth="192.3333740234375" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.6666259765625" minWidth="10.0" prefWidth="184.6666259765625" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="210.33334350585938" minHeight="10.0" prefHeight="210.33334350585938" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="188.0" minHeight="10.0" prefHeight="126.66665649414062" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Withdraw" />
+                  <ListView fx:id="paymentListView" prefHeight="200.0" prefWidth="200.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" />
+               </children>
+            </VBox>
+            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
+         </children>
+      </GridPane>
+   </children>
+</VBox>
