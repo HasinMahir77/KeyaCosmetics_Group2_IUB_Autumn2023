@@ -74,6 +74,7 @@ public class ReimbursementFXMLController implements Initializable {
 
     @FXML
     private void ApproveButton(ActionEvent event) {
+
     }
 
     @FXML
