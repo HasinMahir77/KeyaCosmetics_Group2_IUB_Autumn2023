@@ -5,20 +5,25 @@
 package Borhan_Islam;
 
 import HasinMahir.User;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import java.io.Serializable;
 import java.time.LocalDate;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import mainpkg.MainpkgSS;
+import java.util.ArrayList;
+import java.util.List;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
-/**
- *
- * @author 88019
- */
+import javafx.stage.Stage;
+
 public class Payroll extends User implements Serializable{
+
+
     public String name;
     public String desig;
     public float salary;
@@ -28,13 +33,16 @@ public class Payroll extends User implements Serializable{
     public LocalDate paymentdate;
     public float netsalary;
     private static Stage stage;
-
     
     public Payroll(String firstName, String lastName, String username, String password) {
         super(firstName, lastName, username, password);
     }
+    
+    public Payroll(){
+        
+    }
 
-    public Payroll(String name, String desig, float salary, float bonus, String bonustype, float deductions, LocalDate paymentdate) {
+    public Payroll(String name, String desig, float salary, float bonus, String bonustype, float deductions, LocalDate paymentdate, float netsalary) {
         this.name = name;
         this.desig = desig;
         this.salary = salary;
@@ -42,6 +50,7 @@ public class Payroll extends User implements Serializable{
         this.bonustype = bonustype;
         this.deductions = deductions;
         this.paymentdate = paymentdate;
+        this.netsalary=netsalary;
     }
 
     public float getNetsalary() {
@@ -114,6 +123,8 @@ public class Payroll extends User implements Serializable{
     public static Stage getStage() {
         return stage;
     }
+
+   
     @Override
     public String toString() {
         return "Payroll{" + "name=" + name + ", desig=" + desig + ", salary=" + salary + ", bonus=" + bonus +
@@ -123,24 +134,37 @@ public class Payroll extends User implements Serializable{
         System.out.println("Payroll{" + "name=" + name + ", desig=" + desig + ", salary=" + salary + ", bonus=" + bonus +
                 ", bonustype=" + bonustype + ", deductions=" + deductions + ", paymentdate=" + paymentdate + ", netsalary=" + netsalary +'}');
     }
-    public boolean seePayroll(Payroll payroll) throws IOException{
-        this.name = payroll.getName();
-        this.desig = payroll.getDesig();
-        this.salary = payroll.getSalary();
-        this.bonus = payroll.getBonus();
-        this.bonustype = payroll.getBonustype();
-        this.deductions = payroll.getDeductions();
-        this.paymentdate =    payroll.getPaymentdate();   
-        //Setting up the new stage and passing data
-        MainpkgSS ss = new MainpkgSS();
-        stage = new Stage();
-        stage.setUserData(this);
-        //Scene popping 
-        Parent root = FXMLLoader.load(getClass().getResource("SeePayrollRecordsFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Keya Cosmetics: Login");
-        stage.showAndWait();   
-        return true;
+//Payroll Processing
+    private static final String PAYROLL_FILE_PATH = "payroll.bin";
+    
+    public static void savePayrollRecord(String name, String desig, float salary, float bonus, String bonustype, float deductions, LocalDate paymentdate, float netsalary) {
+        Payroll payrollRecord = new Payroll(name, desig, salary, bonus, bonustype, deductions, paymentdate, netsalary);
+        List<Payroll> existingRecords = loadPayrollRecords();
+        existingRecords.add(payrollRecord);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PAYROLL_FILE_PATH))) {
+            for (Payroll record : existingRecords) {
+                oos.writeObject(record);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+    
+    public static List<Payroll> loadPayrollRecords() {
+        List<Payroll> payrollRecords = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(PAYROLL_FILE_PATH))) {
+            while (true) {
+                try {
+                    Payroll record = (Payroll) ois.readObject();
+                    payrollRecords.add(record);
+                } catch (EOFException e) {
+                    break; // Exit loop when EOF is reached
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return payrollRecords;
+    }   
+
 }

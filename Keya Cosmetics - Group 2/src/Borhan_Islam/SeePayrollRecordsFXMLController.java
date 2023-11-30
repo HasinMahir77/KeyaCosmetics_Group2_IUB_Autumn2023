@@ -4,16 +4,22 @@
  */
 package Borhan_Islam;
 
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import mainpkg.MainpkgSS;
+
 
 /**
  * FXML Controller class
@@ -40,10 +46,7 @@ public class SeePayrollRecordsFXMLController implements Initializable {
     private TableColumn<Payroll, LocalDate> paydateTable;
     @FXML
     private TableColumn<Payroll, Float> netSalaryTable;
-
-    Payroll payroll;
-    MainpkgSS ss;
-    Stage stage;
+      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nameTable.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -53,10 +56,19 @@ public class SeePayrollRecordsFXMLController implements Initializable {
         bonusTypeTable.setCellValueFactory(new PropertyValueFactory<>("bonustype"));
         deductionsTable.setCellValueFactory(new PropertyValueFactory<>("deductions"));
         paydateTable.setCellValueFactory(new PropertyValueFactory<>("paymentdate"));
-        netSalaryTable.setCellValueFactory(new PropertyValueFactory<>("netsalary"));
-        stage = Payroll.getStage(); //Getting current 
-        payroll = (Payroll)stage.getUserData();       
+        netSalaryTable.setCellValueFactory(new PropertyValueFactory<>("netsalary"));         
 
-    }    
-    
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("payroll.bin"))) {
+            Payroll p;
+            while ((p = (Payroll) ois.readObject()) != null) {
+                tableView.getItems().add(p);
+            }
+        } catch (EOFException e) {
+            // End of file reached
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }        
+
+
 }
