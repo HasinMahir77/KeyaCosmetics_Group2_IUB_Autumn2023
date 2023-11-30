@@ -5,8 +5,14 @@
 package Borhan_Islam;
 
 import HasinMahir.User;
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import mainpkg.MainpkgSS;
 
 /**
  *
@@ -20,7 +26,10 @@ public class Payroll extends User implements Serializable{
     public String bonustype;
     public float deductions;
     public LocalDate paymentdate;
+    public float netsalary;
+    private static Stage stage;
 
+    
     public Payroll(String firstName, String lastName, String username, String password) {
         super(firstName, lastName, username, password);
     }
@@ -33,6 +42,18 @@ public class Payroll extends User implements Serializable{
         this.bonustype = bonustype;
         this.deductions = deductions;
         this.paymentdate = paymentdate;
+    }
+
+    public float getNetsalary() {
+        return netsalary;
+    }
+
+    public void setNetsalary(float netsalary) {
+        this.netsalary = netsalary;
+    }
+
+    public Payroll(float netsalary) {
+        this.netsalary = netsalary;
     }
 
     public String getName() {
@@ -90,10 +111,36 @@ public class Payroll extends User implements Serializable{
     public void setPaymentdate(LocalDate paymentdate) {
         this.paymentdate = paymentdate;
     }
-
+    public static Stage getStage() {
+        return stage;
+    }
     @Override
     public String toString() {
-        return "Payroll{" + "name=" + name + ", desig=" + desig + ", salary=" + salary + ", bonus=" + bonus + ", bonustype=" + bonustype + ", deductions=" + deductions + ", paymentdate=" + paymentdate + '}';
+        return "Payroll{" + "name=" + name + ", desig=" + desig + ", salary=" + salary + ", bonus=" + bonus +
+                ", bonustype=" + bonustype + ", deductions=" + deductions + ", paymentdate=" + paymentdate + ", netsalary=" + netsalary +'}';
     }
-   
+    public void display(){
+        System.out.println("Payroll{" + "name=" + name + ", desig=" + desig + ", salary=" + salary + ", bonus=" + bonus +
+                ", bonustype=" + bonustype + ", deductions=" + deductions + ", paymentdate=" + paymentdate + ", netsalary=" + netsalary +'}');
+    }
+    public boolean seePayroll(Payroll payroll) throws IOException{
+        this.name = payroll.getName();
+        this.desig = payroll.getDesig();
+        this.salary = payroll.getSalary();
+        this.bonus = payroll.getBonus();
+        this.bonustype = payroll.getBonustype();
+        this.deductions = payroll.getDeductions();
+        this.paymentdate =    payroll.getPaymentdate();   
+        //Setting up the new stage and passing data
+        MainpkgSS ss = new MainpkgSS();
+        stage = new Stage();
+        stage.setUserData(this);
+        //Scene popping 
+        Parent root = FXMLLoader.load(getClass().getResource("SeePayrollRecordsFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Keya Cosmetics: Login");
+        stage.showAndWait();   
+        return true;
+    }
 }

@@ -4,8 +4,11 @@
  */
 package Borhan_Islam;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,7 +47,9 @@ public class PayrollFXMLController implements Initializable {
     @FXML
     private Label calculationLabel;
     @FXML
-    private ComboBox<?> desigCombo;
+    private ComboBox<String> desigCombo;
+    @FXML
+    private Label successfulLabel;
 
     /**
      * Initializes the controller class.
@@ -53,7 +58,11 @@ public class PayrollFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         saveRecordsFXID.setDisable(true);        
         seePayrollFXID.setDisable(true);        
-        calculateFXID.setDisable(false);        
+        calculateFXID.setDisable(false);  
+        String[] bonustype = {"Festival", "New Year"};        
+        String[] desigs = {"HR","Product Manager", "Production Manager","Accountant","Deliveryman","Affiliate Marketer","Receptionist"};    
+        bonusTypeCombo.getItems().addAll(bonustype);
+        desigCombo.getItems().addAll(desigs);
     }    
 
     @FXML
@@ -72,12 +81,36 @@ public class PayrollFXMLController implements Initializable {
         calculateFXID.setDisable(true);           
     }
 
+
     @FXML
-    private void saveRecordsButton(ActionEvent event) {
-    
-    }
+    private void saveRecordsButton(ActionEvent event) {             
+        Payroll payroll = new Payroll(
+                    employeeText.getText(),
+                    desigCombo.getValue(),
+                    Float.parseFloat(basicSalaryText.getText()),
+                    Float.parseFloat(bonusText.getText()),
+                    bonusTypeCombo.getValue(),
+                    Float.parseFloat(deductionsText.getText()),
+                    paymentDatePicker.getValue());
+        employeeText.setText(null);    desigCombo.setValue(null);  basicSalaryText.setText(null);  bonusText.setText(null);
+        bonusTypeCombo.setValue(null); deductionsText.setText(null); paymentDatePicker.setValue(null); 
+        payroll.display();
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(
+                    new FileOutputStream("payroll.bin", true)
+            );
+            oos.writeObject(payroll);
+            successfulLabel.setText("Saved Successfully!");         
+            oos.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }    
 
     @FXML
     private void seePayrollButton(ActionEvent event) {
+ //       Payroll p = new Payroll();
+ //       p.setSender(current.getUsername());
+ //       p.seePayroll(p);//This opens the review popup       
     }
 }

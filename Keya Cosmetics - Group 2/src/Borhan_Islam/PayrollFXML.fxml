@@ -124,5 +124,6 @@
          </font>
       </Label>
       <ComboBox fx:id="desigCombo" layoutX="255.0" layoutY="151.0" prefHeight="27.0" prefWidth="223.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" />
+      <Label fx:id="successfulLabel" layoutX="800.0" layoutY="490.0" prefHeight="17.0" prefWidth="121.0" />
    </children>
 </AnchorPane>

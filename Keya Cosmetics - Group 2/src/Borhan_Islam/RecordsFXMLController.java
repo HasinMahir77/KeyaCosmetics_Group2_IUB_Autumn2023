@@ -8,10 +8,8 @@ import HasinMahir.Order;
 import HasinMahir.Order.Status;
 import java.io.EOFException;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,7 +18,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -76,18 +73,13 @@ public class RecordsFXMLController implements Initializable {
 
             while (true) {
                 try {
-                    // Read an object of type HasinMahir.Order
                     Order order = (Order) ois.readObject();
 
-                    // Add the converted record to the TableView
                     recordsTableView.getItems().add(order);
-                    System.out.println(order.getPrice());
                 } catch (EOFException e) {
-                    // End of file reached
                     break;
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
-                    // Handle the exception if the class is not found
                 }
             }
         } catch (IOException ex) {

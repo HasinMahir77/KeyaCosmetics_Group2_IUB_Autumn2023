@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Borhan_Islam.SeePayrollRecordsFXMLController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Borhan_Islam.SeePayrollRecordsFXMLController">
+   <children>
+      <TableView fx:id="tableView" layoutX="-1.0" prefHeight="400.0" prefWidth="800.0">
+        <columns>
+          <TableColumn fx:id="nameTable" prefWidth="153.0" style="-fx-border-color: black;" text="Name" />
+          <TableColumn fx:id="desigTable" prefWidth="111.0" style="-fx-border-color: black;" text="Designation" />
+            <TableColumn fx:id="basicTable" prefWidth="90.0" style="-fx-border-color: black;" text="Basic Salary" />
+            <TableColumn fx:id="bonusTable" prefWidth="81.0" style="-fx-border-color: black;" text="Bonus" />
+            <TableColumn fx:id="bonusTypeTable" prefWidth="90.0" style="-fx-border-color: black;" text="Bonus Type" />
+            <TableColumn fx:id="deductionsTable" prefWidth="81.0" style="-fx-border-color: black;" text="Deductions" />
+            <TableColumn fx:id="paydateTable" prefWidth="93.0" style="-fx-border-color: black;" text="Payment Date" />
+            <TableColumn fx:id="netSalaryTable" prefWidth="100.0" style="-fx-border-color: black;" text="Net Salary (BDT)" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>
