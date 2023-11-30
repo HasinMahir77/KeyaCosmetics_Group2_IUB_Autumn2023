@@ -10,6 +10,7 @@ import HasinMahir.Order.Status;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -88,6 +89,7 @@ public class DeliveryManDashboardController implements Initializable {
     private MenuItem logoutMenuItem;
     @FXML
     private Button tasksButton;
+    ObservableList<Order> orderList;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -101,14 +103,16 @@ public class DeliveryManDashboardController implements Initializable {
         current.setDob(LocalDate.now());
         dobLabel.setText(dobLabel.getText()+" "+current.getDob().toString());
         balanceLabel.setText(balanceLabel.getText()+" "+current.getBalance());
-        //TableView
-        ObservableList<Order> orderList = FXCollections.observableArrayList();
-        orderList.addAll(Order.getOrderList());
-        orderTableView.setItems(orderList);
         
+        //TableView
         idColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Order, Float>("price"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("address"));
+        
+        //Getting Orders
+        orderList = FXCollections.observableArrayList();
+        orderTableView.setItems(orderList);
+        this.updateOrderTable();
          
     }    
 
@@ -166,21 +170,32 @@ public class DeliveryManDashboardController implements Initializable {
     @FXML
     private void acceptButtonOnClick(ActionEvent event) {
         if (selectedOrder!=null && !this.orderTableView.getItems().isEmpty()){
-            selectedOrder.setStatus(Status.OUT_FOR_DELIVERY);
+            current.acceptOrder(this.selectedOrder);
+            //Payment generated in DM class
             
         }
     }
 
-    @FXML
-    private void updateOrderTable(MouseEvent event) {
-        if(!orderTableView.getSelectionModel().isEmpty()){
-            this.selectedOrder = orderTableView.getSelectionModel().getSelectedItem();
-        } 
+    private void updateOrderTable() {
+        this.orderList.clear();
+        for (Order o: Order.getOrderList()){
+            if (o.getStatus()==Status.PENDING || o.getStatus()==Status.INITIATED_RETURN){
+                this.orderList.add(o);
+            }
+        }
+        
     }
 
     @FXML
     private void tasksButtonOnClick(ActionEvent event) throws IOException {
         ss.switchToTasks();
+    }
+
+    @FXML
+    private void updateSelectedOrder(MouseEvent event) {
+        if(!orderTableView.getSelectionModel().isEmpty()){
+            this.selectedOrder = orderTableView.getSelectionModel().getSelectedItem();
+        } 
     }
     
  

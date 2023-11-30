@@ -43,26 +43,11 @@
                   </Label>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="119.0" prefWidth="121.0" spacing="2.0">
+            <VBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="121.0" spacing="2.0">
                <children>
                   <Label alignment="TOP_CENTER" onMouseClicked="#switchToOrderSceneFromLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" prefHeight="19.0" prefWidth="121.0" text="Manage Orders">
                      <font>
                         <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="allLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="All">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="ongoingLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="Ongoing">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="returnedLabel" onMouseEntered="#blueLabelOnHover" onMouseExited="#returnLabelColor" text="Returned">
-                     <font>
-                        <Font size="13.0" />
                      </font>
                   </Label>
                </children>

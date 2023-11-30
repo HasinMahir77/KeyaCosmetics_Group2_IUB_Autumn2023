@@ -60,12 +60,6 @@ public class CustomerSecuritySceneController implements Initializable {
     @FXML
     private Label securityLabel;
     @FXML
-    private Label allLabel;
-    @FXML
-    private Label ongoingLabel;
-    @FXML
-    private Label returnedLabel;
-    @FXML
     private Label cartLabel;
     @FXML
     private PasswordField passwordTextField;

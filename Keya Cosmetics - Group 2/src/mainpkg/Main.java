@@ -124,7 +124,7 @@ public class Main extends Application {
                 else if (userFile.getName().equals("DeliveryManList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                    User user = new DeliveryMan("User","User","User","User","01824441272");
+                    User user = new DeliveryMan("Abdul","Karim","User","User","01824441272");
                     user.setDob(LocalDate.now());
                     user.setDoj(LocalDate.now());
                     user.setNid("2152328");

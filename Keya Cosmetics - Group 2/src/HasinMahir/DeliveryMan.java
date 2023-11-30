@@ -12,6 +12,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import mainpkg.ObjectOutputStreamA;
 
 /**
@@ -20,7 +22,7 @@ import mainpkg.ObjectOutputStreamA;
  */
 public class DeliveryMan extends User {
     
-    
+    ObservableList<DeliveryPayment> paymentList;
     
     
     public DeliveryMan(String firstName, String lastName, String username, String password, String phone) {
@@ -29,6 +31,7 @@ public class DeliveryMan extends User {
         this.del = false;
         this.doj = LocalDate.now();
         this.nid = "";
+        this.paymentList = FXCollections.observableArrayList();
     }
     
     
@@ -119,11 +122,12 @@ public class DeliveryMan extends User {
         }
     }
     public void acceptOrder(Order order){
-        if (order.getStatus().equals(Status.PENDING)){
+        if (order.getStatus()==Status.PENDING || order.getStatus()==Status.INITIATED_RETURN){
             
-            order.setDeliveryManUserName(this.username);
-            order.setDeliveryManName(this.firstName+" "+this.lastName);
+            order.setDeliveryMan(this);
             order.setStatus(Status.OUT_FOR_DELIVERY);
+            this.paymentList.add(DeliveryPayment.generateDeposit(this, order));
+            
            
             order.saveInstance();
         }
@@ -134,14 +138,8 @@ public class DeliveryMan extends User {
             order.saveInstance();
         }
     }
-    /*
-    public Task getTask(String id){
-        for (Task task: this.taskList){
-            if (task.getId().equals(id)){
-                return task;
-            }
-        }
-        return null; //Task not found
+    
+    public ObservableList<DeliveryPayment> getPaymentList(){
+        return this.paymentList;
     }
-*/
 }

@@ -222,8 +222,6 @@ public class Order implements Serializable,Reviewable {
     }
     
     public void viewCart() throws IOException{
-        System.out.println("Order.viewCart accessed");
-        
         Order.stage = new Stage();
         Order.stage.setUserData(this);
         Parent root = FXMLLoader.load(getClass().getResource("ViewCart.fxml"));
@@ -264,6 +262,10 @@ public class Order implements Serializable,Reviewable {
             }
         }
         return null; //Order not found(Shouldn't happen without incorrect id)
+    }
+    public void setDeliveryMan(DeliveryMan dm){
+        this.deliveryManName = dm.getFullName();
+        this.deliveryManUserName = dm.getUsername();
     }
     
 

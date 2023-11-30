@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
@@ -129,12 +128,12 @@
                               <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="198.0" spacing="10.0">
                                  <children>
                                     <Label text="Date of Birth:" />
-                                    <DatePicker fx:id="dobDatePicker" />
+                                    <DatePicker fx:id="dobDatePicker" disable="true" />
                                  </children>
                               </VBox>
                               <VBox alignment="BOTTOM_LEFT" prefHeight="69.0" prefWidth="274.0">
                                  <children>
-                                    <Button fx:id="editButton" mnemonicParsing="false" onAction="#applyButtonOnAction" prefHeight="30.0" prefWidth="86.0" text="Edit" />
+                                    <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonOnAction" prefHeight="30.0" prefWidth="86.0" text="Edit" />
                                  </children>
                                  <padding>
                                     <Insets bottom="10.0" />
@@ -162,12 +161,12 @@
                               <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="198.0" spacing="10.0">
                                  <children>
                                     <Label text="Date of joining:" />
-                                    <DatePicker fx:id="dojDatePicker" disable="true" />
+                                    <DatePicker fx:id="dojDatePicker" editable="false" />
                                  </children>
                               </VBox>
                               <VBox alignment="BOTTOM_LEFT" prefHeight="69.0" prefWidth="274.0">
                                  <children>
-                                    <Button fx:id="applyButton" mnemonicParsing="false" onAction="#applyButtonOnAction" prefHeight="30.0" prefWidth="86.0" text="Apply" />
+                                    <Button fx:id="applyButton" disable="true" mnemonicParsing="false" onAction="#applyButtonOnAction" prefHeight="30.0" prefWidth="86.0" text="Apply" />
                                  </children>
                                  <padding>
                                     <Insets bottom="10.0" />
@@ -179,65 +178,7 @@
                   </GridPane>
                </content>
           </Tab>
-          <Tab text="Security">
-               <content>
-                  <GridPane style="-fx-background-color: white;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowSpan="3">
-                           <padding>
-                              <Insets bottom="15.0" left="40.0" right="40.0" top="15.0" />
-                           </padding>
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="78.0" prefWidth="198.0" spacing="10.0">
-                                 <children>
-                                    <Label text="Username" />
-                                    <TextField fx:id="usernameTextField" disable="true" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="78.0" prefWidth="198.0" spacing="10.0">
-                                 <children>
-                                    <Label text="Password" />
-                                    <PasswordField fx:id="passwordTextField" disable="true" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="178.0" prefWidth="267.0" spacing="15.0">
-                                 <children>
-                                    <Button fx:id="changeUsernameButton" mnemonicParsing="false" onAction="#changeUsername" prefHeight="42.0" prefWidth="159.0" text="Change Username" />
-                                    <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePasswordButtonOnClick" prefHeight="42.0" prefWidth="159.0" text="Change Password" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="147.0" prefWidth="188.0" spacing="10.0">
-                                 <children>
-                                    <Button fx:id="resignButton" mnemonicParsing="false" onAction="#deleteAccountButtonOnClick" prefHeight="42.0" prefWidth="159.0" text="Resign" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="178.0" prefWidth="267.0" spacing="15.0">
-                                 <children>
-                                    <Button fx:id="applyButton1" disable="true" mnemonicParsing="false" onAction="#applyEdits" prefHeight="42.0" prefWidth="159.0" text="Apply" />
-                                 </children>
-                              </VBox>
-                           </children>
-                           <padding>
-                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                           </padding>
-                        </VBox>
-                     </children>
-                  </GridPane>
-               </content>
-          </Tab>
+          <Tab fx:id="securityTab" onSelectionChanged="#securityTabOnClick" text="Security" />
         </tabs>
       </TabPane>
    </center>

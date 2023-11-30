@@ -7,17 +7,23 @@ package HasinMahir.deliveryManScenes;
 import HasinMahir.DeliveryMan;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -54,18 +60,8 @@ public class DeliveryManProfileController implements Initializable {
     private DatePicker dojDatePicker;
     @FXML
     private Button applyButton;
-    @FXML
     private TextField usernameTextField;
-    @FXML
     private PasswordField passwordTextField;
-    @FXML
-    private Button changeUsernameButton;
-    @FXML
-    private Button changePasswordButton;
-    @FXML
-    private Button resignButton;
-    @FXML
-    private Button applyButton1;
     @FXML
     private MenuBar userMenuBar;
     @FXML
@@ -84,6 +80,8 @@ public class DeliveryManProfileController implements Initializable {
     private Button dashboardButton;
     @FXML
     private Button tasksButton;
+    @FXML
+    private Tab securityTab;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -94,8 +92,7 @@ public class DeliveryManProfileController implements Initializable {
         phoneTextField.setText(current.getPhone());
         dobDatePicker.setValue(current.getDob());
         dojDatePicker.setValue(current.getDoj());
-        usernameTextField.setText(current.getUsername());
-        passwordTextField.setText(current.getPassword());
+ 
     }    
 
     @FXML
@@ -123,23 +120,49 @@ public class DeliveryManProfileController implements Initializable {
 
     @FXML
     private void applyButtonOnAction(ActionEvent event) {
+        //Checking for empty fields
+        if (firstNameTextField.getText().equals("") || phoneTextField.getText().equals("")
+                || lastNameTextField.getText().equals("") || dobDatePicker.getValue()==null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please fill in all of the fields");
+            alert.show();
+            return;
+        }
+        //DOB VL
+        if (LocalDate.now().getYear()-dobDatePicker.getValue().getYear()<18){
+            Alert a = new Alert(Alert.AlertType.ERROR,"You must be at least 18 years old to register");
+            a.show();
+            return;
+        }
+        //Phone VL
+        String phoneS = phoneTextField.getText();
+        if (phoneS.length()!=11 && !phoneS.substring(0, 2).equals("01")){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
+            alert.showAndWait();
+            return; 
+        }
+        //Checking if it's a number
+        try{
+            int phone = Integer.parseInt(phoneTextField.getText());
+        } catch(Exception e){
+            System.out.println("Phone num parsing to int failed");
+            System.out.println(e);
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a valid phone number");
+            alert.show();
+            return;
+        }
+        current.setFirstName(this.firstNameTextField.getText());
+        current.setLastName(this.lastNameTextField.getText());
+        current.setPhone(this.phoneTextField.getText());
+        current.setNid(this.nidTextField.getText());
+        current.setDob(this.dobDatePicker.getValue());
+        this.firstNameTextField.setDisable(true);
+        this.lastNameTextField.setDisable(true);
+        this.phoneTextField.setDisable(true);
+        this.nidTextField.setDisable(true);
+        this.dobDatePicker.setDisable(true);
+        current.saveInstance();
     }
 
-    @FXML
-    private void changeUsername(ActionEvent event) {
-    }
-
-    @FXML
-    private void changePasswordButtonOnClick(ActionEvent event) {
-    }
-
-    @FXML
-    private void deleteAccountButtonOnClick(ActionEvent event) {
-    }
-
-    @FXML
-    private void applyEdits(ActionEvent event) {
-    }
 
     private void switchToProfileScene(ActionEvent event) throws IOException {
         ss.switchToProfile();
@@ -168,6 +191,21 @@ public class DeliveryManProfileController implements Initializable {
     @FXML
     private void dashboardButtonOnClick(ActionEvent event) throws IOException {
         ss.switchToDashboard();
+    }
+
+    @FXML
+    private void securityTabOnClick(Event event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("DeliveryManProfile_Security.fxml"));
+        securityTab.setContent(root);
+    }
+
+    @FXML
+    private void editButtonOnAction(ActionEvent event) {
+        this.firstNameTextField.setDisable(false);
+        this.lastNameTextField.setDisable(false);
+        this.phoneTextField.setDisable(false);
+        this.nidTextField.setDisable(false);
+        this.dobDatePicker.setDisable(false);
     }
     
     

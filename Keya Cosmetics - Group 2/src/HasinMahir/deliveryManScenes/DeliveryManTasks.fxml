@@ -122,8 +122,8 @@
                </padding></VBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
                <children>
-                  <Button fx:id="viewDetailButton" mnemonicParsing="false" onAction="#viewDetailButtonOnClick" prefHeight="30.0" prefWidth="88.0" text="View Detail" />
-                  <Button fx:id="taskButton" mnemonicParsing="false" onAction="#taskButtonOnClick" prefHeight="30.0" prefWidth="88.0" text="Do task" />
+                  <Button fx:id="viewDetailButton" disable="true" mnemonicParsing="false" onAction="#viewDetailButtonOnClick" prefHeight="30.0" prefWidth="88.0" text="View Detail" />
+                  <Button fx:id="taskButton" disable="true" mnemonicParsing="false" onAction="#taskButtonOnClick" prefHeight="30.0" prefWidth="88.0" text="Do task" />
                </children>
                <padding>
                   <Insets left="5.0" top="5.0" />

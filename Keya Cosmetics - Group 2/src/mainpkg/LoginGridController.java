@@ -61,15 +61,15 @@ public class LoginGridController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        userComboBox.setValue("Customer");
+        userComboBox.setValue("Delivery Man");
         // Insert users here
         userComboBox.getItems().addAll("Customer","Delivery Man","Affiliate Marketer",
                 "Product Manager","HR","Receptionist","Accountant");
         
         
         //DEFAULT: CUSTOMER
-       usernameTextField.setText("Customer");
-       passwordTextField.setText("Customer");
+       usernameTextField.setText("User");
+       passwordTextField.setText("User");
     }    
 
     @FXML

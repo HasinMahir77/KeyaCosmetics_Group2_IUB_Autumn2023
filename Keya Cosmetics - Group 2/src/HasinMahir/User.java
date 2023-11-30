@@ -138,6 +138,9 @@ public abstract class User implements Serializable {
     public void setNid(String nid) {
         this.nid = nid;
     }
+    public String getFullName(){
+        return this.firstName+ " " + this.lastName;
+    }
     
     
 }

@@ -58,12 +58,6 @@ public class CustomerAccountSceneController implements Initializable {
     @FXML
     private ImageView keyaIcon;
     @FXML
-    private Label allLabel;
-    @FXML
-    private Label ongoingLabel;
-    @FXML
-    private Label returnedLabel;
-    @FXML
     private Label cartLabel;
     @FXML
     private TextField firstNameTextField;

@@ -18,10 +18,10 @@ public class DeliveryPayment implements Serializable {
     private String id;
     private boolean done;
 
-    public DeliveryPayment(Type type, float amount, String id) {
-        this.type = type;
-        this.amount = amount;
-        this.id = id;
+    public DeliveryPayment(DeliveryMan dm, Order order) {
+        this.type = Type.DEPOSIT;
+        this.amount = order.getPrice();
+        this.id = order.getId();
     }
 
     public Type getType() {
@@ -52,16 +52,14 @@ public class DeliveryPayment implements Serializable {
         this.id = id;
     }
 
-    public void setDone(boolean done) {
-        this.done = done;
+    public void setDone() {
+        this.done = true;
+    }
+    public static DeliveryPayment generateDeposit(DeliveryMan dm, Order order){
+        return new DeliveryPayment(dm,order);
     }
     
-    
-    
-    
-
-   
-    
+     
     
     
 }

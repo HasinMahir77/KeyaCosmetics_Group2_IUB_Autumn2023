@@ -64,12 +64,6 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private Label profileLabel;
     @FXML
-    private Label allLabel;
-    @FXML
-    private Label ongoingLabel;
-    @FXML
-    private Label returnedLabel;
-    @FXML
     private Label cartLabel;
     @FXML
     private TableView<OrderedProduct> cartTableView;

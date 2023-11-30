@@ -68,12 +68,6 @@ public class CustomerOrderSceneController implements Initializable {
     @FXML
     private Label securityLabel;
     @FXML
-    private Label allLabel;
-    @FXML
-    private Label ongoingLabel;
-    @FXML
-    private Label returnedLabel;
-    @FXML
     private Label cartLabel;
     @FXML
     private TableView<Order> orderTableView;
@@ -284,6 +278,10 @@ public class CustomerOrderSceneController implements Initializable {
 
     @FXML
     private void viewDetailsButtonOnClick(ActionEvent event) {
+    }
+
+    @FXML
+    private void switchToOrderSceneFromLabel(MouseEvent event) {
     }
 
     
