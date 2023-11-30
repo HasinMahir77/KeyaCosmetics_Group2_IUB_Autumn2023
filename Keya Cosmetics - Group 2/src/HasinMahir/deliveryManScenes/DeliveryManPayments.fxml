@@ -90,7 +90,7 @@
    <center>
       <TabPane fx:id="mainTabPane" BorderPane.alignment="CENTER">
          <tabs>
-            <Tab fx:id="depositTab" text="Deposit funds">
+            <Tab fx:id="depositTab" closable="false" text="Deposit funds">
                <content>
                   <GridPane style="-fx-background-color: white;">
                     <columnConstraints>
@@ -118,7 +118,7 @@
                   </GridPane>
                </content>
             </Tab>
-            <Tab fx:id="withdrawTab" onSelectionChanged="#withdrawTabOnClick" text="Withdraw earning" />
+            <Tab fx:id="withdrawTab" closable="false" onSelectionChanged="#withdrawTabOnClick" text="Withdraw earning" />
          </tabs>
       </TabPane>
    </center>
