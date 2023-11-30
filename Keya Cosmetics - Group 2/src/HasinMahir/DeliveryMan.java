@@ -133,8 +133,10 @@ public class DeliveryMan extends User {
         }
     }
     public void deliverOrder(Order order){
-        if (order.getStatus().equals(Status.OUT_FOR_DELIVERY)){
+        if (order.getStatus().equals(Status.OUT_FOR_DELIVERY) || order.getStatus().equals(Status.OUT_FOR_RETURN)){
+            
             order.setStatus(Status.DELIVERED);
+            this.paymentList.add(DeliveryPayment.generateDeposit(this, order));
             order.saveInstance();
         }
     }
