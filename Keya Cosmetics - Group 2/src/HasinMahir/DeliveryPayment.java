@@ -18,10 +18,15 @@ public class DeliveryPayment implements Serializable {
     private String id;
     private boolean done;
 
-    public DeliveryPayment(DeliveryMan dm, Order order) {
-        this.type = Type.DEPOSIT;
-        this.amount = order.getPrice();
-        this.id = order.getId();
+    public DeliveryPayment(Type type, String id, float amount) {
+        this.type = type;
+        this.amount = amount;
+        this.id = id;
+    }
+    public DeliveryPayment(DeliveryMan dm, DeliveryPayment payment) {
+        this.type = Type.WITHDRAW;
+        this.amount = payment.getAmount();
+        this.id = payment.getId();
     }
 
     public Type getType() {
@@ -55,9 +60,7 @@ public class DeliveryPayment implements Serializable {
     public void setDone() {
         this.done = true;
     }
-    public static DeliveryPayment generateDeposit(DeliveryMan dm, Order order){
-        return new DeliveryPayment(dm,order);
-    }
+
     
      
     

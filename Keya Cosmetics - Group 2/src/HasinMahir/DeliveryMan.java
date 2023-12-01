@@ -4,6 +4,7 @@
  */
 package HasinMahir;
 
+import HasinMahir.DeliveryPayment.Type;
 import HasinMahir.Order.Status;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,7 +23,8 @@ import mainpkg.ObjectOutputStreamA;
  */
 public class DeliveryMan extends User {
     
-    ObservableList<DeliveryPayment> paymentList;
+    ArrayList<DeliveryPayment> paymentDepositList;
+    ArrayList<DeliveryPayment> paymentWithdrawList;
     
     
     public DeliveryMan(String firstName, String lastName, String username, String password, String phone) {
@@ -31,7 +33,8 @@ public class DeliveryMan extends User {
         this.del = false;
         this.doj = LocalDate.now();
         this.nid = "";
-        this.paymentList = FXCollections.observableArrayList();
+        this.paymentDepositList =  new ArrayList<DeliveryPayment>();
+        this.paymentWithdrawList =  new ArrayList<DeliveryPayment>();
     }
     
     
@@ -122,26 +125,56 @@ public class DeliveryMan extends User {
         }
     }
     public void acceptOrder(Order order){
-        if (order.getStatus()==Status.PENDING || order.getStatus()==Status.INITIATED_RETURN){
+        if (order.getStatus()==Status.PENDING){
             
             order.setDeliveryMan(this);
             order.setStatus(Status.OUT_FOR_DELIVERY);
-            this.paymentList.add(DeliveryPayment.generateDeposit(this, order));
             
-           
+            order.saveInstance();
+        }
+        else if (order.getStatus()==Status.INITIATED_RETURN){
+            order.setDeliveryMan(this);
+            order.setStatus(Status.OUT_FOR_RETURN);
+            
             order.saveInstance();
         }
     }
     public void deliverOrder(Order order){
-        if (order.getStatus().equals(Status.OUT_FOR_DELIVERY) || order.getStatus().equals(Status.OUT_FOR_RETURN)){
+        if (order.getStatus().equals(Status.OUT_FOR_DELIVERY)){
             
             order.setStatus(Status.DELIVERED);
-            this.paymentList.add(DeliveryPayment.generateDeposit(this, order));
+            this.paymentDepositList.add(new DeliveryPayment(Type.DEPOSIT,order.getId(),order.getPrice()));
             order.saveInstance();
+            this.saveInstance();
+        }
+        else if(order.getStatus()==Status.OUT_FOR_RETURN){
+            order.setStatus(Status.RETURNED);
+            this.paymentWithdrawList.add(new DeliveryPayment(Type.WITHDRAW,order.getId(),100));
+            order.saveInstance();
+            this.saveInstance();
+        }
+    }
+    public void depositPayment(DeliveryPayment payment){
+        for (DeliveryPayment p: this.paymentDepositList){
+            if (p.getId().equals(payment.getId()) && !p.isDone()){
+                p.setDone();
+                this.balance -= p.getAmount();
+            }
+        }
+    }
+    public void withdrawPayment(DeliveryPayment payment){
+        for (DeliveryPayment p: this.paymentWithdrawList){
+            if (p.getId().equals(payment.getId()) && !p.isDone()){
+                p.setDone();
+                this.balance += p.getAmount();
+            }
         }
     }
     
-    public ObservableList<DeliveryPayment> getPaymentList(){
-        return this.paymentList;
+    public ArrayList<DeliveryPayment> getPaymentDepositList(){
+        return this.paymentDepositList;
+    }
+    public ArrayList<DeliveryPayment> getPaymentWithdrawList(){
+        return this.paymentWithdrawList;
     }
 }

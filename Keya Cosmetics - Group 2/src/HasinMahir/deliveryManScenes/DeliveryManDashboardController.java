@@ -171,6 +171,7 @@ public class DeliveryManDashboardController implements Initializable {
     private void acceptButtonOnClick(ActionEvent event) {
         if (selectedOrder!=null && !this.orderTableView.getItems().isEmpty()){
             current.acceptOrder(this.selectedOrder);
+            this.updateOrderTable();
             //Payment generated in DM class
             
         }
