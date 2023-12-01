@@ -87,7 +87,7 @@ public class PayrollFXMLController implements Initializable {
             return;
                 }
         float calculated = Float.parseFloat(basicSalaryText.getText())+ Float.parseFloat(bonusText.getText())- 
-                Float.parseFloat(deductionsText.getText());
+        Float.parseFloat(deductionsText.getText());
         calculationLabel.setText(Float.toString(calculated));
         saveRecordsFXID.setDisable(false);               
         calculateFXID.setDisable(true);           
@@ -95,14 +95,14 @@ public class PayrollFXMLController implements Initializable {
 
 
     @FXML
-    private void saveRecordsButton(ActionEvent event) {             
+    private void saveRecordsButton(ActionEvent event) {                       
         String employee = employeeText.getText();
-        String desig =  desigCombo.getValue();
+        String desigs =  desigCombo.getValue();
         Float basicsalary= Float.parseFloat(basicSalaryText.getText());
-        Float bonus = Float.parseFloat(bonusText.getText());
-        String bonustype= bonusTypeCombo.getValue();
+        Float bonus_ = Float.parseFloat(bonusText.getText());
+        String bonustype_= bonusTypeCombo.getValue();
         Float deduction=Float.parseFloat(deductionsText.getText());
-        LocalDate paymentdate= paymentDatePicker.getValue();
+        LocalDate payment_date= paymentDatePicker.getValue();
         Float total = Float.parseFloat(calculationLabel.getText());
                     
         employeeText.setText(null);    desigCombo.setValue(null);   basicSalaryText.setText(null);  bonusText.setText(null);
@@ -110,11 +110,12 @@ public class PayrollFXMLController implements Initializable {
         calculationLabel.getText();
 
             if (showConfirmationAlert("Are you sure you want to add this record?")) {
-                savePayrollRecord(employee, desig, basicsalary, bonus, bonustype, deduction, paymentdate, total);
+                Payroll.savePayrollRecord(employee, desigs, basicsalary, bonus_, bonustype_, deduction, payment_date, total);
+                saveRecordsFXID.setDisable(true);               
+                calculateFXID.setDisable(false);   
                 showSuccessAlert("Record added successfully.");
-            }       
-        saveRecordsFXID.setDisable(true);               
-        calculateFXID.setDisable(false);         
+            }         
+       
     }    
 
     @FXML
