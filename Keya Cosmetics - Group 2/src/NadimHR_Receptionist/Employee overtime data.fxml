@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="519.0" prefWidth="730.0" style="-fx-background-color: lime;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="NadimHR_Receptionist.EmployeeOvertimeDataController">
+<AnchorPane id="AnchorPane" prefHeight="519.0" prefWidth="730.0" style="-fx-background-color: lime;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NadimHR_Receptionist.EmployeeOvertimeDataController">
    <children>
       <Label layoutX="269.0" layoutY="71.0" style="-fx-background-color: purple;" text="Position" textFill="WHITE">
          <font>
@@ -49,9 +48,9 @@
             <Font name="System Italic" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="LoadInformationButton" layoutX="378.0" layoutY="251.0" mnemonicParsing="false" onAction="#loadInformationOnClick" opacity="0.75" prefHeight="42.0" prefWidth="117.0" style="-fx-background-color: yellow;" text="Load Information">
+      <Button fx:id="LoadInformationButton" ellipsisString="........" layoutX="378.0" layoutY="251.0" mnemonicParsing="false" onAction="#loadInformationOnClick" opacity="0.75" prefHeight="42.0" prefWidth="117.0" style="-fx-background-color: yellow;" text="Load Information" textFill="#571919">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="Arial" size="11.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
