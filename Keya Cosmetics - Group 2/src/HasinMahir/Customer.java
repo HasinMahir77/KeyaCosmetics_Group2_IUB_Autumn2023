@@ -4,6 +4,7 @@
  */
 package HasinMahir;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -76,50 +77,43 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
     
         
     public void saveInstance(){
-        File customerFile = new File("CustomerList.bin");
-        //Preparing arraylist with updated data
+        File userFile = new File("CustomerList.bin");
         ArrayList<Customer> customerList = Customer.getCustomerList();
-        //Removing current customer
-        for (Customer c: customerList){
-            if (c.getUsername().equals(this.username)){
+        //Removing current user
+        for(Customer c: customerList){
+            if (c.getUsername().equals(this.getUsername())){
                 customerList.remove(c);
             }
         }
-        //Adding updated current customer
-        customerList.add(this);
-        
         //Clearing file
         try{
-            new FileOutputStream(customerFile).close();
-        }
-        catch(Exception e){}
+            new FileInputStream(userFile).close();
+        } catch(Exception e){System.out.println(e.toString()+"From Customer.saveInstance()");}
         
-        //Writing file
-        try(FileOutputStream fos = new FileOutputStream(customerFile);
+        //Writing current user
+        try(FileOutputStream fos = new FileOutputStream(userFile);
                 ObjectOutputStream oos = new ObjectOutputStream(fos)){
-            for (Customer c: customerList){
-                oos.writeObject(c);
-            }
+            oos.writeObject(this);
         }
-        catch(Exception e){}
+        catch(Exception e){System.out.println(e.toString()+" From customer saveinstancs");}
+        //Writing other users
+        try(FileOutputStream fos = new FileOutputStream(userFile,true);
+                ObjectOutputStream oos = new ObjectOutputStreamA(fos)){
+            oos.writeObject(this);
+        }
+        catch(Exception e){System.out.println(e.toString()+" From customer saveinstancs");}
     }
     
     public static ArrayList<Customer> getCustomerList(){
-        File oldCustomerList = new File("CustomerList.bin");
-        Customer customer;
         ArrayList<Customer> customerList = new ArrayList<Customer>();
-        //Collecting all the other users of same type
-        try(FileInputStream fis = new FileInputStream(oldCustomerList);
-                ObjectInputStream ois = new ObjectInputStream(fis);) {
-            
+        //Reading file
+        try(FileInputStream fis = new FileInputStream("CustomerList.bin");
+                ObjectInputStream ois = new ObjectInputStream(fis);){
             while(true){
-                customer = (Customer)ois.readObject();
-                customerList.add(customer);
-            }
-        } catch(Exception e) {
-            System.out.println("From customer.getCustomerList() : "+e.toString());
-            System.out.println("ArrayList of customers made");
-        } 
+                customerList.add((Customer)ois.readObject());}
+        }
+        catch(EOFException e){System.out.println("CustomerList.bin file reading complete");}
+        catch(Exception e){e.printStackTrace(System.out);}
         // Arraylist of Customers made.
         return customerList;
     }
