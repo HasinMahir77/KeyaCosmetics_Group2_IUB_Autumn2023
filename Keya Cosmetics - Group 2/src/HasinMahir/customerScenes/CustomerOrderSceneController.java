@@ -109,13 +109,9 @@ public class CustomerOrderSceneController implements Initializable {
         userMenu.setText(current.getUsername()+" ↓");
         
         //Collecting orders
-        ArrayList<Order> allOrders = Order.getOrderList();
+        this.orderTableView.setItems(this.orderList);
+        this.updateOrderTable();
         
-        for (Order o: allOrders){
-            if (current.getOrderIdList().contains(o.getId())){ //Order belongs to current customer
-                this.orderList.add(o);
-            }
-        }
         
         //TableView
         //orderTableView.setPlaceholder("No orders placed yet");
@@ -246,14 +242,8 @@ public class CustomerOrderSceneController implements Initializable {
         ss.switchToCartScene();
     }
     private void updateOrderTable(){
-        ObservableList<Order> orderList = FXCollections.observableArrayList();
-        orderList.addAll(Order.getOrderList());
-        orderTableView.getItems().clear();
-        for (Order o: orderList){
-            if (o.getCustomerUserName().equals(current.getUsername())){
-                orderTableView.getItems().add(o);
-            }
-        }
+        this.orderList.clear();
+        this.orderList.addAll(Order.getOrderList());
     }
 
     @FXML
@@ -261,6 +251,7 @@ public class CustomerOrderSceneController implements Initializable {
         if (!(this.selectedOrder==null)){
             this.selectedOrder.setStatus(Status.CANCELED);
         }
+        this.selectedOrder.saveInstance();
     }
 
     @FXML
