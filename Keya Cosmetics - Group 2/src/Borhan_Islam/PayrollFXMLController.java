@@ -83,34 +83,55 @@ public class PayrollFXMLController implements Initializable {
 
     @FXML
     private void calculateButton(ActionEvent event) {
-        if (!validateInputFields()){
-            return;
-                }
-        float calculated = Float.parseFloat(basicSalaryText.getText())+ Float.parseFloat(bonusText.getText())- 
-        Float.parseFloat(deductionsText.getText());
-        calculationLabel.setText(Float.toString(calculated));
-        saveRecordsFXID.setDisable(false);               
-        calculateFXID.setDisable(true);           
-    }
+        if (!validateInputFields()) {
+                    return;
+                }                
+        try {
+            float basicSalary = Float.parseFloat(basicSalaryText.getText());
+            float bonus = Float.parseFloat(bonusText.getText());
+            float deductions = Float.parseFloat(deductionsText.getText());
 
+            float calculated = basicSalary + bonus - deductions;
+            calculationLabel.setText(Float.toString(calculated));
+
+            saveRecordsFXID.setDisable(false);
+            calculateFXID.setDisable(true);
+        } catch (NumberFormatException e) {
+            showErrorAlert("Invalid input in Basic Salary, Bonus, or Deductions.");
+        }
+    }
 
     @FXML
     private void saveRecordsButton(ActionEvent event) {                       
-        String employee = employeeText.getText();
-        String desigs =  desigCombo.getValue();
-        Float basicsalary= Float.parseFloat(basicSalaryText.getText());
-        Float bonus_ = Float.parseFloat(bonusText.getText());
-        String bonustype_= bonusTypeCombo.getValue();
-        Float deduction=Float.parseFloat(deductionsText.getText());
-        LocalDate payment_date= paymentDatePicker.getValue();
-        Float total = Float.parseFloat(calculationLabel.getText());
+        String name = employeeText.getText();
+        String desig =  desigCombo.getValue();
+        Float salary= Float.valueOf(basicSalaryText.getText());
+        Float bonus = Float.valueOf(bonusText.getText());
+        String bonustype= bonusTypeCombo.getValue();
+        Float deductions=Float.valueOf(deductionsText.getText());
+        LocalDate paymentdate= paymentDatePicker.getValue();
+        Float netsalary = Float.valueOf(calculationLabel.getText());
                     
-        employeeText.setText(null);    desigCombo.setValue(null);   basicSalaryText.setText(null);  bonusText.setText(null);
-        bonusTypeCombo.setValue(null);  deductionsText.setText(null);  paymentDatePicker.setValue(null); 
-        calculationLabel.getText();
-
+        if (name == null || desig == null || salary == null || bonus == null || bonustype == null
+                || deductions == null || paymentdate == null || netsalary == null) {
+            showErrorAlert("Please fill in all the required fields.");
+            return;
+        }
+        Payroll payroll = new Payroll();
+        payroll.setName(name);
+        payroll.setDesig(desig);
+        payroll.setSalary(salary);
+        payroll.setBonus(bonus);
+        payroll.setBonustype(bonustype);
+        payroll.setDeductions(deductions);
+        payroll.setPaymentdate(paymentdate);
+        payroll.setNetsalary(netsalary);
             if (showConfirmationAlert("Are you sure you want to add this record?")) {
-                Payroll.savePayrollRecord(employee, desigs, basicsalary, bonus_, bonustype_, deduction, payment_date, total);
+
+                Payroll.savePayrollRecord(name, desig, salary, bonus, bonustype, deductions, paymentdate, netsalary);
+                
+                payroll.display();
+                
                 saveRecordsFXID.setDisable(true);               
                 calculateFXID.setDisable(false);   
                 showSuccessAlert("Record added successfully.");

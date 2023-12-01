@@ -53,18 +53,6 @@ public class SeePayrollRecordsFXMLController implements Initializable {
         deductionsTable.setCellValueFactory(new PropertyValueFactory<>("deductions"));
         paydateTable.setCellValueFactory(new PropertyValueFactory<>("paymentdate"));
         netSalaryTable.setCellValueFactory(new PropertyValueFactory<>("netsalary"));         
-
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("payroll.bin"))) {
-            Payroll p;
-            while ((p = (Payroll) ois.readObject()) != null) {
-                tableView.getItems().add(p);
-            }
-        } catch (EOFException e) {
-            // End of file reached
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }        
-
-
+        tableView.getItems().addAll(Payroll.loadPayrollRecords());  
+    }
 }
