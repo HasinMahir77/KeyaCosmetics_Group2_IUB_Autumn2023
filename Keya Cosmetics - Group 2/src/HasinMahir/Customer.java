@@ -44,6 +44,7 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
     
     public void addToCart(Product selectedProduct, int quantity){
         this.cart.add(selectedProduct,quantity);   
+        this.saveInstance();
     }
 
     @Override
@@ -57,12 +58,14 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
 
     public void setCart(Cart cart) {
         this.cart = cart;
+        this.saveInstance();
     }
 
 
 
     public void setAddress(String address) {
         this.address = address;
+        this.saveInstance();
     }
 
  
@@ -77,6 +80,7 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
     
         
     public void saveInstance(){
+        System.out.println("Save instance called");
         File userFile = new File("CustomerList.bin");
         ArrayList<Customer> customerList = Customer.getCustomerList();
         //Removing current user
@@ -125,16 +129,17 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
         else{
             this.del = true;
             this.username+=".deleted";
+            this.saveInstance();
         }
     }
     public void recover(){
         if (this.isDel()){
             this.del = false;
-            this.username=".deleted";
+            this.username = this.username.substring(0,this.username.length()-8);
+            this.saveInstance();
         }
         else{
-            this.del = true;
-            this.username = this.username.substring(0,this.username.length()-8);
+            System.out.println("Account is not deleted");
         }
     }
     /* Broken and probably redundant.
