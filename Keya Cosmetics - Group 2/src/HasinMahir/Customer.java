@@ -76,52 +76,32 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
     
         
     public void saveInstance(){
-        File oldCustomerList = new File("CustomerList.bin");
-        Customer customer;
-        ArrayList<Customer> bufferList = new ArrayList<Customer>();
-        //Collecting all the other users of same type except current user
-        try(FileInputStream fis = new FileInputStream(oldCustomerList);
-                ObjectInputStream ois = new ObjectInputStream(fis);) {
-            
-            while(true){
-                customer = (Customer)ois.readObject();
-                if (!(customer.getUsername().equals(this.getUsername()))) {
-                    bufferList.add(customer);
-                }
+        File customerFile = new File("CustomerList.bin");
+        //Preparing arraylist with updated data
+        ArrayList<Customer> customerList = Customer.getCustomerList();
+        //Removing current customer
+        for (Customer c: customerList){
+            if (c.getUsername().equals(this.username)){
+                customerList.remove(c);
             }
-        } catch(Exception e) {
-            System.out.println("From customer.saveInstance() : "+e.toString());
-            System.out.println("ArrayList of customers made");
-        } 
-        // Arraylist of Customers made.
+        }
+        //Adding updated current customer
+        customerList.add(this);
         
-        //Rewriting the bin file with the updated customer object.
-       
+        //Clearing file
         try{
-            FileOutputStream temp = new FileOutputStream(oldCustomerList);
-            ObjectOutputStream temp2 = new ObjectOutputStream(temp);
-            temp2.close();
-        }catch(Exception e){
-            System.out.println(e);
+            new FileOutputStream(customerFile).close();
         }
+        catch(Exception e){}
         
-        try(FileOutputStream fos = new FileOutputStream(oldCustomerList);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);){
-            oos.writeObject(this);
-            System.out.println("Current customer written. Other customers next");
-        } catch(Exception e){
-            System.out.println(e.toString());
+        //Writing file
+        try(FileOutputStream fos = new FileOutputStream(customerFile);
+                ObjectOutputStream oos = new ObjectOutputStream(fos)){
+            for (Customer c: customerList){
+                oos.writeObject(c);
+            }
         }
-        try(FileOutputStream fos = new FileOutputStream(oldCustomerList,true);
-        ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
-            for(Customer c: bufferList){
-                    oos.writeObject(c);
-                }
-        } catch(Exception e){
-            System.out.println(e.toString());
-        } 
-        
-        
+        catch(Exception e){}
     }
     
     public static ArrayList<Customer> getCustomerList(){
