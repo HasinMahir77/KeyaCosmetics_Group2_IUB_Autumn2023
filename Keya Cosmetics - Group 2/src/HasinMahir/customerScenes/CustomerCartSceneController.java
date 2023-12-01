@@ -19,7 +19,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -35,6 +38,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 import mainpkg.MainpkgSS;
 import mainpkg.Main;
 
@@ -293,11 +298,13 @@ public class CustomerCartSceneController implements Initializable {
     
 
     @FXML
-    private void orderButtonOnClick(ActionEvent event) {
+    private void orderButtonOnClick(ActionEvent event) throws IOException {
+
         Order order = new Order(current);
         order.saveInstance();
         current.getCart().getProductOrderList().clear();
         this.updateCartTable();
+
         
     }
     public void updateGrandTotal(){
