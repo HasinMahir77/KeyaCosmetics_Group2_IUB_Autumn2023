@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package Borhan_Islam;
-
+import NadimHR_Receptionist.Hr;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import static javax.swing.text.html.HTML.Tag.HR;
 
 
 /**
@@ -29,14 +30,17 @@ public class UpdatedTermsFXMLController implements Initializable {
     @FXML
     private TextArea policyTextArea;
     @FXML
-    private Button saveFXID;
+    private Button savepdffxid;
+    @FXML
+    private Button loadfxid;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        saveFXID.setDisable(true);        // TODO
+        policyTextArea.clear();        
+        savepdffxid.setDisable(true);        // TODO
         policyTextArea.setEditable(false);       
     }    
 
@@ -52,41 +56,15 @@ public class UpdatedTermsFXMLController implements Initializable {
     }
 
     @FXML
-    private void saveButton(ActionEvent event) {
-        saveFXID.setDisable(true);     
-        policyTextArea.setEditable(false);       
+    private void loadButton(ActionEvent event) {
 
+        savepdffxid.setDisable(false);        // TODO
+        loadfxid.setDisable(true);        // TODO
         
-        File f = null;
-        FileOutputStream fos = null;
-        DataOutputStream dos = null;
-        
-        try {
-            f = new File("policy.bin");
-            if(f.exists()) fos = new FileOutputStream(f,true);
-            else fos = new FileOutputStream(f);            
-            dos = new DataOutputStream(fos);        
-            dos.writeUTF(policyTextArea.getText());
+        Hr hr= new Hr();
+        String policyText= hr.loadPolicy();
+        policyTextArea.setText(policyText);
 
-
-        } catch (IOException ex) {
-            Logger.getLogger(UpdatedTermsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if(dos != null) dos.close();
-            } catch (IOException ex) {
-                Logger.getLogger(UpdatedTermsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }        
-    }    
-
-
-    @FXML
-    private void editButton(ActionEvent event) {
-        policyTextArea.setEditable(true);
-        saveFXID.setDisable(false);         
-    
-    }
-    
+    }  
 }
 

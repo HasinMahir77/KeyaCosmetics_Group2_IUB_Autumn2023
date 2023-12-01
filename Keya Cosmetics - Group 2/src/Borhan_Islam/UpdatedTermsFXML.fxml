@@ -42,26 +42,20 @@
             <Font name="Bell MT Bold" size="15.0" />
          </font>
       </TextArea>
-      <ImageView disable="true" fitHeight="150.0" fitWidth="200.0" layoutX="226.0" layoutY="256.0" opacity="0.25" pickOnBounds="true" preserveRatio="true">
+      <ImageView disable="true" fitHeight="150.0" fitWidth="200.0" layoutX="311.0" layoutY="255.0" opacity="0.25" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/keyaLogoClear.png" />
          </image>
       </ImageView>
-      <Button layoutX="822.0" layoutY="491.0" mnemonicParsing="false" onAction="#savepdfButton" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #4CAF50; -fx-text-fill: #FFFFFF;" text="Save to PDF">
+      <Button fx:id="savepdffxid" layoutX="822.0" layoutY="491.0" mnemonicParsing="false" onAction="#savepdfButton" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #4CAF50; -fx-text-fill: #FFFFFF;" text="Save to PDF">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="saveFXID" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="856.0" layoutY="344.0" mnemonicParsing="false" onAction="#saveButton" prefHeight="26.0" prefWidth="59.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #3498db; -fx-text-fill: #FFFFFF;" text="Save">
+      <Button fx:id="loadfxid" layoutX="857.0" layoutY="444.0" mnemonicParsing="false" onAction="#loadButton" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" text="Load">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="856.0" layoutY="305.0" mnemonicParsing="false" onAction="#editButton" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" text="Edit">
-         <font>
-            <Font name="Lucida Console" size="15.0" />
-         </font>
-      </Button>
-      <Label layoutX="846.0" layoutY="129.0" text="policies" />
    </children>
 </AnchorPane>
