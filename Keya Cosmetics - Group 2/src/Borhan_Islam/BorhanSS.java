@@ -79,5 +79,11 @@ public class BorhanSS {
     public void switchToPmDashboard() throws IOException {
         this.switchScene("ProductManagerDashboardFXML.fxml", "");
     }
+    public void seeAllAuditsButton() throws IOException {
+        this.switchScene("AuditReportViewFXML.fxml", "");
+    }
+    public void goBackToAudit() throws IOException {
+        this.switchScene("AuditReportFXML.fxml", "");
+    }
 
 }

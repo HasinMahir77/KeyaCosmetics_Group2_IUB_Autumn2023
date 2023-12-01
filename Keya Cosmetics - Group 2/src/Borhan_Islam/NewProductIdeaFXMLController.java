@@ -94,9 +94,10 @@ public class NewProductIdeaFXMLController implements Initializable {
 
     @FXML
     private void sendDetailsButton(ActionEvent event) {
-    
+             if (showConfirmationAlert("Are you sure you?")) {
+                showSuccessAlert("Details sent to Production Manager!");   
+        }
     }
-
     @FXML
     private void saveDataButton(ActionEvent event) {
         if (!validateInputFields()) {

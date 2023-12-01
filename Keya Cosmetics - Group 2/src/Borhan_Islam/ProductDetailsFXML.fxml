@@ -4,6 +4,9 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -33,5 +36,13 @@
             </LinearGradient>
          </textFill>
       </Label>
+      <TableView layoutX="52.0" layoutY="127.0" prefHeight="344.0" prefWidth="361.0">
+        <columns>
+          <TableColumn prefWidth="145.0" text="Product Name" />
+          <TableColumn prefWidth="94.0" text="Price" />
+            <TableColumn prefWidth="121.0" text="Vat (%)" />
+        </columns>
+      </TableView>
+      <TextArea layoutX="481.0" layoutY="127.0" prefHeight="344.0" prefWidth="439.0" text="Add Product Details" />
    </children>
 </AnchorPane>
