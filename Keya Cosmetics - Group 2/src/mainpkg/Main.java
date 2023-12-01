@@ -70,7 +70,8 @@ public class Main extends Application {
                 if (userFile.getName().equals("CustomerList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                    User user = new Customer("User","User","Customer","Customer","User","11111");
+                    User user = new Customer("Hasin","Mahir","Customer",
+                            "Customer","New York","01842238814");
                     oos.writeObject(user);
                     System.out.println("File "+userFile.getName()+" not found.");
                     System.out.println("Initialized");
@@ -124,7 +125,7 @@ public class Main extends Application {
                 else if (userFile.getName().equals("DeliveryManList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                    User user = new DeliveryMan("Abdul","Karim","User","User","01824441272");
+                    User user = new DeliveryMan("Abdul","Karim","DeliveryMan","DeliveryMan","01824441272");
                     user.setDob(LocalDate.now());
                     user.setDoj(LocalDate.now());
                     user.setNid("2152328");

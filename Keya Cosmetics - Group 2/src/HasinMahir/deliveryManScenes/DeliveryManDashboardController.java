@@ -52,9 +52,9 @@ public class DeliveryManDashboardController implements Initializable {
     @FXML
     private TableColumn<Order, String> idColumn;
     @FXML
-    private TableColumn<Order, Float> priceColumn;
-    @FXML
     private TableColumn<Order, String> addressColumn;
+    @FXML
+    private TableColumn<Order, Status> statusColumn;
     @FXML
     private Button viewDetailButton;
     @FXML
@@ -106,7 +106,7 @@ public class DeliveryManDashboardController implements Initializable {
         
         //TableView
         idColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Order, Float>("price"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<Order, Status>("status"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("address"));
         
         //Getting Orders

@@ -68,8 +68,8 @@ public class LoginGridController implements Initializable {
         
         
         //DEFAULT: CUSTOMER
-       usernameTextField.setText("User");
-       passwordTextField.setText("User");
+       usernameTextField.setText("DeliveryMan");
+       passwordTextField.setText("DeliveryMan");
     }    
 
     @FXML

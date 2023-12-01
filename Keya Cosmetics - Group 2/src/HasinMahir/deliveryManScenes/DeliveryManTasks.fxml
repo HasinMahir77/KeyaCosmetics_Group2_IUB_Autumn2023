@@ -90,8 +90,8 @@
       <GridPane style="-fx-background-color: white;" BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.66668701171875" minWidth="10.0" prefWidth="351.66668701171875" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.3333740234375" minWidth="10.0" prefWidth="107.33331298828125" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="405.6666259765625" minWidth="10.0" prefWidth="405.6666259765625" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.3333740234375" minWidth="10.0" prefWidth="74.3333740234375" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="118.0" />
         </columnConstraints>
         <rowConstraints>
@@ -108,10 +108,10 @@
                   <Label text="Pending Tasks" />
                   <TableView fx:id="orderTableView" onMouseClicked="#updateSelectedOrder" prefHeight="318.0" prefWidth="354.0">
                     <columns>
-                      <TableColumn fx:id="idColumn" prefWidth="101.66665649414062" text="ID" />
-                      <TableColumn fx:id="priceColumn" prefWidth="82.33331298828125" text="Price" />
-                        <TableColumn fx:id="addressColumn" prefWidth="109.33331298828125" text="Status" />
-                        <TableColumn fx:id="addressColumn1" prefWidth="133.33331298828125" text="Task" />
+                      <TableColumn fx:id="idColumn" prefWidth="138.66665649414062" text="ID" />
+                      <TableColumn fx:id="priceColumn" prefWidth="86.33334350585938" text="Price" />
+                        <TableColumn fx:id="addressColumn" prefWidth="154.66668701171875" text="Address" />
+                        <TableColumn fx:id="statusColumn" prefWidth="125.0" text="Status" />
                     </columns>
                   </TableView>
                </children>
@@ -120,10 +120,10 @@
                <padding>
                   <Insets bottom="50.0" left="70.0" right="70.0" top="2.0" />
                </padding></VBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
                <children>
-                  <Button fx:id="viewDetailButton" disable="true" mnemonicParsing="false" onAction="#viewDetailButtonOnClick" prefHeight="30.0" prefWidth="88.0" text="View Detail" />
-                  <Button fx:id="taskButton" disable="true" mnemonicParsing="false" onAction="#taskButtonOnClick" prefHeight="30.0" prefWidth="88.0" text="Do task" />
+                  <Button fx:id="viewDetailButton" mnemonicParsing="false" onAction="#viewDetailButtonOnClick" prefHeight="30.0" prefWidth="88.0" text="View Detail" />
+                  <Button fx:id="doTaskButton" disable="true" mnemonicParsing="false" onAction="#doTaskButtonOnClick" prefHeight="30.0" prefWidth="88.0" text="Do task" />
                </children>
                <padding>
                   <Insets left="5.0" top="5.0" />

@@ -61,6 +61,7 @@ public class ViewOrderDetailController implements Initializable {
         
         this.customerNameLabel.setText("Name: "+current.getCustomerName() );
         this.addressLabel.setText("Address: " + current.getAddress());
+        this.deliveryManLabel.setText(this.deliveryManLabel.getText()+" "+current.getDeliveryManName());
         
         
         nameColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, String>("name"));

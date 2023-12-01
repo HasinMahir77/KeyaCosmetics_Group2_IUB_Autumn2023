@@ -233,6 +233,18 @@ public class Order implements Serializable,Reviewable {
         stage.show();
           
     }
+    public void viewDetails() throws IOException{
+        Order.stage = new Stage();
+        Order.stage.setUserData(this);
+        Parent root = FXMLLoader.load(getClass().getResource("ViewOrderDetail.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Order details");
+        
+        
+        stage.show();
+          
+    }
 
     public Review getReview() {
         return review;
