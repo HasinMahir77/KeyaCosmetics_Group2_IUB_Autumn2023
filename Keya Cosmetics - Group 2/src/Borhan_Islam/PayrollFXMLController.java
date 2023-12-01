@@ -118,25 +118,25 @@ public class PayrollFXMLController implements Initializable {
             return;
         }
         Payroll payroll = new Payroll();
-        payroll.setName(name);
-        payroll.setDesig(desig);
-        payroll.setSalary(salary);
-        payroll.setBonus(bonus);
-        payroll.setBonustype(bonustype);
-        payroll.setDeductions(deductions);
-        payroll.setPaymentdate(paymentdate);
-        payroll.setNetsalary(netsalary);
+//        payroll.setName(name);
+//        payroll.setDesig(desig);
+//        payroll.setSalary(salary);
+//        payroll.setBonus(bonus);
+//        payroll.setBonustype(bonustype);
+//        payroll.setDeductions(deductions);
+//        payroll.setPaymentdate(paymentdate);
+//        payroll.setNetsalary(netsalary);
             if (showConfirmationAlert("Are you sure you want to add this record?")) {
 
                 Payroll.savePayrollRecord(name, desig, salary, bonus, bonustype, deductions, paymentdate, netsalary);
-                
-                payroll.display();
+                payroll.display();                
                 
                 saveRecordsFXID.setDisable(true);               
                 calculateFXID.setDisable(false);   
                 showSuccessAlert("Record added successfully.");
             }         
-       
+
+
     }    
 
     @FXML
