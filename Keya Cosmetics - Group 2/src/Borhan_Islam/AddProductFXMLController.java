@@ -154,4 +154,8 @@ public class AddProductFXMLController implements Initializable {
         tableView.getItems().setAll(productArray);
         
     }    
+
+    @FXML
+    private void addProductNewListButton(ActionEvent event) {
+    }
 }

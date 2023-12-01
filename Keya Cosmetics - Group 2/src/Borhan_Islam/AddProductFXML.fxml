@@ -80,5 +80,10 @@
       <TextField fx:id="priceText" layoutX="105.0" layoutY="299.0" prefHeight="25.0" prefWidth="173.0" />
       <TextField fx:id="vatText" layoutX="105.0" layoutY="339.0" prefHeight="25.0" prefWidth="173.0" />
       <ListView fx:id="categoryListView" layoutX="124.0" layoutY="67.0" prefHeight="174.0" prefWidth="135.0" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="193.0" layoutY="393.0" mnemonicParsing="false" onAction="#addProductNewListButton" prefHeight="130.0" prefWidth="96.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" text="Create a New List of Products" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
