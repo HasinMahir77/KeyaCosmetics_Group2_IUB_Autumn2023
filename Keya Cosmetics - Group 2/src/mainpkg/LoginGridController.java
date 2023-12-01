@@ -104,15 +104,9 @@ public class LoginGridController implements Initializable {
         //--------------Customer
         if (userComboBox.getValue().equals("Customer")) {
             try{
-                File userFile = new File("CustomerList.bin");
-                System.out.println(userFile.getName()+".bin "+" opened");
-                FileInputStream fis = new FileInputStream(userFile);
-                ObjectInputStream oos = new ObjectInputStream(fis);
-                
-                while(true){
-                    User user = (User)oos.readObject();
-                    if (user.getUsername().equals(username) && user.getPassword().equals(password)){
-                        Main.getMainStage().setUserData(user);
+                for(Customer c: Customer.getCustomerList()){
+                    if (c.getUsername().equals(username) && c.getPassword().equals(password)){
+                        Main.getMainStage().setUserData(c);
                         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
                         ss.switchScene("CustomerShopScene.fxml", "Keya: Shop");
                     }
