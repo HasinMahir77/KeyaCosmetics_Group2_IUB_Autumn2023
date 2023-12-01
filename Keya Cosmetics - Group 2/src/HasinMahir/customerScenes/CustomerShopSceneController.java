@@ -108,6 +108,7 @@ public class CustomerShopSceneController implements Initializable {
         userMenu.setText(current.getUsername()+" ↓");
         categoryListView.getItems().addAll("All","Detergent","Body Soap",
                 "Toothpaste","Deodorant","Skincare","Shampoo");
+        this.categoryListView.getSelectionModel().select("All");
         
         //Initializing Product TableView
         nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
