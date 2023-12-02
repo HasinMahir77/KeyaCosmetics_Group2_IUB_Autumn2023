@@ -26,6 +26,70 @@ public class BorhanSS {
         mainStage.setTitle("Keya: "+title);
         Scene scene = Main.getMainStage().getScene();
         scene.setRoot(root);
+
     }
-    
+    public void recordsOnButtonClicked() throws IOException {
+        this.switchScene("RecordsFXML.fxml", "Records");
+    }
+    public void generateReportOnButtonClicked() throws IOException {
+        this.switchScene("GenerateReportFXML.fxml", "Generate Report");
+    }
+    public void productionAnalysisOnButtonClicked() throws IOException {
+        this.switchScene("ProductionAnalysisFXML.fxml", "Production Analysis");
+    }
+    public void payrollOnButtonClicked() throws IOException {
+        this.switchScene("PayrollFXML.fxml", "Payroll");
+    }
+    public void auditReportOnButtonClicked() throws IOException {
+        this.switchScene("AuditReportFXML.fxml", "Audit Report");
+    }
+    public void updatedTermsOnButtonClicked() throws IOException {
+        this.switchScene("UpdatedTermsFXML.fxml", "Updated Terms");
+    }
+    public void expenseControlOnButtonClicked() throws IOException {
+        this.switchScene("ExpenseControlSysFXML.fxml", "Expense Control");
+    }
+    public void reimbursementOnButtonClicked() throws IOException {
+        this.switchScene("ReimbursementFXML.fxml", "Reimbursement");
+    }
+    public void accProfileOnButtonClicked() throws IOException {
+        this.switchScene("AccProfileFXML.fxml", "Accountant Profile");
+    }
+    public void addproductOnButtonClicked() throws IOException {
+        this.switchScene("AddProductFXML.fxml", "Add Products");
+    }
+    public void seeProductDetailsOnButtonClicked() throws IOException {
+        this.switchScene("ProductDetailsFXML.fxml", "See Product Details");
+    }
+    public void reviewProductsOnButtonClicked() throws IOException {
+        this.switchScene("ReviewProductFXML.fxml", "Review Products");
+    }
+    public void viewStockOnButtonClicked() throws IOException {
+        this.switchScene("ViewStockFXML.fxml", "View Products");
+    }
+    public void newProductIdeaOnButtonClicked() throws IOException {
+        this.switchScene("NewProductIdeaFXML.fxml", "New Product Idea");
+    }
+    public void pmProfileOnButtonClicked() throws IOException {
+        this.switchScene("PmProfileFXML.fxml", "Product Manager Profile");
+    }
+    public void switchToAccDashboard() throws IOException {
+        this.switchScene("AccountantDashboardFXML.fxml", "");
+    }
+    public void switchToPmDashboard() throws IOException {
+        this.switchScene("ProductManagerDashboardFXML.fxml", "");
+    }
+    public void seeAllAuditsButton() throws IOException {
+        this.switchScene("AuditReportViewFXML.fxml", "");
+    }
+    public void goBackToAudit() throws IOException {
+        this.switchScene("AuditReportFXML.fxml", "");
+    }
+    public void showHistoryButton() throws IOException {
+        this.switchScene("ExpenseHistory.fxml", "");
+    }
+    public void goBackButton() throws IOException {
+        this.switchScene("ExpenseControlSysFXML.fxml", "");
+    }
+
 }

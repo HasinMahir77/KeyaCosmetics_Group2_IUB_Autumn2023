@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Borhan_Islam.PayrollFXMLController">
+   <children>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="961.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Go To ⬇">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#switchToAccDashboard" text="Dashboard" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label layoutX="440.0" layoutY="44.0" text="Payroll">
+         <font>
+            <Font name="Arial Bold" size="25.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.5666666666666667">
+               <stops>
+                  <Stop color="#304035" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="64.0" layoutY="109.0" prefHeight="30.0" prefWidth="193.0" text="Name of the Employee ">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="employeeText" layoutX="257.0" layoutY="109.0" prefHeight="27.0" prefWidth="223.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" />
+      <Label layoutX="62.0" layoutY="194.0" prefHeight="30.0" prefWidth="193.0" text="Basic Salary">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="basicSalaryText" layoutX="255.0" layoutY="194.0" prefHeight="27.0" prefWidth="223.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" />
+      <Label layoutX="62.0" layoutY="238.0" prefHeight="30.0" prefWidth="193.0" text="Bonus (If Any)">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="bonusText" layoutX="255.0" layoutY="238.0" prefHeight="27.0" prefWidth="223.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" />
+      <Label layoutX="62.0" layoutY="279.0" prefHeight="30.0" prefWidth="193.0" text="Bonus Type">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="bonusTypeCombo" layoutX="255.0" layoutY="282.0" prefHeight="27.0" prefWidth="223.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" />
+      <Label layoutX="62.0" layoutY="325.0" prefHeight="30.0" prefWidth="193.0" text="Deductions (If Any)">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="deductionsText" layoutX="255.0" layoutY="325.0" prefHeight="27.0" prefWidth="223.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" />
+      <Label layoutX="62.0" layoutY="371.0" prefHeight="30.0" prefWidth="193.0">
+         <font>
+            <Font name="Lucida Console" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="62.0" layoutY="371.0" prefHeight="30.0" prefWidth="193.0" text="Payment Date">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="paymentDatePicker" layoutX="255.0" layoutY="371.0" prefHeight="30.0" prefWidth="223.0" />
+      <Button fx:id="calculateFXID" disable="true" layoutX="69.0" layoutY="435.0" mnemonicParsing="false" onAction="#calculateButton" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #4CAF50; -fx-text-fill: #FFFFFF;" text="Calculate">
+         <font>
+            <Font name="Lucida Console" size="25.0" />
+         </font>
+      </Button>
+      <Label fx:id="calculationLabel" layoutX="272.0" layoutY="443.0" prefHeight="30.0" prefWidth="223.0">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="saveRecordsFXID" disable="true" layoutX="661.0" layoutY="435.0" mnemonicParsing="false" onAction="#saveRecordsButton" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #3498db; -fx-text-fill: #FFFFFF;" text="Save to Records">
+         <font>
+            <Font name="Lucida Console" size="25.0" />
+         </font>
+      </Button>
+      <Label layoutX="522.0" layoutY="194.0" prefHeight="30.0" prefWidth="383.0" text="Basic salary must be between 20,000 BDT to 5,00,000 BDT">
+         <font>
+            <Font name="Lucida Console" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="522.0" layoutY="324.0" prefHeight="30.0" prefWidth="397.0" text="Deduction of salary must be between 0 BDT to 15,000 BDT" wrapText="true">
+         <font>
+            <Font name="Lucida Console" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="488.0" layoutY="325.0" prefHeight="37.0" prefWidth="26.0" text="**" textFill="#8d0808">
+         <font>
+            <Font name="Lucida Console" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="488.0" layoutY="198.0" prefHeight="30.0" prefWidth="26.0" text="**" textFill="#8d0808">
+         <font>
+            <Font name="Lucida Console" size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="seePayrollFXID" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="846.0" layoutY="363.0" mnemonicParsing="false" onAction="#seePayrollButton" prefHeight="62.0" prefWidth="75.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" text="See Payroll Records" wrapText="true">
+         <font>
+            <Font name="Lucida Console" size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="62.0" layoutY="149.0" prefHeight="30.0" prefWidth="193.0" text="Designation">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="desigCombo" layoutX="255.0" layoutY="151.0" prefHeight="27.0" prefWidth="223.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" />
+      <Label fx:id="successfulLabel" layoutX="800.0" layoutY="490.0" prefHeight="17.0" prefWidth="121.0" />
+      <ImageView fitHeight="46.0" fitWidth="69.0" layoutX="865.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/keyaLogoClear.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
