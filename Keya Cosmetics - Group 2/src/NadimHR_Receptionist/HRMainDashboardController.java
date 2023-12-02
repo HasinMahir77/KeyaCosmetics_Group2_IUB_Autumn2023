@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import mainpkg.Main;
+import mainpkg.MainpkgSS;
 
 /**
  * FXML Controller class
@@ -63,7 +64,6 @@ public class HRMainDashboardController implements Initializable {
         borderpane.setCenter(root);
     }
 
-    @FXML
     private void administerpayrollreportsOnclick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Administer payroll reports.fxml"));
         borderpane.setCenter(root);
@@ -80,7 +80,11 @@ public class HRMainDashboardController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("Audited Financial Managements.fxml"));
         borderpane.setCenter(root);
     }
-
+     @FXML
+    private void AnalyzedapplicantsOnclick(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ApplicantSorting.fxml"));
+        borderpane.setCenter(root);
+    }
     @FXML
     private void backOnCLick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("HR mainDashboard.fxml"));
@@ -88,7 +92,15 @@ public class HRMainDashboardController implements Initializable {
     }
 
     @FXML
-    private void AnalyzedapplicantsOnclick(ActionEvent event) {
+    private void empFeedbackOnClick(ActionEvent event)throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("empFeedback.fxml"));
+        Main.getMainStage().getScene().setRoot(root);
     }
 
+    @FXML
+    private void logoutOnClick(ActionEvent event)throws IOException {
+        MainpkgSS logout = new MainpkgSS();
+        logout.switchtoLoginScene();
+
+    }
 }

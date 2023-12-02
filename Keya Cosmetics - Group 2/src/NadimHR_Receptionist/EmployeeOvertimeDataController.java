@@ -5,6 +5,7 @@
 package NadimHR_Receptionist;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -24,27 +26,25 @@ import javafx.scene.control.TextField;
 public class EmployeeOvertimeDataController implements Initializable {
 
     @FXML
-    private ComboBox<?> positionComboBox;
+    private ComboBox<String> positionComboBox;
     @FXML
-    private ComboBox<?> NameComboBox;
+    private ComboBox<String> NameComboBox;
     @FXML
     private TextField timeTextField;
     @FXML
     private DatePicker DatePicker;
     @FXML
-    private Button LoadInformationButton;
+    private ListView<String> listView;
     @FXML
-    private TableView<?> TableView;
+    private DatePicker datePicker;
     @FXML
-    private TableColumn<?, ?> PositionColumn;
+    private TableView<String> tableView;
     @FXML
-    private TableColumn<?, ?> NameColumn;
+    private TableColumn<?, ?> nameCol;
     @FXML
-    private TableColumn<?, ?> HoursColumn;
+    private TableColumn<?, ?> postCol;
     @FXML
-    private TableColumn<?, ?> DateColumn;
-    @FXML
-    private Button SendButton;
+    private TableColumn<?, ?> TimeCol;
 
     /**
      * Initializes the controller class.
@@ -55,11 +55,8 @@ public class EmployeeOvertimeDataController implements Initializable {
     }    
 
     @FXML
-    private void loadInformationOnClick(ActionEvent event) {
+    private void loadAttendanceRecordOnClick(ActionEvent event) {
     }
 
-    @FXML
-    private void sendInformationOnClick(ActionEvent event) {
-    }
     
 }

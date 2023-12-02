@@ -49,6 +49,7 @@ public class Hr extends User implements Serializable{
             return false;
         }
     }
+ 
 
     public static ArrayList<ReimbursementRequestRecord> loadReimbursements(String fileName) {
         ArrayList<ReimbursementRequestRecord> existingReimbursements = new ArrayList<>();
@@ -129,11 +130,24 @@ public class Hr extends User implements Serializable{
 
         return applicant;
     }
-
-    public static ObservableList<Applicant> loadApplicantsToFiles(String fileName) {
+       public static ObservableList<Applicant> loadApplicantsToFiles(String fileName) {
         ArrayList<Applicant> applicant = loadApplicantsFromFile(fileName);
         ObservableList<Applicant> observableList = FXCollections.observableArrayList(applicant);
         return observableList;
+    }
+       public static boolean writeloadApplicantsFromFile(ObservableList<Applicant> Applicants, String fileName) {
+        try (FileOutputStream fos = new FileOutputStream(fileName);
+                ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            
+            for (Applicant applicants: Applicants) {
+                oos.writeObject(applicants);
+            }
+
+            return true;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
     //recruitment and selection
     public static void saveRecruiemntDataofApplicants(Applicant applicant, String fileName) {
@@ -173,5 +187,29 @@ public class Hr extends User implements Serializable{
             }
         }
         return ApplicantType;
+    }
+    //sort
+        public static void updateFile(ObservableList<Applicant> sortedApp, String fileName) {
+    try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName))) {
+        for (Applicant applicant : sortedApp) {
+            output.writeObject(applicant);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        }
+    }
+    
+    public static void sortedapplicant(Applicant applicant, String fileName) {
+        ArrayList<Applicant> exsApp = loadApplicantsFromFile(fileName);
+        exsApp.add(applicant);
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            for (Applicant sortedapplicant : exsApp) {
+                oos.writeObject(sortedapplicant);
+            }
+            System.out.println("Sorted Applicants saved: " + applicant);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

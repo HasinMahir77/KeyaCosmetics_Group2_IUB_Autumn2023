@@ -58,7 +58,7 @@ public class RecruitmentAndSelectionController implements Initializable {
     @FXML
     private void AssignedEmployeeOnClick(ActionEvent event) {
         String ApplicantName = nameTextFeild.getText();
-        String ccontactInfo = ContactInfo.getText();
+        String contactInfo = ContactInfo.getText();
         String Position = PositonComboBox.getValue();
         String Assignedbyhr = assingedbyhrComboBox.getValue();
         String ContactInformation = contactinformationCombox.getValue();
@@ -71,7 +71,7 @@ public class RecruitmentAndSelectionController implements Initializable {
             showErrorAlert("Missing Information", "Please fill in all fields.");
             return;
         }
-        Applicant applicant = new Applicant(ApplicantName, ccontactInfo, Position, Id, Assignedbyhr ,  SelectedDate ,  ContactInformation);
+        Applicant applicant = new Applicant(ApplicantName, contactInfo, Position, Id, Assignedbyhr ,  SelectedDate ,  ContactInformation);
         Hr.saveRecruiemntDataofApplicants(applicant,"Recruiment data of employees.bin");
         nameTextFeild.clear();
         ContactInfo.clear();

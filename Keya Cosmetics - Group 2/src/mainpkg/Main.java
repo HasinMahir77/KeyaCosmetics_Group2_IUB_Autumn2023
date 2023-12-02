@@ -138,7 +138,7 @@ public class Main extends Application {
                     System.out.println(e);
                 }
               }  
-                //Delivery Man
+                //Receptionist
                 else if (userFile.getName().equals("ReceptionistList.bin")){
                 try(FileOutputStream fos = new FileOutputStream(userFile);
                         ObjectOutputStream oos = new ObjectOutputStream(fos)){
@@ -155,7 +155,7 @@ public class Main extends Application {
                     System.out.println(e);
                 }
               }  
-                
+               
             }
             
             
