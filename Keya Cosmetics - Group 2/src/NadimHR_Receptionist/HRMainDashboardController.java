@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import mainpkg.Main;
+import mainpkg.MainpkgSS;
 
 /**
  * FXML Controller class
@@ -98,9 +99,8 @@ public class HRMainDashboardController implements Initializable {
 
     @FXML
     private void logoutOnClick(ActionEvent event)throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("LoginGrid.fxml"));
-        Main.getMainStage().getScene().setRoot(root);
+        MainpkgSS logout = new MainpkgSS();
+        logout.switchtoLoginScene();
+
     }
-
-
 }

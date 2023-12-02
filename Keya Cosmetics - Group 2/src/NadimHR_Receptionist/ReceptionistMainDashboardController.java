@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import mainpkg.Main;
+import mainpkg.MainpkgSS;
 
 /**
  * FXML Controller class
@@ -65,6 +66,18 @@ public class ReceptionistMainDashboardController implements Initializable {
     @FXML
     private void sendfeedOnClick(ActionEvent event) throws IOException {
          Parent root = FXMLLoader.load(getClass().getResource("SendFeedbackToHR.fxml"));
+         borderpane.setCenter(root);
+    }
+
+    @FXML
+    private void LogOutOnClick(ActionEvent event) throws IOException {
+        MainpkgSS logout = new MainpkgSS();
+        logout.switchtoLoginScene();
+    }
+
+    @FXML
+    private void outsoderAttOnClk(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("ViewOutsiderAttend.fxml"));
          borderpane.setCenter(root);
     }
 }

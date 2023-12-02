@@ -94,57 +94,42 @@ public class Receptionist extends User implements Serializable {
      List<Object> attendanceList = new ArrayList<>(items);
        return writeObjectsToFile(attendanceList, fileName);
      }
-    //----------------------------------------------
-     //public static boolean addEmployeeOvertimeData(EmployeeOvertimeData information, String fileName) {
-    //      List<Object> information_row = readObjectsFromFile(fileName);
-    //    information_row.add(information);
-    //  return writeObjectsToFile(information_row, fileName);
-    //} 
-    //-----------------------------------------------
-    // public static boolean addNewOutsiderAttendance(NonEmployeeAttendance items, String fileName) {
-    //  List<Object> attendanceList = readObjectsFromFile(fileName);
-    //  attendanceList.add(items);
-    ////   return writeObjectsToFile(attendanceList, fileName);
-    // / }
-    ///////////////////////read case assignment appointments/////////////////////
-    //  public static ArrayList<CaseAssignment> loadCaseAssignmentsFromFile(String fileName) {
-    //   ArrayList<CaseAssignment> caseAssignments = new ArrayList<>();
-    //    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
-    //      while (true) {
-    //        try {
-    //          CaseAssignment caseAssignment = (CaseAssignment) ois.readObject();
-    //         caseAssignments.add(caseAssignment);
-    //   } catch (EOFException e) {
-    //         break;
-    //     }
-    //    }
-    //  } catch (IOException | ClassNotFoundException e) {
-    //  e.printStackTrace();
-    //     }
-//
-    //   return caseAssignments;
-    // }
-    // public static ObservableList<CaseAssignment> loadCaseAssignmentsFromFiles(String fileName) {
-    //   ArrayList<CaseAssignment> caseAssignments = loadCaseAssignmentsFromFile(fileName);
-    /// ObservableList<CaseAssignment> observableList = FXCollections.observableArrayList(caseAssignments);
-    //return observableList;
-    // }
-    //  
-    /**
-     * for (CaseAssignment assignment : caseAssignments) {
-     * output.writeObject(assignment); } } catch (IOException e) {
-     * e.printStackTrace(); } }
-     *
-     * public static void saveSortedCaseAssignment(CaseAssignment
-     * caseAssignment, String fileName) { ArrayList<CaseAssignment>
-     * existingAssignments = loadCaseAssignmentsFromFile(fileName);
-     * existingAssignments.add(caseAssignment);
-     *
-     * try (ObjectOutputStream oos = new ObjectOutputStream(new
-     * FileOutputStream(fileName))) { for (CaseAssignment assignment :
-     * existingAssignments) { oos.writeObject(assignment); }
-     * System.out.println("Case assignment saved: " + caseAssignment); } catch
-     * (IOException e) { e.printStackTrace(); }
-    }*
-     */
+        public static boolean addNewOutsiderAttendance(NonEmployeeAttendance items, String fileName) {
+        List<Object> attendanceList = readObjectsFromFile(fileName);
+        attendanceList.add(items);
+        return writeObjectsToFile(attendanceList, fileName);
+    }
+        //readOysideerATtd
+            public static ArrayList<NonEmployeeAttendance> readVisaApplicationsFromFile(String fileName) {
+        ArrayList<NonEmployeeAttendance> list = new ArrayList<>();
+        File f= null;
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        try{
+            fis = new FileInputStream(fileName);
+            ois= new ObjectInputStream(fis);
+            while(true){
+               try{
+                NonEmployeeAttendance Info= (NonEmployeeAttendance) ois.readObject();
+                list.add(Info);
+               }
+               catch(EOFException ef){
+                   break;
+               }
+            }
+        }
+        catch(Exception e){
+            
+        }
+        finally{
+            try{
+                if(ois!=null) ois.close();
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        
+        return list;
+    }
 }

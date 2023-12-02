@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -33,19 +34,17 @@ public class EmployeeOvertimeDataController implements Initializable {
     @FXML
     private DatePicker DatePicker;
     @FXML
-    private Button LoadInformationButton;
+    private ListView<String> listView;
     @FXML
-    private TableView<Applicant> TableView;
+    private DatePicker datePicker;
     @FXML
-    private TableColumn<Applicant, String> PositionColumn;
+    private TableView<String> tableView;
     @FXML
-    private TableColumn<Applicant, String> NameColumn;
+    private TableColumn<?, ?> nameCol;
     @FXML
-    private TableColumn<Applicant, Integer> HoursColumn;
+    private TableColumn<?, ?> postCol;
     @FXML
-    private TableColumn<Applicant, LocalDate> DateColumn;
-    @FXML
-    private Button SendButton;
+    private TableColumn<?, ?> TimeCol;
 
     /**
      * Initializes the controller class.
@@ -56,11 +55,8 @@ public class EmployeeOvertimeDataController implements Initializable {
     }    
 
     @FXML
-    private void loadInformationOnClick(ActionEvent event) {
+    private void loadAttendanceRecordOnClick(ActionEvent event) {
     }
 
-    @FXML
-    private void sendInformationOnClick(ActionEvent event) {
-    }
     
 }
