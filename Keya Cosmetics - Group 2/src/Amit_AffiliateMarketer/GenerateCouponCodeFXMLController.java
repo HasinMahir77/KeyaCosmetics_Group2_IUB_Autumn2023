@@ -24,11 +24,7 @@ public class GenerateCouponCodeFXMLController implements Initializable {
                 "30",
                 "35",
                 "40",
-                "50",
-                "55",
-                "60",
-                "65",
-                "70");
+                "50");
     }    
 
     @FXML

@@ -1,3 +1,4 @@
+
 package Amit_AffiliateMarketer;
 
 import java.io.IOException;
@@ -26,9 +27,22 @@ public class AffiliateMarketerHomepageFXMLController implements Initializable {
 
     @FXML
     private void reviewProductOnClick(ActionEvent event) throws IOException {
+<<<<<<< HEAD
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ReviewProductsFXML.fxml"));
         Parent root = loader.load();
         borderPane.setCenter(root);
+=======
+        Review r = new Review();
+        r.setSender(this.am.getUsername());
+        Product p = new Product("Soap",20,Category.BODY_SOAP,5);
+        r.takeReview(p);
+        System.out.println(r.getReview());
+        System.out.println(r.getRating());
+              
+       
+        
+        
+>>>>>>> origin/AmitRoy
     }
 
     @FXML
