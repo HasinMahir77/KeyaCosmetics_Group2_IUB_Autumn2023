@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Amit_ProductionManager.ManageVendorsController">
+   <children>
+      <Label layoutX="41.0" layoutY="40.0" text="Vendor Name:" />
+      <Label layoutX="41.0" layoutY="70.0" text="Production Delivered:" />
+      <Label layoutX="41.0" layoutY="102.0" text="Rate:" />
+      <TextField fx:id="name" layoutX="160.0" layoutY="36.0" />
+      <DatePicker fx:id="deliveredDate" layoutX="160.0" layoutY="66.0" />
+      <TextField fx:id="rate" layoutX="160.0" layoutY="98.0" />
+      <Button layoutX="399.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#addNewVendorButtonClick" text="Add New Vendor" />
+      <TableView fx:id="tableView" layoutX="28.0" layoutY="153.0" prefHeight="213.0" prefWidth="550.0">
+        <columns>
+          <TableColumn fx:id="nameCol" prefWidth="233.33331298828125" text="Vendor's Name" />
+          <TableColumn fx:id="deliveredCol" prefWidth="175.33331298828125" text="Production Delivered" />
+            <TableColumn fx:id="rateCol" prefWidth="140.0" text="Rate" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Amit_ProductionManager.AddNewMachineFXMLController">
+   <children>
+      <Label layoutX="45.0" layoutY="28.0" text="Name:" />
+      <Label layoutX="45.0" layoutY="59.0" text="Model No." />
+      <Label layoutX="45.0" layoutY="92.0" text="Cost:" />
+      <TextField fx:id="nametextfield" layoutX="116.0" layoutY="24.0" />
+      <TextField fx:id="modelidtextfield" layoutX="116.0" layoutY="55.0" />
+      <TextField fx:id="costtextfield" layoutX="116.0" layoutY="88.0" />
+      <Button layoutX="382.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#addmachinebuttonOnClick" text="Add Machine" />
+      <TableView fx:id="tableView" layoutX="22.0" layoutY="158.0" prefHeight="200.0" prefWidth="555.0">
+        <columns>
+          <TableColumn fx:id="nameCol" prefWidth="199.33331298828125" text="Name" />
+          <TableColumn fx:id="modelIDCol" prefWidth="206.00003051757812" text="Model ID" />
+            <TableColumn fx:id="CostCol" prefWidth="149.33331298828125" text="Cost" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
