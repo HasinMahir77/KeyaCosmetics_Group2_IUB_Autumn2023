@@ -41,7 +41,6 @@ public abstract class User implements Serializable {
         this.balance = 0;
         this.doj = java.time.LocalDate.now();
         this.dob = this.doj;
-        this.nid = "";
 
     }
     
