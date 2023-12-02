@@ -11,53 +11,55 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BorhanIslam.RecordsFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Borhan_Islam.RecordsFXMLController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="960.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Go To ⬇">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#switchToAccDashboard" text="Dashboard" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <Label layoutX="442.0" layoutY="37.0" text="RECORDS">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <Button layoutX="35.0" layoutY="95.0" mnemonicParsing="false" onAction="#showRecordsOnButtonClicked" text="Show Records" />
-      <Button layoutX="143.0" layoutY="95.0" mnemonicParsing="false" onAction="#editOnButtonClicked" text="Edit " />
-      <Button layoutX="898.0" layoutY="131.0" mnemonicParsing="false" onAction="#filterOnButtonClicked" text="Filter" />
-      <TableView fx:id="recordsTableView" layoutX="14.0" layoutY="156.0" prefHeight="374.0" prefWidth="927.0">
+      <TableView fx:id="recordsTableView" layoutX="17.0" layoutY="166.0" prefHeight="374.0" prefWidth="927.0">
         <columns>
-          <TableColumn prefWidth="49.0" text="SL" />
-          <TableColumn prefWidth="107.0" text="Order no." />
-            <TableColumn prefWidth="106.0" text="Date" />
-            <TableColumn prefWidth="128.0" text="Time" />
-            <TableColumn prefWidth="173.0" text="Status of Payment" />
-            <TableColumn prefWidth="145.0" text="Refund" />
-            <TableColumn prefWidth="218.0" text="Total Amount" />
+          <TableColumn fx:id="nameTable" prefWidth="124.0" text="Name" />
+          <TableColumn fx:id="statusTable" prefWidth="151.0" text="Status " />
+            <TableColumn fx:id="priceTable" prefWidth="164.0" text="Price" />
+            <TableColumn fx:id="timeTable" prefWidth="151.0" text="Time" />
+            <TableColumn fx:id="dateTable" prefWidth="134.0" text="Date" />
+            <TableColumn fx:id="idTable" prefWidth="202.0" text="ID" />
+            <TableColumn minWidth="0.0" prefWidth="0.0" />
         </columns>
       </TableView>
       <TextField fx:id="searchTextfield" alignment="CENTER" layoutX="746.0" layoutY="95.0" onAction="#searchTextfieldOnEnterPressed" prefHeight="25.0" prefWidth="195.0" promptText="Search" />
-      <ImageView fitHeight="47.0" fitWidth="200.0" layoutX="443.0" layoutY="63.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="53.0" fitWidth="87.0" layoutX="438.0" layoutY="70.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/keyaLogo.png" />
+            <Image url="@../images/keyaLogoClear.png" />
          </image>
       </ImageView>
+      <Button fx:id="showRecordsFXID" disable="true" layoutX="14.0" layoutY="96.0" mnemonicParsing="false" onAction="#showRecordsOnButtonClicked" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" text="Show Records">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="430.0" layoutY="34.0" text="Records">
+         <font>
+            <Font name="Arial Bold" size="25.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.5666666666666667">
+               <stops>
+                  <Stop color="#304035" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
    </children>
 </AnchorPane>
