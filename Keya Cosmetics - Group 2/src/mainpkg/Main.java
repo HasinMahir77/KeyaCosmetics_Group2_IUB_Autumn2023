@@ -50,7 +50,7 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         // TODO
-        
+        /*
         ArrayList<File> userFiles = new ArrayList<File>();
         
         userFiles.add(new File("CustomerList.bin"));
@@ -160,7 +160,7 @@ public class Main extends Application {
             
             
             }//For loop's scope ends
-            
+            */
         
         //------------------------------------------------------
         launch(args);
