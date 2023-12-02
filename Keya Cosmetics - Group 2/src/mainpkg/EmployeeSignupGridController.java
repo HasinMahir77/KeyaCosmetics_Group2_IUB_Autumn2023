@@ -179,8 +179,17 @@ public class EmployeeSignupGridController implements Initializable {
         
         else if(employeeComboBox.getValue().equals("Accountant")) {
                 //TO DO
-            try(FileOutputStream fos = new FileOutputStream(employeeFile,true);
-                        ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
+            try{
+                FileOutputStream fos;
+                ObjectOutputStream oos;
+                if (employeeFile.exists()){
+                        fos = new FileOutputStream(employeeFile,true);
+                        oos = new ObjectOutputStreamA(fos);
+                }
+                else {
+                        fos = new FileOutputStream(employeeFile);
+                        oos = new ObjectOutputStream(fos);
+                }
                     Accountant newAccountant = new Accountant(firstNameTextField.getText(),lastNameTextField.getText(),
                 usernameTextField.getText(), passwordTextField.getText());
                     newAccountant.setDob(dobDatePicker.getValue());
@@ -192,8 +201,17 @@ public class EmployeeSignupGridController implements Initializable {
         }
         else if(employeeComboBox.getValue().equals("Affiliate Marketer")) {
                 //TO DO
-            try(FileOutputStream fos = new FileOutputStream(employeeFile,true);
-                        ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
+            try{
+                FileOutputStream fos;
+                ObjectOutputStream oos;
+                if (employeeFile.exists()){
+                        fos = new FileOutputStream(employeeFile,true);
+                        oos = new ObjectOutputStreamA(fos);
+                }
+                else {
+                        fos = new FileOutputStream(employeeFile);
+                        oos = new ObjectOutputStream(fos);
+                }
                     Accountant newAM = new Accountant(firstNameTextField.getText(),lastNameTextField.getText(),
                 usernameTextField.getText(), passwordTextField.getText());
                     newAM.setDob(dobDatePicker.getValue());
@@ -243,8 +261,17 @@ public class EmployeeSignupGridController implements Initializable {
         else if (employeeComboBox.getValue().equals("HR")) {
             
           //Since HR is the default
-            try(FileOutputStream fos = new FileOutputStream(employeeFile,true);
-                        ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
+            try{
+                FileOutputStream fos;
+                ObjectOutputStream oos;
+                if (employeeFile.exists()){
+                        fos = new FileOutputStream(employeeFile,true);
+                        oos = new ObjectOutputStreamA(fos);
+                }
+                else {
+                        fos = new FileOutputStream(employeeFile);
+                        oos = new ObjectOutputStream(fos);
+                }
                     Hr newHr = new Hr(firstNameTextField.getText(),lastNameTextField.getText(),
                 usernameTextField.getText(), passwordTextField.getText());
                     newHr.setDob(dobDatePicker.getValue());
