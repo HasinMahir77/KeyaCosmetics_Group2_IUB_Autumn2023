@@ -109,9 +109,38 @@ public class Review implements Serializable {
         }
         return false;
     }
-    public boolean takeReview(User product) throws IOException{
+    public boolean takeReview(User user) throws IOException{
         //Set the userdata to takereview scene
-        this.subject = product.getUsername();
+        this.subject = user.getUsername();
+        //Setting up the new stage and passing data
+        MainpkgSS ss = new MainpkgSS();
+        stage = new Stage();
+        stage.setUserData(this);
+        //Scene popping 
+        Parent root = FXMLLoader.load(getClass().getResource("TakeReview.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Review");
+        Main.getMainStage().getScene().getRoot().setDisable(true);
+        stage.showAndWait();
+        
+        //Popup closed
+        Review review = (Review) stage.getUserData();
+        if (review.getRating()==-1){//Taking review failed
+            Main.getMainStage().getScene().getRoot().setDisable(false);
+            return false;
+        }
+        else{
+            this.setRating(review.getRating());
+            this.setReview(review.getReview());
+            Main.getMainStage().getScene().getRoot().setDisable(false);
+            return true;
+        }
+    }
+    public boolean takeReview(Product product) throws IOException{
+        //Set the userdata to takereview scene
+        this.setSubject(product.getName());
+
         //Setting up the new stage and passing data
         MainpkgSS ss = new MainpkgSS();
         stage = new Stage();

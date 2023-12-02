@@ -1,6 +1,9 @@
 
 package Amit_AffiliateMarketer;
 
+import HasinMahir.Product;
+import HasinMahir.Product.Category;
+import HasinMahir.Review;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -10,14 +13,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import mainpkg.Main;
+
 
 public class AffiliateMarketerHomepageFXMLController implements Initializable {
 
     @FXML
     private BorderPane borderPane;
-
+AffiliateMarketer am;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        am = (AffiliateMarketer)Main.getUserData();
+        
     }    
 
     @FXML
@@ -27,11 +35,6 @@ public class AffiliateMarketerHomepageFXMLController implements Initializable {
 
     @FXML
     private void reviewProductOnClick(ActionEvent event) throws IOException {
-<<<<<<< HEAD
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReviewProductsFXML.fxml"));
-        Parent root = loader.load();
-        borderPane.setCenter(root);
-=======
         Review r = new Review();
         r.setSender(this.am.getUsername());
         Product p = new Product("Soap",20,Category.BODY_SOAP,5);
@@ -42,7 +45,6 @@ public class AffiliateMarketerHomepageFXMLController implements Initializable {
        
         
         
->>>>>>> origin/AmitRoy
     }
 
     @FXML
