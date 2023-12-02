@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="NadimHR_Receptionist.AttendanceLeaveManagementController">
+   <children>
+      <ComboBox fx:id="positionComboBox" layoutX="382.0" layoutY="80.0" opacity="0.7" prefHeight="31.0" prefWidth="162.0" promptText="select a position" />
+      <ComboBox fx:id="NameComboBox" layoutX="382.0" layoutY="125.0" opacity="0.7" prefHeight="31.0" prefWidth="162.0" />
+      <TextField fx:id="timeTextField" layoutX="383.0" layoutY="173.0" opacity="0.7" prefHeight="31.0" prefWidth="162.0" />
+      <DatePicker fx:id="DatePicker" layoutX="423.0" layoutY="231.0" opacity="0.7" prefHeight="31.0" prefWidth="162.0" />
+      <Label layoutX="537.0" layoutY="171.0" style="-fx-background-color: purple;" textFill="RED">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <ListView fx:id="listView" layoutX="10.0" layoutY="65.0" prefHeight="159.0" prefWidth="633.0" />
+      <Button layoutX="345.0" layoutY="271.0" mnemonicParsing="false" onAction="#loadAttendanceRecordOnClick" prefHeight="31.0" prefWidth="299.0" text="Load Attendance Records" textFill="#2926ff">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <DatePicker fx:id="selectdatepicker" layoutX="95.0" layoutY="272.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </DatePicker>
+      <TableView fx:id="tableView" layoutX="7.0" layoutY="306.0" prefHeight="212.0" prefWidth="640.0">
+         <columns>
+            <TableColumn fx:id="nameCol" prefWidth="235.0" text="Name" />
+            <TableColumn fx:id="posititonCol" prefWidth="202.0" text="Position" />
+            <TableColumn fx:id="TimeCol" prefWidth="212.0" text="Time" />
+         </columns>
+      </TableView>
+      <Label layoutX="9.0" layoutY="29.0" text="Employee overtime data:" textFill="#222dff">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="235.0" text="Employee Regular Attendence: " textFill="#0009ff">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="11.0" layoutY="277.0" text="Select Date:" textFill="#111cff" />
+      <Label layoutX="380.0" layoutY="223.0" prefHeight="47.0" prefWidth="35.0" text="Date:" textFill="#322f2f">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

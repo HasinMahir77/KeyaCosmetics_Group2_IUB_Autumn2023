@@ -132,12 +132,4 @@ public class Receptionist extends User implements Serializable {
         
         return list;
     }
-            //add
-           //dutyhours
-                   public static boolean addO_DutyHour(Overtime information, String fileName) {
-           List<Object> newOvertimeDutyHours = readObjectsFromFile(fileName);
-           newOvertimeDutyHours.add(information);
-           return writeObjectsToFile(newOvertimeDutyHours, fileName);
-       } 
-                   
 }

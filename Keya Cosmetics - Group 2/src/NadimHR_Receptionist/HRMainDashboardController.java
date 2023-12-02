@@ -46,6 +46,7 @@ public class HRMainDashboardController implements Initializable {
         borderpane.setCenter(root);
     }
 
+    @FXML
     private void performancemanagementsandrewardsOnclick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Performance managements and rewards.fxml"));
         borderpane.setCenter(root);
@@ -70,7 +71,7 @@ public class HRMainDashboardController implements Initializable {
 
     @FXML
     private void attendenceleavemanagementOnclick(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Employee overtime data.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AttendanceLeave management.fxml"));
         borderpane.setCenter(root);
     }
 
@@ -93,7 +94,7 @@ public class HRMainDashboardController implements Initializable {
     @FXML
     private void empFeedbackOnClick(ActionEvent event)throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("empFeedback.fxml"));
-        borderpane.setCenter(root);
+        Main.getMainStage().getScene().setRoot(root);
     }
 
     @FXML
@@ -102,9 +103,4 @@ public class HRMainDashboardController implements Initializable {
         logout.switchtoLoginScene();
 
     }
-
-    @FXML
-    private void DBAnalysisOnClcik(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("AddDeliveryBoy.fxml"));
-        borderpane.setCenter(root);}
 }

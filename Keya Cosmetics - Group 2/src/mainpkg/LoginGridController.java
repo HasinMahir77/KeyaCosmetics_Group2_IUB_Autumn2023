@@ -5,7 +5,6 @@
 package mainpkg;
 
 import Amit_AffiliateMarketer.AmitSS;
-import Amit_ProductionManager.ProductionManager;
 import Borhan_Islam.Accountant;
 import Borhan_Islam.BorhanSS;
 import Borhan_Islam.ProductManager;
@@ -66,7 +65,7 @@ public class LoginGridController implements Initializable {
         userComboBox.setValue("Delivery Man");
         // Insert users here
         userComboBox.getItems().addAll("Customer","Delivery Man","Affiliate Marketer",
-                "Product Manager","Production Manager","HR","Receptionist","Accountant");
+                "Product Manager","HR","Receptionist","Accountant");
         
         
         //DEFAULT: CUSTOMER
@@ -170,38 +169,6 @@ public class LoginGridController implements Initializable {
                         BorhanSS ss = new BorhanSS();
 
                         ss.switchScene("AccountantDashboardFXML.fxml", "Keya: Dashboard");
-                    }
-                } // Loop's scope ends
-            }
-            
-            catch(EOFException e){
-                System.out.println(e.toString()+" at "+ userComboBox.getValue());
-                
-            }
-            catch(Exception e){
-                e.printStackTrace(System.out);
-                System.out.println(e.toString()+" at "+ userComboBox.getValue());
-                Alert a = new Alert(Alert.AlertType.ERROR,"Login failed. \nLook at the error in the console");
-                a.showAndWait();
-                
-            }
-          }
-        //---------------Product Manager
-        else if (userComboBox.getValue().equals("Production Manager")) {
-            try{
-                File userFile = new File("ProductionManagerList.bin");
-                FileInputStream fis = new FileInputStream(userFile);
-                ObjectInputStream oos = new ObjectInputStream(fis);
-                
-                while(true){
-                    ProductionManager user = (ProductionManager)oos.readObject();
-                    if (user.getUsername().equals(username) && user.getPassword().equals(password)){
-                        Main.getMainStage().setUserData(user);
-                        System.out.println("Username-password matched.");
-                        System.out.println("Userdata set for Production Manager");
-                        AmitSS ss = new AmitSS();
-                        Main.setUserData(user);
-                       ss.switchScene("ProductionManagerHomePageFXML.fxml");
                     }
                 } // Loop's scope ends
             }

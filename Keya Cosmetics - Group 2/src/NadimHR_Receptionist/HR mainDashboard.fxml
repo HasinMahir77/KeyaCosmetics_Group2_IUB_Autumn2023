@@ -15,18 +15,18 @@
         <menus>
           <Menu mnemonicParsing="false" text="Tasks">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#DBAnalysisOnClcik" text="DeliveryMan database" />
                   <MenuItem mnemonicParsing="false" onAction="#requirmentandselectionOnclick" text="Recruiment and selection" />
+              <MenuItem mnemonicParsing="false" onAction="#performancemanagementsandrewardsOnclick" text="Performance managements and rewards" />
                   <MenuItem mnemonicParsing="false" onAction="#expenceandreimbursementOnclick" text="Expense and Reimbursement" />
                   <MenuItem mnemonicParsing="false" onAction="#updateworkplacepoliciesOnclick" text="Update workplace policies" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="View">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#employeeDetailsChartsOnClick" text="Employee details charts" />
+                  <MenuItem mnemonicParsing="false" onAction="#employeeDetailsChartsOnClick" text="Employee details " />
                   <MenuItem mnemonicParsing="false" onAction="#AnalyzedapplicantsOnclick" text="Analyze Applicants" />
               <MenuItem mnemonicParsing="false" onAction="#empFeedbackOnClick" text="Feedback from employees" />
-                  <MenuItem mnemonicParsing="false" onAction="#attendenceleavemanagementOnclick" text="Attendance analysis" />
+                  <MenuItem mnemonicParsing="false" onAction="#attendenceleavemanagementOnclick" text="Attendance/Leave management" />
                   <MenuItem mnemonicParsing="false" onAction="#auditfinancialmanagementsOnclick" text="Audited Financial Managements" />
             </items>
           </Menu>

@@ -2,43 +2,80 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="512.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NadimHR_Receptionist.EmployeeOvertimeDataController">
    <children>
-      <ListView fx:id="listView" layoutX="335.0" layoutY="51.0" prefHeight="441.0" prefWidth="297.0" />
-      <Button layoutX="11.0" layoutY="35.0" mnemonicParsing="false" onAction="#loadAttendanceRecordOnClick" prefHeight="31.0" prefWidth="297.0" style="-fx-background-radius: 77; -fx-background-color: blue;" text="Load Attendance Records" textFill="WHITE">
-
+      <ComboBox fx:id="positionComboBox" layoutX="372.0" layoutY="70.0" opacity="0.7" prefHeight="31.0" prefWidth="162.0" promptText="select a position" />
+      <ComboBox fx:id="NameComboBox" layoutX="372.0" layoutY="115.0" opacity="0.7" prefHeight="31.0" prefWidth="162.0" />
+      <TextField fx:id="timeTextField" layoutX="373.0" layoutY="163.0" opacity="0.7" prefHeight="31.0" prefWidth="162.0" />
+      <DatePicker fx:id="DatePicker" layoutX="413.0" layoutY="221.0" opacity="0.7" prefHeight="31.0" prefWidth="162.0" />
+      <Label layoutX="527.0" layoutY="161.0" style="-fx-background-color: purple;" textFill="RED">
          <font>
-            <Font name="Franklin Gothic Medium Italic" size="15.0" />
+            <Font name="System Italic" size="12.0" />
          </font>
+      </Label>
+      <VBox layoutX="263.0" layoutY="65.0" prefHeight="192.0" prefWidth="73.0">
+         <children>
+            <Label prefHeight="41.0" prefWidth="54.0" text="Position" textFill="#463f3f">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label prefHeight="43.0" prefWidth="43.0" text="Name:" textFill="#2f2b2b">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label prefHeight="52.0" prefWidth="44.0" text="Hours:" textFill="#2c2929">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <ListView fx:id="listView" layoutX="23.0" layoutY="55.0" prefHeight="159.0" prefWidth="640.0" />
+      <Button layoutX="366.0" layoutY="262.0" mnemonicParsing="false" onAction="#loadAttendanceRecordOnClick" prefHeight="31.0" prefWidth="299.0" text="Load Attendance Records" textFill="#2926ff">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <DatePicker fx:id="datePicker" layoutX="102.0" layoutY="69.0" prefHeight="31.0" prefWidth="208.0" style="-fx-background-color: blue;">
-
+      <DatePicker fx:id="datePicker" layoutX="102.0" layoutY="262.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </DatePicker>
-      <TableView fx:id="tableView" layoutX="18.0" layoutY="138.0" prefHeight="358.0" prefWidth="297.0">
+      <TableView fx:id="tableView" layoutX="15.0" layoutY="296.0" prefHeight="212.0" prefWidth="650.0">
          <columns>
-            <TableColumn fx:id="nameCol" prefWidth="96.0" style="-fx-background-color: red;" text="Name" />
-            <TableColumn fx:id="postCol" prefWidth="115.0" text="Post" />
-            <TableColumn fx:id="TimeCol" prefWidth="85.0" text="Time" />
+            <TableColumn fx:id="nameCol" prefWidth="235.0" text="Name" />
+            <TableColumn fx:id="postCol" prefWidth="202.0" text="Post" />
+            <TableColumn fx:id="TimeCol" prefWidth="212.0" text="Time" />
          </columns>
       </TableView>
-      <Label layoutX="335.0" layoutY="24.0" text="Employee attendance data:" textFill="#222dff">
+      <Label layoutX="23.0" layoutY="19.0" text="Employee overtime data:" textFill="#222dff">
          <font>
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="107.0" text="Employee Attendence sorting : " textFill="#0009ff">
+      <Label layoutX="21.0" layoutY="225.0" text="Employee Regular Attendence: " textFill="#0009ff">
          <font>
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="74.0" text="Select Date:" textFill="#111cff" />
+      <Label layoutX="18.0" layoutY="267.0" text="Select Date:" textFill="#111cff" />
+      <Label layoutX="370.0" layoutY="213.0" prefHeight="47.0" prefWidth="35.0" text="Date:" textFill="#322f2f">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
