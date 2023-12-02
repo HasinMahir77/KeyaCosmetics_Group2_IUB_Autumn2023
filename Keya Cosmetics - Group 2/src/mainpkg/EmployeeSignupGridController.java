@@ -191,7 +191,7 @@ public class EmployeeSignupGridController implements Initializable {
                         oos = new ObjectOutputStream(fos);
                 }
                     Accountant newAccountant = new Accountant(firstNameTextField.getText(),lastNameTextField.getText(),
-                usernameTextField.getText(), passwordTextField.getText());
+                usernameTextField.getText(), passwordTextField.getText(),phoneTextField.getText());
                     newAccountant.setDob(dobDatePicker.getValue());
                     oos.writeObject(newAccountant);
                     
@@ -213,7 +213,7 @@ public class EmployeeSignupGridController implements Initializable {
                         oos = new ObjectOutputStream(fos);
                 }
                     Accountant newAM = new Accountant(firstNameTextField.getText(),lastNameTextField.getText(),
-                usernameTextField.getText(), passwordTextField.getText());
+                usernameTextField.getText(), passwordTextField.getText(),phoneTextField.getText());
                     newAM.setDob(dobDatePicker.getValue());
                     oos.writeObject(newAM);
                     
