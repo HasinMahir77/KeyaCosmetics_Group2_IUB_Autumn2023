@@ -73,8 +73,6 @@ public class CustomerAccountSceneController implements Initializable {
     private Button applyButton;
     @FXML
     private Button editProfileButton;
-    private PasswordField passwordTextField;
-    private Button changePasswordButton;
     @FXML
     private Label profileLabel;
     @FXML
@@ -135,7 +133,6 @@ public class CustomerAccountSceneController implements Initializable {
         phoneTextField.setDisable(false);
         applyButton.setDisable(false);
         editProfileButton.setDisable(true);
-        changePasswordButton.setDisable(true); 
     }
 
     @FXML
@@ -186,32 +183,9 @@ public class CustomerAccountSceneController implements Initializable {
         applyButton.setDisable(true);
         //Enabling the buttons again
         editProfileButton.setDisable(false);
-        changePasswordButton.setDisable(false);
         current.saveInstance(); //Saving instance
         }
-        else{ //Change password button has been pressed
-            //Validating the password
-        if (passwordTextField.getText().length()<8){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter a password that is at least 8 "
-                    + "characters long.");
-            alert.show();
-            return;
-        }
-        current.setPassword(passwordTextField.getText());
-        current.saveInstance();
-        //Enabling the buttons again
-        editProfileButton.setDisable(false);
-        changePasswordButton.setDisable(false);
-        applyButton.setDisable(true);
-        //Disabling the password field again
-        passwordTextField.setDisable(true);
-        }
-    }
-
-    private void changePasswordButtonOnClick(ActionEvent event) {
-        applyButton.setDisable(false);
-        changePasswordButton.setDisable(true);
-        passwordTextField.setDisable(false);
+        
     }
 
     @FXML

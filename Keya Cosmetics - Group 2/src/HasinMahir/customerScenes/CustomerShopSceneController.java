@@ -130,6 +130,11 @@ public class CustomerShopSceneController implements Initializable {
         }
         //Inserting Products into TableView
         productTableView.setItems(productArray);
+        if (new File("CustomerList.bin").exists()){
+            for (Customer dm: Customer.getCustomerList()){
+                System.out.println(dm);
+            }
+        }
     }   
 
     @FXML

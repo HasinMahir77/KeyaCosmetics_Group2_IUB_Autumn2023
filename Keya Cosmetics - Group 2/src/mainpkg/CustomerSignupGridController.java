@@ -130,10 +130,11 @@ public class CustomerSignupGridController implements Initializable {
                 this.addressTextArea.getText(),this.phoneTextField.getText());
         customer.setDoj(LocalDate.now());
         
-        if (customerFile.exists()){
+        if (customerFile.exists()){ //User(s) exist
             try(FileOutputStream fos = new FileOutputStream(customerFile,true);
                 ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
             oos.writeObject(customer);
+            System.out.println("User written");
         }
             catch(Exception e){System.out.println(e.toString()+" at signup");}
         }
@@ -141,6 +142,7 @@ public class CustomerSignupGridController implements Initializable {
             try(FileOutputStream fos = new FileOutputStream(customerFile);
                 ObjectOutputStream oos = new ObjectOutputStream(fos)){
             oos.writeObject(customer);
+                System.out.println("User written");
             }
             catch(Exception e){System.out.println(e.toString()+" at signup");}
         }

@@ -214,8 +214,8 @@ public class Order implements Serializable,Reviewable {
                 customerList.add(order);
             }
         } catch(Exception e) {
-            System.out.println("From customer.getCustomerList() : "+e.toString());
-            System.out.println("ArrayList of customers made");
+            System.out.println("From order.getorderList() : "+e.toString());
+            System.out.println("ArrayList of orders made");
         } 
         // Arraylist of Orders made.
         return customerList;

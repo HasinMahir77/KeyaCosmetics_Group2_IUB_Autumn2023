@@ -143,7 +143,7 @@ public abstract class User implements Serializable {
     }
     
     public String toString(){
-        return this.getFullName();
+        return "Name: "+this.getFullName()+", Username: "+this.username;
     }
     
     

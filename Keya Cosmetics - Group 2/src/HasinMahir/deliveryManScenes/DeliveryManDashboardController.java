@@ -7,6 +7,7 @@ package HasinMahir.deliveryManScenes;
 import HasinMahir.DeliveryMan;
 import HasinMahir.Order;
 import HasinMahir.Order.Status;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -93,6 +94,7 @@ public class DeliveryManDashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
         current = (DeliveryMan)Main.getUserData(); //Initialized user 
         this.selectedOrder=null;
         
@@ -113,7 +115,11 @@ public class DeliveryManDashboardController implements Initializable {
         orderList = FXCollections.observableArrayList();
         orderTableView.setItems(orderList);
         this.updateOrderTable();
-         
+        if (new File("DeliveryManList.bin").exists()){
+            for (DeliveryMan dm: DeliveryMan.getDeliveryManList()){
+                System.out.println(dm);
+            }
+        }
     }    
 
 

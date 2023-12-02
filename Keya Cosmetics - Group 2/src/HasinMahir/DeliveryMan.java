@@ -6,6 +6,7 @@ package HasinMahir;
 
 import HasinMahir.DeliveryPayment.Type;
 import HasinMahir.Order.Status;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -37,72 +38,58 @@ public class DeliveryMan extends User {
         this.paymentWithdrawList =  new ArrayList<DeliveryPayment>();
     }
     
-    
-    
     public void saveInstance(){
-        File oldCustomerList = new File("DeliveryManList.bin");
-        DeliveryMan deliveryMan;
-        ArrayList<DeliveryMan> bufferList = new ArrayList<DeliveryMan>();
-        //Collecting all the other users of same type except current user
-        try(FileInputStream fis = new FileInputStream(oldCustomerList);
-                ObjectInputStream ois = new ObjectInputStream(fis);) {
-            
-            while(true){
-                deliveryMan = (DeliveryMan)ois.readObject();
-                if (!(deliveryMan.getUsername().equals(this.getUsername()))) {
-                    bufferList.add(deliveryMan);
-                }
+        DeliveryMan target = null;
+        System.out.println("DM Save instance called");
+        File userFile = new File("DeliveryManList.bin");
+        ArrayList<DeliveryMan> deliveryManList = DeliveryMan.getDeliveryManList();
+        //Removing current user
+        for(DeliveryMan c: deliveryManList){
+            if (c.getUsername().equals(this.getUsername())){
+                target = c;
             }
-        } catch(Exception e) {
-            System.out.println("From DeliveryMan.saveInstance() : "+e.toString());
-            System.out.println("ArrayList of delivery men made");
-        } 
-        // Arraylist of Customers made.
-        
-        //Rewriting the bin file with the updated customer object.
-       
+        }
+        deliveryManList.remove(target);
+        //Clearing file
         try{
-            FileOutputStream temp = new FileOutputStream(oldCustomerList);
-            temp.close();
-        }catch(Exception e){
-            System.out.println(e);
-        }
+            new FileInputStream(userFile).close();
+        } catch(Exception e){System.out.println(e.toString()+"From DM.saveInstance()");}
         
-        try(FileOutputStream fos = new FileOutputStream(oldCustomerList);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);){
+        //Writing current user
+        try(FileOutputStream fos = new FileOutputStream(userFile);
+                ObjectOutputStream oos = new ObjectOutputStream(fos)){
             oos.writeObject(this);
-        } catch(Exception e){
-            System.out.println(e.toString());
-            System.out.println("Only current delivery man written. Other customers next");
         }
-        try(FileOutputStream fos = new FileOutputStream(oldCustomerList,true);
-        ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
-            for(DeliveryMan c: bufferList){
-                    oos.writeObject(c);
-                }
-        } catch(Exception e){
-            System.out.println(e.toString());
-        }   
+        catch(Exception e){System.out.println(e.toString()+" From DM saveinstance");}
+        //Writing other users
+        try(FileOutputStream fos = new FileOutputStream(userFile,true);
+                ObjectOutputStream oos = new ObjectOutputStreamA(fos)){
+            for (DeliveryMan dm: deliveryManList){
+                oos.writeObject(dm);
+            }
+        }
+        catch(Exception e){System.out.println(e.toString()+" From DM saveinstance");}
     }
     
     public static ArrayList<DeliveryMan> getDeliveryManList(){
-        File oldCustomerList = new File("DeliveryManList.bin");
-        DeliveryMan deliveryMan;
-        ArrayList<DeliveryMan> customerList = new ArrayList<DeliveryMan>();
-        //Collecting all the other users of same type
-        try(FileInputStream fis = new FileInputStream(oldCustomerList);
-                ObjectInputStream ois = new ObjectInputStream(fis);) {
+        if (new File("DeliveryManList.bin").exists()){
             
+        ArrayList<DeliveryMan> deliveryManList = new ArrayList<DeliveryMan>();
+        //Reading file
+        try(FileInputStream fis = new FileInputStream("DeliveryManList.bin");
+                ObjectInputStream ois = new ObjectInputStream(fis);){
             while(true){
-                deliveryMan = (DeliveryMan)ois.readObject();
-                customerList.add(deliveryMan);
-            }
-        } catch(Exception e) {
-            System.out.println("From customer.getCustomerList() : "+e.toString());
-            System.out.println("ArrayList of customers made");
-        } 
-        // Arraylist of Customers made.
-        return customerList;
+                deliveryManList.add((DeliveryMan)ois.readObject());}
+        }
+        catch(EOFException e){System.out.println("DeliveryList.bin file reading complete");}
+        catch(Exception e){e.printStackTrace(System.out);}
+        // Arraylist of DM made.
+        return deliveryManList;
+        }
+        else {
+            System.out.println("DM file not found. getDMList() called.");
+            return null;
+        }
     }
     
     public void delete(){

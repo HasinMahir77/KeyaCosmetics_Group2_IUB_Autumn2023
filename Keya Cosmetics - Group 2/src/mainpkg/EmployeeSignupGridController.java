@@ -5,6 +5,7 @@
 package mainpkg;
 
 import Borhan_Islam.Accountant;
+import HasinMahir.Customer;
 import HasinMahir.DeliveryMan;
 import HasinMahir.User;
 import NadimHR_Receptionist.Hr;
@@ -149,9 +150,8 @@ public class EmployeeSignupGridController implements Initializable {
             employeeFile = new File("HRList.bin"); //Since it's the default
         }
         //Checking for duplicate
-        try{
-            FileInputStream fis = new FileInputStream(employeeFile);
-            ObjectInputStream oos = new ObjectInputStream(fis);
+        try(FileInputStream fis = new FileInputStream(employeeFile);
+            ObjectInputStream oos = new ObjectInputStream(fis);){
             while(true){
                 User employee = (User)oos.readObject();
                 if (employee.getUsername().equals(usernameTextField.getText())) {
@@ -203,19 +203,38 @@ public class EmployeeSignupGridController implements Initializable {
                 catch(Exception e){
                     e.printStackTrace(System.out);}            
         }
+        //DeliveryMan
         else if(employeeComboBox.getValue().equals("Delivery Man")) {
                 //TO DO
+            DeliveryMan dm = new DeliveryMan(this.firstNameTextField.getText(),this.lastNameTextField.getText(),
+                this.usernameTextField.getText(),this.passwordTextField.getText(),
+                this.phoneTextField.getText());
+        dm.setDoj(LocalDate.now());
+        dm.setDob(dobDatePicker.getValue());
+        
+        if (employeeFile.exists()){ //User(s) exist
             try(FileOutputStream fos = new FileOutputStream(employeeFile,true);
-                        ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
-                    DeliveryMan newDM = new DeliveryMan(firstNameTextField.getText(),lastNameTextField.getText(),
-                usernameTextField.getText(), passwordTextField.getText(),phoneTextField.getText());
-                    newDM.setDob(dobDatePicker.getValue());
-                    oos.writeObject(newDM);
-                    
-                }
-                catch(Exception e){
-                    e.printStackTrace(System.out);}            
+                ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
+                oos.writeObject(dm);
+                System.out.println("User written");
+            }
+            catch(Exception e){System.out.println(e.toString()+" at signup");}
         }
+        else{ //No file. First data
+            try(FileOutputStream fos = new FileOutputStream(employeeFile);
+                ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                    oos.writeObject(dm);
+                    System.out.println("User written");
+            }
+            catch(Exception e){System.out.println(e.toString()+" at signup");}
+        }
+        if (new File("DeliveryManList.bin").exists()){
+            for (DeliveryMan d: DeliveryMan.getDeliveryManList()){
+                System.out.println(d);
+            }
+        }
+        }//End 
+        
         else if(employeeComboBox.getValue().equals("Receptionist")) {
                 //TO DO
             }

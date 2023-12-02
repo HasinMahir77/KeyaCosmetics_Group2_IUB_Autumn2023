@@ -70,6 +70,11 @@ public class LoginGridController implements Initializable {
         //DEFAULT: CUSTOMER
        usernameTextField.setText("DeliveryMan");
        passwordTextField.setText("DeliveryMan");
+       if (new File("CustomerList.bin").exists()){
+            for (Customer dm: Customer.getCustomerList()){
+                System.out.println(dm);
+            }
+        }
     }    
 
     @FXML
@@ -111,9 +116,6 @@ public class LoginGridController implements Initializable {
                         ss.switchScene("CustomerShopScene.fxml", "Keya: Shop");
                     }
                 } // Loop's scope ends
-            }
-            catch(EOFException e){
-                System.out.println(e.toString()+" at "+ userComboBox.getValue());
             }
             catch(Exception e){
                 e.printStackTrace(System.out);
@@ -211,24 +213,16 @@ public class LoginGridController implements Initializable {
                 
             }
           }
+        //Delivery Man
         else if (userComboBox.getValue().equals("Delivery Man")) {
             try{
-                File userFile = new File("DeliveryManList.bin");
-                System.out.println(userFile.getName()+".bin "+" opened");
-                FileInputStream fis = new FileInputStream(userFile);
-                ObjectInputStream oos = new ObjectInputStream(fis);
-                
-                while(true){
-                    DeliveryMan user = (DeliveryMan)oos.readObject();
-                    if (user.getUsername().equals(username) && user.getPassword().equals(password)){
-                        Main.getMainStage().setUserData(user);
-                        DMSS dmss = new DMSS();
-                        dmss.switchToDashboard();
+                for(DeliveryMan c: DeliveryMan.getDeliveryManList()){
+                    if (c.getUsername().equals(username) && c.getPassword().equals(password)){
+                        Main.getMainStage().setUserData(c);
+                        DMSS ss = new DMSS();
+                        ss.switchToDashboard();
                     }
                 } // Loop's scope ends
-            }
-            catch(EOFException e){
-                System.out.println(e.toString()+" at "+ userComboBox.getValue());
             }
             catch(Exception e){
                 e.printStackTrace(System.out);
@@ -237,6 +231,7 @@ public class LoginGridController implements Initializable {
                 a.showAndWait();
             }
           }
+        //Receptionist
         else if (userComboBox.getValue().equals("Receptionist")) {
             try{
                 File userFile = new File("ReceptionistList.bin");

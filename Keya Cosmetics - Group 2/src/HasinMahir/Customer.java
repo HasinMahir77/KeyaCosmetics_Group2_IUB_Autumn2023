@@ -77,15 +77,17 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
     
         
     public void saveInstance(){
+        Customer target = null;
         System.out.println("Save instance called");
         File userFile = new File("CustomerList.bin");
         ArrayList<Customer> customerList = Customer.getCustomerList();
         //Removing current user
         for(Customer c: customerList){
             if (c.getUsername().equals(this.getUsername())){
-                customerList.remove(c);
+                target = c;
             }
         }
+        customerList.remove(target);
         //Clearing file
         try{
             new FileInputStream(userFile).close();
@@ -100,7 +102,9 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
         //Writing other users
         try(FileOutputStream fos = new FileOutputStream(userFile,true);
                 ObjectOutputStream oos = new ObjectOutputStreamA(fos)){
-            oos.writeObject(this);
+            for (Customer c: customerList){
+                oos.writeObject(c);
+            }
         }
         catch(Exception e){System.out.println(e.toString()+" From customer saveinstancs");}
     }
