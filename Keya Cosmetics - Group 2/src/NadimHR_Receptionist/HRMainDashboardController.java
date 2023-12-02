@@ -95,6 +95,12 @@ public class HRMainDashboardController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("empFeedback.fxml"));
         Main.getMainStage().getScene().setRoot(root);
     }
-   
+
+    @FXML
+    private void logoutOnClick(ActionEvent event)throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("LoginGrid.fxml"));
+        Main.getMainStage().getScene().setRoot(root);
+    }
+
 
 }

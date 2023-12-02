@@ -17,7 +17,7 @@
                   <Font name="Courier New Bold" size="30.0" />
                </font>
             </Label>
-            <Label layoutX="71.0" layoutY="99.0" prefHeight="32.0" prefWidth="459.0" text="Welcome to receptionist dashboard! " textFill="#fff712">
+            <Label layoutX="64.0" layoutY="184.0" prefHeight="32.0" prefWidth="459.0" text="Welcome to receptionist dashboard! " textFill="#fff712">
                <font>
                   <Font name="Eras Demi ITC" size="26.0" />
                </font>

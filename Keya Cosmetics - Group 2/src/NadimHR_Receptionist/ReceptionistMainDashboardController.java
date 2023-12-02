@@ -59,7 +59,7 @@ public class ReceptionistMainDashboardController implements Initializable {
 
     @FXML
     private void vieewWorkPolOnClick(ActionEvent event) throws IOException {
-         Parent root = FXMLLoader.load(getClass().getResource("WorkPlacePolicies.fxml"));
+         Parent root = FXMLLoader.load(getClass().getResource("TasksassignedByHR.fxml"));
          borderpane.setCenter(root);
     }
     @FXML
