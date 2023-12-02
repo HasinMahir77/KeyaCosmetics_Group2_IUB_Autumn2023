@@ -83,16 +83,24 @@ public class PayrollFXMLController implements Initializable {
 
     @FXML
     private void calculateButton(ActionEvent event) {
+        String bonus = bonusText.getText();  
+        String deductions = deductionsText.getText();     
+        if (bonus.isEmpty()){
+            bonusText.setText("0.0");
+        }        
+        if (deductions.isEmpty()) {
+            deductionsText.setText("0.0");
+        } 
+        
         if (!validateInputFields()) {
                     return;
-                }                
+                }                               
+                             
         try {
             float basicSalary = Float.parseFloat(basicSalaryText.getText());
-            float bonus = Float.parseFloat(bonusText.getText());
-            float deductions = Float.parseFloat(deductionsText.getText());
-
-            float calculated = basicSalary + bonus - deductions;
-            calculationLabel.setText(Float.toString(calculated));
+//            float 
+//           float calculated = basicSalary + bonus - deductions;
+//            calculationLabel.setText("BDT "+Float.toString(calculated));
 
             saveRecordsFXID.setDisable(false);
             calculateFXID.setDisable(true);
@@ -102,7 +110,7 @@ public class PayrollFXMLController implements Initializable {
     }
 
     @FXML
-    private void saveRecordsButton(ActionEvent event) {                       
+    private void saveRecordsButton(ActionEvent event) {   
         String name = employeeText.getText();
         String desig =  desigCombo.getValue();
         Float salary= Float.valueOf(basicSalaryText.getText());
@@ -111,21 +119,16 @@ public class PayrollFXMLController implements Initializable {
         Float deductions=Float.valueOf(deductionsText.getText());
         LocalDate paymentdate= paymentDatePicker.getValue();
         Float netsalary = Float.valueOf(calculationLabel.getText());
-                    
-        if (name == null || desig == null || salary == null || bonus == null || bonustype == null
-                || deductions == null || paymentdate == null || netsalary == null) {
+
+        if (bonustype == null) {
+            bonusTypeCombo.setValue("N/A");
+        }
+
+        if (name == null || desig == null || salary == null || paymentdate == null) {
             showErrorAlert("Please fill in all the required fields.");
             return;
         }
         Payroll payroll = new Payroll();
-//        payroll.setName(name);
-//        payroll.setDesig(desig);
-//        payroll.setSalary(salary);
-//        payroll.setBonus(bonus);
-//        payroll.setBonustype(bonustype);
-//        payroll.setDeductions(deductions);
-//        payroll.setPaymentdate(paymentdate);
-//        payroll.setNetsalary(netsalary);
             if (showConfirmationAlert("Are you sure you want to add this record?")) {
 
                 Payroll.savePayrollRecord(name, desig, salary, bonus, bonustype, deductions, paymentdate, netsalary);
@@ -135,8 +138,7 @@ public class PayrollFXMLController implements Initializable {
                 calculateFXID.setDisable(false);   
                 showSuccessAlert("Record added successfully.");
             }         
-
-
+        
     }    
 
     @FXML
@@ -172,16 +174,16 @@ public class PayrollFXMLController implements Initializable {
     }
     private boolean validateInputFields() {
         try {
-            int basicsalary = Integer.parseInt(basicSalaryText.getText());
-            int deduction = Integer.parseInt(deductionsText.getText());
-
-            if (basicsalary <= 20000 || basicsalary >= 500000) {
-                showErrorAlert("Basic salary must be between 20,000 and 5,00,000.");
+            Float basicsalary = Float.valueOf(basicSalaryText.getText());
+            Float deductions = Float.valueOf(deductionsText.getText());  
+            
+            if (basicsalary < 10000 || basicsalary > 350000) {
+                showErrorAlert("Basic salary must be between 10,000 BDT and 3,50,000 BDT!");
                 return false;
             }
 
-            if (deduction < 0 || deduction > 15000) {
-                showErrorAlert("Deductions must be between 0 and 15,000.");
+            if (deductions < 0 || deductions > 10000) {
+                showErrorAlert("Deductions must be between 0 and 10,000.");
                 return false;
             }
             
@@ -191,4 +193,5 @@ public class PayrollFXMLController implements Initializable {
             return false;
         }
     }
+  
 }
