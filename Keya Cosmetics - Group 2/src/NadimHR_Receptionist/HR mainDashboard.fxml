@@ -27,7 +27,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#AnalyzedapplicantsOnclick" text="Analyze Applicants" />
               <MenuItem mnemonicParsing="false" onAction="#empFeedbackOnClick" text="Feedback from employees" />
                   <MenuItem mnemonicParsing="false" onAction="#attendenceleavemanagementOnclick" text="Attendance analysis" />
-                  <MenuItem mnemonicParsing="false" onAction="#auditfinancialmanagementsOnclick" text="Audited Financial Managements" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Navigator">

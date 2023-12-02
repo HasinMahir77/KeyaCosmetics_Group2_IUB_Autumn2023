@@ -35,12 +35,12 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="BangladeshiRadioButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Bangladeshi" textFill="#366b40">
+            <RadioButton fx:id="BangladeshiRadioButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Dhaka" textFill="#366b40">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="NonBangladeshiRadioButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="Non Bangladeshi" textFill="#366b40">
+            <RadioButton fx:id="NonBangladeshiRadioButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="Non-Dhaka" textFill="#366b40">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -62,7 +62,7 @@
             <TableColumn fx:id="adressCol" prefWidth="94.0" text="Address" />
          </columns>
       </TableView>
-      <BarChart fx:id="barChart" layoutX="675.0" layoutY="1.0" prefHeight="243.0" prefWidth="200.0" style="-fx-background-color: yellow;">
+      <BarChart fx:id="barChart" layoutX="676.0" layoutY="7.0" prefHeight="228.0" prefWidth="200.0">
          <xAxis>
             <CategoryAxis side="BOTTOM" />
          </xAxis>
@@ -70,9 +70,9 @@
             <NumberAxis side="LEFT" />
          </yAxis>
       </BarChart>
-      <ComboBox fx:id="countryComboBox" layoutX="237.0" layoutY="167.0" prefHeight="25.0" prefWidth="208.0" promptText="country" style="-fx-background-color: aqua;" />
-      <PieChart fx:id="pieChart" layoutX="449.0" layoutY="4.0" prefHeight="237.0" prefWidth="223.0" style="-fx-background-color: yellow;" title="DeliveryBoy ratio " />
-      <Button layoutX="237.0" layoutY="201.0" mnemonicParsing="false" onAction="#AddToTableView" prefHeight="38.0" prefWidth="208.0" style="-fx-background-radius: 88;" text="Add to table view" textFill="#47a436">
+      <ComboBox fx:id="countryComboBox" layoutX="237.0" layoutY="167.0" prefHeight="25.0" prefWidth="208.0" promptText="Home Town" style="-fx-background-color: aqua;" />
+      <PieChart fx:id="pieChart" layoutX="449.0" layoutY="4.0" prefHeight="228.0" prefWidth="223.0" title="DeliveryBoy ratio " />
+      <Button layoutX="317.0" layoutY="201.0" mnemonicParsing="false" onAction="#AddToTableView" prefHeight="38.0" prefWidth="128.0" style="-fx-background-radius: 88;" text="Save instance" textFill="#47a436">
          <font>
             <Font name="Sitka Small Bold" size="17.0" />
          </font>
@@ -102,10 +102,11 @@
             </Button>
          </children>
       </VBox>
-      <Label layoutX="21.0" layoutY="14.0" prefHeight="51.0" prefWidth="343.0" text="Delivery boy recruitment and database" underline="true">
+      <Label layoutY="14.0" prefHeight="51.0" prefWidth="450.0" text="Delivery boy recruitment and database" underline="true">
          <font>
-            <Font name="System Bold" size="16.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
+      <Label layoutX="14.0" layoutY="210.0" prefHeight="21.0" prefWidth="296.0" text="Sort tableview using addBy and nationality" />
    </children>
 </AnchorPane>

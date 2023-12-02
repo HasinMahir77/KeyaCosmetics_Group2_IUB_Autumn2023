@@ -74,7 +74,6 @@ public class HRMainDashboardController implements Initializable {
         borderpane.setCenter(root);
     }
 
-    @FXML
     private void auditfinancialmanagementsOnclick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Audited Financial Managements.fxml"));
         borderpane.setCenter(root);

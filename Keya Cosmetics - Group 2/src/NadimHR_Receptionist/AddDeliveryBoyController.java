@@ -90,7 +90,7 @@ public class AddDeliveryBoyController implements Initializable {
         dateOFEnCol.setCellValueFactory(new PropertyValueFactory<>("dateOfEnlishment"));
         adressCol.setCellValueFactory(new PropertyValueFactory<>("adress"));
 
-        countryComboBox.getItems().addAll("India", "Srilanka", "Bangladesh", "Nepal", "Pakistan", "Bhutan");
+        countryComboBox.getItems().addAll("Khulna", "Sylhet", "Dhaka", "Rajshahi", "Feni", "Chittagong");
         employeeComboBox.getItems().addAll("Nadim", "Naim", "Tawhid");
         BangladeshiRadioButton.setToggleGroup(nationalityToggleGroup);
         NonBangladeshiRadioButton.setToggleGroup(nationalityToggleGroup);
@@ -107,6 +107,18 @@ public class AddDeliveryBoyController implements Initializable {
 
     @FXML
     private void loaddAllDataFromBinFileOnClicks(ActionEvent event) {
+                List<DeliveryManDatabase> allDB = Hr.readDBFromFile("DeliveryManDatabase.bin");
+
+        if (allDB.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "No suppliers found in the bin file.");
+            return;
+        }
+
+        allDB.sort(Comparator.comparing(DeliveryManDatabase::getName));
+
+        ObservableList<DeliveryManDatabase> observableList = FXCollections.observableArrayList(allDB);
+        tableview.setItems(observableList);
+    
     }
 
     private boolean isDBIDNumberUnique(int DBid) {
@@ -188,7 +200,7 @@ public class AddDeliveryBoyController implements Initializable {
             return;
         }
 
-        String nationality = selectedRadioButton == BangladeshiRadioButton ? "Bangladesh"
+        String nationality = selectedRadioButton == BangladeshiRadioButton ? "Dhaka"
                 : selectedRadioButton == NonBangladeshiRadioButton ? "NonBangladeshi" : "All";
 
         List<DeliveryManDatabase> allDeliveryManDatabase = Hr.readDBFromFile("DeliveryManDatabase.bin");
@@ -197,7 +209,7 @@ public class AddDeliveryBoyController implements Initializable {
         for (DeliveryManDatabase DB : allDeliveryManDatabase) {
             boolean matchesEmployee = selectedEmployee.equals("All") || DB.getEmpId().equals(selectedEmployee);
             boolean matchesNationality = nationality.equals("All")
-                    || (nationality.equals("NonBangladeshi") && !DB.getNationality().equals("Bangladesh"))
+                    || (nationality.equals("NonBangladeshi") && !DB.getNationality().equals("Dhaka"))
                     || DB.getNationality().equals(nationality);
 
             if (matchesEmployee && matchesNationality) {
