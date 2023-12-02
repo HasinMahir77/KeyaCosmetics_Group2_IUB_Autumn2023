@@ -33,7 +33,70 @@ public class Hr extends User implements Serializable{
         this.del=false;
         this.policyFile = null;
     }
- 
+  //deliveryboyAdd
+    public static boolean writeObjectsToFile(List<Object> objects, String fileName) {
+        try (FileOutputStream fos = new FileOutputStream(fileName); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            for (Object obj : objects) {
+                oos.writeObject(obj);
+            }
+            return true;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public static List<Object> readObjectsFromFile(String fileName) {
+        List<Object> objects = new ArrayList<>();
+        try (FileInputStream fis = new FileInputStream(fileName); ObjectInputStream ois = new ObjectInputStream(fis)) {
+            while (true) {
+                try {
+                    Object obj = ois.readObject();
+                    if (obj != null) {
+                        objects.add(obj);
+                    } else {
+                        break; // End of file reached
+                    }
+                } catch (EOFException e) {
+                    break; // End of file reached
+                }
+            }
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return objects;
+    }
+
+    public static void writeDbDataToFile(List<DeliveryManDatabase> DeliveryManDatabases, String fileName) {
+        List<Object> DBList = new ArrayList<>(DeliveryManDatabases);
+        writeObjectsToFile(DBList, fileName);
+    }
+
+    public static ArrayList<DeliveryManDatabase> readDBFromFile(String fileName) {
+        ArrayList<DeliveryManDatabase> existinDeliveryManDatabases = new ArrayList<>();
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
+            while (true) {
+                try {
+                    DeliveryManDatabase db = (DeliveryManDatabase) ois.readObject();
+                    existinDeliveryManDatabases.add(db);
+                } catch (EOFException eof) {
+                    break;
+                }
+            }
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return existinDeliveryManDatabases;
+    }
+
+    public static ObservableList<DeliveryManDatabase> ObjectsFromFile(String fileName) {
+        ArrayList<DeliveryManDatabase> displayedexistinDeliveryManDatabases = readDBFromFile(fileName);
+        ObservableList<DeliveryManDatabase> observableList = FXCollections.observableArrayList(displayedexistinDeliveryManDatabases);
+        return observableList;
+    }  
+    
+    
   //reimbursementRequestRecord
     public static boolean writeReimbursements(ObservableList<ReimbursementRequestRecord> reimbursements, String fileName) {
         try (FileOutputStream fos = new FileOutputStream(fileName);
@@ -49,6 +112,7 @@ public class Hr extends User implements Serializable{
             return false;
         }
     }
+ 
 
     public static ArrayList<ReimbursementRequestRecord> loadReimbursements(String fileName) {
         ArrayList<ReimbursementRequestRecord> existingReimbursements = new ArrayList<>();
@@ -129,11 +193,24 @@ public class Hr extends User implements Serializable{
 
         return applicant;
     }
-
-    public static ObservableList<Applicant> loadApplicantsToFiles(String fileName) {
+       public static ObservableList<Applicant> loadApplicantsToFiles(String fileName) {
         ArrayList<Applicant> applicant = loadApplicantsFromFile(fileName);
         ObservableList<Applicant> observableList = FXCollections.observableArrayList(applicant);
         return observableList;
+    }
+       public static boolean writeloadApplicantsFromFile(ObservableList<Applicant> Applicants, String fileName) {
+        try (FileOutputStream fos = new FileOutputStream(fileName);
+                ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            
+            for (Applicant applicants: Applicants) {
+                oos.writeObject(applicants);
+            }
+
+            return true;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
     //recruitment and selection
     public static void saveRecruiemntDataofApplicants(Applicant applicant, String fileName) {
@@ -173,5 +250,29 @@ public class Hr extends User implements Serializable{
             }
         }
         return ApplicantType;
+    }
+    //sort
+        public static void updateFile(ObservableList<Applicant> sortedApp, String fileName) {
+    try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName))) {
+        for (Applicant applicant : sortedApp) {
+            output.writeObject(applicant);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        }
+    }
+    
+    public static void sortedapplicant(Applicant applicant, String fileName) {
+        ArrayList<Applicant> exsApp = loadApplicantsFromFile(fileName);
+        exsApp.add(applicant);
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            for (Applicant sortedapplicant : exsApp) {
+                oos.writeObject(sortedapplicant);
+            }
+            System.out.println("Sorted Applicants saved: " + applicant);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

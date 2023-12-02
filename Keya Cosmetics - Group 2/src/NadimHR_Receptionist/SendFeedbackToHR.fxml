@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="NadimHR_Receptionist.SendFeedbackToHRController">
+   <children>
+      <Label layoutX="44.0" layoutY="51.0" styleClass="header-label" text="Feedback to HR Manager" textFill="#111111">
+         <font>
+            <Font name="Goudy Old Style Bold" size="27.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameTextFeild" layoutX="150.0" layoutY="100.0" prefHeight="31.0" prefWidth="321.0" style="-fx-background-color: aqua;" />
+      <TextField fx:id="emailTextFeild" layoutX="150.0" layoutY="136.0" prefHeight="31.0" prefWidth="321.0" style="-fx-background-color: aqua;" />
+      <RadioButton fx:id="concernRadioButton" layoutX="62.0" layoutY="177.0" text="Concern">
+         <font>
+            <Font name="FZShuTi" size="18.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="sugRadioButton" layoutX="199.0" layoutY="177.0" text="Suggestion">
+         <font>
+            <Font name="FZShuTi" size="18.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="praiseRadioButton" layoutX="331.0" layoutY="177.0" text="Praise">
+         <font>
+            <Font name="FZShuTi" size="18.0" />
+         </font>
+      </RadioButton>
+      <Label layoutX="62.0" layoutY="213.0" text="Feedback Category:" textFill="WHITE" />
+      <TextArea fx:id="feedBackTextArea" layoutX="62.0" layoutY="234.0" prefHeight="120.0" prefWidth="255.0" promptText="Provide your feedback..." style="-fx-background-color: red;" wrapText="true" />
+      <Button fx:id="submitButton" layoutX="331.0" layoutY="234.0" onAction="#submitFeedbackOnClick" prefHeight="120.0" prefWidth="116.0" text="Send">
+         <font>
+            <Font name="FZShuTi" size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="62.0" layoutY="368.0" styleClass="disclaimer-label" text="Your feedback will be used for improving our privacy policy." textFill="WHITE" />
+      <Label layoutX="87.0" layoutY="104.0" prefHeight="21.0" prefWidth="183.0" text="Name">
+         <font>
+            <Font name="STLiti" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="87.0" layoutY="140.0" prefHeight="21.0" prefWidth="183.0" text="Email">
+         <font>
+            <Font name="STLiti" size="21.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
