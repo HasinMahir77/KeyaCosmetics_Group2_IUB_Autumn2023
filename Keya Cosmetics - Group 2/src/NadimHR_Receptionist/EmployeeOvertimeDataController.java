@@ -6,7 +6,12 @@ package NadimHR_Receptionist;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -26,36 +32,54 @@ import javafx.scene.control.TextField;
 public class EmployeeOvertimeDataController implements Initializable {
 
     @FXML
-    private ComboBox<String> positionComboBox;
-    @FXML
-    private ComboBox<String> NameComboBox;
-    @FXML
-    private TextField timeTextField;
-    @FXML
-    private DatePicker DatePicker;
-    @FXML
-    private ListView<String> listView;
+    private ListView<Overtime> listView;
     @FXML
     private DatePicker datePicker;
     @FXML
-    private TableView<String> tableView;
+    private TableView<EmployeeAttendence> tableView;
     @FXML
-    private TableColumn<?, ?> nameCol;
+    private TableColumn<EmployeeAttendence, String> nameCol;
     @FXML
-    private TableColumn<?, ?> postCol;
+    private TableColumn<EmployeeAttendence, String> postCol;
     @FXML
-    private TableColumn<?, ?> TimeCol;
+    private TableColumn<EmployeeAttendence, String> TimeCol;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        postCol.setCellValueFactory(new PropertyValueFactory<>("post"));
+        TimeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
+        
+                List<Object> OvertimeDutyHoursList = Receptionist.readObjectsFromFile("AdditionalHourRecords.bin");
+        List<Overtime> OvertimeDutyHours = new ArrayList<>();
+        for (Object obj : OvertimeDutyHoursList) {
+            if (obj instanceof Overtime) {
+                OvertimeDutyHours.add((Overtime) obj);
+            }
+        }
+        listView.getItems().addAll(OvertimeDutyHours);
+        
 
+    }    
     @FXML
     private void loadAttendanceRecordOnClick(ActionEvent event) {
+                LocalDate currentDate = datePicker.getValue();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String dateString = currentDate.format(dateFormatter);
+        String fileName = "attendanceRecords_" + dateString + ".bin";
+
+        List<Object> attendanceList = Receptionist.readObjectsFromFile(fileName);
+        ObservableList<EmployeeAttendence> loadedItems = FXCollections.observableArrayList();
+        for (Object obj : attendanceList) {
+            if (obj instanceof EmployeeAttendence) {
+                loadedItems.add((EmployeeAttendence) obj);
+            }
+        }
+        tableView.getItems().addAll(loadedItems);
+    
     }
 
     

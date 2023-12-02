@@ -33,7 +33,70 @@ public class Hr extends User implements Serializable{
         this.del=false;
         this.policyFile = null;
     }
- 
+  //deliveryboyAdd
+    public static boolean writeObjectsToFile(List<Object> objects, String fileName) {
+        try (FileOutputStream fos = new FileOutputStream(fileName); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            for (Object obj : objects) {
+                oos.writeObject(obj);
+            }
+            return true;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public static List<Object> readObjectsFromFile(String fileName) {
+        List<Object> objects = new ArrayList<>();
+        try (FileInputStream fis = new FileInputStream(fileName); ObjectInputStream ois = new ObjectInputStream(fis)) {
+            while (true) {
+                try {
+                    Object obj = ois.readObject();
+                    if (obj != null) {
+                        objects.add(obj);
+                    } else {
+                        break; // End of file reached
+                    }
+                } catch (EOFException e) {
+                    break; // End of file reached
+                }
+            }
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return objects;
+    }
+
+    public static void writeDbDataToFile(List<DeliveryManDatabase> DeliveryManDatabases, String fileName) {
+        List<Object> DBList = new ArrayList<>(DeliveryManDatabases);
+        writeObjectsToFile(DBList, fileName);
+    }
+
+    public static ArrayList<DeliveryManDatabase> readDBFromFile(String fileName) {
+        ArrayList<DeliveryManDatabase> existinDeliveryManDatabases = new ArrayList<>();
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
+            while (true) {
+                try {
+                    DeliveryManDatabase db = (DeliveryManDatabase) ois.readObject();
+                    existinDeliveryManDatabases.add(db);
+                } catch (EOFException eof) {
+                    break;
+                }
+            }
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return existinDeliveryManDatabases;
+    }
+
+    public static ObservableList<DeliveryManDatabase> ObjectsFromFile(String fileName) {
+        ArrayList<DeliveryManDatabase> displayedexistinDeliveryManDatabases = readDBFromFile(fileName);
+        ObservableList<DeliveryManDatabase> observableList = FXCollections.observableArrayList(displayedexistinDeliveryManDatabases);
+        return observableList;
+    }  
+    
+    
   //reimbursementRequestRecord
     public static boolean writeReimbursements(ObservableList<ReimbursementRequestRecord> reimbursements, String fileName) {
         try (FileOutputStream fos = new FileOutputStream(fileName);

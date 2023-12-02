@@ -48,7 +48,7 @@ public class ReceptionistMainDashboardController implements Initializable {
 
     @FXML
     private void EmployeeovertimeOnclick(ActionEvent event) throws IOException {
-         Parent root = FXMLLoader.load(getClass().getResource("Employee attendance.fxml"));
+         Parent root = FXMLLoader.load(getClass().getResource("mantainOvertimeDataOfEmployees.fxml"));
          borderpane.setCenter(root);
     }
 
