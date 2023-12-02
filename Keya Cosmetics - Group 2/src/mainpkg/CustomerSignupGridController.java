@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -64,11 +65,7 @@ public class CustomerSignupGridController implements Initializable {
 
     @FXML
     private void signup(ActionEvent event) throws IOException {
-        FileOutputStream fos;
-        ObjectOutputStream oos;
-        FileInputStream fis;
-        ObjectInputStream ois;
-        File customerList;
+        File customerFile = new File("CustomerList.bin");
         //Checking for empty fields
         if (usernameTextField.getText().equals("") || passwordTextField.getText().equals("") ||
                 firstNameTextField.getText().equals("")|| phoneTextField.getText().equals("")
@@ -118,56 +115,25 @@ public class CustomerSignupGridController implements Initializable {
         
          
         //Checking for duplicate
-        try {
-            customerList = new File("CustomerList.bin");
-            fis = new FileInputStream(customerList);
-            ois = new ObjectInputStream(fis);
-            while (true) {
-                Customer registeredCustomer = (Customer)ois.readObject();
-                if (registeredCustomer.getUsername().equals(usernameTextField.getText())) {
-                    Alert a = new Alert(Alert.AlertType.ERROR,"Username already exists");
-                    a.showAndWait();
-                    return;
-                }
-            }
-            
-        } catch(Exception e) {
-            System.out.println("File reading complete");
-            System.out.println(e.toString());
-        }
-        //Duplicate checking done. Adding the user to database.
-        try {
-            Customer newUser = new Customer(firstNameTextField.getText(),lastNameTextField.getText(),
-                usernameTextField.getText(), passwordTextField.getText(),
-                    addressTextArea.getText(),phoneTextField.getText());
-            customerList = new File("CustomerList.bin");
-            
-            fos = new FileOutputStream(customerList,true);
-            oos = new ObjectOutputStreamA(fos);
-            
-            oos.writeObject(newUser);
-            oos.close();
-            System.out.println("Customer written");
-            Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Account created successfully",
-                    ButtonType.OK,ButtonType.CLOSE);
-            a.showAndWait();
-            if (a.getResult()==ButtonType.OK){
-                this.switchToLoginScreen(event);
-            }
-            else{
-                this.usernameTextField.clear();
-                this.addressTextArea.clear();
-                this.firstNameTextField.clear();
-                this.passwordTextField.clear();
-                this.phoneTextField.clear();
-                this.usernameTextField.clear();
-                this.lastNameTextField.clear();
-            }
-            
-        } catch(Exception e){
-            System.out.println(e.toString());
-        }
+        ArrayList<Customer> customerList = Customer.getCustomerList();
         
+        for(Customer c: customerList){
+            if (c.getUsername().equals(this.usernameTextField.getText())) {
+                new Alert(Alert.AlertType.ERROR,"Username already exists.").show();
+                return;
+            }
+        }  
+        //Duplicate checking done. Adding the user to database.
+        Customer customer = new Customer(this.firstNameTextField.getText(),this.lastNameTextField.getText(),
+                this.usernameTextField.getText(),this.passwordTextField.getText(),
+                this.addressTextArea.getText(),this.phoneTextField.getText());
+        customer.setDoj(LocalDate.now());
+        
+        try(FileOutputStream fos = new FileOutputStream("CustomerList.bin",true);
+                ObjectOutputStream oos = new ObjectOutputStreamA(fos)){
+            oos.writeObject(customer);
+        }
+        catch(Exception e){System.out.println(e.toString()+" at signup");}
         
     }
 
