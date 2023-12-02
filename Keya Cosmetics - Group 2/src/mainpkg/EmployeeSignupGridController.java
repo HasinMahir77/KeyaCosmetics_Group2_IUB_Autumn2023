@@ -4,7 +4,12 @@
  */
 package mainpkg;
 
+import Amit_ProductionManager.ProductionManager;
 import Borhan_Islam.Accountant;
+<<<<<<< HEAD
+=======
+import Borhan_Islam.ProductManager;
+>>>>>>> 32c82e39ce6d54b919d901eb4efe8dfbb868d482
 import HasinMahir.Customer;
 import HasinMahir.DeliveryMan;
 import HasinMahir.User;
@@ -62,8 +67,13 @@ public class EmployeeSignupGridController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO     
+<<<<<<< HEAD
         employeeComboBox.getItems().addAll("HR","Delivery Man",
                 "Accountant","Receptionist","Affiliate Marketer");
+=======
+        employeeComboBox.getItems().addAll("HR","Delivery Man","Product Manager",
+                "Accountant","Receptionist","Affiliate Marketer","Production Manager");
+>>>>>>> 32c82e39ce6d54b919d901eb4efe8dfbb868d482
         
         employeeComboBox.setValue("HR");
     }    
@@ -142,7 +152,10 @@ public class EmployeeSignupGridController implements Initializable {
                 employeeFile = new File("DeliveryManList.bin");
             }
         else if(employeeComboBox.getValue().equals("Affiliate Marketer")) {
-                employeeFile = new File("AffiliateMarketer.bin");
+                employeeFile = new File("AffiliateMarketerList.bin");
+            }
+        else if(employeeComboBox.getValue().equals("Production Manager")) {
+                employeeFile = new File("ProductionManagerList.bin");
             }
         
         //-----------------Insert Code Above This
@@ -174,6 +187,28 @@ public class EmployeeSignupGridController implements Initializable {
         
         if (employeeComboBox.getValue().equals("Product Manager")){  
            //TO DO 
+<<<<<<< HEAD
+=======
+           try{
+                FileOutputStream fos;
+                ObjectOutputStream oos;
+                if (employeeFile.exists()){
+                        fos = new FileOutputStream(employeeFile,true);
+                        oos = new ObjectOutputStreamA(fos);
+                }
+                else {
+                        fos = new FileOutputStream(employeeFile);
+                        oos = new ObjectOutputStream(fos);
+                }
+                    ProductManager newpm = new ProductManager(firstNameTextField.getText(),lastNameTextField.getText(),
+                usernameTextField.getText(), passwordTextField.getText(),phoneTextField.getText());
+                    newpm.setDob(dobDatePicker.getValue());
+                    oos.writeObject(newpm);
+                    
+                }
+                catch(Exception e){
+                    e.printStackTrace(System.out);}
+>>>>>>> 32c82e39ce6d54b919d901eb4efe8dfbb868d482
                 
             }
         
@@ -199,6 +234,8 @@ public class EmployeeSignupGridController implements Initializable {
                 catch(Exception e){
                     e.printStackTrace(System.out);}            
         }
+        
+        //Affiliate Marketer
         else if(employeeComboBox.getValue().equals("Affiliate Marketer")) {
                 //TO DO
             try{
@@ -220,6 +257,50 @@ public class EmployeeSignupGridController implements Initializable {
                 }
                 catch(Exception e){
                     e.printStackTrace(System.out);}            
+        }
+        else if(employeeComboBox.getValue().equals("Product Manager")) {
+                //TO DO
+            try{
+                FileOutputStream fos;
+                ObjectOutputStream oos;
+                if (employeeFile.exists()){
+                        fos = new FileOutputStream(employeeFile,true);
+                        oos = new ObjectOutputStreamA(fos);
+                }
+                else {
+                        fos = new FileOutputStream(employeeFile);
+                        oos = new ObjectOutputStream(fos);
+                }
+                    ProductManager pm = new ProductManager(firstNameTextField.getText(),lastNameTextField.getText(),
+                usernameTextField.getText(), passwordTextField.getText(),phoneTextField.getText());
+                    pm.setDob(dobDatePicker.getValue());
+                    oos.writeObject(pm);
+                    
+                }
+                catch(Exception e){
+                    e.printStackTrace(System.out);} 
+        }
+        else if(employeeComboBox.getValue().equals("Production Manager")) {
+                //TO DO
+            try{
+                FileOutputStream fos;
+                ObjectOutputStream oos;
+                if (employeeFile.exists()){
+                        fos = new FileOutputStream(employeeFile,true);
+                        oos = new ObjectOutputStreamA(fos);
+                }
+                else {
+                        fos = new FileOutputStream(employeeFile);
+                        oos = new ObjectOutputStream(fos);
+                }
+                    ProductionManager pm = new ProductionManager(firstNameTextField.getText(),lastNameTextField.getText(),
+                usernameTextField.getText(), passwordTextField.getText(),phoneTextField.getText());
+                    pm.setDob(dobDatePicker.getValue());
+                    oos.writeObject(pm);
+                    
+                }
+                catch(Exception e){
+                    e.printStackTrace(System.out);} 
         }
         //DeliveryMan
         else if(employeeComboBox.getValue().equals("Delivery Man")) {

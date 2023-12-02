@@ -8,6 +8,7 @@ import Amit_AffiliateMarketer.AffiliateMarketer;
 import Amit_AffiliateMarketer.AppendableObjectOutputStream;
 import Amit_AffiliateMarketer.Campaign;
 import HasinMahir.Product;
+import HasinMahir.User;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -23,7 +24,13 @@ import javafx.collections.ObservableList;
  *
  * @author user
  */
-public class ProductionManager {
+public class ProductionManager extends User {
+
+    public ProductionManager(String firstName, String lastName, String username, String password, String phone) {
+        super(firstName, lastName, username, password, phone);
+    }
+
+    
     
     public static ObservableList<Product> GetProductList() {
         ObjectInputStream ois = null;
