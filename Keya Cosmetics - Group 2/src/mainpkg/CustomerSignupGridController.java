@@ -115,6 +115,7 @@ public class CustomerSignupGridController implements Initializable {
         
          
         //Checking for duplicate
+        if (customerFile.exists()){
         ArrayList<Customer> customerList = Customer.getCustomerList();
         
         for(Customer c: customerList){
@@ -123,20 +124,31 @@ public class CustomerSignupGridController implements Initializable {
                 return;
             }
         }
-            
+        } //If's scope ends
+        
         //Duplicate checking done. Adding the user to database.
         Customer customer = new Customer(this.firstNameTextField.getText(),this.lastNameTextField.getText(),
                 this.usernameTextField.getText(),this.passwordTextField.getText(),
                 this.addressTextArea.getText(),this.phoneTextField.getText());
         customer.setDoj(LocalDate.now());
         
-        try(FileOutputStream fos = new FileOutputStream("CustomerList.bin",true);
-                ObjectOutputStream oos = new ObjectOutputStreamA(fos)){
+        if (customerFile.exists()){
+            try(FileOutputStream fos = new FileOutputStream("CustomerList.bin",true);
+                ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
             oos.writeObject(customer);
+            System.out.println("User written");
+            System.out.println(customer);
         }
         catch(Exception e){System.out.println(e.toString()+" at signup");}
-       
-        
+        }
+        else{
+            try(FileOutputStream fos = new FileOutputStream("CustomerList.bin");
+                ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                oos.writeObject(customer);
+                System.out.println("User written");
+                System.out.println(customer);
+            }
+        }
     }
 
     @FXML

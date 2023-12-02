@@ -59,7 +59,7 @@ public class Main extends Application {
         userFiles.add(new File("ReceptionistList.bin"));
         userFiles.add(new File("AccountantList.bin"));
         userFiles.add(new File("AffiliateMarketerList.bin"));
-        
+        /*
         
         //[Failsafe] Creating empty bin file if it doesn't exist
         
@@ -160,7 +160,7 @@ public class Main extends Application {
             
             
             }//For loop's scope ends
-            
+            */
         
         //------------------------------------------------------
         launch(args);
