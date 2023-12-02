@@ -1,3 +1,4 @@
+
 package Amit_AffiliateMarketer;
 
 import HasinMahir.Product;
@@ -38,6 +39,10 @@ AffiliateMarketer am;
         r.setSender(this.am.getUsername());
         Product p = new Product("Soap",20,Category.BODY_SOAP,5);
         r.takeReview(p);
+        System.out.println(r.getReview());
+        System.out.println(r.getRating());
+              
+       
         
         
     }
