@@ -121,7 +121,7 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
         return customerList;
         }
         else {
-            System.out.println("CustomerFile not found. saveInstance() called.");
+            System.out.println("CustomerFile not found. getCustomerList() called.");
             return null;
         }
     }

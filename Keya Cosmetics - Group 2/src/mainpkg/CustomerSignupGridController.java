@@ -116,24 +116,35 @@ public class CustomerSignupGridController implements Initializable {
          
         //Checking for duplicate
         ArrayList<Customer> customerList = Customer.getCustomerList();
-        
-        for(Customer c: customerList){
-            if (c.getUsername().equals(this.usernameTextField.getText())) {
-                new Alert(Alert.AlertType.ERROR,"Username already exists.").show();
-                return;
-            }
-        }  
+        if (customerList!=null){
+            for(Customer c: customerList){
+                if (c.getUsername().equals(this.usernameTextField.getText())) {
+                    new Alert(Alert.AlertType.ERROR,"Username already exists.").show();
+                    return;
+                }
+            }  
+        }
         //Duplicate checking done. Adding the user to database.
         Customer customer = new Customer(this.firstNameTextField.getText(),this.lastNameTextField.getText(),
                 this.usernameTextField.getText(),this.passwordTextField.getText(),
                 this.addressTextArea.getText(),this.phoneTextField.getText());
         customer.setDoj(LocalDate.now());
         
-        try(FileOutputStream fos = new FileOutputStream("CustomerList.bin",true);
-                ObjectOutputStream oos = new ObjectOutputStreamA(fos)){
+        if (customerFile.exists()){
+            try(FileOutputStream fos = new FileOutputStream(customerFile,true);
+                ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
             oos.writeObject(customer);
         }
-        catch(Exception e){System.out.println(e.toString()+" at signup");}
+            catch(Exception e){System.out.println(e.toString()+" at signup");}
+        }
+        else{ //No file. First data
+            try(FileOutputStream fos = new FileOutputStream(customerFile);
+                ObjectOutputStream oos = new ObjectOutputStream(fos)){
+            oos.writeObject(customer);
+            }
+            catch(Exception e){System.out.println(e.toString()+" at signup");}
+        }
+        
         
     }
 
