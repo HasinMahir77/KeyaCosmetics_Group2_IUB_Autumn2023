@@ -85,5 +85,11 @@ public class BorhanSS {
     public void goBackToAudit() throws IOException {
         this.switchScene("AuditReportFXML.fxml", "");
     }
+    public void showHistoryButton() throws IOException {
+        this.switchScene("ExpenseHistory.fxml", "");
+    }
+    public void goBackButton() throws IOException {
+        this.switchScene("ExpenseControlSysFXML.fxml", "");
+    }
 
 }

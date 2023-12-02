@@ -112,17 +112,21 @@ public class Expense extends User implements Serializable{
     private static final String ALL_EXPENSE_FILE_PATH = "all_expenses.bin";
     private static final String LATEST_EXPENSE_FILE_PATH = "latest_expense.bin";
 
-    public static void saveExpenseRecord(String name, String category, Float amount, LocalDate date, String paymentMethod, String reference) {
+    public static void saveAllExpenseRecord(String name, String category, Float amount, LocalDate date, String paymentMethod, String reference) {
         Expense expenseRecord = new Expense(name, category, amount, date, paymentMethod, reference);
-
-        // Save the expense to the all_expenses file
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ALL_EXPENSE_FILE_PATH, true))) {
-            oos.writeObject(expenseRecord);
+        List<Expense> existingRecords = loadAllExpenseRecords();
+        existingRecords.add(expenseRecord);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ALL_EXPENSE_FILE_PATH))) {
+            for (Expense record : existingRecords) {
+                oos.writeObject(record);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-        // Save the latest expense to the latest_expense file
+    public static void saveLatestExpenseRecord(String name, String category, Float amount, LocalDate date, String paymentMethod, String reference) {
+        Expense expenseRecord = new Expense(name, category, amount, date, paymentMethod, reference);
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(LATEST_EXPENSE_FILE_PATH))) {
             oos.writeObject(expenseRecord);
         } catch (IOException e) {
@@ -148,7 +152,7 @@ public class Expense extends User implements Serializable{
                     Expense expense = (Expense) ois.readObject();
                     expenseRecords.add(expense);
                 } catch (EOFException e) {
-                    break; // Exit loop when EOF is reached
+                    break;
                 }
             }
         } catch (IOException | ClassNotFoundException e) {

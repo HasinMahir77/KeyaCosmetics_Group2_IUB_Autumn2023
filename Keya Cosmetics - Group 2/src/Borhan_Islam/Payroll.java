@@ -157,7 +157,7 @@ public class Payroll extends User implements Serializable{
                     Payroll record = (Payroll) ois.readObject();
                     payrollRecords.add(record);
                 } catch (EOFException e) {
-                    break; // Exit loop when EOF is reached
+                    break; 
                 }
             }
         } catch (IOException | ClassNotFoundException e) {

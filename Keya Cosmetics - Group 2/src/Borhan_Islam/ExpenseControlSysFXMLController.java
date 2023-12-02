@@ -42,11 +42,11 @@ public class ExpenseControlSysFXMLController implements Initializable {
     private TextField expAmountText;
     @FXML
     private ComboBox<String> payMethodCombo;
-    @FXML
-    private Button processfxid;
-    @FXML
-    private Button processfxid1;
     Stage stage;
+    @FXML
+    private Button checkoutfxid;
+    @FXML
+    private Button showHistory;
 
     /**
      * Initializes the controller class.
@@ -79,14 +79,15 @@ public class ExpenseControlSysFXMLController implements Initializable {
             return;
         } 
         if (showConfirmationAlert("Are you sure you want to proceed?")) {
-            Expense.saveExpenseRecord(name, category, amount, date, paymentMethod, reference);
+            Expense.saveAllExpenseRecord(name, category, amount, date, paymentMethod, reference);
+            Expense.saveLatestExpenseRecord(name, category, amount, date, paymentMethod, reference);
 
-//            stage = new Stage();
-//            Parent scene2Parent = FXMLLoader.load(getClass().getResource("ExpenseBillFXML.fxml"));
-//            Scene scene2 = new Scene(scene2Parent);
-//            stage.setScene(scene2);
-//            stage.setTitle("Keya Cosmetics: Bill");
-//            stage.show();                 
+            stage = new Stage();
+            Parent scene2Parent = FXMLLoader.load(getClass().getResource("ExpenseBillFXML.fxml"));
+            Scene scene2 = new Scene(scene2Parent);
+            stage.setScene(scene2);
+            stage.setTitle("Keya Cosmetics: Bill");
+            stage.show();                 
         }
     }
     public void showErrorAlert(String message) {
@@ -110,4 +111,10 @@ public class ExpenseControlSysFXMLController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }    
+
+    @FXML
+    private void showHistoryButton(ActionEvent event) throws IOException {
+        BorhanSS ss = new BorhanSS();
+        ss.showHistoryButton(); 
+    }
 }

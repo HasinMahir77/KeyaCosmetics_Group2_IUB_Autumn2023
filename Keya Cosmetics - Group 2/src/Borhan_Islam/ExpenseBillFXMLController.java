@@ -6,6 +6,7 @@ package Borhan_Islam;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -19,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 /**
  * FXML Controller class
@@ -43,6 +45,10 @@ public class ExpenseBillFXMLController implements Initializable {
     private Label amountLabel;
     @FXML
     private Button processfxid;
+    @FXML
+    private Label timeLabel1;
+    @FXML
+    private ImageView paidimage;
 
     /**
      * Initializes the controller class.
@@ -50,21 +56,28 @@ public class ExpenseBillFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         LocalTime currentTime = LocalTime.now();
+        LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String formattedTime = currentTime.format(formatter);
+        String formattedTime1 = currentDate.format(formatter1);
         timeLabel.setText(formattedTime);
+        timeLabel1.setText(formattedTime1);
         nameLabel.setText(Expense.loadLatestExpenseRecord().getName());
         categoryLabel.setText(Expense.loadLatestExpenseRecord().getCategory());
         paymentLabel.setText(Expense.loadLatestExpenseRecord().getPaymentMethod());
         referenceLabel.setText(Expense.loadLatestExpenseRecord().getReference());
         amountLabel.setText(Expense.loadLatestExpenseRecord().getAmount().toString());
         dateLabel.setText(Expense.loadLatestExpenseRecord().getDate().toString());
+        paidimage.setVisible(false);
+        timeLabel1.setVisible(false);
     }    
 
     @FXML
     private void processButton(ActionEvent event) throws IOException {
-//        showSuccessAlert("Processed!");    
-
+        showSuccessAlert("Processed!");    
+        paidimage.setVisible(true);
+        timeLabel1.setVisible(true);
     }
     public boolean showConfirmationAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

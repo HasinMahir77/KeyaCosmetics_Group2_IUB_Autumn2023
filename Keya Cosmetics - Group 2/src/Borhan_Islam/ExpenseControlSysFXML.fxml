@@ -90,7 +90,7 @@
             <Font name="Lucida Console" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="processfxid1" layoutX="379.0" layoutY="467.0" mnemonicParsing="false" onAction="#processButton" style="-fx-background-radius: 20; -fx-border-radius: 20;" text="Show History">
+      <Button fx:id="showHistory" layoutX="379.0" layoutY="467.0" mnemonicParsing="false" onAction="#showHistoryButton" style="-fx-background-radius: 20; -fx-border-radius: 20;" text="Show History">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font>
