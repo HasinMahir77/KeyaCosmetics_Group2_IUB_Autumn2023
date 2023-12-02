@@ -6,6 +6,7 @@ package mainpkg;
 
 import Amit_AffiliateMarketer.AmitSS;
 import Amit_ProductionManager.ProductionManager;
+import Amit_ProductionManager.ProductionManagerSS;
 import Borhan_Islam.Accountant;
 import Borhan_Islam.BorhanSS;
 import Borhan_Islam.ProductManager;
@@ -186,7 +187,7 @@ public class LoginGridController implements Initializable {
                 
             }
           }
-        //---------------Product Manager
+        //---------------Production Manager
         else if (userComboBox.getValue().equals("Production Manager")) {
             try{
                 File userFile = new File("ProductionManagerList.bin");
@@ -199,9 +200,9 @@ public class LoginGridController implements Initializable {
                         Main.getMainStage().setUserData(user);
                         System.out.println("Username-password matched.");
                         System.out.println("Userdata set for Production Manager");
-                        AmitSS ss = new AmitSS();
-                        Main.setUserData(user);
-                       ss.switchScene("ProductionManagerHomePageFXML.fxml");
+                        ProductionManagerSS ss = new ProductionManagerSS();
+                       //// Main.setUserData(user);
+                       ss.switchDashboard();
                     }
                 } // Loop's scope ends
             }
