@@ -38,7 +38,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <TableView fx:id="tableView" layoutX="302.0" layoutY="102.0" prefHeight="416.0" prefWidth="640.0">
+      <TableView fx:id="tableView" layoutX="302.0" layoutY="102.0" onMouseClicked="#updateSelectedProduct" prefHeight="416.0" prefWidth="640.0">
         <columns>
           <TableColumn fx:id="nameTable" prefWidth="269.0" text="Name" />
           <TableColumn fx:id="categoryTable" prefWidth="151.0" text="Category" />
@@ -79,11 +79,6 @@
       </Label>
       <TextField fx:id="priceText" layoutX="105.0" layoutY="299.0" prefHeight="25.0" prefWidth="173.0" />
       <TextField fx:id="vatText" layoutX="105.0" layoutY="339.0" prefHeight="25.0" prefWidth="173.0" />
-      <ListView fx:id="categoryListView" layoutX="124.0" layoutY="67.0" prefHeight="174.0" prefWidth="135.0" />
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="193.0" layoutY="393.0" mnemonicParsing="false" onAction="#addProductNewListButton" prefHeight="130.0" prefWidth="96.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" text="Create a New List of Products" textAlignment="CENTER" wrapText="true">
-         <font>
-            <Font name="Lucida Console" size="15.0" />
-         </font>
-      </Button>
+      <ListView fx:id="categoryListView" layoutX="124.0" layoutY="67.0" onMouseClicked="#updateSelectedCategory" prefHeight="174.0" prefWidth="135.0" />
    </children>
 </AnchorPane>

@@ -3,6 +3,7 @@ package Borhan_Islam;
 import HasinMahir.Deleteable;
 import HasinMahir.Reviewable;
 import HasinMahir.User;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import mainpkg.ObjectOutputStreamA;
 
 
-public class Accountant extends User implements Serializable, Deleteable, Reviewable {
+public class Accountant extends User implements Serializable, Deleteable {
 
     public Accountant() {
 
@@ -91,74 +92,58 @@ public class Accountant extends User implements Serializable, Deleteable, Review
     
         
     public void saveInstance(){
-        File oldAccountantList = new File("AccountantList.bin");
-        Accountant accountant;
-        ArrayList<Accountant> bufferList = new ArrayList<Accountant>();
-        //Collecting all the other users of same type except current user
-        try(FileInputStream fis = new FileInputStream(oldAccountantList);
-                ObjectInputStream ois = new ObjectInputStream(fis);) {
-            
-            while(true){
-                accountant = (Accountant)ois.readObject();
-                if (!(accountant.getUsername().equals(this.getUsername()))) {
-                    bufferList.add(accountant);
-                }
+        Accountant target = null;
+        System.out.println("Save instance called");
+        File userFile = new File("AccountantList.bin");
+        ArrayList<Accountant> accountantList = Accountant.getCustomerList();
+        //Removing current user
+        for(Accountant c: accountantList){
+            if (c.getUsername().equals(this.getUsername())){
+                target = c;
             }
-        } catch(Exception e) {
-            System.out.println("From accountant.saveInstance() : "+e.toString());
-            System.out.println("ArrayList of accountants made");
-        } 
-        // Arraylist of Accountants made.
-        
-        //Rewriting the bin file with the updated accountant object.
-       
+        }
+        accountantList.remove(target);
+        //Clearing file
         try{
-            FileOutputStream temp = new FileOutputStream(oldAccountantList);
-            ObjectOutputStream temp2 = new ObjectOutputStream(temp);
-            temp2.close();
-        }catch(Exception e){
-            System.out.println(e);
-        }
+            new FileInputStream(userFile).close();
+        } catch(Exception e){System.out.println(e.toString()+"From Accountant.saveInstance()");}
         
-        try(FileOutputStream fos = new FileOutputStream(oldAccountantList);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);){
+        //Writing current user
+        try(FileOutputStream fos = new FileOutputStream(userFile);
+                ObjectOutputStream oos = new ObjectOutputStream(fos)){
             oos.writeObject(this);
-            System.out.println("Current accountant written. Other accountants next");
-        } catch(Exception e){
-            System.out.println(e.toString());
         }
-        try(FileOutputStream fos = new FileOutputStream(oldAccountantList,true);
-        ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
-            for(Accountant c: bufferList){
-                    oos.writeObject(c);
-                }
-        } catch(Exception e){
-            System.out.println(e.toString());
-        } 
-        
-        
-    }
-    
-    public static ArrayList<Accountant> getAccountantList(){
-        File oldAccountantList = new File("AccountantList.bin");
-        Accountant accountant;
-        ArrayList<Accountant> accountantList = new ArrayList<Accountant>();
-        //Collecting all the other users of same type
-        try(FileInputStream fis = new FileInputStream(oldAccountantList);
-                ObjectInputStream ois = new ObjectInputStream(fis);) {
-            
-            while(true){
-                accountant = (Accountant)ois.readObject();
-                accountantList.add(accountant);
+        catch(Exception e){System.out.println(e.toString()+" From customer saveinstancs");}
+        //Writing other users
+        try(FileOutputStream fos = new FileOutputStream(userFile,true);
+                ObjectOutputStream oos = new ObjectOutputStreamA(fos)){
+            for (Accountant c: accountantList){
+                oos.writeObject(c);
             }
-        } catch(Exception e) {
-            System.out.println("From accountant.getAccountantList() : "+e.toString());
-            System.out.println("ArrayList of accountants made");
-        } 
-        // Arraylist of Accountants made.
-        return accountantList;
+        }
+        catch(Exception e){System.out.println(e.toString()+" From customer saveinstancs");}
     }
     
+    public static ArrayList<Accountant> getCustomerList(){
+        if (new File("AccountantList.bin").exists()){
+            
+        ArrayList<Accountant> accountantList = new ArrayList<Accountant>();
+        //Reading file
+        try(FileInputStream fis = new FileInputStream("AccountantList.bin");
+                ObjectInputStream ois = new ObjectInputStream(fis);){
+            while(true){
+                accountantList.add((Accountant)ois.readObject());}
+        }
+        catch(EOFException e){System.out.println("AccountantList.bin file reading complete");}
+        catch(Exception e){e.printStackTrace(System.out);}
+        // Arraylist of Customers made.
+        return accountantList;
+        }
+        else {
+            System.out.println("CustomerFile not found. getCustomerList() called.");
+            return null;
+        }
+    }
     public void delete(){
         if (this.isDel()){
             System.out.println("Acoount is already deleted");
@@ -178,15 +163,4 @@ public class Accountant extends User implements Serializable, Deleteable, Review
             this.username = this.username.substring(0,this.username.length()-8);
         }
     }
-
-    @Override
-    public void addReview(String sender) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-   
-
-    
-    
-    
 }
