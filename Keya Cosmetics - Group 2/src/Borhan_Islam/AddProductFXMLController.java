@@ -26,6 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import mainpkg.ObjectOutputStreamA;
 
@@ -61,29 +62,35 @@ public class AddProductFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // TODO
         ArrayList<String> categories = new ArrayList<String>();
        
         //Initializing Categories
         categoryListView.getItems().addAll("Detergent","Body Soap",
                 "Toothpaste","Deodorant","Skincare","Shampoo");
-        nameTable.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        categoryTable.setCellValueFactory(new PropertyValueFactory<Product, String>("category"));
-        priceTable.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
-        vatTable.setCellValueFactory(new PropertyValueFactory<Product, Integer>("vatRate"));        
+      
+        
+        //Initializing Product TableView
 
-        ObservableList<Product> productList = FXCollections.observableArrayList(); //Array to store products
+        this.nameTable.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        this.categoryTable.setCellValueFactory(new PropertyValueFactory<Product, String>("category"));
+        this.priceTable.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
+        this.vatTable.setCellValueFactory(new PropertyValueFactory<Product, Integer>("vatRate"));
+        //Collecting products from file
+        
+        ObservableList<Product> productArray = FXCollections.observableArrayList(); //Array to store products
         File productFile = new File("ProductList.bin");
         
         try(FileInputStream fis = new FileInputStream(productFile);
                 ObjectInputStream ois = new ObjectInputStream(fis)){
             while(true){
-                productList.add((Product)ois.readObject());
+                productArray.add((Product)ois.readObject());
             }
         }catch(Exception e){
             System.out.println(e);
         }
         //Inserting Products into TableView
-        tableView.setItems(productList);
+        tableView.setItems(productArray);
     }          
 
     @FXML
@@ -94,14 +101,41 @@ public class AddProductFXMLController implements Initializable {
 
     @FXML
     private void removeProductButton(ActionEvent event) {
+        if (selectedProduct==null){
+        }
+        else{
+            tableView.getItems().remove(selectedProduct);
+            ObservableList<Product> productArray = tableView.getItems();
+            
+            
+            File productFile = new File("ProductList.bin");
+            productFile.delete();
+            
+            //First object
+            try(FileOutputStream fos = new FileOutputStream(productFile);
+                    ObjectOutputStream oos = new ObjectOutputStream(fos)){
+                oos.writeObject(productArray.get(0));
+                
+            }
+            catch(Exception e){}
+             //2nd to last objects
+            try(FileOutputStream fos = new FileOutputStream(productFile,true);
+                    ObjectOutputStream oos = new ObjectOutputStreamA(fos)){
+                for (Product p: productArray.subList(1, productArray.size())){
+                    oos.writeObject(p);
+                }
+            }
+            catch(Exception e){}
+            this.updateProductTable();
+        }
     }
 
     @FXML
     private void addProductButton(ActionEvent event) {
         Product p;
         String name_ = nameText.getText();
-        float price_ = Integer.parseInt(priceText.getText());
-        int vatRate_ = Integer.parseInt(vatText.getText());
+        float price_ = Float.parseFloat(priceText.getText());
+        float vatRate_ = Float.parseFloat(vatText.getText());
         
         if (selectedCategory.equals("Detergent")){
             p = new Product(name_,price_,Product.Category.DETERGENT,vatRate_);
@@ -127,57 +161,22 @@ public class AddProductFXMLController implements Initializable {
         //Writing
         File productFile = new File("ProductList.bin");
         
-        try(FileOutputStream fos = new FileOutputStream(productFile,true);
-                    ObjectOutputStream oos = new ObjectOutputStreamA(fos)){
+        try{
+            FileOutputStream fos;
+            ObjectOutputStream oos;
+            if (productFile.exists()){
+                fos = new FileOutputStream(productFile,true);
+                    oos = new ObjectOutputStreamA(fos);
+            }
+            else{
+                fos = new FileOutputStream(productFile);
+                    oos = new ObjectOutputStream(fos);
+            }
                 oos.writeObject(p);
                 System.out.println("Object Written");
             }catch(Exception e){System.out.println(e);}
         this.updateProductTable();
         
-    }
-
- 
-
-    @FXML
-    private void addProductNewListButton(ActionEvent event) {
-        Product p;
-        String name_ = nameText.getText();
-        float price_ = Integer.parseInt(priceText.getText());
-        int vatRate_ = Integer.parseInt(vatText.getText());
-        
-        if (selectedCategory.equals("Detergent")){
-            p = new Product(name_,price_,Product.Category.DETERGENT,vatRate_);
-        }
-        else if (selectedCategory.equals("Body Soap")){
-            p = new Product(name_,price_,Product.Category.BODY_SOAP,vatRate_);
-        }
-        else if (selectedCategory.equals("Skincare")){
-            p = new Product(name_,price_,Product.Category.SKINCARE,vatRate_);
-        }
-        else if (selectedCategory.equals("Toothpaste")){
-            p = new Product(name_,price_,Product.Category.TOOTHPASTE,vatRate_);
-        }
-        else if (selectedCategory.equals("Deodorant")){
-            p = new Product(name_,price_,Product.Category.DEODORANT,vatRate_);
-        }
-        else if (selectedCategory.equals("Shampoo")) {
-            p = new Product(name_,price_,Product.Category.SHAMPOO,vatRate_);
-        }
-        else{
-            return;
-        }
-        //Writing
-        FileChooser fc = new FileChooser();
-        File productFile = new File("ProductList.bin");
-        productFile.delete();
-        
-        
-        try(FileOutputStream fos = new FileOutputStream(productFile);
-                    ObjectOutputStream oos = new ObjectOutputStream(fos)){
-                oos.writeObject(p);
-                System.out.println("Object Written");
-            }catch(Exception e){}
-        this.updateProductTable();
     }
 
     private void updateProductTable(){
@@ -198,4 +197,14 @@ public class AddProductFXMLController implements Initializable {
         tableView.getItems().setAll(productArray);
         
     }   
+
+    @FXML
+    private void updateSelectedCategory(MouseEvent event) {
+        selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
+    }
+
+    @FXML
+    private void updateSelectedProduct(MouseEvent event) {
+        selectedProduct = tableView.getSelectionModel().getSelectedItem();
+    }
 }
