@@ -183,6 +183,7 @@ public class Order implements Serializable,Reviewable {
                 ObjectOutputStream oos = new ObjectOutputStreamA(fos)){
             for (Order c: orderList){
                 oos.writeObject(c);
+                oos.close();
             }
         }
         catch(Exception e){System.out.println(e.toString()+" From order.saveinstance()");} 
