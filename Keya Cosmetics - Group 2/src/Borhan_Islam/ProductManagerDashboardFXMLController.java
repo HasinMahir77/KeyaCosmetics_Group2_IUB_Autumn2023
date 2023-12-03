@@ -73,19 +73,6 @@ public class ProductManagerDashboardFXMLController implements Initializable {
     }
 
     @FXML
-    private void updatedTermsOnButtonClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void expenseControlOnButtonClicked(ActionEvent event) {
-    }
-
-    @FXML
-    private void reimbursementOnButtonClicked(ActionEvent event) {
-    }
-
-    @FXML
     private void pmProfileOnButtonClicked(ActionEvent event) throws IOException {
         BorhanSS ss = new BorhanSS();
         ss.pmProfileOnButtonClicked();  
@@ -95,6 +82,24 @@ public class ProductManagerDashboardFXMLController implements Initializable {
     private void logoutOnButtonClicked(ActionEvent event) throws IOException {
         MainpkgSS logout = new MainpkgSS();
         logout.switchtoLoginScene();
+    }
+
+    @FXML
+    private void sendfeedbackButton(ActionEvent event) throws IOException {
+        BorhanSS ss = new BorhanSS();
+        ss.sendfeedbackButton();      
+    }
+
+    @FXML
+    private void loadDetailedProductsButton(ActionEvent event) throws IOException {
+        BorhanSS ss = new BorhanSS();
+        ss.loadDetailedProductsButton();  
+    }
+
+    @FXML
+    private void updatedTermsButton(ActionEvent event) throws IOException {
+        BorhanSS ss = new BorhanSS();
+        ss.updatedTermsButton();  
     }
     
 }

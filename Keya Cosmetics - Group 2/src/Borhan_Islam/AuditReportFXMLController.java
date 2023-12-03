@@ -85,6 +85,7 @@ public class AuditReportFXMLController implements Initializable {
 
     @FXML
     private void savepdfButton(ActionEvent event) {
+    
     }
 
     @FXML

@@ -95,12 +95,12 @@
             <Font name="Lucida Console" size="25.0" />
          </font>
       </Button>
-      <Label layoutX="522.0" layoutY="194.0" prefHeight="30.0" prefWidth="383.0" text="Basic salary must be between 20,000 BDT to 5,00,000 BDT">
+      <Label layoutX="522.0" layoutY="194.0" prefHeight="30.0" prefWidth="383.0" text="Basic salary must be between 10,000 BDT to 3,50,000 BDT">
          <font>
             <Font name="Lucida Console" size="11.0" />
          </font>
       </Label>
-      <Label layoutX="522.0" layoutY="324.0" prefHeight="30.0" prefWidth="397.0" text="Deduction of salary must be between 0 BDT to 15,000 BDT" wrapText="true">
+      <Label layoutX="522.0" layoutY="324.0" prefHeight="30.0" prefWidth="397.0" text="Deduction of salary must be between 0 BDT to 10,000 BDT" wrapText="true">
          <font>
             <Font name="Lucida Console" size="11.0" />
          </font>

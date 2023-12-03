@@ -61,7 +61,7 @@
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="784.0" layoutY="61.0" mnemonicParsing="false" onAction="#loadRequestButton" prefHeight="28.0" prefWidth="147.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" text="LOAD REQUEST">
+      <Button fx:id="loadRequestfxid" layoutX="784.0" layoutY="61.0" mnemonicParsing="false" onAction="#loadRequestButton" prefHeight="28.0" prefWidth="147.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" text="LOAD REQUEST">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font>

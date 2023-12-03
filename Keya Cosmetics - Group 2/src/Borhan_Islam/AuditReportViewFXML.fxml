@@ -25,5 +25,6 @@
          </font>
       </Label>
       <Button layoutX="861.0" layoutY="170.0" mnemonicParsing="false" onAction="#goBackToAudit" text="⬅ Go Back" />
+      <Button layoutX="847.0" layoutY="115.0" mnemonicParsing="false" onAction="#generatePDF" text="Generate PDF" />
    </children>
 </AnchorPane>

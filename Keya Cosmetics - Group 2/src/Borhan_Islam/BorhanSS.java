@@ -91,5 +91,14 @@ public class BorhanSS {
     public void goBackButton() throws IOException {
         this.switchScene("ExpenseControlSysFXML.fxml", "");
     }
+    public void sendfeedbackButton() throws IOException {
+        this.switchScene("SendFeedbackFXML.fxml", "");
+    }
+    public void loadDetailedProductsButton() throws IOException {
+        this.switchScene("LoadDetailedProductFXML.fxml", "");
+    }
+    public void updatedTermsButton() throws IOException {
+        this.switchScene("PMupdatedPoliciesFXML.fxml", "");
+    }
 
 }

@@ -49,7 +49,7 @@ public class Payroll extends User implements Serializable{
         this.bonustype = bonustype;
         this.deductions = deductions;
         this.paymentdate = paymentdate;
-        this.netsalary=netsalary;
+        this.netsalary = netsalary;
     }
 
     public float getNetsalary() {
