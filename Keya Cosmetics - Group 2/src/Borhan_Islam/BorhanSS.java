@@ -97,5 +97,8 @@ public class BorhanSS {
     public void loadDetailedProductsButton() throws IOException {
         this.switchScene("LoadDetailedProductFXML.fxml", "");
     }
+    public void updatedTermsButton() throws IOException {
+        this.switchScene("PMupdatedPoliciesFXML.fxml", "");
+    }
 
 }

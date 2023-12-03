@@ -16,6 +16,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -42,6 +45,8 @@ public class ReimbursementFXMLController implements Initializable {
     @FXML
     private TableColumn<ReimbursementRequestRecord, String> expDesTable;
     private ObservableList<ReimbursementRequestRecord> reimbList = FXCollections.observableArrayList();    
+    @FXML
+    private Button loadRequestfxid;
 
     /**
      * Initializes the controller class.
@@ -74,11 +79,17 @@ public class ReimbursementFXMLController implements Initializable {
 
     @FXML
     private void ApproveButton(ActionEvent event) {
-
+        if (showConfirmationAlert("Are you sure you want to approve?")) {            
+            
+            showSuccessAlert("Approved!");
+        }
     }
-
     @FXML
     private void RejectButton(ActionEvent event) {
+        if (showConfirmationAlert("Are you sure you want to reject?")) {            
+            
+            showSuccessAlert("Rejected!");
+        }    
     }
 
     @FXML
@@ -107,9 +118,30 @@ public class ReimbursementFXMLController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-//        showRecordsFXID.setDisable(true);        
+        loadRequestfxid.setDisable(true);        
 
         }
     }
     
+    public void showErrorAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public boolean showConfirmationAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setContentText(message);
+
+        return alert.showAndWait().orElse(null).equals(ButtonType.OK);
+    }
+
+    public void showSuccessAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }   
 }

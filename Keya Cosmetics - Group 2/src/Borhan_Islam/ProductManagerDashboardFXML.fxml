@@ -70,7 +70,7 @@
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="54.0" layoutY="465.0" mnemonicParsing="false" onAction="#reimbursementOnButtonClicked" prefHeight="28.0" prefWidth="176.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;">
+      <Button layoutX="54.0" layoutY="465.0" mnemonicParsing="false" onAction="#updatedTermsButton" prefHeight="28.0" prefWidth="231.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" text="Updated Term &amp; Policies">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font>
