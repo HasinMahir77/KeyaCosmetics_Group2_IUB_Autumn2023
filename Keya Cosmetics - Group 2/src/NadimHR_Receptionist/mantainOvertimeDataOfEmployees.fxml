@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NadimHR_Receptionist.MantainOvertimeDataOfEmployeesController">
+   <children>
+      <Label layoutX="202.0" layoutY="16.0" prefHeight="42.0" prefWidth="416.0" text="Additional Working Hours Record" textFill="#b91414">
+         <font>
+            <Font name="Bodoni MT" size="28.0" />
+         </font>
+      </Label>
+      <TableView fx:id="TableView" layoutX="15.0" layoutY="242.0" opacity="0.8" prefHeight="143.0" prefWidth="578.0">
+         <columns>
+            <TableColumn fx:id="DesignationColumn" prefWidth="153.0" style="-fx-background-color: red;" text="Designation" />
+            <TableColumn fx:id="NameColumn" prefWidth="206.0" text="Name" />
+            <TableColumn fx:id="HoursColumn" prefWidth="86.0" text="Hours" />
+            <TableColumn fx:id="DateColumn" prefWidth="183.0" text="Date" />
+         </columns>
+         <effect>
+            <Glow level="0.17" />
+         </effect>
+      </TableView>
+      <VBox layoutX="69.0" layoutY="70.0" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label prefHeight="37.0" prefWidth="83.0" text="Designation:" textFill="#b91414">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label prefHeight="31.0" prefWidth="43.0" text="Name:" textFill="#b91414">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label prefHeight="33.0" prefWidth="44.0" text="Hours:" textFill="#b91414">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label prefHeight="32.0" prefWidth="35.0" text="Date:" textFill="#b91414">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="169.0" layoutY="70.0" prefHeight="153.0" prefWidth="151.0">
+         <children>
+            <ComboBox fx:id="DesignationComboBox" opacity="0.7" prefWidth="150.0" />
+            <ComboBox fx:id="NameComboBox" opacity="0.7" prefWidth="150.0" />
+            <TextField fx:id="HoursTextField" opacity="0.7" prefWidth="150.0" />
+            <DatePicker fx:id="DatePicker" opacity="0.7" prefHeight="25.0" prefWidth="150.0" />
+            <Button fx:id="LoadInformationButton" mnemonicParsing="false" onAction="#loadInformationOnClick" opacity="0.75" prefHeight="25.0" prefWidth="234.0" text="Load Information">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </VBox>
+      <Button fx:id="SendButton" layoutX="329.0" layoutY="192.0" mnemonicParsing="false" onAction="#sendInformationOnClick" opacity="0.7" prefHeight="25.0" prefWidth="234.0" style="-fx-background-radius: 80;" text="Send" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="329.0" layoutY="67.0" mnemonicParsing="false" onAction="#saveAspdfOmClk" prefHeight="119.0" prefWidth="100.0" text="Save as PDF" textFill="#ae1414" />
+   </children>
+</AnchorPane>

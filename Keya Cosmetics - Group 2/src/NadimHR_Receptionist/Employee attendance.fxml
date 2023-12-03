@@ -9,40 +9,40 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="508.0" prefWidth="651.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NadimHR_Receptionist.EmployeeAttendanceController">
+<AnchorPane id="AnchorPane" prefHeight="454.0" prefWidth="592.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NadimHR_Receptionist.EmployeeAttendanceController">
    <children>
-      <Button layoutX="136.0" layoutY="401.0" mnemonicParsing="false" onAction="#AddButtonOnClick" prefHeight="45.0" prefWidth="118.0" style="-fx-background-color: yellow;" text="Add" />
-      <Button layoutX="382.0" layoutY="398.0" mnemonicParsing="false" onAction="#createButtonOnClick" prefHeight="36.0" prefWidth="204.0" style="-fx-background-color: yellow;" text="Create" />
-      <Label layoutX="54.0" layoutY="462.0" prefHeight="31.0" prefWidth="281.0" style="-fx-background-color: yellow;" text="Click Create Button to create file of the attendance " wrapText="true">
+      <Button layoutX="103.0" layoutY="359.0" mnemonicParsing="false" onAction="#AddButtonOnClick" prefHeight="45.0" prefWidth="118.0" style="-fx-background-color: yellow;" text="Add" />
+      <Button layoutX="301.0" layoutY="361.0" mnemonicParsing="false" onAction="#createButtonOnClick" prefHeight="20.0" prefWidth="204.0" style="-fx-background-color: yellow;" text="Create" />
+      <Label layoutX="14.0" layoutY="407.0" prefHeight="31.0" prefWidth="281.0" text="Click Create Button to create file of the attendance " wrapText="true">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="positionComboBox" layoutX="190.0" layoutY="82.0" prefHeight="31.0" prefWidth="167.0" promptText="Select position" />
-      <ComboBox fx:id="nameComboBox" layoutX="190.0" layoutY="122.0" prefWidth="150.0" promptText="Select name" />
-      <Label layoutX="128.0" layoutY="85.0" style="-fx-background-color: yellow;" text="Position">
+      <ComboBox fx:id="positionComboBox" layoutX="213.0" layoutY="54.0" prefHeight="31.0" prefWidth="167.0" promptText="Select position" />
+      <ComboBox fx:id="nameComboBox" layoutX="218.0" layoutY="97.0" prefHeight="31.0" prefWidth="160.0" promptText="Select name" />
+      <Label layoutX="150.0" layoutY="62.0" text="Position">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="133.0" layoutY="125.0" prefHeight="20.0" prefWidth="43.0" style="-fx-background-color: yellow;" text="Name:">
+      <Label layoutX="154.0" layoutY="106.0" prefHeight="20.0" prefWidth="43.0" text="Name:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TableView fx:id="tableView" layoutX="115.0" layoutY="175.0" prefHeight="212.0" prefWidth="415.0">
+      <TableView fx:id="tableView" layoutX="88.0" layoutY="138.0" prefHeight="212.0" prefWidth="415.0">
          <columns>
             <TableColumn fx:id="nameCol" prefWidth="135.0" text="Name" />
             <TableColumn fx:id="positiontCol" prefWidth="106.0" text="Position" />
             <TableColumn fx:id="TimeCol" prefWidth="156.0" text="Time" />
          </columns>
       </TableView>
-      <Label alignment="CENTER" layoutX="149.0" layoutY="9.0" prefHeight="51.0" prefWidth="347.0" text="Employee Attendence">
+      <Label alignment="CENTER" layoutX="123.0" prefHeight="51.0" prefWidth="347.0" text="Employee Attendence">
          <font>
             <Font name="Arial Black" size="27.0" />
          </font>
       </Label>
-      <Line endX="263.0" layoutX="309.0" layoutY="61.0" startX="-254.0" strokeWidth="2.3" />
-      <Button layoutX="382.0" layoutY="446.0" mnemonicParsing="false" onAction="#saveAsPDF" prefHeight="31.0" prefWidth="204.0" style="-fx-background-color: yellow;" text="Save as PDF" />
+      <Line endX="263.0" layoutX="291.0" layoutY="46.0" startX="-254.0" strokeWidth="2.3" />
+      <Button layoutX="300.0" layoutY="398.0" mnemonicParsing="false" onAction="#saveAsPDF" prefHeight="20.0" prefWidth="204.0" style="-fx-background-color: yellow;" text="Save as PDF" />
    </children>
 </AnchorPane>
