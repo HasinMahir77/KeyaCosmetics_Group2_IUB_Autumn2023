@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author hasin
  */
 public class OrderedProduct extends Product implements Serializable {
+    private String category;
     private int quantity;
     private float unitPrice, price, totalPrice, vat;
     
@@ -20,6 +21,7 @@ public class OrderedProduct extends Product implements Serializable {
     
     public OrderedProduct(String name, float price, String category, float vatRate, int quantity) {
         this.name = name;
+        this.category = category;
         this.quantity = quantity;
         this.vatRate = vatRate;
         this.unitPrice = price;

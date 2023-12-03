@@ -51,8 +51,9 @@ public class ViewOrderDetailController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        Order current = (Order)Order.getStage().getUserData();
         
+        Order current = (Order)Order.getStage().getUserData();
+        System.out.println("Order"+current);
         this.orderIdLabel.setText("Order ID: "+ current.getId());
         this.priceLabel.setText("Total: " + Float.toString(current.getPrice()) + " BDT");
         this.statusLabel.setText("Status: " + current.getStatus().toString());
@@ -69,6 +70,7 @@ public class ViewOrderDetailController implements Initializable {
         unitColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Integer>("quantity"));
         
         this.cartTableView.getItems().addAll(current.getCart().getProductOrderList());
+        
     }    
     
 }

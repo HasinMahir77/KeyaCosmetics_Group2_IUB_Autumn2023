@@ -100,8 +100,7 @@ public class DeliveryManTasksController implements Initializable {
    
     @FXML
     private void tasksButtonOnClick(ActionEvent event) throws IOException {
-        DMSS ss = new DMSS();
-        ss.switchToTasks();
+        
     }
 
     @FXML
@@ -206,5 +205,6 @@ public class DeliveryManTasksController implements Initializable {
             current.deliverOrder(selectedOrder);
             //Instance saved in dm class
         }
+        this.updateOrderTable();
     }
 }

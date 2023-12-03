@@ -168,7 +168,7 @@ public class DeliveryManDashboardController implements Initializable {
     @FXML
     private void viewDetailButtonOnClick(ActionEvent event) throws IOException {
         if (selectedOrder!=null && !this.orderTableView.getItems().isEmpty()){
-            System.out.println("view cart now");
+            //System.out.println("view cart now");
             selectedOrder.viewCart();
         }
     }
@@ -177,6 +177,7 @@ public class DeliveryManDashboardController implements Initializable {
     private void acceptButtonOnClick(ActionEvent event) {
         if (selectedOrder!=null && !this.orderTableView.getItems().isEmpty()){
             current.acceptOrder(this.selectedOrder);
+            selectedOrder.saveInstance();
             this.updateOrderTable();
             //Payment generated in DM class
             

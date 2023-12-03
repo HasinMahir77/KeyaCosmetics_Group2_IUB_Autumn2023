@@ -111,6 +111,12 @@
                         <TextField fx:id="phoneTextField" disable="true" prefHeight="25.0" prefWidth="175.0" />
                      </children>
                   </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="198.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="balanceLabel" text="Balance:" />
+                        <Button mnemonicParsing="false" onAction="#rechargeBalanceButtonOnClick" text="Recharge balance" />
+                     </children>
+                  </VBox>
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="2">

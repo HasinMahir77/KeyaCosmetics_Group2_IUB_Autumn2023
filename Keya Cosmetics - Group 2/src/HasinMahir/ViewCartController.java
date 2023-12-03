@@ -41,6 +41,8 @@ public class ViewCartController implements Initializable {
         // TODO
         Order current = (Order)Order.getStage().getUserData();
         
+        if (current!=null){System.out.println("Order received from userdata");}
+        
         this.orderIdLabel.setText("Order ID: "+ current.getId());
         this.priceLabel.setText("Total: " + Float.toString(current.getPrice()) + " BDT");
         
@@ -48,6 +50,7 @@ public class ViewCartController implements Initializable {
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Float>("totalPrice"));
         unitColumn.setCellValueFactory(new PropertyValueFactory<OrderedProduct, Integer>("quantity"));
         
+        System.out.println(current.getCart().getProductOrderList());
         this.cartTableView.getItems().addAll(current.getCart().getProductOrderList());
     
     }    

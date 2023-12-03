@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" />
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HasinMahir.customerScenes.CustomerCheckoutController">
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.3333740234375" minWidth="10.0" prefWidth="409.3333740234375" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.3333740234375" minWidth="10.0" prefWidth="190.6666259765625" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowSpan="2">
+               <children>
+                  <TableView fx:id="cartTableView" prefHeight="344.0" prefWidth="430.0">
+                     <columns>
+                        <TableColumn fx:id="nameColumn" prefWidth="184.3333740234375" text="Name" />
+                        <TableColumn fx:id="unitColumn" minWidth="0.0" prefWidth="88.6666259765625" text="Units" />
+                        <TableColumn fx:id="totalPriceColumn" minWidth="0.0" prefWidth="146.3333740234375" text="Total Price" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="2">
+               <children>
+                  <Label text="Payment method:" />
+                  <Label />
+                  <HBox alignment="CENTER" prefHeight="57.0" prefWidth="191.0" spacing="5.0">
+                     <children>
+                        <RadioButton fx:id="bKashRadioButton" mnemonicParsing="false" onAction="#bKashRadioButtonOnAction" text="bKash" />
+                        <ImageView fitHeight="32.0" fitWidth="32.0">
+                           <image>
+                              <Image url="@../../images/bKash.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="57.0" prefWidth="191.0" spacing="5.0">
+                     <children>
+                        <RadioButton fx:id="bankRadioButton" mnemonicParsing="false" onAction="#bankRadioButtonOnAction" text="Bank" />
+                        <Label text="🏦">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="57.0" prefWidth="191.0" spacing="5.0">
+                     <children>
+                        <RadioButton fx:id="cashRadioButton" mnemonicParsing="false" onAction="#cashRadioButtonOnAction" text="Cash" />
+                        <Label text="💵">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER" prefHeight="72.0" prefWidth="191.0">
+                     <children>
+                        <Label fx:id="balanceLabel" text="Balance:" />
+                        <Label fx:id="afterPurchaseLabel" text="After purchase:" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Button fx:id="payButton" mnemonicParsing="false" onAction="#payButtonOnAction" prefHeight="25.0" prefWidth="56.0" text="Pay" />
+               </children>
+            </VBox>
+            <GridPane GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="totalLabel" text="Total:" />
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </children>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </GridPane>
+   </center>
+</BorderPane>

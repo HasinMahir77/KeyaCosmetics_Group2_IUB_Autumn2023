@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
@@ -18,6 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #eef0f5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HasinMahir.deliveryManScenes.DeliveryManPaymentsController">
    <left>
@@ -95,9 +97,9 @@
                   <GridPane style="-fx-background-color: white;">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="163.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.66668701171875" minWidth="10.0" prefWidth="156.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.3333740234375" minWidth="10.0" prefWidth="192.3333740234375" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.6666259765625" minWidth="10.0" prefWidth="184.6666259765625" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="338.0" minWidth="10.0" prefWidth="277.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.6666259765625" minWidth="10.0" prefWidth="45.33331298828125" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.66668701171875" minWidth="10.0" prefWidth="210.66668701171875" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints maxHeight="210.33334350585938" minHeight="10.0" prefHeight="210.33334350585938" vgrow="SOMETIMES" />
@@ -108,11 +110,77 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
                               <Label text="Select payment" />
                               <ListView fx:id="paymentListView" prefHeight="200.0" prefWidth="200.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" />
                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="224.0" prefWidth="232.0">
+                           <children>
+                              <Label text="Payment method:" />
+                              <Label />
+                              <HBox alignment="CENTER" prefHeight="57.0" prefWidth="191.0" spacing="5.0">
+                                 <children>
+                                    <RadioButton fx:id="bKashRadioButton" mnemonicParsing="false" onAction="#bKashRadioButtonOnAction" text="bKash" />
+                                    <ImageView fitHeight="32.0" fitWidth="32.0">
+                                       <image>
+                                          <Image url="@../../images/bKash.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="57.0" prefWidth="191.0" spacing="5.0">
+                                 <children>
+                                    <RadioButton fx:id="bankRadioButton" mnemonicParsing="false" onAction="#bankRadioButtonOnAction" text="Bank" />
+                                    <Label text="🏦">
+                                       <font>
+                                          <Font size="27.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="59.0" prefWidth="232.0" spacing="5.0">
+                                 <children>
+                                    <RadioButton fx:id="cashRadioButton" mnemonicParsing="false" onAction="#cashRadioButtonOnAction" text="Cash" />
+                                    <Label text="💵">
+                                       <font>
+                                          <Font size="27.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="22.0" prefWidth="232.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="237.0" prefWidth="214.0" spacing="10.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: #eef0f5;" GridPane.columnIndex="3">
+                           <children>
+                              <Label text="Delivery Man">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label />
+                              <Label fx:id="nameLabel" text="Name:" />
+                              <Label fx:id="phoneLabel" text="Phone:" />
+                              <Label fx:id="dobLabel" text="DOB:" />
+                              <Label fx:id="dojLabel" text="Joining date:" />
+                              <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label fx:id="balanceLabel" text="Balance:" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="15.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
                         </VBox>
                      </children>
                   </GridPane>

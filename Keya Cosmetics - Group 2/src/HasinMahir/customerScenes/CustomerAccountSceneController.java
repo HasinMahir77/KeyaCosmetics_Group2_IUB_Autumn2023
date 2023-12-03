@@ -13,7 +13,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -30,6 +33,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import mainpkg.MainpkgSS;
 import mainpkg.Main;
 
@@ -77,6 +81,9 @@ public class CustomerAccountSceneController implements Initializable {
     private Label profileLabel;
     @FXML
     private Label securityLabel;
+    @FXML
+    private Label balanceLabel;
+    Customer current;
 
     /**
      * Initializes the controller class.
@@ -85,6 +92,7 @@ public class CustomerAccountSceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
         profileLabel.setTextFill(Color.BLUE);
         Customer current = (Customer)Main.getMainStage().getUserData();
         userMenu.setText(current.getUsername()+" ↓");
@@ -92,6 +100,8 @@ public class CustomerAccountSceneController implements Initializable {
         lastNameTextField.setText(current.getLastName());
         addressTextArea.setText(current.getAddress());
         phoneTextField.setText(current.getPhone());
+        
+        this.balanceLabel.setText(this.balanceLabel.getText()+" "+current.getBalance());
     }    
 
     @FXML
@@ -239,6 +249,24 @@ public class CustomerAccountSceneController implements Initializable {
     private void switchToOrderSceneFromLabel(MouseEvent event) throws IOException {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToOrderScene();
+    }
+
+    @FXML
+    private void rechargeBalanceButtonOnClick(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        stage.setUserData(current);
+        stage.setTitle("Recharge");
+        Parent root = FXMLLoader.load(getClass().getResource("RechargeScene.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        
+        
+        stage.showAndWait();
+        current = (Customer)Main.getUserData();
+        this.balanceLabel.setText("Balance: "+current.getBalance());
+        
+        
+        
     }
 
  

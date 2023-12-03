@@ -91,6 +91,7 @@ public class CustomerOrderSceneController implements Initializable {
     private Button reviewButton;
     @FXML
     private Button returnButton;
+    Order selectecOrder;
 
     /**
      * Initializes the controller class.
@@ -202,6 +203,8 @@ public class CustomerOrderSceneController implements Initializable {
     private void returnButtonOnClick(ActionEvent event) {
         if (this.selectedOrder!=null){
             this.selectedOrder.setStatus(Status.INITIATED_RETURN);
+            selectedOrder.saveInstance();
+            this.updateOrderTable();
         }
     }
 
@@ -209,6 +212,7 @@ public class CustomerOrderSceneController implements Initializable {
     private void updateSelectedOrder(MouseEvent event) {
        if(!orderTableView.getSelectionModel().isEmpty()){
             this.selectedOrder = orderTableView.getSelectionModel().getSelectedItem();
+            this.viewDetailsButton.setDisable(false);
             this.updateButton();
         } 
     }
@@ -250,14 +254,17 @@ public class CustomerOrderSceneController implements Initializable {
     private void cancelButtonOnClick(ActionEvent event) {
         if (!(this.selectedOrder==null)){
             this.selectedOrder.setStatus(Status.CANCELED);
+            selectedOrder.saveInstance();
+            this.updateOrderTable();
         }
-        this.selectedOrder.saveInstance();
+        //this.selectedOrder.saveInstance();
     }
 
     @FXML
     private void reviewButtonOnClick(ActionEvent event) throws IOException {
         if (this.selectedOrder!=null){
             this.selectedOrder.addReview(current.getUsername());
+            selectedOrder.saveInstance();
         }
     }
     private void updatePieChart(){
@@ -268,12 +275,16 @@ public class CustomerOrderSceneController implements Initializable {
     }
 
     @FXML
-    private void viewDetailsButtonOnClick(ActionEvent event) {
+    private void viewDetailsButtonOnClick(ActionEvent event) throws IOException {
+        if (this.selectedOrder!=null){
+            selectedOrder.viewDetails();
+        }
     }
 
     @FXML
     private void switchToOrderSceneFromLabel(MouseEvent event) {
     }
+    
 
     
 }

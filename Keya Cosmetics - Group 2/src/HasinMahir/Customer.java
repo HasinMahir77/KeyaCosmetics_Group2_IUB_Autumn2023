@@ -21,19 +21,20 @@ import mainpkg.ObjectOutputStreamA;
  */
 public class Customer extends User implements Serializable, Deleteable, Reviewable {
     private Cart cart;
-    private ArrayList<String> orderIdList;
     private String address;
     private float balance;
+    private ArrayList<Order> orderList;
 
     public Customer() {
         this.del = false;
-        this.balance=0;
+        this.balance=100000;
+        this.orderList = new ArrayList<Order>();
     }
 
     public Customer(String firstName, String lastName, String username, String password, String address, String phone) {
         super(firstName, lastName, username, password, phone);
         this.cart = new Cart();
-        this.orderIdList = new ArrayList<String>();
+        this.orderList = new ArrayList<Order>();
         this.address = address;
         this.phone = phone;
         this.del = false;
@@ -51,8 +52,8 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
         return ("Name: "+this.firstName+" "+this.lastName+", Username: "+this.username);
     }
 
-    public ArrayList<String> getOrderIdList() {
-        return orderIdList;
+    public ArrayList<Order> getOrderList() {
+        return orderList;
     }
 
     public void setCart(Cart cart) {
@@ -77,6 +78,7 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
     
         
     public void saveInstance(){
+     
         Customer target = null;
         System.out.println("Save instance called");
         File userFile = new File("CustomerList.bin");
@@ -106,10 +108,12 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
                 oos.writeObject(c);
             }
         }
-        catch(Exception e){System.out.println(e.toString()+" From customer saveinstancs");}
+        catch(Exception e){System.out.println(e.toString()+" From customer saveinstance");}
+     
     }
     
     public static ArrayList<Customer> getCustomerList(){
+        
         if (new File("CustomerList.bin").exists()){
             
         ArrayList<Customer> customerList = new ArrayList<Customer>();
@@ -126,7 +130,7 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
         }
         else {
             System.out.println("CustomerFile not found. getCustomerList() called.");
-            return null;
+            return new ArrayList<Customer>();
         }
     }
     
@@ -139,6 +143,9 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
             this.username+=".deleted";
         }
     }
+    public void placeOrder(Order order){
+        this.orderList.add(order);
+    }
     public void recover(){
         if (this.isDel()){
             this.del = false;
@@ -149,6 +156,15 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
             this.username = this.username.substring(0,this.username.length()-8);
         }
     }
+    public static Customer getInstance(String username){
+        for (Customer c: Customer.getCustomerList()){
+            if (c.getUsername().equals(username)){
+                return c;
+            }
+        }
+        return null;
+    }
+  
     /* Broken and probably redundant.
     public static void setCustomerList(ArrayList<Customer> newCustomerList){
         //Rewriting the bin file with the updated customer object.

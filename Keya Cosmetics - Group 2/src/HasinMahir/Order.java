@@ -4,6 +4,7 @@
  */
 package HasinMahir;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -54,7 +55,6 @@ public class Order implements Serializable,Reviewable {
         this.date = LocalDate.now();
         this.id = "OID"+this.time.toString()+this.date.toString();
         this.review = null;
-        customer.getOrderIdList().add(this.id);
     }
     
 
@@ -73,7 +73,26 @@ public class Order implements Serializable,Reviewable {
             Alert a = new Alert(Alert.AlertType.ERROR,"Failed to save review");
             a.showAndWait();
         }
-    }
+    }/*
+    public void addOrder(){
+        File orderFile = new File("OrderList.bin");
+        FileOutputStream fos;
+        ObjectOutputStream oos;
+        
+        try{
+            if (orderFile.exists()){
+                fos = new FileOutputStream(orderFile,true);
+                oos = new ObjectOutputStreamA(fos);
+            }
+            else {
+                fos = new FileOutputStream(orderFile);
+                oos = new ObjectOutputStream(fos);
+            }
+            oos.writeObject(this);
+            oos.close();
+        }
+        catch(Exception e){System.out.println(e+" from Order.addOrder");}
+    }*/
     
     public Status getStatus() {
         return status;
@@ -93,18 +112,25 @@ public class Order implements Serializable,Reviewable {
 
     public void setStatus(Status status) {
         this.status = status;
+        this.saveInstance();
+        
+        
+        
     }
 
     public void setCustomerUserName(String customerUserName) {
         this.customerUserName = customerUserName;
+       
     }
 
     public void setDeliveryManUserName(String deliveryManUserName) {
         this.deliveryManUserName = deliveryManUserName;
+       
     }
 
     public void setAddress(String address) {
         this.address = address;
+        
     }
 
     public String getAddress() {
@@ -153,72 +179,96 @@ public class Order implements Serializable,Reviewable {
     
     
     public void saveInstance(){
-        File oldCustomerList = new File("OrderList.bin");
-        Order order;
-        ArrayList<Order> bufferList = new ArrayList<Order>();
-        //Collecting all the other users of same type except current user
-        try(FileInputStream fis = new FileInputStream(oldCustomerList);
-                ObjectInputStream ois = new ObjectInputStream(fis);) {
-            
-            while(true){
-                order = (Order)ois.readObject();
-                if ( !(order.getId().equals(this.getId())) ) {
-                    bufferList.add(order);
-                }
+
+        Order target = null;
+        
+        Customer owner = Customer.getInstance(this.customerUserName);
+        //Editing the customer instance
+        for (Order o: owner.getOrderList()){
+            if (o.getId().equals(this.id)){
+                target = o;
             }
-        } catch(Exception e) {
-            System.out.println("From order.saveInstance() : "+e.toString());
-            System.out.println("ArrayList of orders made");
-        } 
-        // Arraylist of Orders made.
+        }
+        if (target!=null){
+            owner.getOrderList().remove(target);
+            owner.getOrderList().add(this);
+            owner.saveInstance();
+        }
+        /*
         
-        //Rewriting the bin file with the updated customer object.
-       
+        
+        Order target = null;
+        System.out.println("Save instance called");
+        File userFile = new File("OrderList.bin");
+        ArrayList<Order> orderList = Order.getOrderList();
+        //Removing current user
+        for(Order c: orderList){
+            if (c.getId().equals(this.getId())){
+                target = c;
+            }
+        }
+        orderList.remove(target);
+        //Clearing file
         try{
-            FileOutputStream temp = new FileOutputStream(oldCustomerList);
-            temp.close(); //Cleared the file
-        }catch(Exception e){
-            System.out.println(e);
-        }
+            new FileInputStream(userFile).close();
+        } catch(Exception e){System.out.println(e.toString()+"From order.saveInstance()");}
         
-        //Writing files
-        try(FileOutputStream fos = new FileOutputStream(oldCustomerList);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);){
+        //Writing current user
+        try(FileOutputStream fos = new FileOutputStream(userFile);
+                ObjectOutputStream oos = new ObjectOutputStream(fos)){
             oos.writeObject(this);
-        } catch(Exception e){
-            System.out.println(e.toString());
-            System.out.println("Only current order written. Other customers next");
+            
+            oos.close();
         }
-        try(FileOutputStream fos = new FileOutputStream(oldCustomerList,true);
-        ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
-            for(Order c: bufferList){
-                    oos.writeObject(c);
-                }
-        } catch(Exception e){
-            System.out.println(e.toString());
-        } 
+        catch(Exception e){System.out.println(e.toString()+" From order saveinstance");}
+        //Writing other users
+        try(FileOutputStream fos = new FileOutputStream(userFile,true);
+                ObjectOutputStream oos = new ObjectOutputStreamA(fos)){
+            for (Order c: orderList){
+                oos.writeObject(c);
+                oos.close();
+            }
+        }
+        catch(Exception e){System.out.println(e.toString()+" From order.saveinstance()");} 
         
-        
+        */
     }
     
-    public static ArrayList<Order> getOrderList(){
-        File oldCustomerList = new File("OrderList.bin");
-        Order order;
-        ArrayList<Order> customerList = new ArrayList<Order>();
-        //Collecting all the other users of same type
-        try(FileInputStream fis = new FileInputStream(oldCustomerList);
-                ObjectInputStream ois = new ObjectInputStream(fis);) {
-            
-            while(true){
-                order = (Order)ois.readObject();
-                customerList.add(order);
+    public static Order readInstance(Order order){
+        for (Order o: Order.getOrderList()){
+            if (o.getId().equals(order.getId())){
+                return o;
             }
-        } catch(Exception e) {
-            System.out.println("From order.getorderList() : "+e.toString());
-            System.out.println("ArrayList of orders made");
-        } 
-        // Arraylist of Orders made.
-        return customerList;
+        }
+        System.out.println("Shouldn't happen. Order.readInstance()");
+        return null;
+     
+    }
+    
+    public static ArrayList<Order> getOrderList(){/*
+        if (new File("OrderList.bin").exists()){
+            
+        ArrayList<Order> orderList = new ArrayList<Order>();
+        //Reading file
+        try(FileInputStream fis = new FileInputStream("OrderList.bin");
+                ObjectInputStream ois = new ObjectInputStream(fis);){
+            while(true){
+                orderList.add((Order)ois.readObject());}
+        }
+        catch(EOFException e){System.out.println("OrderList.bin file reading complete");}
+        catch(Exception e){e.printStackTrace(System.out);}
+        // Arraylist of Customers made.
+        return orderList;
+        }
+        else {
+            System.out.println("OrderFile not found. getOrderList() called.");
+            return new ArrayList<Order>();
+        }*/
+        ArrayList<Order> orderList = new ArrayList<Order>();
+        for (Customer c: Customer.getCustomerList()){
+            orderList.addAll(c.getOrderList());
+        }
+        return orderList;
     }
     
     public void viewCart() throws IOException{
