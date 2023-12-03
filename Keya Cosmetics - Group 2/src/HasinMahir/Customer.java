@@ -149,6 +149,15 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
             this.username = this.username.substring(0,this.username.length()-8);
         }
     }
+    public ArrayList<Order> getOrderList(){
+        ArrayList<Order> orderList = new ArrayList<Order>();
+        for (Order o: Order.getOrderList()){
+            if (o.getCustomerUserName().equals(this.getUsername())){
+                orderList.add(o);
+            }
+        }
+        return orderList;
+    }
     /* Broken and probably redundant.
     public static void setCustomerList(ArrayList<Customer> newCustomerList){
         //Rewriting the bin file with the updated customer object.
