@@ -91,6 +91,7 @@ public class CustomerOrderSceneController implements Initializable {
     private Button reviewButton;
     @FXML
     private Button returnButton;
+    Order selectecOrder;
 
     /**
      * Initializes the controller class.
@@ -268,12 +269,16 @@ public class CustomerOrderSceneController implements Initializable {
     }
 
     @FXML
-    private void viewDetailsButtonOnClick(ActionEvent event) {
+    private void viewDetailsButtonOnClick(ActionEvent event) throws IOException {
+        if (this.selectedOrder!=null){
+            selectedOrder.viewDetails();
+        }
     }
 
     @FXML
     private void switchToOrderSceneFromLabel(MouseEvent event) {
     }
+    
 
     
 }

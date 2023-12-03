@@ -27,6 +27,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
@@ -135,6 +136,21 @@ public class CustomerSignupGridController implements Initializable {
                 ObjectOutputStreamA oos = new ObjectOutputStreamA(fos)){
             oos.writeObject(customer);
             System.out.println("User written");
+            ButtonType loginB = new ButtonType("Login",ButtonBar.ButtonData.OK_DONE);
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Account created successfully",
+                    loginB,ButtonType.CLOSE);
+            a.showAndWait();
+            if (a.getResult()==loginB){
+                this.switchToLoginScreen(event);
+            }
+            else{
+                this.usernameTextField.clear();
+                this.firstNameTextField.clear();
+                this.passwordTextField.clear();
+                this.phoneTextField.clear();
+                this.usernameTextField.clear();
+                this.lastNameTextField.clear();
+            }
         }
             catch(Exception e){System.out.println(e.toString()+" at signup");}
         }

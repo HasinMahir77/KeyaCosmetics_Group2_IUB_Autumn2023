@@ -26,6 +26,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -283,10 +284,12 @@ public class EmployeeSignupGridController implements Initializable {
             
         }
         System.out.println("Employee written");
+        
+        ButtonType loginB = new ButtonType("Login",ButtonBar.ButtonData.OK_DONE);
         Alert a = new Alert(Alert.AlertType.CONFIRMATION,"Account created successfully",
-                    ButtonType.OK,ButtonType.CLOSE);
+                    loginB,ButtonType.CLOSE);
             a.showAndWait();
-            if (a.getResult()==ButtonType.OK){
+            if (a.getResult()==loginB){
                 this.switchToLoginScreen(event);
             }
             else{
