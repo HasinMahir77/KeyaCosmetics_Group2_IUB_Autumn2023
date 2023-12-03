@@ -27,7 +27,7 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
 
     public Customer() {
         this.del = false;
-        this.balance=0;
+        this.balance=100000;
         this.orderList = new ArrayList<Order>();
     }
 

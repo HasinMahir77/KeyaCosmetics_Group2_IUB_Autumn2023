@@ -203,6 +203,8 @@ public class CustomerOrderSceneController implements Initializable {
     private void returnButtonOnClick(ActionEvent event) {
         if (this.selectedOrder!=null){
             this.selectedOrder.setStatus(Status.INITIATED_RETURN);
+            selectedOrder.saveInstance();
+            this.updateOrderTable();
         }
     }
 
@@ -210,6 +212,7 @@ public class CustomerOrderSceneController implements Initializable {
     private void updateSelectedOrder(MouseEvent event) {
        if(!orderTableView.getSelectionModel().isEmpty()){
             this.selectedOrder = orderTableView.getSelectionModel().getSelectedItem();
+            this.viewDetailsButton.setDisable(false);
             this.updateButton();
         } 
     }
@@ -252,6 +255,7 @@ public class CustomerOrderSceneController implements Initializable {
         if (!(this.selectedOrder==null)){
             this.selectedOrder.setStatus(Status.CANCELED);
             selectedOrder.saveInstance();
+            this.updateOrderTable();
         }
         //this.selectedOrder.saveInstance();
     }

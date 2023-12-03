@@ -50,6 +50,7 @@ import mainpkg.Main;
  * @author hasin
  */
 public class CustomerCartSceneController implements Initializable {
+    private static Stage checkoutStage;
 
     @FXML
     private MenuBar userMenuBar;
@@ -307,9 +308,12 @@ public class CustomerCartSceneController implements Initializable {
 
     @FXML
     private void orderButtonOnClick(ActionEvent event) throws IOException {
-
-        Order order = new Order(current);
-        System.out.println("Ordered by "+current.toString());
+ 
+        Parent root = FXMLLoader.load(getClass().getResource("CustomerCheckout.fxml"));
+        Scene scene = new Scene(root);
+        checkoutStage.setScene(scene);
+        checkoutStage.show();
+        /*
         current.placeOrder(order);
         current.saveInstance();
         
@@ -317,7 +321,7 @@ public class CustomerCartSceneController implements Initializable {
         this.updateCartTable();
         
         //
-        for (Order o: Order.getOrderList()){System.out.println(o);}
+        for (Order o: Order.getOrderList()){System.out.println(o);}*/
         
     }
     public void updateGrandTotal(){
@@ -339,5 +343,8 @@ public class CustomerCartSceneController implements Initializable {
         CustomerSceneSwitcher ss = new CustomerSceneSwitcher();
         ss.switchToOrderScene();
     }    
+    public static Stage getCheckoutStage(){
+        return checkoutStage;
+    }
     
 }

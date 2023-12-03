@@ -52,9 +52,6 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         // TODO
-        if (new File("OrderList.bin").exists()){
-            for (Order o: Order.getOrderList()){System.out.println(o);}
-        }
         launch(args);
     }
     public static Stage getMainStage(){

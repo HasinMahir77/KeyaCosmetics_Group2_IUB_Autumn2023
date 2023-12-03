@@ -130,32 +130,28 @@ public class DeliveryMan extends User {
         if (order.getStatus().equals(Status.OUT_FOR_DELIVERY)){
             
             order.setStatus(Status.DELIVERED);
-            this.paymentDepositList.add(new DeliveryPayment(Type.DEPOSIT,order.getId(),order.getPrice()));
+            this.balance+= order.getPrice();
+            this.paymentDepositList.add(new DeliveryPayment(order.getPrice()));
             order.saveInstance();
             this.saveInstance();
         }
         else if(order.getStatus()==Status.OUT_FOR_RETURN){
             order.setStatus(Status.RETURNED);
-            this.paymentWithdrawList.add(new DeliveryPayment(Type.WITHDRAW,order.getId(),100));
+            
+            this.paymentWithdrawList.add(new DeliveryPayment(50));
             order.saveInstance();
             this.saveInstance();
         }
     }
     public void depositPayment(DeliveryPayment payment){
-        for (DeliveryPayment p: this.paymentDepositList){
-            if (p.getId().equals(payment.getId()) && !p.isDone()){
-                p.setDone();
-                this.balance -= p.getAmount();
-            }
-        }
+        this.balance-=payment.getAmount();
+        payment.isDone();
+        this.saveInstance();
     }
     public void withdrawPayment(DeliveryPayment payment){
-        for (DeliveryPayment p: this.paymentWithdrawList){
-            if (p.getId().equals(payment.getId()) && !p.isDone()){
-                p.setDone();
-                this.balance += p.getAmount();
-            }
-        }
+        this.balance+=payment.getAmount();
+        payment.isDone();
+        this.saveInstance();
     }
     
     public ArrayList<DeliveryPayment> getPaymentDepositList(){
