@@ -4,6 +4,12 @@
  */
 package NadimHR_Receptionist;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
@@ -20,6 +26,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.FileChooser;
 
 /**
  * FXML Controller class
@@ -121,6 +128,39 @@ public class ApplicantSortingController implements Initializable {
 
     @FXML
     private void saveSelectedAppplicantesAsPDF(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+
+        File file = fileChooser.showSaveDialog(null);
+
+        if (file != null) {
+            saveTableViewContentAsPDF(TableView_11.getItems(), file.getAbsolutePath());
+        }
+    }
+
+    private void saveTableViewContentAsPDF(ObservableList<Applicant> items, String filePath) {
+        try {
+            PdfWriter pdfWriter = new PdfWriter(filePath);
+            PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+            Document document = new Document(pdfDocument);
+
+            for (Applicant applicant : items) {
+                document.add(new Paragraph("Applicant Name: " + applicant.getApplicantName()));
+                document.add(new Paragraph("Contact Info: " + applicant.getContactInfo()));
+                document.add(new Paragraph("Position: " + applicant.getPosition()));
+                document.add(new Paragraph("ID: " + applicant.getId()));
+                document.add(new Paragraph("Assigned by HR: " + applicant.getAssignedbyhr()));
+                document.add(new Paragraph("Assigned Date: " + applicant.getAssignedDate()));
+                document.add(new Paragraph("\n")); // Add space between entries
+            }
+
+            document.close();
+
+            System.out.println("PDF created successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
 }
