@@ -4,6 +4,7 @@
  */
 package HasinMahir;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -153,72 +154,59 @@ public class Order implements Serializable,Reviewable {
     
     
     public void saveInstance(){
-        File oldCustomerList = new File("OrderList.bin");
-        Order order;
-        ArrayList<Order> bufferList = new ArrayList<Order>();
-        //Collecting all the other users of same type except current user
-        try(FileInputStream fis = new FileInputStream(oldCustomerList);
-                ObjectInputStream ois = new ObjectInputStream(fis);) {
-            
-            while(true){
-                order = (Order)ois.readObject();
-                if ( !(order.getId().equals(this.getId())) ) {
-                    bufferList.add(order);
-                }
+        Order target = null;
+        System.out.println("Save instance called");
+        File userFile = new File("OrderList.bin");
+        ArrayList<Order> orderList = Order.getOrderList();
+        //Removing current user
+        for(Order c: orderList){
+            if (c.getId().equals(this.getId())){
+                target = c;
             }
-        } catch(Exception e) {
-            System.out.println("From order.saveInstance() : "+e.toString());
-            System.out.println("ArrayList of orders made");
-        } 
-        // Arraylist of Orders made.
-        
-        //Rewriting the bin file with the updated customer object.
-       
+        }
+        orderList.remove(target);
+        //Clearing file
         try{
-            FileOutputStream temp = new FileOutputStream(oldCustomerList);
-            temp.close(); //Cleared the file
-        }catch(Exception e){
-            System.out.println(e);
-        }
+            new FileInputStream(userFile).close();
+        } catch(Exception e){System.out.println(e.toString()+"From order.saveInstance()");}
         
-        //Writing files
-        try(FileOutputStream fos = new FileOutputStream(oldCustomerList);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);){
+        //Writing current user
+        try(FileOutputStream fos = new FileOutputStream(userFile);
+                ObjectOutputStream oos = new ObjectOutputStream(fos)){
             oos.writeObject(this);
-        } catch(Exception e){
-            System.out.println(e.toString());
-            System.out.println("Only current order written. Other customers next");
         }
-        try(FileOutputStream fos = new FileOutputStream(oldCustomerList,true);
-        ObjectOutputStream oos = new ObjectOutputStreamA(fos);){
-            for(Order c: bufferList){
-                    oos.writeObject(c);
-                }
-        } catch(Exception e){
-            System.out.println(e.toString());
-        } 
+        catch(Exception e){System.out.println(e.toString()+" From order saveinstance");}
+        //Writing other users
+        try(FileOutputStream fos = new FileOutputStream(userFile,true);
+                ObjectOutputStream oos = new ObjectOutputStreamA(fos)){
+            for (Order c: orderList){
+                oos.writeObject(c);
+            }
+        }
+        catch(Exception e){System.out.println(e.toString()+" From order.saveinstance()");} 
         
         
     }
     
     public static ArrayList<Order> getOrderList(){
-        File oldCustomerList = new File("OrderList.bin");
-        Order order;
-        ArrayList<Order> customerList = new ArrayList<Order>();
-        //Collecting all the other users of same type
-        try(FileInputStream fis = new FileInputStream(oldCustomerList);
-                ObjectInputStream ois = new ObjectInputStream(fis);) {
+        if (new File("OrderList.bin").exists()){
             
+        ArrayList<Order> orderList = new ArrayList<Order>();
+        //Reading file
+        try(FileInputStream fis = new FileInputStream("OrderList.bin");
+                ObjectInputStream ois = new ObjectInputStream(fis);){
             while(true){
-                order = (Order)ois.readObject();
-                customerList.add(order);
-            }
-        } catch(Exception e) {
-            System.out.println("From order.getorderList() : "+e.toString());
-            System.out.println("ArrayList of orders made");
-        } 
-        // Arraylist of Orders made.
-        return customerList;
+                orderList.add((Order)ois.readObject());}
+        }
+        catch(EOFException e){System.out.println("OrderList.bin file reading complete");}
+        catch(Exception e){e.printStackTrace(System.out);}
+        // Arraylist of Customers made.
+        return orderList;
+        }
+        else {
+            System.out.println("OrderFile not found. getOrderList() called.");
+            return new ArrayList<Order>();
+        }
     }
     
     public void viewCart() throws IOException{

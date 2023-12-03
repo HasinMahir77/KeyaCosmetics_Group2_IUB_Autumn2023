@@ -107,7 +107,7 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
                 oos.writeObject(c);
             }
         }
-        catch(Exception e){System.out.println(e.toString()+" From customer saveinstancs");}
+        catch(Exception e){System.out.println(e.toString()+" From customer saveinstance");}
      
     }
     
