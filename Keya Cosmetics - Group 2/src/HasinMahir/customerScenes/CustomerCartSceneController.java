@@ -383,6 +383,9 @@ public class CustomerCartSceneController implements Initializable {
 
                 document.add(new Paragraph("\n")); // Add space between entries
             }
+            
+            document.add(new Paragraph("\n"));
+            document.add(new Paragraph("- Grand Total: " + current.getCart().getPrice()+" BDT"));
 
             document.close();
 
