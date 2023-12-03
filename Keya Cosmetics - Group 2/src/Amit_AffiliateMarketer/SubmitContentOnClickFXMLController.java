@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 
 /**
@@ -31,6 +32,12 @@ public class SubmitContentOnClickFXMLController implements Initializable {
 
     @FXML
     private void submitcontenntOnClick(ActionEvent event) {
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setTitle("Information Alert");
+        a.setHeaderText("Alert");
+        a.setContentText("New Content has been added successfully\n"
+              );
+        a.showAndWait();
     }
     
 }
