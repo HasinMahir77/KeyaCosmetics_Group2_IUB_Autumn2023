@@ -38,7 +38,7 @@ public class CreateAppointmentController implements Initializable {
 
      @Override
     public void initialize(URL url, ResourceBundle rb) {
-        CreateappointmentomboBox.getItems().addAll("HR","Accountant"," ");
+        CreateappointmentomboBox.getItems().addAll("HR","Accountant","Product manager"," Production manager", "Affillait marketer");
         // TODO
     }    
 
