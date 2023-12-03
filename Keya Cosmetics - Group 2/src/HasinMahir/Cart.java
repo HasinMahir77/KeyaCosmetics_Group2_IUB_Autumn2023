@@ -104,7 +104,7 @@ public class Cart implements Serializable {
         
     }
     
-    public void remove(OrderedProduct product){
+    public void remove(OrderedProduct product, int quantity){
         //Checking if the product exists in cart
         OrderedProduct target=null;
         boolean exists = false;
@@ -114,7 +114,7 @@ public class Cart implements Serializable {
             if (product.getName().equals(p.getName())){
                 exists = true;
                 target = p;
-                newQuantity = target.getQuantity()-product.getQuantity();
+                newQuantity = target.getQuantity()-quantity;
             }  
         }
         if (!exists){
