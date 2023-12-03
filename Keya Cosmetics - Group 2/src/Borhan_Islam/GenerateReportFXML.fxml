@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -34,6 +37,22 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <TextArea layoutX="212.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
+      <TableView fx:id="tableView" layoutX="10.0" layoutY="92.0" prefHeight="430.0" prefWidth="561.0">
+         <columns>
+            <TableColumn fx:id="nameColumn" prefWidth="249.0" text="Expense Name" />
+            <TableColumn fx:id="categoryColumn" prefWidth="164.0" text="Category" />
+            <TableColumn fx:id="amountColumn" prefWidth="147.0" text="Amount (BDT)" />
+         </columns>
+      </TableView>
+      <TextArea fx:id="reportTextArea" layoutX="641.0" layoutY="151.0" prefHeight="272.0" prefWidth="256.0" promptText="Write report..." />
+      <Button layoutX="846.0" layoutY="456.0" mnemonicParsing="false" onAction="#saveButton" text="Save">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="nameLabel" disable="true" layoutX="705.0" layoutY="69.0" prefHeight="17.0" prefWidth="136.0" visible="false" />
+      <Label fx:id="categoryLabel" disable="true" layoutX="705.0" layoutY="102.0" prefHeight="17.0" prefWidth="136.0" visible="false" />
+      <Label fx:id="amountLabel" disable="true" layoutX="705.0" layoutY="134.0" prefHeight="17.0" prefWidth="136.0" visible="false" />
+      <Label fx:id="dateLabel" disable="true" layoutX="613.0" layoutY="39.0" prefHeight="17.0" prefWidth="151.0" visible="false" />
    </children>
 </AnchorPane>

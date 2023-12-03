@@ -122,7 +122,7 @@ public class NewProductIdeaFXMLController implements Initializable {
                 
    
                 showSuccessAlert("Record added successfully.");
-                sendDetailsfxid.setDisable(true);
+                sendDetailsfxid.setDisable(false);
                 seeSaveDatafxid.setDisable(false);            
             }         
     }
