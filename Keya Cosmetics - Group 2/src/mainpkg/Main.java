@@ -40,7 +40,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("LoginSignupScene.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("hahaKeya Cosmetics: Login");
+        stage.setTitle("Keya Cosmetics: Login");
         stage.show();
         
         //Inserting a user
