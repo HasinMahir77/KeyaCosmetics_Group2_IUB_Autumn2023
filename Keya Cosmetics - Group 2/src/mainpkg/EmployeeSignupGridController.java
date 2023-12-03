@@ -4,6 +4,7 @@
  */
 package mainpkg;
 
+import Amit_AffiliateMarketer.AffiliateMarketer;
 import Amit_ProductionManager.ProductionManager;
 import Borhan_Islam.Accountant;
 import Borhan_Islam.ProductManager;
@@ -238,7 +239,7 @@ public class EmployeeSignupGridController implements Initializable {
                         fos = new FileOutputStream(employeeFile);
                         oos = new ObjectOutputStream(fos);
                 }
-                    Accountant newAM = new Accountant(firstNameTextField.getText(),lastNameTextField.getText(),
+                    AffiliateMarketer newAM = new AffiliateMarketer(firstNameTextField.getText(),lastNameTextField.getText(),
                 usernameTextField.getText(), passwordTextField.getText(),phoneTextField.getText());
                     newAM.setDob(dobDatePicker.getValue());
                     oos.writeObject(newAM);
