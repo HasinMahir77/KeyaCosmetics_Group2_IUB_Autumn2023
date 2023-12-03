@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Amit_AffiliateMarketer.ViewAdCampaignListFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Amit_AffiliateMarketer.ViewAdCampaignListFXMLController">
    <children>
       <TableView fx:id="tableView" layoutX="42.0" layoutY="35.0" prefHeight="200.0" prefWidth="519.0">
         <columns>
@@ -17,5 +17,6 @@
         </columns>
       </TableView>
       <Button layoutX="462.0" layoutY="304.0" mnemonicParsing="false" onMouseClicked="#seeDescriptionButtonClick" text="See Description" />
+      <Button layoutX="97.0" layoutY="304.0" mnemonicParsing="false" onAction="#generatePDF" text="Pdf Generator" />
    </children>
 </AnchorPane>
