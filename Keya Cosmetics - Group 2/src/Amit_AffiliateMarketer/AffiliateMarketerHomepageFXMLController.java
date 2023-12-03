@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import mainpkg.Main;
@@ -101,6 +102,14 @@ AffiliateMarketer am;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TrackCampaignOnDurationOnClickFXML.fxml"));
         Parent root = loader.load();
         borderPane.setCenter(root);
+    }
+
+    @FXML
+    private void LogoutOnClick(ActionEvent event) throws IOException {
+        Main.getMainStage().setTitle("Login");
+        Parent root = FXMLLoader.load(getClass().getResource("/mainpkg/LoginSignupScene.fxml"));
+        Scene scene = Main.getMainStage().getScene();
+        scene.setRoot(root);
     }
     
 }

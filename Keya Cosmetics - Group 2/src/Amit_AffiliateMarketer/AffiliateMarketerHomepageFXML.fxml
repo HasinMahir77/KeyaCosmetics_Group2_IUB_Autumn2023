@@ -39,6 +39,11 @@
                   <MenuItem mnemonicParsing="false" onAction="#trackCampaignOnDurationOnClick" text="Track Campaign (Duration)" />
                </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Logout">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#LogoutOnClick" text="Logout" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>
