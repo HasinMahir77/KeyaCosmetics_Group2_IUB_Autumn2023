@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 
 public class AffiliateMarketer extends User implements Serializable {
 
+
     public AffiliateMarketer() {
     }
 
@@ -108,6 +109,8 @@ public class AffiliateMarketer extends User implements Serializable {
     public void setDob(LocalDate dob) {
         this.dob = dob;
     }
+
+
     
     
     public static void AddNewReview(ProductReview pr) {
