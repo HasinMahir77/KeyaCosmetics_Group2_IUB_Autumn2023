@@ -309,7 +309,8 @@ public class CustomerCartSceneController implements Initializable {
     private void orderButtonOnClick(ActionEvent event) throws IOException {
 
         Order order = new Order(current);
-        order.saveInstance();
+        System.out.println("Ordered by "+current.toString());
+        order.addOrder();
         current.getCart().getProductOrderList().clear();
         this.updateCartTable();
         if (new File("OrderList.bin").exists()){

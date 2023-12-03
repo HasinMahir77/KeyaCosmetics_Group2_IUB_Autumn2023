@@ -252,7 +252,7 @@ public class CustomerOrderSceneController implements Initializable {
         if (!(this.selectedOrder==null)){
             this.selectedOrder.setStatus(Status.CANCELED);
         }
-        this.selectedOrder.saveInstance();
+        //this.selectedOrder.saveInstance();
     }
 
     @FXML

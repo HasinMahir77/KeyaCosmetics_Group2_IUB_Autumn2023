@@ -75,6 +75,25 @@ public class Order implements Serializable,Reviewable {
             a.showAndWait();
         }
     }
+    public void addOrder(){
+        File orderFile = new File("OrderList.bin");
+        FileOutputStream fos;
+        ObjectOutputStream oos;
+        
+        try{
+            if (orderFile.exists()){
+                fos = new FileOutputStream(orderFile,true);
+                oos = new ObjectOutputStreamA(fos);
+            }
+            else {
+                fos = new FileOutputStream(orderFile);
+                oos = new ObjectOutputStream(fos);
+            }
+            oos.writeObject(this);
+            oos.close();
+        }
+        catch(Exception e){System.out.println(e+" from Order.addOrder");}
+    }
     
     public Status getStatus() {
         return status;
@@ -153,7 +172,8 @@ public class Order implements Serializable,Reviewable {
     }
     
     
-    public void saveInstance(){
+    public void saveInstance(){/*
+        
         Order target = null;
         System.out.println("Save instance called");
         File userFile = new File("OrderList.bin");
@@ -188,8 +208,9 @@ public class Order implements Serializable,Reviewable {
         }
         catch(Exception e){System.out.println(e.toString()+" From order.saveinstance()");} 
         
-        
+        */
     }
+    
     public static Order readInstance(Order order){
         for (Order o: Order.getOrderList()){
             if (o.getId().equals(order.getId())){
