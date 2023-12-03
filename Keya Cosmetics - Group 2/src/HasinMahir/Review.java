@@ -109,9 +109,9 @@ public class Review implements Serializable {
         }
         return false;
     }
-    public boolean takeReview(User product) throws IOException{
+    public boolean takeReview(User user) throws IOException{
         //Set the userdata to takereview scene
-        this.subject = product.getUsername();
+        this.subject = user.getUsername();
         //Setting up the new stage and passing data
         MainpkgSS ss = new MainpkgSS();
         stage = new Stage();
