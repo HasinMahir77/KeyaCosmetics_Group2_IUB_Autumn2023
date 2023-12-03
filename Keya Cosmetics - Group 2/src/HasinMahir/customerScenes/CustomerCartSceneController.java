@@ -11,6 +11,10 @@ import HasinMahir.Product;
 import HasinMahir.OrderedProduct;
 import HasinMahir.User;
 import static HasinMahir.customerScenes.CustomerShopSceneController.current;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -39,6 +43,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import mainpkg.MainpkgSS;
@@ -97,11 +102,11 @@ public class CustomerCartSceneController implements Initializable {
     @FXML
     private Label securityLabel;
     @FXML
-    private Button orderButton;
-    @FXML
     private Label grandTotalLabel;
     @FXML
     private TableColumn<OrderedProduct, Float> PriceColumn;
+    @FXML
+    private Button orderButton1;
     
 
     /**
@@ -327,7 +332,7 @@ public class CustomerCartSceneController implements Initializable {
         
     }
     public void updateGrandTotal(){
-        
+        this.grandTotalLabel.setText("Total: "+current.getCart().getPrice());
     }
 
     @FXML
@@ -348,5 +353,44 @@ public class CustomerCartSceneController implements Initializable {
     public static Stage getCheckoutStage(){
         return checkoutStage;
     }
+
+    @FXML
+    private void recieptButtonOnClick(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+
+        File file = fileChooser.showSaveDialog(null);
+
+        if (file != null) {
+            saveTableViewContentAsPDF(this.cartTableView.getItems(), file.getAbsolutePath());
+        }
+    }
+
+    private void saveTableViewContentAsPDF(ObservableList<OrderedProduct> productList, String filePath) {
+        try {
+            PdfWriter pdfWriter = new PdfWriter(filePath);
+            PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+            Document document = new Document(pdfDocument);
+
+            for (OrderedProduct op : productList) {
+                document.add(new Paragraph("Name: " + op.getName()));
+                document.add(new Paragraph("Unit price: " + op.getUnitPrice()));
+                document.add(new Paragraph("Quantity: " + op.getQuantity()));
+                document.add(new Paragraph("Price(without vat): " + op.getPrice()));
+                document.add(new Paragraph("Vat: " + op.getVat()));
+                document.add(new Paragraph("Total: " + op.getTotalPrice()));
+
+                document.add(new Paragraph("\n")); // Add space between entries
+            }
+
+            document.close();
+
+            System.out.println("Receipt generated");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     
 }

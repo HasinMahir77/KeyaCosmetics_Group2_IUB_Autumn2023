@@ -99,15 +99,16 @@
                   <Font name="System Bold" size="12.5" />
                </font>
             </Label>
+            <Button mnemonicParsing="false" onAction="#recieptButtonOnClick" text="Receipt" />
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />
          </padding></VBox>
    </right>
    <bottom>
-      <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="orderButton" mnemonicParsing="false" onAction="#orderButtonOnClick" prefHeight="32.0" prefWidth="99.0" style="-fx-background-radius: 4;" text="Checkout" />
+            <Button fx:id="orderButton1" mnemonicParsing="false" onAction="#orderButtonOnClick" prefHeight="32.0" prefWidth="99.0" style="-fx-background-radius: 4;" text="Checkout" />
          </children>
          <padding>
             <Insets right="70.0" top="10.0" />
