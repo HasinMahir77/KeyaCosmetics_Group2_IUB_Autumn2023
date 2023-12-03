@@ -32,6 +32,10 @@ AffiliateMarketer am;
     @FXML
     private void submitContentOnClick(ActionEvent event) throws IOException {
         
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("submitContentOnClickFXML.fxml"));
+        Parent root = loader.load();
+        borderPane.setCenter(root);
+        
     }
 
     @FXML
