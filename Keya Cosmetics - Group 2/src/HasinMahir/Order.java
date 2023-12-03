@@ -174,6 +174,8 @@ public class Order implements Serializable,Reviewable {
         try(FileOutputStream fos = new FileOutputStream(userFile);
                 ObjectOutputStream oos = new ObjectOutputStream(fos)){
             oos.writeObject(this);
+            
+            oos.close();
         }
         catch(Exception e){System.out.println(e.toString()+" From order saveinstance");}
         //Writing other users
@@ -186,6 +188,16 @@ public class Order implements Serializable,Reviewable {
         catch(Exception e){System.out.println(e.toString()+" From order.saveinstance()");} 
         
         
+    }
+    public static Order readInstance(Order order){
+        for (Order o: Order.getOrderList()){
+            if (o.getId().equals(order.getId())){
+                return o;
+            }
+        }
+        System.out.println("Shouldn't happen. Order.readInstance()");
+        return null;
+     
     }
     
     public static ArrayList<Order> getOrderList(){
