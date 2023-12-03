@@ -5,7 +5,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Amit_ProductionManager.ProductionManagerHomePageFXMLController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Amit_ProductionManager.ProductionManagerHomePageFXMLController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -34,6 +34,11 @@
             <Menu mnemonicParsing="false" text="Vendors">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#manageVendorsOnClick" text="Manage Vendors" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Logout">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#LogoutOnClick" text="Logout" />
                </items>
             </Menu>
         </menus>
