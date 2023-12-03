@@ -170,9 +170,9 @@
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="45.0" prefWidth="390.0" spacing="10.0">
                      <children>
-                        <RadioButton mnemonicParsing="false" text="All" />
-                        <RadioButton mnemonicParsing="false" text="Pending" />
-                        <RadioButton mnemonicParsing="false" text="Delivered" />
+                        <RadioButton mnemonicParsing="false" text="All" visible="false" />
+                        <RadioButton mnemonicParsing="false" text="Pending" visible="false" />
+                        <RadioButton mnemonicParsing="false" text="Delivered" visible="false" />
                      </children>
                   </HBox>
                </children>
