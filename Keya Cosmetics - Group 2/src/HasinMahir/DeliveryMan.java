@@ -117,13 +117,13 @@ public class DeliveryMan extends User {
             order.setDeliveryMan(this);
             order.setStatus(Status.OUT_FOR_DELIVERY);
             
-            order.saveInstance();
+            
         }
         else if (order.getStatus()==Status.INITIATED_RETURN){
             order.setDeliveryMan(this);
             order.setStatus(Status.OUT_FOR_RETURN);
             
-            order.saveInstance();
+           
         }
     }
     public void deliverOrder(Order order){

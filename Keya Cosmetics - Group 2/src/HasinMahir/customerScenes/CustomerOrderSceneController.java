@@ -251,6 +251,7 @@ public class CustomerOrderSceneController implements Initializable {
     private void cancelButtonOnClick(ActionEvent event) {
         if (!(this.selectedOrder==null)){
             this.selectedOrder.setStatus(Status.CANCELED);
+            selectedOrder.saveInstance();
         }
         //this.selectedOrder.saveInstance();
     }
@@ -259,6 +260,7 @@ public class CustomerOrderSceneController implements Initializable {
     private void reviewButtonOnClick(ActionEvent event) throws IOException {
         if (this.selectedOrder!=null){
             this.selectedOrder.addReview(current.getUsername());
+            selectedOrder.saveInstance();
         }
     }
     private void updatePieChart(){

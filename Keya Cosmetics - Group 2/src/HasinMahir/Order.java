@@ -112,6 +112,7 @@ public class Order implements Serializable,Reviewable {
 
     public void setStatus(Status status) {
         this.status = status;
+        this.saveInstance();
         
         
         
