@@ -310,13 +310,14 @@ public class CustomerCartSceneController implements Initializable {
 
         Order order = new Order(current);
         System.out.println("Ordered by "+current.toString());
-        order.addOrder();
+        current.placeOrder(order);
+        current.saveInstance();
+        
         current.getCart().getProductOrderList().clear();
         this.updateCartTable();
-        if (new File("OrderList.bin").exists()){
-            for (Order o: Order.getOrderList()){System.out.println(o);}
-        }
-
+        
+        //
+        for (Order o: Order.getOrderList()){System.out.println(o);}
         
     }
     public void updateGrandTotal(){

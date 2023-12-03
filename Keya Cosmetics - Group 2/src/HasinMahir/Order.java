@@ -55,7 +55,6 @@ public class Order implements Serializable,Reviewable {
         this.date = LocalDate.now();
         this.id = "OID"+this.time.toString()+this.date.toString();
         this.review = null;
-        customer.getOrderIdList().add(this.id);
     }
     
 
@@ -74,7 +73,7 @@ public class Order implements Serializable,Reviewable {
             Alert a = new Alert(Alert.AlertType.ERROR,"Failed to save review");
             a.showAndWait();
         }
-    }
+    }/*
     public void addOrder(){
         File orderFile = new File("OrderList.bin");
         FileOutputStream fos;
@@ -93,7 +92,7 @@ public class Order implements Serializable,Reviewable {
             oos.close();
         }
         catch(Exception e){System.out.println(e+" from Order.addOrder");}
-    }
+    }*/
     
     public Status getStatus() {
         return status;
@@ -113,18 +112,24 @@ public class Order implements Serializable,Reviewable {
 
     public void setStatus(Status status) {
         this.status = status;
+        
+        
+        
     }
 
     public void setCustomerUserName(String customerUserName) {
         this.customerUserName = customerUserName;
+       
     }
 
     public void setDeliveryManUserName(String deliveryManUserName) {
         this.deliveryManUserName = deliveryManUserName;
+       
     }
 
     public void setAddress(String address) {
         this.address = address;
+        
     }
 
     public String getAddress() {
@@ -172,7 +177,24 @@ public class Order implements Serializable,Reviewable {
     }
     
     
-    public void saveInstance(){/*
+    public void saveInstance(){
+
+        Order target = null;
+        
+        Customer owner = Customer.getInstance(this.customerUserName);
+        //Editing the customer instance
+        for (Order o: owner.getOrderList()){
+            if (o.getId().equals(this.id)){
+                target = o;
+            }
+        }
+        if (target!=null){
+            owner.getOrderList().remove(target);
+            owner.getOrderList().add(this);
+            owner.saveInstance();
+        }
+        /*
+        
         
         Order target = null;
         System.out.println("Save instance called");
@@ -222,7 +244,7 @@ public class Order implements Serializable,Reviewable {
      
     }
     
-    public static ArrayList<Order> getOrderList(){
+    public static ArrayList<Order> getOrderList(){/*
         if (new File("OrderList.bin").exists()){
             
         ArrayList<Order> orderList = new ArrayList<Order>();
@@ -240,7 +262,12 @@ public class Order implements Serializable,Reviewable {
         else {
             System.out.println("OrderFile not found. getOrderList() called.");
             return new ArrayList<Order>();
+        }*/
+        ArrayList<Order> orderList = new ArrayList<Order>();
+        for (Customer c: Customer.getCustomerList()){
+            orderList.addAll(c.getOrderList());
         }
+        return orderList;
     }
     
     public void viewCart() throws IOException{
