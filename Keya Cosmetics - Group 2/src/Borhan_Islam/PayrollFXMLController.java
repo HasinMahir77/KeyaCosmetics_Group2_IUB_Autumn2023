@@ -66,10 +66,11 @@ public class PayrollFXMLController implements Initializable {
     Stage stage;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        bonusTypeCombo.setValue("N/A");
         saveRecordsFXID.setDisable(true);        
         seePayrollFXID.setDisable(false);        
         calculateFXID.setDisable(false);  
-        String[] bonustype = {"Festival", "New Year"};        
+        String[] bonustype = {"Festival", "New Year","N/A"};        
         String[] desigs = {"HR","Product Manager", "Production Manager","Accountant","Deliveryman","Affiliate Marketer","Receptionist"};    
         bonusTypeCombo.getItems().addAll(bonustype);
         desigCombo.getItems().addAll(desigs);
@@ -83,25 +84,17 @@ public class PayrollFXMLController implements Initializable {
 
     @FXML
     private void calculateButton(ActionEvent event) {
-        String bonus = bonusText.getText();  
-        String deductions = deductionsText.getText();     
-        if (bonus.isEmpty()){
-            bonusText.setText("0.0");
-        }        
-        if (deductions.isEmpty()) {
-            deductionsText.setText("0.0");
-        } 
-        
         if (!validateInputFields()) {
                     return;
                 }                               
                              
         try {
-            float basicSalary = Float.parseFloat(basicSalaryText.getText());
-//            float 
-//           float calculated = basicSalary + bonus - deductions;
-//            calculationLabel.setText("BDT "+Float.toString(calculated));
-
+            float salary = Float.parseFloat(basicSalaryText.getText());
+            float bonus = Float.parseFloat(bonusText.getText());  
+            float deductions = Float.parseFloat(deductionsText.getText());             
+             
+            float calculated = salary + bonus - deductions;
+            calculationLabel.setText(Float.toString(calculated));
             saveRecordsFXID.setDisable(false);
             calculateFXID.setDisable(true);
         } catch (NumberFormatException e) {
@@ -111,6 +104,7 @@ public class PayrollFXMLController implements Initializable {
 
     @FXML
     private void saveRecordsButton(ActionEvent event) {   
+       
         String name = employeeText.getText();
         String desig =  desigCombo.getValue();
         Float salary= Float.valueOf(basicSalaryText.getText());
@@ -119,15 +113,14 @@ public class PayrollFXMLController implements Initializable {
         Float deductions=Float.valueOf(deductionsText.getText());
         LocalDate paymentdate= paymentDatePicker.getValue();
         Float netsalary = Float.valueOf(calculationLabel.getText());
-
-        if (bonustype == null) {
-            bonusTypeCombo.setValue("N/A");
-        }
-
         if (name == null || desig == null || salary == null || paymentdate == null) {
             showErrorAlert("Please fill in all the required fields.");
             return;
         }
+//        if (bonusTypeCombo.getValue() == null) {
+//            bonusTypeCombo.setValue("N/A");
+//        }
+
         Payroll payroll = new Payroll();
             if (showConfirmationAlert("Are you sure you want to add this record?")) {
 
@@ -138,7 +131,8 @@ public class PayrollFXMLController implements Initializable {
                 calculateFXID.setDisable(false);   
                 showSuccessAlert("Record added successfully.");
             }         
-        
+
+            
     }    
 
     @FXML
@@ -177,7 +171,7 @@ public class PayrollFXMLController implements Initializable {
             Float basicsalary = Float.valueOf(basicSalaryText.getText());
             Float deductions = Float.valueOf(deductionsText.getText());  
             
-            if (basicsalary < 10000 || basicsalary > 350000) {
+            if (basicsalary < 5000 || basicsalary > 350000) {
                 showErrorAlert("Basic salary must be between 10,000 BDT and 3,50,000 BDT!");
                 return false;
             }
@@ -193,5 +187,11 @@ public class PayrollFXMLController implements Initializable {
             return false;
         }
     }
-  
+    private boolean validateComboBoxes() {
+        if (desigCombo.getValue()==null) {
+            showErrorAlert("Please select values for Designation.");
+            return false;
+        }
+        return true;
+    }  
 }
