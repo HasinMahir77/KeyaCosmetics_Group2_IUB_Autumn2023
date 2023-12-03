@@ -77,6 +77,7 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
     
         
     public void saveInstance(){
+     
         Customer target = null;
         System.out.println("Save instance called");
         File userFile = new File("CustomerList.bin");
@@ -107,9 +108,11 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
             }
         }
         catch(Exception e){System.out.println(e.toString()+" From customer saveinstancs");}
+     
     }
     
     public static ArrayList<Customer> getCustomerList(){
+        
         if (new File("CustomerList.bin").exists()){
             
         ArrayList<Customer> customerList = new ArrayList<Customer>();
@@ -126,7 +129,7 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
         }
         else {
             System.out.println("CustomerFile not found. getCustomerList() called.");
-            return null;
+            return new ArrayList<Customer>();
         }
     }
     
