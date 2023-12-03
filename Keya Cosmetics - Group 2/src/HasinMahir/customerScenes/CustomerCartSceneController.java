@@ -11,6 +11,7 @@ import HasinMahir.Product;
 import HasinMahir.OrderedProduct;
 import HasinMahir.User;
 import static HasinMahir.customerScenes.CustomerShopSceneController.current;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -108,6 +109,9 @@ public class CustomerCartSceneController implements Initializable {
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if (new File("OrderList.bin").exists()){
+            for (Order o: Order.getOrderList()){System.out.println(o);}
+        }
         cartTableView.setPlaceholder(new Label("No products in cart."));
         cartLabel.setTextFill(Color.BLUE);
         // Getting user data
@@ -131,6 +135,7 @@ public class CustomerCartSceneController implements Initializable {
         this.updateCartTable();
         
         //---
+        
     }   
 
     @FXML
@@ -234,6 +239,9 @@ public class CustomerCartSceneController implements Initializable {
 
     @FXML
     private void addButtonOnClick(ActionEvent event) {
+        if (this.cartTableView.getItems().isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Please add products to cart first.").show();
+        }
         try{
             OrderedProduct po = this.selectedProduct;
             int quantity = Integer.parseInt(quantityTextField.getText());
@@ -304,6 +312,9 @@ public class CustomerCartSceneController implements Initializable {
         order.saveInstance();
         current.getCart().getProductOrderList().clear();
         this.updateCartTable();
+        if (new File("OrderList.bin").exists()){
+            for (Order o: Order.getOrderList()){System.out.println(o);}
+        }
 
         
     }
