@@ -71,13 +71,7 @@ public class LoginGridController implements Initializable {
         
         
         //DEFAULT: CUSTOMER
-       usernameTextField.setText("DeliveryMan");
-       passwordTextField.setText("DeliveryMan");
-       if (new File("CustomerList.bin").exists()){
-            for (Customer dm: Customer.getCustomerList()){
-                System.out.println(dm);
-            }
-        }
+       
     }    
 
     @FXML
