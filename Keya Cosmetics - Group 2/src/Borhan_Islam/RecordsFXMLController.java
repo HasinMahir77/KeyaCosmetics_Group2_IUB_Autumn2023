@@ -65,32 +65,20 @@ public class RecordsFXMLController implements Initializable {
     
 
     @FXML
-    private void showRecordsOnButtonClicked(ActionEvent event) {
+    private void showRecordsOnButtonClicked(ActionEvent event) throws IOException {
 
         ObjectInputStream ois = null;
-        try {
-            ois = new ObjectInputStream(new FileInputStream("OrderList.bin"));
 
             while (true) {
                 try {
                     Order order = (Order) ois.readObject();
-
-                    recordsTableView.getItems().add(order);
+                    recordsTableView.getItems().addAll(Order.getOrderList());
                 } catch (EOFException e) {
                     break;
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            try {
-                if (ois != null)
-                    ois.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
         showRecordsFXID.setDisable(true);        
 
         }
