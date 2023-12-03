@@ -16,10 +16,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
@@ -65,6 +67,22 @@ public class DeliveryManPaymentsController implements Initializable {
      * Initializes the controller class.
      */
     DeliveryMan current;
+    @FXML
+    private RadioButton bKashRadioButton;
+    @FXML
+    private RadioButton bankRadioButton;
+    @FXML
+    private RadioButton cashRadioButton;
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Label phoneLabel;
+    @FXML
+    private Label dobLabel;
+    @FXML
+    private Label dojLabel;
+    @FXML
+    private Label balanceLabel;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -125,6 +143,18 @@ public class DeliveryManPaymentsController implements Initializable {
     @FXML
     private void darkenUserMenuBar(MouseEvent event) {
         userMenu.setStyle("-fx-background-color: #79edad");
+    }
+
+    @FXML
+    private void bKashRadioButtonOnAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void bankRadioButtonOnAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void cashRadioButtonOnAction(ActionEvent event) {
     }
     
 }
