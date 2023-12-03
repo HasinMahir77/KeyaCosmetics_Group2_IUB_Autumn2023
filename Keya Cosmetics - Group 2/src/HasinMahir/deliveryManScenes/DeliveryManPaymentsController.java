@@ -8,6 +8,7 @@ import HasinMahir.DeliveryMan;
 import HasinMahir.DeliveryPayment;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -15,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -62,11 +64,12 @@ public class DeliveryManPaymentsController implements Initializable {
     private ListView<DeliveryPayment> paymentListView;
     @FXML
     private Tab withdrawTab;
+    DeliveryMan current;
+    DeliveryPayment selectedPayment;
 
     /**
      * Initializes the controller class.
      */
-    DeliveryMan current;
     @FXML
     private RadioButton bKashRadioButton;
     @FXML
@@ -87,6 +90,18 @@ public class DeliveryManPaymentsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         current = (DeliveryMan)Main.getUserData();
+        selectedPayment = null;
+        
+        //Labels 
+         nameLabel.setText(nameLabel.getText()+" "+current.getFirstName()+" "+current.getLastName());
+        dojLabel.setText(dojLabel.getText()+" "+current.getDoj().toString());
+        phoneLabel.setText(phoneLabel.getText()+" "+current.getPhone().toString());
+        current.setDob(LocalDate.now());
+        dobLabel.setText(dobLabel.getText()+" "+current.getDob().toString());
+        balanceLabel.setText(balanceLabel.getText()+" "+current.getBalance());
+        
+        //Listview
+        this.updateListView();
         
     }    
 
@@ -162,5 +177,30 @@ public class DeliveryManPaymentsController implements Initializable {
         this.bKashRadioButton.setSelected(false);
         this.bankRadioButton.setSelected(false);
     }
-    
+
+    @FXML
+    private void updateSelectedPayment(MouseEvent event) {
+        if (!this.paymentListView.getItems().isEmpty()){
+            this.selectedPayment = this.paymentListView.getSelectionModel().getSelectedItem();
+        }
+        
+    }
+
+    @FXML
+    private void depositButtonOnAction(ActionEvent event) {
+        if (this.selectedPayment==null){
+            new Alert(Alert.AlertType.ERROR,"Please select a payment").show();
+            return;
+        }
+        else{
+            current.setBalance(current.getBalance()+selectedPayment.getAmount());
+            selectedPayment.isDone();
+            current.saveInstance();
+            this.updateListView();
+        }
+    }
+    private void updateListView(){
+        this.paymentListView.getItems().clear();
+        this.paymentListView.getItems().addAll(current.getPaymentDepositList());
+    }
 }

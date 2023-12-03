@@ -41,6 +41,11 @@ public class DeliveryPayment implements Serializable {
     public void setDone() {
         this.done = true;
     }
+    
+    @Override
+    public String toString(){
+        return "Payment: "+Float.toString(this.amount)+" BDT";
+    }
 
     
      

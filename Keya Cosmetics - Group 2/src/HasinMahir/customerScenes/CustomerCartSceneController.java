@@ -308,6 +308,8 @@ public class CustomerCartSceneController implements Initializable {
 
     @FXML
     private void orderButtonOnClick(ActionEvent event) throws IOException {
+        
+        checkoutStage = new Stage();
  
         Parent root = FXMLLoader.load(getClass().getResource("CustomerCheckout.fxml"));
         Scene scene = new Scene(root);

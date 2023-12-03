@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
@@ -63,6 +64,10 @@ public class DeliveryManWithdrawEarningController implements Initializable {
         current.setDob(LocalDate.now());
         dobLabel.setText(dobLabel.getText()+" "+current.getDob().toString());
         balanceLabel.setText(balanceLabel.getText()+" "+current.getBalance());
+        
+        
+        //Listview
+        this.updateListView();
     }    
 
     @FXML
@@ -86,5 +91,31 @@ public class DeliveryManWithdrawEarningController implements Initializable {
         if(!paymentListView.getSelectionModel().isEmpty()){
             this.selectedPayment = paymentListView.getSelectionModel().getSelectedItem();
         } 
+    }
+
+    
+    @FXML
+    private void withdrawButtonOnAction(ActionEvent event) {
+        if (this.selectedPayment==null){
+            new Alert(Alert.AlertType.ERROR,"Please select a payment").show();
+            return;
+        }
+        else{
+            current.setBalance(current.getBalance()+selectedPayment.getAmount());
+            selectedPayment.isDone();
+            current.saveInstance();
+            this.updateListView();
+        }
+    }
+
+    @FXML
+    private void updateSelectedPayment(MouseEvent event) {
+        if (!this.paymentListView.getItems().isEmpty()){
+            this.selectedPayment = this.paymentListView.getSelectionModel().getSelectedItem();
+        }
+    }
+    private void updateListView(){
+        this.paymentListView.getItems().clear();
+        this.paymentListView.getItems().addAll(current.getPaymentWithdrawList());
     }
 }
