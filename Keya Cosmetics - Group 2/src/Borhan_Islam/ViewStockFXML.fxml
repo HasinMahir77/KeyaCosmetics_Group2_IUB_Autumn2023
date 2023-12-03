@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -20,7 +23,7 @@
             </Menu>
          </menus>
       </MenuBar>
-      <Label layoutX="415.0" layoutY="39.0" text="View Stock">
+      <Label layoutX="426.0" layoutY="39.0" text="Products">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
@@ -33,5 +36,18 @@
             </LinearGradient>
          </textFill>
       </Label>
+      <TableView fx:id="tableView" layoutX="53.0" layoutY="88.0" onMouseClicked="#updateSelectedProduct" prefHeight="392.0" prefWidth="861.0">
+         <columns>
+            <TableColumn fx:id="nameTable" prefWidth="269.0" text="Name" />
+            <TableColumn fx:id="categoryTable" prefWidth="204.0" text="Category" />
+            <TableColumn fx:id="priceTable" prefWidth="212.0" text="Price (BDT)" />
+            <TableColumn fx:id="vatTable" prefWidth="154.0" text="Vat Rate %" />
+         </columns>
+      </TableView>
+      <Button fx:id="loadfxid" layoutX="837.0" layoutY="495.0" mnemonicParsing="false" onAction="#loadButton" prefHeight="30.0" prefWidth="76.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #3498db; -fx-text-fill: #FFFFFF;" text="Load">
+         <font>
+            <Font name="Lucida Console" size="19.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

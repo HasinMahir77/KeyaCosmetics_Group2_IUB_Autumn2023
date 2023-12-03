@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -36,13 +37,59 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <TableView layoutX="52.0" layoutY="127.0" prefHeight="344.0" prefWidth="361.0">
+      <TableView fx:id="tableView" layoutX="19.0" layoutY="90.0" onMouseClicked="#selectedProductTable" prefHeight="432.0" prefWidth="483.0">
         <columns>
-          <TableColumn prefWidth="145.0" text="Product Name" />
-          <TableColumn prefWidth="94.0" text="Price" />
-            <TableColumn prefWidth="121.0" text="Vat (%)" />
+          <TableColumn fx:id="nameCol" prefWidth="201.0" text="Product Name" />
+          <TableColumn fx:id="categoryCol" prefWidth="114.0" text="Category" />
+            <TableColumn fx:id="priceCol" prefWidth="91.0" text="Price (BDT)" />
+            <TableColumn fx:id="vatCol" prefWidth="76.0" text="Vat %" />
         </columns>
       </TableView>
-      <TextArea layoutX="481.0" layoutY="127.0" prefHeight="344.0" prefWidth="439.0" text="Add Product Details" />
+      <TextArea fx:id="detailsTextArea" layoutX="557.0" layoutY="290.0" prefHeight="181.0" prefWidth="362.0" promptText="Add product details..." />
+      <Button layoutX="788.0" layoutY="488.0" mnemonicParsing="false" onAction="#saveDetailsButton" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" text="Save Details">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="565.0" layoutY="149.0" text="Product Name:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="603.0" layoutY="179.0" text="Category:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="586.0" layoutY="214.0" text="Price (BDT):">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="637.0" layoutY="249.0" text="Vat :">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameLabel" layoutX="688.0" layoutY="149.0" prefHeight="21.0" prefWidth="223.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="categoryLabel" layoutX="688.0" layoutY="179.0" prefHeight="21.0" prefWidth="223.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="priceLabel" layoutX="688.0" layoutY="214.0" prefHeight="21.0" prefWidth="223.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="vatLabel" layoutX="688.0" layoutY="249.0" prefHeight="21.0" prefWidth="223.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

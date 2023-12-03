@@ -50,7 +50,7 @@
          </image>
       </ImageView>
       <Line endX="-265.0" endY="395.0" layoutX="319.0" layoutY="119.0" startX="-265.0" startY="-51.0" />
-      <Button layoutX="54.0" layoutY="242.0" mnemonicParsing="false" onAction="#viewStockOnButtonClicked" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" text="View Stock">
+      <Button layoutX="54.0" layoutY="242.0" mnemonicParsing="false" onAction="#viewStockOnButtonClicked" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" text="View All Products">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font>
@@ -60,12 +60,12 @@
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="54.0" layoutY="354.0" mnemonicParsing="false" onAction="#updatedTermsOnButtonClicked" prefHeight="28.0" prefWidth="176.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;">
+      <Button layoutX="54.0" layoutY="354.0" mnemonicParsing="false" onAction="#sendfeedbackButton" prefHeight="28.0" prefWidth="200.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" text="Send Feedback To HR">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="54.0" layoutY="411.0" mnemonicParsing="false" onAction="#expenseControlOnButtonClicked" prefHeight="28.0" prefWidth="176.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;">
+      <Button layoutX="54.0" layoutY="411.0" mnemonicParsing="false" onAction="#loadDetailedProductsButton" prefHeight="28.0" prefWidth="243.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" text="Load details of products">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font>
