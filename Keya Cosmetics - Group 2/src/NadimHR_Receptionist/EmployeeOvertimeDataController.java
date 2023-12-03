@@ -19,7 +19,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 /**
- * FXML Controller class
  *
  * @author Nadimul
  */
