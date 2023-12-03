@@ -147,14 +147,20 @@ public class DeliveryManPaymentsController implements Initializable {
 
     @FXML
     private void bKashRadioButtonOnAction(ActionEvent event) {
+        this.bankRadioButton.setSelected(false);
+        this.cashRadioButton.setSelected(false);
     }
 
     @FXML
     private void bankRadioButtonOnAction(ActionEvent event) {
+        this.bKashRadioButton.setSelected(false);
+        this.cashRadioButton.setSelected(false);
     }
 
     @FXML
     private void cashRadioButtonOnAction(ActionEvent event) {
+        this.bKashRadioButton.setSelected(false);
+        this.bankRadioButton.setSelected(false);
     }
     
 }
