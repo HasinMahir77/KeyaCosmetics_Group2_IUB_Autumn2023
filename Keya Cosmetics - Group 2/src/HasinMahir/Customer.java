@@ -38,7 +38,7 @@ public class Customer extends User implements Serializable, Deleteable, Reviewab
         this.address = address;
         this.phone = phone;
         this.del = false;
-        this.balance=0;
+        this.balance=100000;
     }
 
     

@@ -194,13 +194,19 @@ public class DeliveryManPaymentsController implements Initializable {
         }
         else{
             current.setBalance(current.getBalance()+selectedPayment.getAmount());
-            selectedPayment.isDone();
+            selectedPayment.setDone();
             current.saveInstance();
             this.updateListView();
+            balanceLabel.setText("Balance: "+current.getBalance());
         }
     }
     private void updateListView(){
         this.paymentListView.getItems().clear();
-        this.paymentListView.getItems().addAll(current.getPaymentDepositList());
+        for (DeliveryPayment dp: current.getPaymentDepositList()){
+            if (!dp.isDone()){
+                this.paymentListView.getItems().add(dp);
+            }
+        }
+        
     }
 }

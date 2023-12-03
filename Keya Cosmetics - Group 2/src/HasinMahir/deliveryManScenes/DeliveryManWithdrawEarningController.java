@@ -63,7 +63,7 @@ public class DeliveryManWithdrawEarningController implements Initializable {
         phoneLabel.setText(phoneLabel.getText()+" "+current.getPhone().toString());
         current.setDob(LocalDate.now());
         dobLabel.setText(dobLabel.getText()+" "+current.getDob().toString());
-        balanceLabel.setText(balanceLabel.getText()+" "+current.getBalance());
+        balanceLabel.setText("Balance: "+current.getBalance());
         
         
         //Listview
@@ -102,9 +102,10 @@ public class DeliveryManWithdrawEarningController implements Initializable {
         }
         else{
             current.setBalance(current.getBalance()+selectedPayment.getAmount());
-            selectedPayment.isDone();
+            selectedPayment.setDone();
             current.saveInstance();
             this.updateListView();
+            balanceLabel.setText("Balance: "+current.getBalance());
         }
     }
 
@@ -116,6 +117,10 @@ public class DeliveryManWithdrawEarningController implements Initializable {
     }
     private void updateListView(){
         this.paymentListView.getItems().clear();
-        this.paymentListView.getItems().addAll(current.getPaymentWithdrawList());
+        for (DeliveryPayment dp: current.getPaymentWithdrawList()){
+            if (!dp.isDone()){
+                this.paymentListView.getItems().add(dp);
+            }
+    }
     }
 }
