@@ -43,7 +43,8 @@ AffiliateMarketer am;
         Review r = new Review();
         r.setSender(this.am.getUsername());
         Product p = new Product("Soap",20,Category.BODY_SOAP,5);
-        r.takeReview(p);
+        r.setSubject(p.getName());
+        r.takeReview();
         System.out.println(r.getReview());
         System.out.println(r.getRating());
               
